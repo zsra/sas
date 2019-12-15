@@ -4,32 +4,29 @@ import hu.zsra.enaplo.model.user.Student;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @Entity
-@Table(name = "attendances")
-public class Attendance {
+@Table(name = "remark")
+public class Remark {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     private Long id;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "message", length = 500, nullable = false)
     @Getter @Setter
-    private Date StartedAt;
-
-    @Column(name = "ended_at", nullable = false)
-    @Getter @Setter
-    private Date EndedAt;
-
-    @Column(name = "is_proven", nullable = false)
-    @Getter @Setter
-    private boolean IsProven;
+    private String Message;
 
     @ManyToOne
     @JoinColumn(name = "student_id", nullable = false)
     @Getter @Setter
     private Student Student;
 
+    public Remark() {}
+
+    public Remark(String message, Student student) {
+        Message = message;
+        Student = student;
+    }
 }

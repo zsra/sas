@@ -4,8 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -54,13 +52,10 @@ public class User {
     private String Phone;
 
     /* Role info */
-
-    @ElementCollection(targetClass = Role.class)
-    @JoinTable(name = "tbl_roles", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "roles", nullable = false)
+    @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     @Getter @Setter
-    Set<Role> Roles = new HashSet<>();
+    private Role Role;
 
     /* Account status */
 
@@ -74,18 +69,22 @@ public class User {
     public User() {}
 
     public User(String username, String password, String firstName, String middleName,
-                String lastName, Date dateOfBirth, String email, String phone, Set<Role> roles,
+                String lastName, Date dateOfBirth, String email, String phone, Role role,
                 Boolean status, Date lastLogin) {
         Username = username;
         Password = password;
+
         FirstName = firstName;
         MiddleName = middleName;
         LastName = lastName;
+
         DateOfBirth = dateOfBirth;
+
         Email = email;
         Phone = phone;
-        Roles = roles;
         Status = status;
         LastLogin = lastLogin;
+
+        Role = role;
     }
 }
