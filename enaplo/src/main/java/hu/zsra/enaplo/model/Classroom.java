@@ -17,29 +17,29 @@ public class Classroom {
 
     @Column(name = "year", nullable = false)
     @Getter @Setter
-    private int Year;
+    private int year;
 
     @Column(name = "letter", nullable = false)
     @Getter @Setter
-    private char Letter;
+    private char letter;
 
     /* Relationships */
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "head_teacher_id", referencedColumnName = "id")
     @Getter @Setter
-    private HeadTeacher HeadTeacher;
+    private HeadTeacher headTeacher;
 
     @ManyToMany
     @Getter @Setter
-    private Set<Student> Students;
+    private Set<Student> students;
 
     public Classroom() {}
 
     public Classroom(int year, char letter) {
-        Year = year;
-        Letter = letter;
-        HeadTeacher = null;
-        Students = new HashSet<>();
+        this.year = year;
+        this.letter = letter;
+        this.headTeacher = null;
+        this.students = new HashSet<>();
     }
 }

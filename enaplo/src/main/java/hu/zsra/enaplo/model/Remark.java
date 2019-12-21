@@ -16,17 +16,17 @@ public class Remark {
 
     @Column(name = "message", length = 500, nullable = false)
     @Getter @Setter
-    private String Message;
+    private String message;
 
     @ManyToOne
     @JoinColumn(name = "student_id", nullable = false)
     @Getter @Setter
-    private Student Student;
+    private Student student;
 
     public Remark() {}
 
     public Remark(String message, Student student) {
-        Message = message;
-        Student = student;
+        this.message = message;
+        this.student = student;
     }
 }

@@ -21,42 +21,42 @@ public class Student {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @Getter @Setter
-    private User User;
+    private User user;
 
-    @OneToMany(mappedBy = "Student")
+    @OneToMany(mappedBy = "student")
     @Getter @Setter
-    private Set<Exam> Exams;
+    private Set<Exam> exams;
 
     @ManyToMany
     @Getter @Setter
-    private Set<Parent> Parents;
+    private Set<Parent> parents;
 
-    @OneToMany(mappedBy = "Student")
+    @OneToMany(mappedBy = "student")
     @Getter @Setter
-    private Set<Attendance> Attendances;
+    private Set<Attendance> attendances;
 
-    @OneToMany(mappedBy = "Student")
+    @OneToMany(mappedBy = "student")
     @Getter @Setter
-    private Set<Remark> Remarks;
+    private Set<Remark> remarks;
 
-    @OneToMany(mappedBy = "Student")
+    @OneToMany(mappedBy = "student")
     @Getter @Setter
-    private Set<Report> Reports;
+    private Set<Report> reports;
 
     public Student() {
-        Exams = new HashSet<>();
-        Parents = new HashSet<>();
-        Attendances = new HashSet<>();
-        Remarks = new HashSet<>();
-        Reports = new HashSet<>();
+        this.exams = new HashSet<>();
+        this.parents = new HashSet<>();
+        this.attendances = new HashSet<>();
+        this.remarks = new HashSet<>();
+        this.reports = new HashSet<>();
     }
 
     public Student(User user) {
-        User = user;
-        User.setRole(Role.ROLE_STUDENT);
-        Exams = new HashSet<>();
-        Parents = new HashSet<>();
-        Attendances = new HashSet<>();
-        Reports = new HashSet<>();
+        this.user = user;
+        this.user.setRole(Role.ROLE_STUDENT);
+        this.exams = new HashSet<>();
+        this.parents = new HashSet<>();
+        this.attendances = new HashSet<>();
+        this.reports = new HashSet<>();
     }
 }

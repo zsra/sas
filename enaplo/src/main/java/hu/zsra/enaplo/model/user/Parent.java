@@ -16,12 +16,12 @@ public class Parent {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @Getter @Setter
-    private User User;
+    private User user;
 
     public Parent() { }
 
     public Parent(User user) {
-        User = user;
-        User.setRole(Role.ROLE_PARENT);
+        this.user = user;
+        this.user.setRole(Role.ROLE_PARENT);
     }
 }

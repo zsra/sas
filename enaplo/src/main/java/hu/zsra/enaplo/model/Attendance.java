@@ -17,19 +17,27 @@ public class Attendance {
 
     @Column(name = "created_at", nullable = false)
     @Getter @Setter
-    private Date StartedAt;
+    private Date startedAt;
 
     @Column(name = "ended_at", nullable = false)
     @Getter @Setter
-    private Date EndedAt;
+    private Date endedAt;
 
     @Column(name = "is_proven", nullable = false)
     @Getter @Setter
-    private boolean IsProven;
+    private boolean isProven;
 
     @ManyToOne
     @JoinColumn(name = "student_id", nullable = false)
     @Getter @Setter
-    private Student Student;
+    private Student student;
 
+    public Attendance() {
+    }
+
+    public Attendance(Date startedAt, Date endedAt, Student student) {
+        this.startedAt = startedAt;
+        this.endedAt = endedAt;
+        this.student = student;
+    }
 }

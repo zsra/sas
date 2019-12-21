@@ -19,19 +19,19 @@ public class HeadTeacher {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_id", referencedColumnName = "id")
     @Getter @Setter
-    private Teacher Teacher;
+    private Teacher teacher;
 
-    @OneToOne(mappedBy = "HeadTeacher")
+    @OneToOne(mappedBy = "headTeacher")
     @Getter @Setter
-    private Classroom Classroom;
+    private Classroom classroom;
 
     public HeadTeacher() {
-        Classroom = null;
+        classroom = null;
     }
 
     public HeadTeacher(Teacher teacher) {
-        Teacher = teacher;
-        Teacher.getUser().setRole(Role.ROLE_HEAD_TEACHER);
-        Classroom = null;
+        this.teacher = teacher;
+        teacher.getUser().setRole(Role.ROLE_HEAD_TEACHER);
+        this.classroom = null;
     }
 }

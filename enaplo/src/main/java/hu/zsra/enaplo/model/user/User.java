@@ -18,73 +18,73 @@ public class User {
 
     @Column(name = "username", length = 24, nullable = false, unique = true)
     @Getter @Setter
-    private String Username;
+    private String username;
 
     @Column(name = "password", nullable = false)
     @Getter @Setter
-    private String Password;
+    private String password;
 
     /* Name info */
 
     @Column(name = "firstname", length = 24, nullable = false)
     @Getter @Setter
-    private String FirstName;
-    @Column(name = "middlename", length = 16, nullable = false)
+    private String firstName;
+    @Column(name = "middlename", length = 16)
     @Getter @Setter
-    private String MiddleName;
+    private String middleName;
     @Column(name = "lastname", length = 16, nullable = false)
     @Getter @Setter
-    private String LastName;
+    private String lastName;
 
     /* Date of Birth */
 
     @Column(name = "dob", nullable = false)
     @Getter @Setter
-    private Date DateOfBirth;
+    private Date dateOfBirth;
 
     /* Contact Info */
 
     @Column(name = "email", length = 64)
     @Getter @Setter
-    private String Email;
+    private String email;
     @Column(name = "phone", length = 16)
     @Getter @Setter
-    private String Phone;
+    private String phone;
 
     /* Role info */
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     @Getter @Setter
-    private Role Role;
+    private Role role;
 
     /* Account status */
 
     @Column(name = "status", nullable = false)
     @Getter @Setter
-    private Boolean Status;
+    private Boolean status;
     @Column(name = "last_login")
     @Getter @Setter
-    private Date LastLogin;
+    private Date lastLogin;
 
     public User() {}
 
     public User(String username, String password, String firstName, String middleName,
                 String lastName, Date dateOfBirth, String email, String phone, Role role,
                 Boolean status, Date lastLogin) {
-        Username = username;
-        Password = password;
+        this.username = username;
+        this.password = password;
 
-        FirstName = firstName;
-        MiddleName = middleName;
-        LastName = lastName;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
 
-        DateOfBirth = dateOfBirth;
+        this.dateOfBirth = dateOfBirth;
 
-        Email = email;
-        Phone = phone;
-        Status = status;
-        LastLogin = lastLogin;
+        this.email = email;
+        this.phone = phone;
+        this.status = status;
+        this.lastLogin = lastLogin;
 
-        Role = role;
+        this.role = role;
     }
 }

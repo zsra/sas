@@ -18,25 +18,25 @@ public class Teacher {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @Getter @Setter
-    private User User;
+    private User user;
 
-    @OneToMany(mappedBy = "Teacher")
+    @OneToMany(mappedBy = "teacher")
     @Getter @Setter
-    private Set<Course> Courses;
+    private Set<Course> courses;
 
-    @OneToOne(mappedBy = "Teacher")
+    @OneToOne(mappedBy = "teacher")
     @Getter @Setter
-    private HeadTeacher HeadTeacher;
+    private HeadTeacher headTeacher;
 
     public Teacher() {
-        Courses = new HashSet<>();
-        HeadTeacher = null;
+        this.courses = new HashSet<>();
+        this.headTeacher = null;
     }
 
     public Teacher(User user) {
-        User = user;
-        User.setRole(Role.ROLE_TEACHER);
-        Courses = new HashSet<>();
-        HeadTeacher = null;
+        this.user = user;
+        this.user.setRole(Role.ROLE_TEACHER);
+        this.courses = new HashSet<>();
+        this.headTeacher = null;
     }
 }

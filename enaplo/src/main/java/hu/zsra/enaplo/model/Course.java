@@ -19,37 +19,37 @@ public class Course {
 
     @Column(name = "name", length = 32, nullable = false)
     @Getter @Setter
-    public String Name;
+    public String name;
     @Column(name = "description", length = 500)
     @Getter @Setter
-    public String Description;
+    public String description;
     @Column(name = "started_at", nullable = false)
     @Getter @Setter
-    public Date StartedAt;
+    public Date startedAt;
 
     /* Relationships */
 
     @ManyToOne
     @JoinColumn(name = "teacher_id", nullable = false)
     @Getter @Setter
-    private Teacher Teacher;
+    private Teacher teacher;
 
-    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     @Getter @Setter
-    private Set<Exam> Exams;
+    private Set<Exam> exams;
 
-    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     @Getter @Setter
-    private Set<Report> Reports;
+    private Set<Report> reports;
 
     public Course() {}
 
     public Course(String name, String description, Date startedAt, Teacher teacher) {
-        Name = name;
-        Description = description;
-        StartedAt = startedAt;
-        Teacher = teacher;
-        Exams = new HashSet<>();
-        Reports = new HashSet<>();
+        this.name = name;
+        this.description = description;
+        this.startedAt = startedAt;
+        this.teacher = teacher;
+        this.exams = new HashSet<>();
+        this.reports = new HashSet<>();
     }
 }
