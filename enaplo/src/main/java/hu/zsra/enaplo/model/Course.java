@@ -1,55 +1,55 @@
 package hu.zsra.enaplo.model;
 
-import hu.zsra.enaplo.model.report.Report;
-import hu.zsra.enaplo.model.user.*;
-import lombok.*;
+import hu.zsra.enaplo.model.exam.Exam;
+import hu.zsra.enaplo.model.user.Student;
+import hu.zsra.enaplo.model.user.Teacher;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "courses")
 public class Course {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
-    public Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "name", length = 32, nullable = false)
+    @Column(name = "title", nullable = false, length = 24)
     @Getter @Setter
-    public String name;
+    private String title;
+
     @Column(name = "description", length = 500)
     @Getter @Setter
-    public String description;
-    @Column(name = "started_at", nullable = false)
-    @Getter @Setter
-    public Date startedAt;
-
-    /* Relationships */
+    private String description;
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id", nullable = false)
+    @JoinColumn(name="teacher_id", nullable = false)
     @Getter @Setter
     private Teacher teacher;
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "courses")
     @Getter @Setter
-    private Set<Exam> exams;
+    private Set<Student> students = new HashSet<>();
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "course")
     @Getter @Setter
-    private Set<Report> reports;
+    private Set<Exam> exams = new HashSet<>();
+
+    @OneToMany(mappedBy = "course")
+    @Getter @Setter
+    private Set<Report> reports = new HashSet<>();
 
     public Course() {}
 
-    public Course(String name, String description, Date startedAt, Teacher teacher) {
-        this.name = name;
+    public Course(String title, String description, Teacher teacher) {
+        this.title = title;
         this.description = description;
-        this.startedAt = startedAt;
         this.teacher = teacher;
-        this.exams = new HashSet<>();
-        this.reports = new HashSet<>();
     }
 }

@@ -1,62 +1,114 @@
 package hu.zsra.enaplo.model.user;
 
 import hu.zsra.enaplo.model.*;
-import hu.zsra.enaplo.model.Exam;
-import hu.zsra.enaplo.model.Remark;
-import hu.zsra.enaplo.model.report.Report;
-import lombok.*;
+import hu.zsra.enaplo.model.exam.Exam;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.*;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "students")
-public class Student {
+public class Student extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "firstName", nullable = false, length = 24)
     @Getter
-    private Long id;
+    @Setter
+    private String firstName;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @Column(name = "middleName", length = 24)
     @Getter @Setter
-    private User user;
+    private String middleName;
 
-    @OneToMany(mappedBy = "student")
+    @Column(name = "lastName", nullable = false, length = 24)
     @Getter @Setter
-    private Set<Exam> exams;
+    private String lastName;
+
+    @Column(name = "dob", nullable = false)
+    @Getter @Setter
+    private LocalDate dateOfBirth;
+
+    @Column(name = "address", nullable = false)
+    @Getter @Setter
+    private String address;
+
+    @Column(name = "educationId", nullable = false, length = 11)
+    @Getter @Setter
+    private String educationId;
+
+    @Column(name = "healthCareId", length = 16)
+    @Getter @Setter
+    private String healthCareId;
+
+    @ManyToOne
+    @JoinColumn(name="classroom_id")
+    @Getter @Setter
+    private Classroom classroom;
 
     @ManyToMany
+    @JoinTable(
+            name = "student_parent",
+            joinColumns = { @JoinColumn(name = "studentId") },
+            inverseJoinColumns = { @JoinColumn(name = "parentId") }
+    )
     @Getter @Setter
-    private Set<Parent> parents;
+    private Set<Parent> parents = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "student_course",
+            joinColumns = { @JoinColumn(name = "studentId") },
+            inverseJoinColumns = { @JoinColumn(name = "courseId"),
+            }
+    )
+    @Getter @Setter
+    private Set<Course> courses = new HashSet<>();
 
     @OneToMany(mappedBy = "student")
     @Getter @Setter
-    private Set<Attendance> attendances;
+    private Set<Exam> exams = new HashSet<>();
 
     @OneToMany(mappedBy = "student")
     @Getter @Setter
-    private Set<Remark> remarks;
+    private Set<Report> reports = new HashSet<>();
 
     @OneToMany(mappedBy = "student")
     @Getter @Setter
-    private Set<Report> reports;
+    private Set<Attendance> attendances = new HashSet<>();
 
-    public Student() {
-        this.exams = new HashSet<>();
-        this.parents = new HashSet<>();
-        this.attendances = new HashSet<>();
-        this.remarks = new HashSet<>();
-        this.reports = new HashSet<>();
+    @OneToMany(mappedBy = "student")
+    @Getter @Setter
+    private Set<Remark> remarks= new HashSet<>();
+
+    public Student() {}
+
+    public Student(String username, String password, String firstName, String middleName, String lastName,
+                   LocalDate dateOfBirth, String address, String educationId, String healthCareId, Classroom classroom) {
+        super(username, password, Role.ROLE_STUDENT);
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.educationId = educationId;
+        this.healthCareId = healthCareId;
+        this.classroom = classroom;
     }
 
-    public Student(User user) {
-        this.user = user;
-        this.user.setRole(Role.ROLE_STUDENT);
-        this.exams = new HashSet<>();
-        this.parents = new HashSet<>();
-        this.attendances = new HashSet<>();
-        this.reports = new HashSet<>();
+    public Student(String username, String password, String firstName, String middleName, String lastName,
+                   LocalDate dateOfBirth, String address, String educationId, String healthCareId, Classroom classroom, Set<Parent> parents) {
+        super(username, password, Role.ROLE_STUDENT);
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.educationId = educationId;
+        this.healthCareId = healthCareId;
+        this.classroom = classroom;
+        this.parents = parents;
     }
 }

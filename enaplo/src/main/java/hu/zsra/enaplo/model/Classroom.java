@@ -1,45 +1,54 @@
 package hu.zsra.enaplo.model;
 
-import hu.zsra.enaplo.model.user.*;
-import lombok.*;
+import hu.zsra.enaplo.model.user.Student;
+import hu.zsra.enaplo.model.user.Teacher;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "classroom")
+@Table(name = "classrooms")
 public class Classroom {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "start_year", nullable = false, length = 4)
+    @Getter @Setter
+    private int start_year;
+
+    @Column(name = "end_year", nullable = false, length = 4)
+    @Getter @Setter
+    private int end_year;
 
     @Column(name = "year", nullable = false)
     @Getter @Setter
     private int year;
 
-    @Column(name = "letter", nullable = false)
+    @Column(name = "letter", nullable = false, length = 1)
     @Getter @Setter
     private char letter;
 
-    /* Relationships */
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "head_teacher_id", referencedColumnName = "id")
+    @OneToOne
     @Getter @Setter
-    private HeadTeacher headTeacher;
+    private Teacher headTeacher;
 
-    @ManyToMany
+    @OneToMany(mappedBy = "classroom")
     @Getter @Setter
-    private Set<Student> students;
+    private Set<Student> students = new HashSet<>();
 
     public Classroom() {}
 
-    public Classroom(int year, char letter) {
+    public Classroom(int start_year, int end_year, int year, char letter, Teacher headTeacher) {
+        this.start_year = start_year;
+        this.end_year = end_year;
         this.year = year;
         this.letter = letter;
-        this.headTeacher = null;
-        this.students = new HashSet<>();
+        this.headTeacher = headTeacher;
     }
 }

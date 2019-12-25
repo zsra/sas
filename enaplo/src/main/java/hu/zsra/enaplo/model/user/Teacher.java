@@ -1,42 +1,56 @@
 package hu.zsra.enaplo.model.user;
 
 import hu.zsra.enaplo.model.Course;
-import lombok.*;
+import hu.zsra.enaplo.model.Remark;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "teacher")
-public class Teacher {
+public class Teacher extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "firstName", nullable = false, length = 24)
     @Getter
-    private Long id;
+    @Setter
+    private String firstName;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @Column(name = "middleName", length = 24)
     @Getter @Setter
-    private User user;
+    private String middleName;
+
+    @Column(name = "lastName", nullable = false, length = 24)
+    @Getter @Setter
+    private String lastName;
+
+    @Column(name = "email", length = 64)
+    @Getter @Setter
+    private String email;
+
+    @Column(name = "phone", nullable = false, length = 16)
+    @Getter @Setter
+    private String phone;
 
     @OneToMany(mappedBy = "teacher")
     @Getter @Setter
-    private Set<Course> courses;
+    private Set<Course> courses = new HashSet<>();
 
-    @OneToOne(mappedBy = "teacher")
+    @OneToMany(mappedBy = "teacher")
     @Getter @Setter
-    private HeadTeacher headTeacher;
+    private Set<Remark> remarks = new HashSet<>();
 
-    public Teacher() {
-        this.courses = new HashSet<>();
-        this.headTeacher = null;
-    }
+    public Teacher() {}
 
-    public Teacher(User user) {
-        this.user = user;
-        this.user.setRole(Role.ROLE_TEACHER);
-        this.courses = new HashSet<>();
-        this.headTeacher = null;
+    public Teacher(String username, String password, String firstName, String middleName,
+                   String lastName, String email, String phone) {
+        super(username, password, Role.ROLE_TEACHER);
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
     }
 }

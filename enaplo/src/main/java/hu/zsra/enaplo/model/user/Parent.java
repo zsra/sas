@@ -1,27 +1,62 @@
 package hu.zsra.enaplo.model.user;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "parents")
-public class Parent {
+public class Parent extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    private Long id;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @Column(name = "firstName", nullable = false, length = 24)
     @Getter @Setter
-    private User user;
+    private String firstName;
 
-    public Parent() { }
+    @Column(name = "middleName", length = 24)
+    @Getter @Setter
+    private String middleName;
 
-    public Parent(User user) {
-        this.user = user;
-        this.user.setRole(Role.ROLE_PARENT);
+    @Column(name = "lastName", nullable = false, length = 24)
+    @Getter @Setter
+    private String lastName;
+
+    @Column(name = "dob", nullable = false)
+    @Getter @Setter
+    private LocalDate dateOfBirth;
+
+    @Column(name = "lastLogin")
+    @Getter @Setter
+    private LocalDateTime lastLogin;
+
+    @Column(name = "email", length = 64)
+    @Getter @Setter
+    private String email;
+
+    @Column(name = "phone", nullable = false, length = 16)
+    @Getter @Setter
+    private String phone;
+
+    @ManyToMany(mappedBy = "parents")
+    private Set<Student> kids = new HashSet<>();
+
+    public Parent() {}
+
+    public Parent(String username, String password, String firstName, String middleName,
+                  String lastName, LocalDate dateOfBirth, String email, String phone) {
+        super(username, password, Role.ROLE_PARENT);
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.phone = phone;
     }
 }

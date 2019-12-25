@@ -1,10 +1,11 @@
 package hu.zsra.enaplo.security;
 
-import hu.zsra.enaplo.exception.InvalidTokenException;
+import hu.zsra.enaplo.exception.UserManagementException;
 import hu.zsra.enaplo.model.user.Role;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -69,7 +70,7 @@ public class JwtTokenProvider {
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             return true;
         } catch (JwtException | IllegalArgumentException e) {
-            throw new InvalidTokenException();
+            throw new UserManagementException("Expired or invalid JWT token", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
