@@ -15,40 +15,36 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "year", nullable = false, length = 4)
-    @Getter @Setter
-    private int year;
-
-    @Column(name = "semester", nullable = false, length = 1)
-    @Getter @Setter
-    private int semester;
-
-    @Column(name = "mark", nullable = false, length = 1)
-    @Getter @Setter
-    private int mark;
-
     @ManyToOne
-    @JoinColumn(name = "student_id" ,nullable = false)
+    @JoinColumn(name="student_id")
     @Getter @Setter
     private Student student;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id" ,nullable = false)
+    @Column(name = "year", nullable = false)
     @Getter @Setter
-    private Course course;
+    private int year;
 
-    @Column(name = "seen", nullable = false)
+    @Column(name = "semester", nullable = false)
     @Getter @Setter
-    private boolean seen;
+    private int semester;
 
-    public Report() {}
+    @Column(name = "courseName", nullable = false)
+    @Getter @Setter
+    private String courseName;
 
-    public Report(int year, int semester, int mark, Student student, Course course) {
+    @Column(name = "mark", nullable = false)
+    @Getter @Setter
+    private int mark;
+
+    public Report() {
+
+    }
+
+    public Report(Student student, int year, int semester, String courseName, int mark) {
+        this.student = student;
         this.year = year;
         this.semester = semester;
+        this.courseName = courseName;
         this.mark = mark;
-        this.student = student;
-        this.course = course;
-        this.seen = false;
     }
 }

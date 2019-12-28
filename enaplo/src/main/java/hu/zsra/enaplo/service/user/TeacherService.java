@@ -13,7 +13,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class TeacherService {
@@ -49,12 +50,8 @@ public class TeacherService {
         }
     }
 
-    public List<Teacher> getAll() {
-        return teacherRepository.findAll();
-    }
-
-    public void delete(String username) {
-        teacherRepository.deleteByUsername(username);
+    public Set<Teacher> getAll() {
+        return new HashSet<>(teacherRepository.findAll());
     }
 
     public Teacher getTeacherByUsername(String username) {
@@ -63,6 +60,21 @@ public class TeacherService {
             throw new UserManagementException("The user doesn't exist", HttpStatus.NOT_FOUND);
         }
         return teacher;
+    }
+
+    public Teacher update(String username, Teacher teacher) {
+        Teacher oldTeacher = getTeacherByUsername(username);
+        oldTeacher.setPassword(teacher.getPassword());
+        oldTeacher.setEmail(teacher.getEmail());
+        oldTeacher.setFirstName(teacher.getFirstName());
+        oldTeacher.setMiddleName(teacher.getMiddleName());
+        oldTeacher.setLastName(teacher.getLastName());
+        oldTeacher.setPhone(teacher.getPhone());
+        return teacherRepository.save(oldTeacher);
+    }
+
+    public void delete(String username) {
+        teacherRepository.deleteByUsername(username);
     }
 
     public String refresh(String username) {

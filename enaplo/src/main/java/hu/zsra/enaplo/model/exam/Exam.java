@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "exam")
@@ -25,6 +26,10 @@ public class Exam {
     @Getter @Setter
     private int mark;
 
+    @Column(name = "written_at", nullable = false)
+    @Getter @Setter
+    private LocalDate writtenAt;
+
     @ManyToOne
     @JoinColumn(name="course_id")
     @Getter @Setter
@@ -37,8 +42,9 @@ public class Exam {
 
     public Exam() {}
 
-    public Exam(ExamType examType, int mark, Course course, Student student) {
+    public Exam(ExamType examType, LocalDate writtenAt, int mark, Course course, Student student) {
         this.examType = examType;
+        this.writtenAt = writtenAt;
         this.mark = mark;
         this.course = course;
         this.student = student;

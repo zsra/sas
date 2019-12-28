@@ -6,6 +6,10 @@ import hu.zsra.enaplo.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 public class CourseService {
 
@@ -14,6 +18,16 @@ public class CourseService {
 
     public Course create(Course course) {
         return courseRepository.save(course);
+    }
+
+    public Course getById(Long id) throws ResourceNotFoundException {
+        return courseRepository
+                .findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Course not found!"));
+    }
+
+    public Set<Course> getAll() {
+        return new HashSet<>(courseRepository.findAll());
     }
 
     public void delete(Long id) throws ResourceNotFoundException {

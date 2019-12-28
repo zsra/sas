@@ -28,10 +28,6 @@ public class Remark {
     @Getter @Setter
     private Teacher teacher;
 
-    @Column(name = "seen", nullable = false)
-    @Getter @Setter
-    private boolean seen;
-
     public Remark() {}
 
     public Remark(String message, Student student, Teacher teacher) {

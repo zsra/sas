@@ -1,5 +1,7 @@
 package hu.zsra.enaplo.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,10 +34,6 @@ public class Parent extends User {
     @Getter @Setter
     private LocalDate dateOfBirth;
 
-    @Column(name = "lastLogin")
-    @Getter @Setter
-    private LocalDateTime lastLogin;
-
     @Column(name = "email", length = 64)
     @Getter @Setter
     private String email;
@@ -44,7 +42,9 @@ public class Parent extends User {
     @Getter @Setter
     private String phone;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "parents")
+    @Getter @Setter
     private Set<Student> kids = new HashSet<>();
 
     public Parent() {}

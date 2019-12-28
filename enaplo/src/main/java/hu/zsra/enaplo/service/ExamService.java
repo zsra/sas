@@ -16,6 +16,12 @@ public class ExamService {
         return examRepository.save(exam);
     }
 
+    public Exam getById(Long id) throws ResourceNotFoundException {
+        return examRepository
+                .findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Exam not found"));
+    }
+
     public Exam update(Long id, Exam exam) throws ResourceNotFoundException {
         Exam oldExam = examRepository
                 .findById(id)

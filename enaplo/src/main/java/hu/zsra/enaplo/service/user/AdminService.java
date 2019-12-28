@@ -49,10 +49,6 @@ public class AdminService {
         }
     }
 
-    public List<Admin> getAll() {
-        return adminRepository.findAll();
-    }
-
     public void delete(String username) {
         adminRepository.deleteByUsername(username);
     }

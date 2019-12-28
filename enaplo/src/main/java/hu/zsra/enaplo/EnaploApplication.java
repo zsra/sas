@@ -89,10 +89,10 @@ public class EnaploApplication implements CommandLineRunner {
 		Student student4 = new Student("student4", "student4", "student_f4",
 				"", "student_l4", LocalDate.parse("1990-01-02"), "address4","hhh", "kkk", classroom, parents3);
 
-		Course course1 = new Course("Magyar", "", teacher1);
-		Course course2 = new Course("Nyelvtan", "", teacher1);
-		Course course3 = new Course("Matek", "", teacher2);
-		Course course4 = new Course("Fizika", "", teacher2);
+		Course course1 = new Course("Magyar", 9, "", teacher1);
+		Course course2 = new Course("Nyelvtan", 9, "", teacher1);
+		Course course3 = new Course("Matek", 9, "", teacher2);
+		Course course4 = new Course("Fizika", 9, "", teacher2);
 
 		courseService.create(course1);
 		courseService.create(course2);

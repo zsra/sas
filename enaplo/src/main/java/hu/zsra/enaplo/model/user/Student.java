@@ -1,5 +1,6 @@
 package hu.zsra.enaplo.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.zsra.enaplo.model.*;
 import hu.zsra.enaplo.model.exam.Exam;
 import lombok.Getter;
@@ -15,8 +16,7 @@ import java.util.Set;
 public class Student extends User {
 
     @Column(name = "firstName", nullable = false, length = 24)
-    @Getter
-    @Setter
+    @Getter @Setter
     private String firstName;
 
     @Column(name = "middleName", length = 24)
@@ -30,6 +30,10 @@ public class Student extends User {
     @Column(name = "dob", nullable = false)
     @Getter @Setter
     private LocalDate dateOfBirth;
+
+    @Column(name = "start_year", nullable = false)
+    @Getter @Setter
+    private int start_year;
 
     @Column(name = "address", nullable = false)
     @Getter @Setter
@@ -57,6 +61,7 @@ public class Student extends User {
     @Getter @Setter
     private Set<Parent> parents = new HashSet<>();
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "student_course",
@@ -67,21 +72,25 @@ public class Student extends User {
     @Getter @Setter
     private Set<Course> courses = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "student")
     @Getter @Setter
     private Set<Exam> exams = new HashSet<>();
 
-    @OneToMany(mappedBy = "student")
-    @Getter @Setter
-    private Set<Report> reports = new HashSet<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "student")
     @Getter @Setter
     private Set<Attendance> attendances = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "student")
     @Getter @Setter
     private Set<Remark> remarks= new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "student")
+    @Getter @Setter
+    private Set<Report> reports = new HashSet<>();
 
     public Student() {}
 
@@ -92,6 +101,7 @@ public class Student extends User {
         this.middleName = middleName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
+        this.start_year = LocalDate.now().getYear();
         this.address = address;
         this.educationId = educationId;
         this.healthCareId = healthCareId;
@@ -105,6 +115,7 @@ public class Student extends User {
         this.middleName = middleName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
+        this.start_year = LocalDate.now().getYear();
         this.address = address;
         this.educationId = educationId;
         this.healthCareId = healthCareId;

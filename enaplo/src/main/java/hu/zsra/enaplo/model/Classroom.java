@@ -1,5 +1,6 @@
 package hu.zsra.enaplo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.zsra.enaplo.model.user.Student;
 import hu.zsra.enaplo.model.user.Teacher;
 import lombok.Getter;
@@ -38,6 +39,7 @@ public class Classroom {
     @Getter @Setter
     private Teacher headTeacher;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "classroom")
     @Getter @Setter
     private Set<Student> students = new HashSet<>();

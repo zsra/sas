@@ -33,8 +33,8 @@ public class ParentService {
         }
     }
 
-    public List<Parent> getAll() {
-        return parentRepository.findAll();
+    public Parent create(Parent parent) {
+        return parentRepository.save(parent);
     }
 
     public void delete(String username) {
@@ -47,6 +47,20 @@ public class ParentService {
             throw new UserManagementException("The user doesn't exist", HttpStatus.NOT_FOUND);
         }
         return parent;
+    }
+
+    public Parent update(String username, Parent parent) {
+        Parent oldParent = getParentByUsername(username);
+
+        oldParent.setPassword(parent.getPassword());
+        oldParent.setDateOfBirth(parent.getDateOfBirth());
+        oldParent.setEmail(parent.getEmail());
+        oldParent.setFirstName(parent.getFirstName());
+        oldParent.setMiddleName(parent.getMiddleName());
+        oldParent.setLastName(parent.getLastName());
+        oldParent.setPhone(parent.getPhone());
+
+        return parentRepository.save(oldParent);
     }
 
     public String refresh(String username) {

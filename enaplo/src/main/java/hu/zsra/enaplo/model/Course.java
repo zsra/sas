@@ -1,5 +1,6 @@
 package hu.zsra.enaplo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.zsra.enaplo.model.exam.Exam;
 import hu.zsra.enaplo.model.user.Student;
 import hu.zsra.enaplo.model.user.Teacher;
@@ -8,7 +9,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -24,31 +24,34 @@ public class Course {
     @Getter @Setter
     private String title;
 
+    @Column(name = "year", nullable = false)
+    @Getter @Setter
+    private int year;
+
     @Column(name = "description", length = 500)
     @Getter @Setter
     private String description;
 
     @ManyToOne
-    @JoinColumn(name="teacher_id", nullable = false)
+    @JoinColumn(name="teacher_id")
     @Getter @Setter
     private Teacher teacher;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "courses")
     @Getter @Setter
     private Set<Student> students = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "course")
     @Getter @Setter
     private Set<Exam> exams = new HashSet<>();
 
-    @OneToMany(mappedBy = "course")
-    @Getter @Setter
-    private Set<Report> reports = new HashSet<>();
-
     public Course() {}
 
-    public Course(String title, String description, Teacher teacher) {
+    public Course(String title, int year, String description, Teacher teacher) {
         this.title = title;
+        this.year = year;
         this.description = description;
         this.teacher = teacher;
     }
