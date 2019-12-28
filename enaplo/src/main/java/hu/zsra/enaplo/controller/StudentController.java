@@ -3,19 +3,17 @@ package hu.zsra.enaplo.controller;
 import hu.zsra.enaplo.dto.SummaryDTO;
 import hu.zsra.enaplo.exception.ResourceNotFoundException;
 import hu.zsra.enaplo.model.Attendance;
+import hu.zsra.enaplo.model.Lesson;
 import hu.zsra.enaplo.model.Remark;
 import hu.zsra.enaplo.model.Report;
 import hu.zsra.enaplo.model.user.Student;
-import hu.zsra.enaplo.service.AttendanceService;
-import hu.zsra.enaplo.service.RecordService;
-import hu.zsra.enaplo.service.RemarkService;
-import hu.zsra.enaplo.service.ReportService;
+import hu.zsra.enaplo.service.*;
 import hu.zsra.enaplo.service.user.StudentService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -32,6 +30,8 @@ public class StudentController {
     private AttendanceService attendanceService;
     @Autowired
     private RemarkService remarkService;
+    @Autowired
+    private TimeTableService timeTableService;
 
     @PostMapping("/signin")
     public String signIn(@RequestBody String username, @RequestBody String password) {
@@ -44,7 +44,7 @@ public class StudentController {
     }
 
     @GetMapping("/{username}/summary")
-    public Set<SummaryDTO> summary(@PathVariable String username) {
+    public List<SummaryDTO> summary(@PathVariable String username) {
         return recordService.getSummary(username);
     }
 
@@ -72,5 +72,16 @@ public class StudentController {
     @GetMapping("/{username}/remarks")
     public Set<Remark> getAllRemark(@PathVariable String username) {
         return remarkService.getByStudentUsername(username);
+    }
+
+    @DeleteMapping("/{username}")
+    public String delete(@PathVariable String username) {
+        studentService.delete(username);
+        return username;
+    }
+
+    @GetMapping("/{username}/timetable")
+    public Set<Lesson> getTimeTable(@PathVariable String username) {
+        return timeTableService.getByStudentUsername(username);
     }
 }

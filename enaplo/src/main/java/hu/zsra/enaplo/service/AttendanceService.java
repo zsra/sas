@@ -20,8 +20,6 @@ public class AttendanceService {
     private AttendanceRepository attendanceRepository;
     @Autowired
     private StudentRepository studentRepository;
-    @Autowired
-    private ParentRepository parentRepository;
 
     public Attendance create(Attendance attendance) {
         return attendanceRepository.save(attendance);
@@ -35,6 +33,13 @@ public class AttendanceService {
         attendance.setVerified(true);
 
         return attendanceRepository.save(attendance);
+    }
+
+    public void delete(Long id) throws ResourceNotFoundException {
+        attendanceRepository.delete(attendanceRepository
+                .findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Attendance not found!"))
+        );
     }
 
     public Set<Attendance> getAttendances(String username) throws ResourceNotFoundException {

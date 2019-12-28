@@ -4,28 +4,30 @@ import hu.zsra.enaplo.dto.SummaryDTO;
 import hu.zsra.enaplo.model.Course;
 import hu.zsra.enaplo.model.exam.Exam;
 import hu.zsra.enaplo.model.user.Student;
-import hu.zsra.enaplo.service.user.StudentService;
+import hu.zsra.enaplo.repository.CourseRepository;
+import hu.zsra.enaplo.repository.user.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class RecordService {
 
     @Autowired
-    private StudentService studentService;
+    private StudentRepository studentRepository;
+    @Autowired
+    private CourseRepository courseRepository;
 
-    public Set<SummaryDTO> getSummary(String username) {
-        final Student student = studentService.getStudentByUsername(username);
-        Set<SummaryDTO> summaryDTOList = new HashSet<>();
 
-        for(Course course : student.getCourses()) {
+    public List<SummaryDTO> getSummary(String username) {
+        final Student student = studentRepository.findByUsername(username);
+        List<SummaryDTO> summaryDTOList = new ArrayList<>();
 
+        for(Course course : courseRepository.findAll()) {
             List<Exam> exams = student.getExams()
                     .stream()
                     .filter(exam -> exam.getCourse().getId().equals(course.getId()))
@@ -35,6 +37,7 @@ public class RecordService {
 
             summaryDTOList.add(new SummaryDTO(course.getTitle(),
                     exams.stream().mapToInt(Exam::getMark).toArray(), average));
+
         }
         return summaryDTOList;
     }

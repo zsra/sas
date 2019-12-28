@@ -1,7 +1,8 @@
 package hu.zsra.enaplo.controller;
 
+import hu.zsra.enaplo.model.Lesson;
 import hu.zsra.enaplo.model.user.Teacher;
-import hu.zsra.enaplo.service.ReportService;
+import hu.zsra.enaplo.service.TimeTableService;
 import hu.zsra.enaplo.service.user.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ public class TeacherController {
 
     @Autowired
     private TeacherService teacherService;
+    @Autowired
+    private TimeTableService timeTableService;
 
     @PostMapping("/create")
     public String create(@RequestBody Teacher teacher) {
@@ -53,5 +56,10 @@ public class TeacherController {
     @GetMapping("/refresh")
     public String refresh(HttpServletRequest httpServletRequest) {
         return teacherService.refresh(httpServletRequest.getRemoteUser());
+    }
+
+    @GetMapping("/{username}/timetable")
+    public Set<Lesson> getTimeTable(@PathVariable String username) {
+        return timeTableService.getByTeacherUsername(username);
     }
 }

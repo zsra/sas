@@ -48,7 +48,7 @@ public class ClassroomService {
         return classroom.getStudents();
     }
 
-    public Classroom setCourse(Long id_classroom, Long id_course) throws ResourceNotFoundException {
+    public void setCourse(Long id_classroom, Long id_course) throws ResourceNotFoundException {
         Classroom classroom = getClassroomById(id_classroom);
 
         Course course = courseRepository
@@ -63,7 +63,7 @@ public class ClassroomService {
             studentRepository.save(oldStudent);
         }
 
-        return classroomRepository.save(classroom);
+        classroomRepository.save(classroom);
     }
 
     public Classroom update(Long id, Classroom classroom) throws ResourceNotFoundException {

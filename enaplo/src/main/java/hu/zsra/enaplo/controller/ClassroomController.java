@@ -38,10 +38,11 @@ public class ClassroomController {
     }
 
     @PutMapping("/courses/{id_classroom}/{id_course}")
-    public Classroom setCourseForStudents(@PathVariable(name = "id_classroom") Long id_classroom,
+    public String setCourseForStudents(@PathVariable(name = "id_classroom") Long id_classroom,
                                           @PathVariable(name = "id_course") Long id_course)
             throws ResourceNotFoundException {
-        return classroomService.setCourse(id_classroom, id_course);
+        classroomService.setCourse(id_classroom, id_course);
+        return  id_classroom.toString();
     }
 
     @PutMapping("/update/{id}")

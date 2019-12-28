@@ -1,5 +1,6 @@
 package hu.zsra.enaplo.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,10 +18,12 @@ public class User {
     @Getter @Setter
     private String username;
 
+    @JsonIgnore
     @Column(name = "password", nullable = false)
     @Getter @Setter
     private String password;
 
+    @JsonIgnore
     @Column(name = "role", length = 16, nullable = false)
     @Enumerated(EnumType.STRING)
     @Getter @Setter

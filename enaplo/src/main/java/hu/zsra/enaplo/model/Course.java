@@ -38,7 +38,7 @@ public class Course {
     private Teacher teacher;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER)
     @Getter @Setter
     private Set<Student> students = new HashSet<>();
 
@@ -46,6 +46,11 @@ public class Course {
     @OneToMany(mappedBy = "course")
     @Getter @Setter
     private Set<Exam> exams = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "course")
+    @Getter @Setter
+    private Set<Lesson> lessons = new HashSet<>();
 
     public Course() {}
 

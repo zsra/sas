@@ -35,6 +35,7 @@ public class Teacher extends User {
     @Getter @Setter
     private String phone;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "teacher")
     @Getter @Setter
     private Set<Course> courses = new HashSet<>();

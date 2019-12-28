@@ -37,6 +37,13 @@ public class CourseController {
         return courseService.update(id, course);
     }
 
+    @PutMapping("/{id}/{username}")
+    public String setCourseToStudent(@PathVariable(name = "id") Long id,
+                                     @PathVariable(name = "username") String username) throws ResourceNotFoundException {
+        courseService.setCourseToStudent(id, username);
+        return username;
+    }
+
     @DeleteMapping("/{id}")
     public String delete(@PathVariable  Long id) throws ResourceNotFoundException {
         courseService.delete(id);
