@@ -1,51 +1,39 @@
 package hu.zsra.enaplo.controller;
 
-import hu.zsra.enaplo.exception.ResourceNotFoundException;
 import hu.zsra.enaplo.model.Course;
-import hu.zsra.enaplo.service.CourseService;
+import hu.zsra.enaplo.service.impl.CourseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Set;
 
 @RestController
-@RequestMapping("/courses")
+@RequestMapping(value = "/api")
 public class CourseController {
 
     @Autowired
-    private CourseService courseService;
+    private CourseServiceImpl courseService;
 
-    @PostMapping("/create")
-    public Course create(@RequestBody Course course) {
+    @PostMapping(value = "/courses/create")
+    public Course create(Course course) {
         return courseService.create(course);
     }
 
-    @GetMapping("/all")
-    public Set<Course> getAll() {
-        return courseService.getAll();
-    }
-
-    @GetMapping("/{id}")
-    public Course getById(@PathVariable Long id) throws ResourceNotFoundException {
-        return courseService.getById(id);
-    }
-
-    @PutMapping("/update/{id}")
+    @PutMapping(value = "/courses/update/{id}")
     public Course update(@PathVariable Long id,
-                         @Valid @RequestBody Course course) throws ResourceNotFoundException {
+                         @Valid @RequestBody Course course) {
         return courseService.update(id, course);
     }
 
-    @PutMapping("/{id}/{username}")
-    public String setCourseToStudent(@PathVariable(name = "id") Long id,
-                                     @PathVariable(name = "username") String username) throws ResourceNotFoundException {
-        courseService.setCourseToStudent(id, username);
-        return username;
+    @PutMapping(value = "/courses/setCourse/{student_id}")
+    public String setCourse(@PathVariable Long student_id,
+                            @RequestBody Long course_id) {
+        courseService.setCourse(student_id, course_id);
+        return course_id.toString();
     }
 
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable  Long id) throws ResourceNotFoundException {
+    @DeleteMapping(value = "/courses/{id}")
+    public String delete(Long id) {
         courseService.delete(id);
         return id.toString();
     }

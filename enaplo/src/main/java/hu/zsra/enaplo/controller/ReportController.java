@@ -1,38 +1,32 @@
 package hu.zsra.enaplo.controller;
 
-import hu.zsra.enaplo.exception.ResourceNotFoundException;
 import hu.zsra.enaplo.model.Report;
-import hu.zsra.enaplo.service.ReportService;
+import hu.zsra.enaplo.service.impl.ReportServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("reports")
+@RequestMapping(value = "/api")
 public class ReportController {
 
     @Autowired
-    private ReportService reportService;
+    private ReportServiceImpl reportService;
 
-    @PostMapping("/create")
+    @PostMapping(value = "/reports/create")
     public Report create(@RequestBody Report report) {
         return reportService.create(report);
     }
 
-    @GetMapping("/{id}")
-    public Report getById(@PathVariable Long id) throws ResourceNotFoundException {
-        return reportService.getById(id);
-    }
-
-    @PutMapping("/update/{id}")
+    @PutMapping(value = "/reports/update/{id}")
     public Report update(@PathVariable Long id,
-                         @Valid @RequestBody Report report) throws ResourceNotFoundException {
+                         @Valid @RequestBody Report report) {
         return reportService.update(id, report);
     }
 
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id) throws ResourceNotFoundException {
+    @DeleteMapping(value = "/reports/{id}")
+    public String delete(@PathVariable Long id) {
         reportService.delete(id);
         return id.toString();
     }

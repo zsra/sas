@@ -1,39 +1,32 @@
 package hu.zsra.enaplo.controller;
 
-import hu.zsra.enaplo.exception.ResourceNotFoundException;
-import hu.zsra.enaplo.model.exam.Exam;
-import hu.zsra.enaplo.service.ExamService;
+import hu.zsra.enaplo.model.Exam;
+import hu.zsra.enaplo.service.impl.ExamServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Service
-@RequestMapping("/exams")
+@RestController
+@RequestMapping(value = "/api")
 public class ExamController {
 
     @Autowired
-    private ExamService examService;
+    private ExamServiceImpl examService;
 
-    @PostMapping("/create")
+    @PostMapping(value = "/exams/create")
     public Exam create(@RequestBody Exam exam) {
-        return  examService.create(exam);
+        return examService.create(exam);
     }
 
-    @GetMapping("/update/{id}")
+    @PutMapping(value = "/exams/update/{id}")
     public Exam update(@PathVariable Long id,
-                       @Valid @RequestBody Exam exam) throws ResourceNotFoundException {
+                       @Valid @RequestBody Exam exam) {
         return examService.update(id, exam);
     }
 
-    @GetMapping("/{id}")
-    public Exam getById(@PathVariable Long id) throws ResourceNotFoundException {
-        return examService.getById(id);
-    }
-
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id) throws ResourceNotFoundException {
+    @DeleteMapping(value = "/exams/{id}")
+    public String delete(@PathVariable Long id) {
         examService.delete(id);
         return id.toString();
     }

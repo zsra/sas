@@ -1,0 +1,7 @@
+<mat-toolbar class="toolbar" color="primary">
+    <button mat-button mat-ripple routerLink="/home" class="home-button">Home</button>
+    <div class="right">
+        <button *ngIf="hasSignedIn()" class="logout-button" (click)="logout()">Logout</button>
+    </div>
+    
+</mat-toolbar>

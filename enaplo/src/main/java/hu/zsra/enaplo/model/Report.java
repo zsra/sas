@@ -1,6 +1,6 @@
 package hu.zsra.enaplo.model;
 
-import hu.zsra.enaplo.model.user.Student;
+import hu.zsra.enaplo.model.user.group.Student;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,8 +11,8 @@ import javax.persistence.*;
 public class Report {
 
     @Id
-    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter @Setter
     private Long id;
 
     @ManyToOne
@@ -37,7 +37,6 @@ public class Report {
     private int mark;
 
     public Report() {
-
     }
 
     public Report(Student student, int year, int semester, String courseName, int mark) {

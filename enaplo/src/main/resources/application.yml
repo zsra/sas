@@ -1,0 +1,8 @@
+app:
+  name: enaplo-app
+
+jwt:
+  header: Authorization
+  expires_in: 600 # 10 minutes
+  secret: queenvictoria
+  cookie: AUTH-TOKEN

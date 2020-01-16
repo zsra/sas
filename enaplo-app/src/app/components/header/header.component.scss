@@ -1,0 +1,56 @@
+$primary: #05386B;
+$secondary: #fff;
+$font-size-home: 2em;
+$font-size-logout: 1em;
+$padding-top: 5px;
+$padding-vertical: 15px;
+$td_time: 0.4s;
+
+:host {
+    position: relative;
+    z-index: 10;
+    color: $secondary;
+  }
+
+.home-button {
+    background-color: $primary;
+    color: $secondary;
+    font-size: $font-size-home;
+    border: none;
+    cursor: pointer;
+    transition-duration: $td_time;
+    padding: $padding-top $padding-vertical;
+
+    &:hover {
+        background-color: $secondary;
+        color: $primary;
+    }
+}
+
+.toolbar {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: $primary;
+
+    .right {
+        margin-left: auto;
+        float: right;
+    }
+}
+
+.logout-button {
+    background-color: $primary;
+    color: $secondary;
+    font-size: $font-size-logout;
+    border: none;
+    cursor: pointer;
+    transition-duration: $td_time;
+    padding: $padding-vertical $padding-vertical;
+
+    &:hover {
+        background-color: $secondary;
+        color: $primary;
+    }
+}
+

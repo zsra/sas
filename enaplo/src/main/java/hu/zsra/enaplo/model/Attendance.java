@@ -1,6 +1,6 @@
 package hu.zsra.enaplo.model;
 
-import hu.zsra.enaplo.model.user.Student;
+import hu.zsra.enaplo.model.user.group.Student;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +12,8 @@ import java.time.LocalDate;
 public class Attendance {
 
     @Id
-    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter @Setter
     private Long id;
 
     @Column(name = "letter", nullable = false)
@@ -35,10 +35,12 @@ public class Attendance {
 
     public Attendance() {}
 
-    public Attendance(int lesson, LocalDate dateOfMiss, Student student) {
+    public Attendance(Student student, int lesson, LocalDate dateOfMiss) {
+        this.student = student;
         this.lesson = lesson;
         this.dateOfMiss = dateOfMiss;
-        this.student = student;
         this.isVerified = false;
     }
+
+
 }

@@ -1,87 +1,56 @@
 package hu.zsra.enaplo.controller;
 
+import hu.zsra.enaplo.dto.StudentResponseDTO;
 import hu.zsra.enaplo.dto.SummaryDTO;
 import hu.zsra.enaplo.exception.ResourceNotFoundException;
-import hu.zsra.enaplo.model.Attendance;
-import hu.zsra.enaplo.model.Lesson;
-import hu.zsra.enaplo.model.Remark;
-import hu.zsra.enaplo.model.Report;
-import hu.zsra.enaplo.model.user.Student;
-import hu.zsra.enaplo.service.*;
-import hu.zsra.enaplo.service.user.StudentService;
+import hu.zsra.enaplo.model.user.group.Student;
+import hu.zsra.enaplo.service.impl.StudentServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Set;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping(value = "/api")
 public class StudentController {
 
     @Autowired
-    private StudentService studentService;
-    @Autowired
-    private RecordService recordService;
-    @Autowired
-    private ReportService reportService;
-    @Autowired
-    private AttendanceService attendanceService;
-    @Autowired
-    private RemarkService remarkService;
-    @Autowired
-    private TimeTableService timeTableService;
+    private StudentServiceImp studentService;
 
-    @PostMapping("/signin")
-    public String signIn(@RequestBody String username, @RequestBody String password) {
-        return studentService.signIn(username, password);
+    @GetMapping(value = "/students/all")
+    public List<Student> findAll() {
+        return studentService.findAll();
     }
 
-    @PostMapping("/create")
-    public String create(@RequestBody Student student) {
-        return studentService.create(student);
+    @GetMapping(value = "/students/{id}")
+    public Student findById(@PathVariable Long id) throws ResourceNotFoundException {
+        return studentService.findById(id);
     }
 
-    @GetMapping("/{username}/summary")
-    public List<SummaryDTO> summary(@PathVariable String username) {
-        return recordService.getSummary(username);
+    @GetMapping(value = "/students/user/{user_id}")
+    public Student findByUserId(@PathVariable Long user_id) {
+        return studentService.findByUserId(user_id);
     }
 
-    @GetMapping("/{username}/{year}/{semester}")
-    public Set<Report> getReport(@PathVariable String username,
-                                 @PathVariable int year, @PathVariable int semester) {
-        return reportService.getReports(username, year, semester);
+    @PostMapping(value = "/students/create")
+    public Student save(@RequestBody StudentResponseDTO studentResponseDTO) {
+        return studentService.save(studentResponseDTO);
     }
 
-    @GetMapping("/refresh")
-    public String refresh(HttpServletRequest httpServletRequest) {
-        return studentService.refresh(httpServletRequest.getRemoteUser());
+    @PutMapping(value = "/students/update/{id}")
+    public Student update(@PathVariable Long id,
+                          @RequestBody StudentResponseDTO studentResponseDTO) {
+        return studentService.update(id, studentResponseDTO);
     }
 
-    @GetMapping("/{username}")
-    public Student getStudentByUsername(@PathVariable String username) {
-        return studentService.getStudentByUsername(username);
+    @DeleteMapping(value = "/students/{id}")
+    public String delete(@PathVariable Long id) {
+        studentService.delete(id);
+        return id.toString();
     }
 
-    @GetMapping("/{username}/attendances")
-    public Set<Attendance> getNonVerifiedAttendances(@PathVariable String username) throws ResourceNotFoundException {
-        return attendanceService.getNonVerifiedAttendances(username);
-    }
-
-    @GetMapping("/{username}/remarks")
-    public Set<Remark> getAllRemark(@PathVariable String username) {
-        return remarkService.getByStudentUsername(username);
-    }
-
-    @DeleteMapping("/{username}")
-    public String delete(@PathVariable String username) {
-        studentService.delete(username);
-        return username;
-    }
-
-    @GetMapping("/{username}/timetable")
-    public Set<Lesson> getTimeTable(@PathVariable String username) {
-        return timeTableService.getByStudentUsername(username);
+    @GetMapping("/students/summary/{id}")
+    public List<SummaryDTO> summary(@PathVariable Long id) throws ResourceNotFoundException {
+        return studentService.getSummary(id);
     }
 }

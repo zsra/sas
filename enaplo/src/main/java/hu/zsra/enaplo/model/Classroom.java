@@ -1,22 +1,22 @@
 package hu.zsra.enaplo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import hu.zsra.enaplo.model.user.Student;
-import hu.zsra.enaplo.model.user.Teacher;
+import hu.zsra.enaplo.model.user.group.Student;
+import hu.zsra.enaplo.model.user.group.Teacher;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "classrooms")
 public class Classroom {
 
     @Id
-    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter @Setter
     private Long id;
 
     @Column(name = "start_year", nullable = false, length = 4)
@@ -39,11 +39,6 @@ public class Classroom {
     @Getter @Setter
     private Teacher headTeacher;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "classroom")
-    @Getter @Setter
-    private Set<Student> students = new HashSet<>();
-
     public Classroom() {}
 
     public Classroom(int start_year, int end_year, int year, char letter, Teacher headTeacher) {
@@ -53,4 +48,14 @@ public class Classroom {
         this.letter = letter;
         this.headTeacher = headTeacher;
     }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "classroom")
+    @Getter @Setter
+    private List<Student> students = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "classroom")
+    @Getter @Setter
+    private List<TimeTableEntity> timeTableEntities = new ArrayList<>();
 }

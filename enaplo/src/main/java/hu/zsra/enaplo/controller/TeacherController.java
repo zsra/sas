@@ -1,65 +1,59 @@
 package hu.zsra.enaplo.controller;
 
-import hu.zsra.enaplo.model.Lesson;
-import hu.zsra.enaplo.model.user.Teacher;
-import hu.zsra.enaplo.service.TimeTableService;
-import hu.zsra.enaplo.service.user.TeacherService;
+import hu.zsra.enaplo.dto.StudentResponseDTO;
+import hu.zsra.enaplo.dto.TeacherResponseDTO;
+import hu.zsra.enaplo.exception.ResourceNotFoundException;
+import hu.zsra.enaplo.model.user.group.Student;
+import hu.zsra.enaplo.model.user.group.Teacher;
+import hu.zsra.enaplo.service.impl.TeacherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import java.util.Set;
+import java.util.List;
 
-@Service
-@RequestMapping("/teachers")
+@RestController
+@RequestMapping(value = "/api")
 public class TeacherController {
 
     @Autowired
-    private TeacherService teacherService;
-    @Autowired
-    private TimeTableService timeTableService;
+    private TeacherServiceImpl teacherService;
 
-    @PostMapping("/create")
-    public String create(@RequestBody Teacher teacher) {
-        return teacherService.create(teacher);
+    @GetMapping(value = "/teachers/create")
+    public List<Teacher> findAll() {
+        return teacherService.findAll();
     }
 
-    @PostMapping("/signin")
-    public String signIn(@RequestBody String username, @RequestBody String password) {
-        return teacherService.signIn(username, password);
+    @GetMapping(value = "/teachers/{id}")
+    public Teacher findById(@PathVariable Long id) throws ResourceNotFoundException {
+        return teacherService.findById(id);
     }
 
-    @GetMapping("/all")
-    public Set<Teacher> getAll() {
-        return teacherService.getAll();
+    @GetMapping(value = "/teachers/user/{user_id}")
+    public Teacher findByUserId(@PathVariable Long user_id) throws ResourceNotFoundException {
+        return teacherService.findByUserId(user_id);
     }
 
-    @GetMapping("/{username}")
-    public Teacher getTeacherByUsername(@PathVariable String username) {
-        return teacherService.getTeacherByUsername(username);
+    @PostMapping(value = "/teachers/create")
+    public Teacher save(@RequestBody TeacherResponseDTO teacherResponseDTO) {
+        return teacherService.save(teacherResponseDTO);
     }
 
-    @PutMapping("/update/{username}")
-    public Teacher update(@PathVariable String username,
-                                     @Valid @RequestBody Teacher teacher) {
-        return teacherService.update(username, teacher);
+    @PutMapping(value = "/teachers/update/{id}")
+    public Teacher update(@PathVariable Long id,
+                          @RequestBody TeacherResponseDTO teacherResponseDTO) {
+        return teacherService.update(id, teacherResponseDTO);
     }
 
-    @DeleteMapping("/{username}")
-    public String delete(@PathVariable String username) {
-        teacherService.delete(username);
-        return username;
+    @PutMapping(value = "/teachers/setCourse/{teacher_id}")
+    public String setCourse(@PathVariable Long teacher_id,
+                            @RequestBody Long course_id) {
+        teacherService.setCourse(teacher_id, course_id);
+        return course_id.toString();
     }
 
-    @GetMapping("/refresh")
-    public String refresh(HttpServletRequest httpServletRequest) {
-        return teacherService.refresh(httpServletRequest.getRemoteUser());
-    }
-
-    @GetMapping("/{username}/timetable")
-    public Set<Lesson> getTimeTable(@PathVariable String username) {
-        return timeTableService.getByTeacherUsername(username);
+    @DeleteMapping(value = "/teachers/{id}")
+    public String delete(@PathVariable Long id) {
+        teacherService.delete(id);
+        return id.toString();
     }
 }

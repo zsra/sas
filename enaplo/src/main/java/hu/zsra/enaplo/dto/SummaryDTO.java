@@ -12,9 +12,9 @@ public class SummaryDTO {
     @Getter @Setter
     private double average;
 
-    public SummaryDTO(String courseName, int[] marks, double average) {
-        this.courseName = courseName;
-        this.marks = marks;
+    public SummaryDTO(String title, int[] toArray, double average) {
+        this.courseName = title;
+        this.marks = toArray;
         this.average = average;
     }
 }
