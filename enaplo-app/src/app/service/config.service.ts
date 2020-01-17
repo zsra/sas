@@ -59,7 +59,7 @@ export class ConfigService {
     }
 
     get getStudentByUserIdUrl(): string {
-        return this.getStudentByUserIdUrl;
+        return this.studentByUserIdUrl;
     }
 
     get getCreateStudentUrl(): string {
@@ -80,5 +80,194 @@ export class ConfigService {
 
     get getSummaryStudentUrl(): string {
         return this.summaryStudentUrl;
+    }
+
+    private attendanceUrl = this.baseUrl + '/attendances';
+    private getFormUrl = this.attendanceUrl;
+    private createAttendanceUrl = this.attendanceUrl + '/create';
+    private verifyAttendanceUrl = this.attendanceUrl + '/verify';
+    private nonVerifyAttendanceUrl = this.attendanceUrl + '/nonVerify';
+    private allAttendanceByStudentUrl = this.attendanceUrl + '/all';
+    private deleteAttendaceUrl = this.attendanceUrl;
+
+    get getGetFormUrl(): string {
+        return this.getFormUrl;
+    }
+
+    get getCreateAttendanceUrl(): string {
+        return this.createAttendanceUrl;
+    }
+
+    get getVerifyAttendanceUrl(): string {
+        return this.verifyAttendanceUrl;
+    }
+
+    get getNonVerifyAttendanceUrl(): string {
+        return this.nonVerifyAttendanceUrl;
+    }
+
+    get getAllAttendanceByStudentUrl(): string {
+        return this.allAttendanceByStudentUrl;
+    }
+
+    get getDeleteAttendaceUrl(): string {
+        return this.deleteAttendaceUrl;
+    }
+
+    private classroomUrl = this.baseUrl + '/classrooms';
+    private allClassroomUrl = this.classroomUrl + '/all';
+    private createClassroomUrl = this.classroomUrl + '/create';
+    private updateClassroomUrl = this.classroomUrl;
+    private deleteClassroomUrl = this.classroomUrl;
+    private getStudentsFromClassroomUrl = this.classroomUrl + '/students';
+    private setCourseUrl = this.classroomUrl + '/setCourse';
+    private getClassroomByIdUrl = this.classroomUrl;
+
+    get getAllClassroomUrl(): string {
+        return this.allClassroomUrl;
+    }
+
+    get getCreateClassroomUrl(): string {
+        return this.createClassroomUrl;
+    }
+
+    get getUpdateClassroomUrl(): string {
+        return this.updateClassroomUrl;
+    }
+
+    get getDeleteClassroomUrl(): string {
+        return this.deleteClassroomUrl;
+    }
+
+    get getGetStudentsFromClassroomUrl(): string {
+        return this.getStudentsFromClassroomUrl;
+    }
+
+    get getSetCourseUrl(): string {
+        return this.setCourseUrl;
+    }
+
+    get getGetClassroomByIdUrl(): string {
+        return this.getClassroomByIdUrl;
+    }
+
+    private courseUrl = this.baseUrl + '/courses';
+    private createCourseUrl = this.courseUrl + '/create';
+    private updateCourseUrl = this.courseUrl + '/update';
+    private setCourseToStudentUrl = this.courseUrl + '/setCourse';
+    private deleteCourseUrl = this.courseUrl;
+
+    get getCreateCourseUrl(): string {
+        return this.createCourseUrl;
+    }
+
+    get getUpdateCourseUrl(): string {
+        return this.updateCourseUrl;
+    }
+
+    get getSetCourseToStudentUrl(): string {
+        return this.setCourseToStudentUrl;
+    }
+    
+    get getDeleteCourseUrl(): string {
+        return this.deleteCourseUrl;
+    }
+
+    private examUrl = this.baseUrl + '/exams';
+    private createExamUrl = this.examUrl + '/create';
+    private updateExamUrl = this.examUrl + '/update';
+    private deleteExamUrl = this.examUrl;
+
+    get getCreateExamUrl(): string {
+        return this.createExamUrl;
+    }
+
+    get getUpdateExamUrl(): string {
+        return this.updateExamUrl;
+    }
+
+    get getDeleteExamUrl(): string {
+        return this.deleteExamUrl;
+    }
+
+    private reportUrl = this.baseUrl + '/reports';
+    private createrReportUrl = this.reportUrl + '/create';
+    private updateReportUrl = this.reportUrl + '/update';
+    private deletereportUrl = this.reportUrl;
+
+    get getCreateReportUrl(): string {
+        return this.createrReportUrl;
+    }
+
+    get getUpdateReportUrl(): string {
+        return this.updateReportUrl;
+    }
+
+    get getDeleteReportUrl(): string {
+        return this.deletereportUrl;
+    }
+
+    private teacherUrl = this.baseUrl + '/teachers';
+    private findAllTeacherUrl = this.teacherUrl + '/all';
+    private findTeacherById = this.teacherUrl;
+    private findTeacherByUserId = this.teacherUrl + '/user';
+    private createTeacherUrl = this.teacherUrl + '/create';
+    private updateTeacherUrl = this.teacherUrl + '/update';
+    private setCourseToTeacherUrl = this.teacherUrl + '/setCourse';
+    private deleteTeacherUrl = this.teacherUrl;
+
+    get getFindAllTeacherUrl(): string {
+        return this.findAllTeacherUrl;
+    }
+
+    get getFindTeacherById(): string {
+        return this.findTeacherById;
+    }
+
+    get getFindTeacherByUserId(): string {
+        return this.findTeacherByUserId;
+    }
+
+    get getCreateTeacherUrl(): string {
+        return this.createTeacherUrl;
+    }
+
+    get getUpdateTeacherUrl(): string {
+        return this.updateTeacherUrl;
+    }
+
+    get getSetCourseToTeacherUrl(): string {
+        return this.setCourseToTeacherUrl;
+    }
+
+    get getDeleteTeacherUrl(): string {
+        return this.deleteTeacherUrl;
+    }
+
+    private timetableUrl = this.baseUrl + '/timetables';
+    private createTimeTableUrl = this.timetableUrl + '/create';
+    private updateTimeTableUrl = this.timetableUrl + '/update';
+    private deleteTimeTableUrl = this.timetableUrl;
+    private getTimeTableByStudentUrl = this.timetableUrl + '/student';
+    private getTimeTableByTeacherUrl = this.timetableUrl + '/teacher';
+
+    get getCreateTimeTableUrl(): string {
+        return this.createTimeTableUrl;
+    }
+
+    get getUpdateTimeTableUrl(): string {
+        return this.updateTimeTableUrl;
+    }
+
+    get getDeleteTimeTableUrl(): string {
+        return this.deleteTimeTableUrl;
+    }
+
+    get getGetTimeTableByStudentUrl(): string {
+        return this.getTimeTableByStudentUrl;
+    }
+
+    get getGetTimeTableByTeacherUrl(): string {
+        return this.getTimeTableByTeacherUrl;
     }
 }

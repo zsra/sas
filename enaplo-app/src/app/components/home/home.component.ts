@@ -12,15 +12,40 @@ export class HomeComponent implements OnInit {
 
   user: any;
 
+  roles: [
+    'ROLE_STUDENT',
+    'ROLE_TEACHER',
+    'ROLE_ADMIN',
+    'ROLE_HEADTEACHER'
+  ];
+
   constructor(private userService: UserService, private authService: AuthService, 
     private router: Router) { }
 
   ngOnInit() {
-    this.userService.getMyInfo().subscribe(data => console.log(data));
+    this.user = this.userService.getMyInfo();
   }
 
   userRole() {
+    this.user.subscribe(data => {
+      return data.authorities[0].authority;
+    });
+  }
 
+  teacherPanel() {
+
+  }
+
+  adminPanel() {
+
+  }
+
+  headTeacherPanel() {
+
+  }
+
+  studentPanel() {
+    
   }
 
 }

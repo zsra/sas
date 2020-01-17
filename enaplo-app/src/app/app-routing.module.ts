@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './components/login/login.component';
 import { AdminGuard } from './guard/admin.guard';
 import { LoginGuard } from './guard/login.guard';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { HomeComponent } from './components/home/home.component';
 
