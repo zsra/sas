@@ -1,22 +1,21 @@
 <div class="container">
-    <div class="row" >
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="card card-signin my-5">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Sign In</h5>
-                    <form #loginForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
-                        <div class="form-label-group">
-                            <input type="text" id="username" formControlName="username" class="form-control" placeholder="Username" required autofocus>
-                            <label for="username">Username</label>
-                        </div>
-                        <div class="form-label-group">
-                            <input type="password" id="password" formControlName="password" class="form-control" placeholder="" required autofocus>
-                            <label for="password">Password</label>
-                        </div>
-                        <button [disabled]="!loginForm.form.valid" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <mat-card>
+        <mat-card-title><h3>{{title}}</h3></mat-card-title>
+        <mat-card-content>
+            <form #loginForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
+                <p *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p>
+                <mat-form-field>
+                    <label class="label">Username: </label>
+                    <input type="text" id="username" formControlName="username" class="form-control" placeholder="Username" required autofocus /><br>
+                </mat-form-field>
+                <mat-form-field>
+                    <br>
+                    <label class="label">Password: </label>
+                    <input type="password" id="password" formControlName="password" class="form-control" placeholder="" required autofocus /><br>
+                </mat-form-field>
+                <br>
+                <button [disabled]="!loginForm.form.valid" class="submit" type="submit">Login</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
 </div>

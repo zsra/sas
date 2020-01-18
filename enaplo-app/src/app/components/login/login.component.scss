@@ -1,0 +1,48 @@
+$primary: #05386B;
+$secondary: #fff;
+$border-radius: 1em;
+$box-shadow: 0.4em;
+$border-size: 0.2em;
+$font-size: 1.2em;
+$margin-bottom: 1em;
+$card-with: 20em;
+
+:host {
+    display: block;
+    color: rgba(0, 0, 0);
+    font-family: Roboto, "Helvetica Neue";
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+    padding-top: 10%;
+}
+
+mat-card {
+    width: $card-with;
+    margin: 0 auto;
+    display: inline-block;
+    background-color: $secondary;
+    box-shadow: $box-shadow $box-shadow $box-shadow grey;
+    border-radius: $border-radius;
+    border: $border-size solid $primary;
+    animation: fadein 1s;
+}
+
+mat-card-container {
+    background-color: transparent;
+}
+
+input {
+    padding: 5px;
+    border: 1px solid $primary;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+button {
+    font-size: $font-size;
+    margin-bottom: $margin-bottom;
+}

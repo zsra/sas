@@ -15,4 +15,14 @@ public interface ClassroomRepository extends JpaRepository<Classroom, Long> {
     @Query(value = "INSERT INTO student_course (student_id, course_id) values (:student_id, :course_id)", nativeQuery = true)
     @Transactional
     void setCourseForClassroom(@Param("student_id") Long student_id, @Param("course_id") Long course_id);
+
+    @Modifying
+    @Query(value = "UPDATE user_authority SET authority_id = 4 WHERE user_id = :teacher_id", nativeQuery = true)
+    @Transactional
+    void setHeadteacherFromTeacher(@Param("teacher_id") Long teacher_id);
+
+    @Modifying
+    @Query(value = "UPDATE user_authority SET authority_id = 3 WHERE user_id = :teacher_id", nativeQuery = true)
+    @Transactional
+    void setTeacherFromHeadteacher(@Param("teacher_id") Long teacher_id);
 }

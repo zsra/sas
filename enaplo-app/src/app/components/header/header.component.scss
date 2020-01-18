@@ -1,8 +1,7 @@
 $primary: #05386B;
 $secondary: #fff;
-$font-size-home: 2em;
-$font-size-logout: 1em;
-$padding-top: 5px;
+$font-size: 1em;
+$padding-top: 15px;
 $padding-vertical: 15px;
 $td_time: 0.4s;
 
@@ -15,7 +14,7 @@ $td_time: 0.4s;
 .home-button {
     background-color: $primary;
     color: $secondary;
-    font-size: $font-size-home;
+    font-size: $font-size;
     border: none;
     cursor: pointer;
     transition-duration: $td_time;
@@ -42,15 +41,20 @@ $td_time: 0.4s;
 .logout-button {
     background-color: $primary;
     color: $secondary;
-    font-size: $font-size-logout;
+    font-size: $font-size;
     border: none;
     cursor: pointer;
     transition-duration: $td_time;
-    padding: $padding-vertical $padding-vertical;
+    padding: $padding-top $padding-vertical;
 
     &:hover {
         background-color: $secondary;
         color: $primary;
     }
+}
+
+span {
+    font-size: 1.5em;
+    padding: $padding-top - 6 $padding-vertical;
 }
 

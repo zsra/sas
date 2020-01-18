@@ -37,6 +37,7 @@ public class ClassroomServiceImpl implements ClassroomService {
 
     @Override
     public Classroom create(Classroom classroom) {
+        classroomRepository.setHeadteacherFromTeacher(classroom.getHeadTeacher().getTeacher().getId());
         return classroomRepository.save(classroom);
     }
 
@@ -49,9 +50,7 @@ public class ClassroomServiceImpl implements ClassroomService {
         oldClassroom.setLetter(classroom.getLetter());
         oldClassroom.setYear(classroom.getYear());
 
-        List<Authority> authorities = authService.findByName("ROLE_HEADTEACHER");
-        oldClassroom.getHeadTeacher().getTeacher().setAuthorities(authorities);
-
+        classroomRepository.setTeacherFromHeadteacher(oldClassroom.getHeadTeacher().getTeacher().getId());
         return classroomRepository.save(oldClassroom);
     }
 

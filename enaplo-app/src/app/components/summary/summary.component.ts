@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Summary } from 'src/app/model/summary';
+import { SummaryDTO } from 'src/app/dto/summaryDTO';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/app/service/student/student.service';
@@ -12,7 +12,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class SummaryComponent implements OnInit {
 
-  summary: Observable<Summary[]>;
+  summary: Observable<SummaryDTO[]>;
 
 
 

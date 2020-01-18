@@ -104,9 +104,9 @@ public class InitData {
         userService.save(user16);
         userService.save(user17);
 
-        TeacherResponseDTO teacher1 = new TeacherResponseDTO("teacher1", "teacher",
+        TeacherResponseDTO teacher1 = new TeacherResponseDTO("teacher1", "teacher1",
                 "teacher1@school.com", "0123456", "teacher1 teacher1");
-        TeacherResponseDTO teacher2 = new TeacherResponseDTO("teacher2", "teacher",
+        TeacherResponseDTO teacher2 = new TeacherResponseDTO("teacher2", "teacher2",
                 "teacher1@school.com", "0123456", "teacher2 teacher2");
         TeacherResponseDTO teacher3 = new TeacherResponseDTO("teacher3", "teacher3",
                 "teacher1@scool.com", "0123456", "teacher3 teacher3");

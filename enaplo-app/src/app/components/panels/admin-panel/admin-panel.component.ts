@@ -40,7 +40,7 @@ export class AdminPanelComponent implements OnInit {
 
   }
 
-  deletClassroom() {
+  deleteClassroom() {
 
   }
 

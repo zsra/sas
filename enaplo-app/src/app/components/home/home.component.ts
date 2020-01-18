@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   adminPanel() {
-
+    this.router.navigate(['/admin']);
   }
 
   headTeacherPanel() {

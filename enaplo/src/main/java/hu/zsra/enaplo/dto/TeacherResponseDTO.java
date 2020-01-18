@@ -3,7 +3,8 @@ package hu.zsra.enaplo.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-public class TeacherResponseDTO {
+public class
+TeacherResponseDTO {
 
     @Getter @Setter
     private String username;
