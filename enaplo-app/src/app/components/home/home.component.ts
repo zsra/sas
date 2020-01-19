@@ -11,13 +11,15 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit, OnDestroy {
 
   user: any;
+  isDataAvailable:boolean = false;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.user = data;
-    });
+      
+    }).then(() => this.isDataAvailable = true);
   }
 
   ngOnDestroy() {

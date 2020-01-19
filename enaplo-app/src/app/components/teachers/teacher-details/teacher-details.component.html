@@ -1,1 +1,32 @@
-<p>teacher-details works!</p>
+<div *ngIf="isDataAvailable">
+    <app-admin-panel *ngIf="userRole() === 'ROLE_ADMIN'"></app-admin-panel>
+    <app-teacher-panel *ngIf="userRole() === 'ROLE_TEACHER'"></app-teacher-panel>
+    <app-student-panel *ngIf="userRole() === 'ROLE_STUDENT'"></app-student-panel>
+    <app-headteacher-panel *ngIf="userRole() === 'ROLE_HEADTEACHER'"></app-headteacher-panel>
+    <div class="teacher-details-container">
+        <h2>Teacher</h2>
+        <table class="table table-bordered" *ngIf="teacher">
+            <tbody>
+                <tr>
+                    <td>Username</td>
+                    <td>{{teacher.teacher.username}}</td>
+                </tr>
+                <tr>
+                    <td>Fullname</td>
+                    <td>{{teacher.teacher.fullName}}</td>
+                </tr>
+                <tr>
+                    <td>E-mail</td>
+                    <td>{{teacher.email}}</td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>{{teacher.phone}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

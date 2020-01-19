@@ -2,7 +2,6 @@ package hu.zsra.enaplo.controller;
 
 import hu.zsra.enaplo.dto.StudentResponseDTO;
 import hu.zsra.enaplo.dto.SummaryDTO;
-import hu.zsra.enaplo.exception.ResourceNotFoundException;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.service.impl.StudentServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class StudentController {
     }
 
     @GetMapping(value = "/students/{id}")
-    public Student findById(@PathVariable Long id) throws ResourceNotFoundException {
+    public Student findById(@PathVariable Long id) {
         return studentService.findById(id);
     }
 
@@ -50,7 +49,7 @@ public class StudentController {
     }
 
     @GetMapping("/students/summary/{id}")
-    public List<SummaryDTO> summary(@PathVariable Long id) throws ResourceNotFoundException {
+    public List<SummaryDTO> summary(@PathVariable Long id) {
         return studentService.getSummary(id);
     }
 }

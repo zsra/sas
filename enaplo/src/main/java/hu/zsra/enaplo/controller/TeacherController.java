@@ -1,9 +1,6 @@
 package hu.zsra.enaplo.controller;
 
-import hu.zsra.enaplo.dto.StudentResponseDTO;
 import hu.zsra.enaplo.dto.TeacherResponseDTO;
-import hu.zsra.enaplo.exception.ResourceNotFoundException;
-import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.model.user.group.Teacher;
 import hu.zsra.enaplo.service.impl.TeacherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +21,12 @@ public class TeacherController {
     }
 
     @GetMapping(value = "/teachers/{id}")
-    public Teacher findById(@PathVariable Long id) throws ResourceNotFoundException {
+    public Teacher findById(@PathVariable Long id) {
         return teacherService.findById(id);
     }
 
     @GetMapping(value = "/teachers/user/{user_id}")
-    public Teacher findByUserId(@PathVariable Long user_id) throws ResourceNotFoundException {
+    public Teacher findByUserId(@PathVariable Long user_id) {
         return teacherService.findByUserId(user_id);
     }
 

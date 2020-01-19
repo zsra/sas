@@ -2,46 +2,46 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/service/user.service';
-import { ConfigService } from 'src/app/service/config.service';
 import { Router } from '@angular/router';
 import { StudentService } from 'src/app/service/student/student.service';
 import { TeacherService } from 'src/app/service/teacher/teacher.service';
+import { Student } from 'src/app/model/student';
+import { Teacher } from 'src/app/model/teacher';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
-export class UserListComponent implements OnInit, OnDestroy {
+export class UserListComponent implements OnInit {
 
-  admin: any;
+  searchText;
   users: Observable<User[]>;
-
+  isDataAvailable:boolean = false;
+  user: any;
   constructor(private userService: UserService, private router: Router,
     private studentService: StudentService, private teacherService: TeacherService) { }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.admin = data;
-    });
-    this.reloadData();
+      this.user = data;
+      this.users = this.userService.getAll();
+    }).then(() => this.isDataAvailable = true);
   }
 
   userRole(): string {
-    return this.admin.authorities[0].authority + '';
-  }
-
-  ngOnDestroy() {
-    this.admin = null;
-  }
-
-  reloadData() {
-    this.users = this.userService.getAll();
+    return this.user.authorities[0].authority + '';
   }
 
   getDetails(user_id: number) {
-    var student = this.studentService.findByUserId(user_id);
-    console.log(student.toPromise().then(data => console.log(data)));
+    this.userService.getById(user_id).subscribe(data => {
+      if(data.authorities[0].authority + '' === 'ROLE_STUDENT') {
+        this.studentService.findByUserId(user_id).subscribe(data => this.router.navigate(['student/details', data.id]));
+      } else if(data.authorities[0].authority + '' === 'ROLE_TEACHER' 
+                  || data.authorities[0].authority + '' === 'ROLE_HEADTEACHER') {
+        this.teacherService.findByUserId(user_id).subscribe(data => this.router.navigate(['teacher/details', data.id])); 
+      }
+    });
   }
 
   deleteUser(user_id: number) {

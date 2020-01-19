@@ -16,9 +16,10 @@ export class HeaderComponent implements OnInit {
 
   user: any;
   role: string;
+  isDataAvailable:boolean = false;
 
   ngOnInit() {
-    
+    this.isDataAvailable = true
   }
 
   logout() {

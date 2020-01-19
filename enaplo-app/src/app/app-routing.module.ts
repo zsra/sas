@@ -13,6 +13,8 @@ import { StudentPanelComponent } from './components/panels/student-panel/student
 import { HeadteacherPanelComponent } from './components/panels/headteacher-panel/headteacher-panel.component';
 import { UserCreateComponent } from './components/users/user-create/user-create.component';
 import { UserListComponent } from './components/users/user-list/user-list.component';
+import { StudentDetailsComponent } from './components/students/student-details/student-details.component';
+import { TeacherDetailsComponent } from './components/teachers/teacher-details/teacher-details.component';
 
 const routes: Routes = [
   {
@@ -49,9 +51,20 @@ const routes: Routes = [
     path: 'user/list',
     component: UserListComponent
   },
+
+  /* ---- STUDENT -----*/
+  {
+    path: 'student/details/:id',
+    component: StudentDetailsComponent
+  },
   {
     path: 'summary',
     component: SummaryComponent
+  },
+  /* ---- TEACHER ----- */
+  {
+    path: 'teacher/details/:id',
+    component: TeacherDetailsComponent
   },
   {
     path: '404',

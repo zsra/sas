@@ -1,6 +1,5 @@
 package hu.zsra.enaplo.service.auth.impl;
 
-import hu.zsra.enaplo.exception.ResourceNotFoundException;
 import hu.zsra.enaplo.model.user.Authority;
 import hu.zsra.enaplo.model.user.UserRoleName;
 import hu.zsra.enaplo.repository.user.AuthorityRepository;
@@ -23,10 +22,9 @@ public class AuthorityServiceImpl implements AuthorityService {
     }
 
     @Override
-    public List<Authority> findById(Long id) throws ResourceNotFoundException {
+    public List<Authority> findById(Long id) {
         Authority authority = authorityRepository
-                .findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Authority not found!"));
+                .findById(id).orElse(null);
         List<Authority> authorities = new ArrayList<>();
         authorities.add(authority);
         return authorities;

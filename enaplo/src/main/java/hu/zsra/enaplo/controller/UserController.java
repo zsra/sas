@@ -1,7 +1,6 @@
 package hu.zsra.enaplo.controller;
 
 import hu.zsra.enaplo.dto.UserResponseDTO;
-import hu.zsra.enaplo.exception.ResourceNotFoundException;
 import hu.zsra.enaplo.model.user.User;
 import hu.zsra.enaplo.service.auth.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/{id}")
-    public User getById(@PathVariable Long id) throws ResourceNotFoundException {
+    public User getById(@PathVariable Long id) {
         return  this.userService.findById(id);
     }
 

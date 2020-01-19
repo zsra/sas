@@ -1,7 +1,6 @@
 package hu.zsra.enaplo.service.impl;
 
 import hu.zsra.enaplo.dto.TeacherResponseDTO;
-import hu.zsra.enaplo.exception.ResourceNotFoundException;
 import hu.zsra.enaplo.model.Course;
 import hu.zsra.enaplo.model.user.User;
 import hu.zsra.enaplo.model.user.group.Teacher;
@@ -36,10 +35,9 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public Teacher findById(Long id) throws ResourceNotFoundException {
+    public Teacher findById(Long id) {
         return teacherRepository
-                .findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Teacher not found!"));
+                .findById(id).orElse(null);
     }
 
     @Override

@@ -31,6 +31,7 @@ import { TeacherCreateComponent } from './components/teachers/teacher-create/tea
 import { StudentCreateComponent } from './components/students/student-create/student-create.component';
 import { StudentUpdateComponent } from './components/students/student-update/student-update.component';
 import { TeacherUpdateComponent } from './components/teachers/teacher-update/teacher-update.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { TeacherUpdateComponent } from './components/teachers/teacher-update/tea
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Ng2SearchPipeModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

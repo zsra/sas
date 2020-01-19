@@ -1,6 +1,5 @@
 package hu.zsra.enaplo.service;
 
-import hu.zsra.enaplo.exception.ResourceNotFoundException;
 import hu.zsra.enaplo.model.Classroom;
 import hu.zsra.enaplo.model.user.group.Student;
 
@@ -10,10 +9,10 @@ public interface ClassroomService {
 
     List<Classroom> getAll();
     Classroom create(Classroom classroom);
-    Classroom update(Long id, Classroom classroom) throws ResourceNotFoundException;
+    Classroom update(Long id, Classroom classroom);
     void delete(Long id);
     Classroom getByHeadTeacher(Long id);
     List<Student> getStudentsFromClassroom(Long id);
     void setCourse(Long classroom_id, Long course_id);
-    Classroom getById(Long id) throws ResourceNotFoundException;
+    Classroom getById(Long id);
 }

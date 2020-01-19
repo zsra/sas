@@ -1,11 +1,11 @@
-$primary: #05386B;
+$primary: #292b2c;
 $secondary: #fff;
 $border-radius: 1em;
 $box-shadow: 0.4em;
 $border-size: 0.2em;
 $font-size: 1.2em;
 $margin-bottom: 1em;
-$card-with: 20em;
+$card-with: 25m;
 
 :host {
     display: block;
@@ -13,13 +13,29 @@ $card-with: 20em;
     font-family: Roboto, "Helvetica Neue";
 }
 
-.container {
+.login-container {
     width: 100%;
     text-align: center;
     padding-top: 10%;
 }
 
-mat-card {
+.non-border-login {
+    border-color: transparent !important;
+
+    tr {
+        border-color: transparent !important;
+
+        td {
+            border-color: transparent !important;
+        }
+    }
+}
+
+.login-h3 {
+ margin-top: 0.1em;
+}
+
+.login-card {
     width: $card-with;
     margin: 0 auto;
     display: inline-block;
@@ -30,19 +46,13 @@ mat-card {
     animation: fadein 1s;
 }
 
-mat-card-container {
-    background-color: transparent;
+.label-login {
+    font-size: 1em;
+    display: inline-block;
+    margin-top: 3px;
 }
 
-input {
-    padding: 5px;
-    border: 1px solid $primary;
-    border-radius: 4px;
-    box-sizing: border-box;
-    resize: vertical;
-}
-
-button {
+.submit-login {
     font-size: $font-size;
     margin-bottom: $margin-bottom;
 }

@@ -1,1 +1,56 @@
-<p>student-details works!</p>
+<div *ngIf="isDataAvailable">
+    <app-admin-panel *ngIf="userRole() === 'ROLE_ADMIN'"></app-admin-panel>
+    <app-teacher-panel *ngIf="userRole() === 'ROLE_TEACHER'"></app-teacher-panel>
+    <app-student-panel *ngIf="userRole() === 'ROLE_STUDENT'"></app-student-panel>
+    <app-headteacher-panel *ngIf="userRole() === 'ROLE_HEADTEACHER'"></app-headteacher-panel>
+    <div class="student-details-container">
+        <h2>Student</h2>
+        <table class="table table-bordered" *ngIf="student">
+            <tbody>
+                <tr>
+                    <td>Username</td>
+                    <td>{{student.student.username}}</td>
+                </tr>
+                <tr>
+                    <td>Fullname</td>
+                    <td>{{student.student.fullName}}</td>
+                </tr>
+                <tr>
+                    <td>Date of birth</td>
+                    <td>{{student.dateOfBirth}}</td>
+                </tr>
+                <tr>
+                    <td>Start year</td>
+                    <td>{{student.start_year}}</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>{{student.address}}</td>
+                </tr>
+                <tr>
+                    <td>Education ID</td>
+                    <td>{{student.educationId}}</td>
+                </tr>
+                <tr>
+                    <td>Health Care ID</td>
+                    <td>{{student.healthCareId}}</td>
+                </tr>
+                <tr>
+                    <td>Parent 1</td>
+                    <td>{{student.parent1Name}}</td>
+                </tr>
+                <tr>
+                    <td>Parent 2</td>
+                    <td>{{student.parent2Name}}</td>
+                </tr>
+                <tr>
+                    <td>Classroom</td>
+                    <td>{{student.classroom.year}}/{{student.classroom.letter}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

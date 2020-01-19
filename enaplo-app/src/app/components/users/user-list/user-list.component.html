@@ -1,27 +1,36 @@
-<div class="user-list-container" *ngIf="userRole() === 'ROLE_ADMIN'">
-    <app-admin-panel></app-admin-panel>
-    <div class="user-list-header">
-        <h2>User List</h2>
-    </div>
-    <div class="user-list-body">
-        <input class="search-bar" />
-        <table class="user-list-table">
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Fullname</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let user of users | async">
-                    <td>{{user.username}}</td>
-                    <td>{{user.fullName}}</td>
-                    <td>
-                        <button (click)="getDetails(user.id)" class="btn-detais">Details</button>
-                        <button (click)="deleteUser(user.id)" class="btn-detais">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<div *ngIf="isDataAvailable">
+    <div class="user-list-container" *ngIf="userRole() === 'ROLE_ADMIN'">
+        <app-admin-panel></app-admin-panel>
+        <div class="user-list-container-body">
+            <div class="user-list-header">
+                <h3>User List</h3>
+            </div>
+            <div class="user-list-body">
+                <input class="form-control-searchbox" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" 
+                placeholder="&#171; Search">
+                <table  class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Username</th>
+                            <th>Fullname</th>
+                            <th>Function</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users | async | filter:searchText">
+                            <td>{{user.username}}</td>
+                            <td>{{user.fullName}}</td>
+                            <td>
+                                <button *ngIf="!(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
+                                (click)="getDetails(user.id)" class="btn-detais">Details</button>
+                                <button (click)="deleteUser(user.id)" class="btn-detais">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
+
+

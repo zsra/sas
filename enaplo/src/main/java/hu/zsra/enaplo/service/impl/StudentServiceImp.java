@@ -2,7 +2,6 @@ package hu.zsra.enaplo.service.impl;
 
 import hu.zsra.enaplo.dto.StudentResponseDTO;
 import hu.zsra.enaplo.dto.SummaryDTO;
-import hu.zsra.enaplo.exception.ResourceNotFoundException;
 import hu.zsra.enaplo.model.Classroom;
 import hu.zsra.enaplo.model.Course;
 import hu.zsra.enaplo.model.Exam;
@@ -45,10 +44,9 @@ public class StudentServiceImp implements StudentService {
     }
 
     @Override
-    public Student findById(Long id) throws ResourceNotFoundException {
+    public Student findById(Long id) {
         return studentRepository
-                .findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Student not found!"));
+                .findById(id).orElse(null);
     }
 
     @Override
@@ -112,8 +110,8 @@ public class StudentServiceImp implements StudentService {
     }
 
     @Override
-    public List<SummaryDTO> getSummary(Long id) throws ResourceNotFoundException {
-        Student student = findById(id);
+    public List<SummaryDTO> getSummary(Long id) {
+        Student student = studentRepository.getOne(id);
         List<SummaryDTO> summaryDTOList = new ArrayList<>();
         for(Course course : courseRepository.findAll()) {
             List<Exam> exams = student.getExams()

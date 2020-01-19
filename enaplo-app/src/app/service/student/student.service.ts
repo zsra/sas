@@ -12,12 +12,8 @@ export class StudentService {
 
     }
 
-    findAll() {
-
-    }
-
-    findById() {
-
+    findById(id: number) {
+        return this.apiService.get(this.configService.getStudentUrl + '/' + id);
     }
 
     findByUserId(user_id : number) {

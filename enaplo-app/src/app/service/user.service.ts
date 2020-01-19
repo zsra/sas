@@ -37,4 +37,8 @@ export class UserService {
     getAll() {
         return this.apiService.get(this.configService.getAllUsersUrl);
     }
+
+    getById(id: number) {
+        return this.apiService.get(this.configService.getGetUserByIdUrl + '/' + id);
+    }
 }

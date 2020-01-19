@@ -1,6 +1,5 @@
 package hu.zsra.enaplo.controller;
 
-import hu.zsra.enaplo.exception.ResourceNotFoundException;
 import hu.zsra.enaplo.model.Classroom;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.service.impl.ClassroomServiceImpl;
@@ -29,7 +28,7 @@ public class ClassroomController {
 
     @PutMapping(value = "/classroomsupdate/{id}")
     public Classroom update(@PathVariable Long id,
-                            @Valid @RequestBody Classroom classroom) throws ResourceNotFoundException {
+                            @Valid @RequestBody Classroom classroom) {
         return classroomService.update(id, classroom);
     }
 
@@ -57,7 +56,7 @@ public class ClassroomController {
     }
 
     @GetMapping(value = "/classrooms/{id}")
-    public Classroom getById(Long id) throws ResourceNotFoundException {
+    public Classroom getById(Long id) {
         return classroomService.getById(id);
     }
 }

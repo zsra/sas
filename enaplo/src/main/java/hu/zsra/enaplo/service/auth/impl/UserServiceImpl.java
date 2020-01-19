@@ -2,7 +2,6 @@ package hu.zsra.enaplo.service.auth.impl;
 
 import hu.zsra.enaplo.dto.UserResponseDTO;
 import hu.zsra.enaplo.exception.CustomException;
-import hu.zsra.enaplo.exception.ResourceNotFoundException;
 import hu.zsra.enaplo.model.user.Authority;
 import hu.zsra.enaplo.model.user.User;
 import hu.zsra.enaplo.repository.user.UserRepository;
@@ -51,10 +50,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Long id) throws ResourceNotFoundException {
+    public User findById(Long id) {
         return userRepository
-                .findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found!"));
+                .findById(id).orElse(null);
     }
 
     @Override

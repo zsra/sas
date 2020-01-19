@@ -1,6 +1,5 @@
 package hu.zsra.enaplo.service.impl;
 
-import hu.zsra.enaplo.exception.ResourceNotFoundException;
 import hu.zsra.enaplo.model.Classroom;
 import hu.zsra.enaplo.model.user.Authority;
 import hu.zsra.enaplo.model.user.group.Student;
@@ -42,8 +41,8 @@ public class ClassroomServiceImpl implements ClassroomService {
     }
 
     @Override
-    public Classroom update(Long id, Classroom classroom) throws ResourceNotFoundException {
-        Classroom oldClassroom = getById(id);
+    public Classroom update(Long id, Classroom classroom) {
+        Classroom oldClassroom = classroomRepository.getOne(id);
         oldClassroom.setStart_year(classroom.getStart_year());
         oldClassroom.setEnd_year(classroom.getEnd_year());
         oldClassroom.setHeadTeacher(classroom.getHeadTeacher());
@@ -88,9 +87,7 @@ public class ClassroomServiceImpl implements ClassroomService {
     }
 
     @Override
-    public Classroom getById(Long id) throws ResourceNotFoundException {
-        return classroomRepository
-                .findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Classroom not found!"));
+    public Classroom getById(Long id) {
+        return classroomRepository.findById(id).orElse(null);
     }
 }

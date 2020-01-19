@@ -1,8 +1,9 @@
+import { User } from './user';
+
 export class Teacher {
 
     id: number;
-    username: string;
-    fullName: string;
+    teacher: User;
     email: string;
     phone: string;
 }

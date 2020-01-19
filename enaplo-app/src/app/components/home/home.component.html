@@ -1,6 +1,9 @@
-<div class="container">
-    <app-admin-panel *ngIf="userRole() === 'ROLE_ADMIN'"></app-admin-panel>
-    <app-teacher-panel *ngIf="userRole() === 'ROLE_TEACHER'"></app-teacher-panel>
-    <app-student-panel *ngIf="userRole() === 'ROLE_STUDENT'"></app-student-panel>
-    <app-headteacher-panel *ngIf="userRole() === 'ROLE_HEADTEACHER'"></app-headteacher-panel>
+<div *ngIf="isDataAvailable">
+    <div class="home-container">
+        <app-admin-panel *ngIf="userRole() === 'ROLE_ADMIN'"></app-admin-panel>
+        <app-teacher-panel *ngIf="userRole() === 'ROLE_TEACHER'"></app-teacher-panel>
+        <app-student-panel *ngIf="userRole() === 'ROLE_STUDENT'"></app-student-panel>
+        <app-headteacher-panel *ngIf="userRole() === 'ROLE_HEADTEACHER'"></app-headteacher-panel>
+    </div>
 </div>
+

@@ -1,20 +1,20 @@
-<div class="container">
-    <mat-card>
-        <mat-card-title><h3>{{title}}</h3></mat-card-title>
+<div class="login-container">
+    <mat-card class="login-card">
+        <mat-card-title><h3 class="login-h3">{{title}}</h3></mat-card-title>
         <mat-card-content>
             <form #loginForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
-                <p *ngIf="notification" class="notification">{{notification.msgBody}}</p>
-                <mat-form-field>
-                    <label class="label">Username: </label>
-                    <input type="text" id="username" formControlName="username" class="form-control" placeholder="Username" required autofocus /><br>
-                </mat-form-field>
-                <mat-form-field>
-                    <br>
-                    <label class="label">Password: </label>
-                    <input type="password" id="password" formControlName="password" class="form-control" placeholder="" required autofocus /><br>
-                </mat-form-field>
-                <br>
-                <button [disabled]="!loginForm.form.valid" class="submit" type="submit">Login</button>
+                <p *ngIf="notification" class="notification">{{notification.msgBody}}</p>      
+                <table class="table table-bordered non-border-login">
+                    <tr>
+                        <td><label class="label-login">Username: </label></td>
+                        <td><input type="text" id="username" formControlName="username" class="form-control" placeholder="Username" required autofocus /></td>
+                    </tr>
+                    <tr>
+                        <td><label class="label-login">Password: </label></td>
+                        <td><input type="password" id="password" formControlName="password" class="form-control" placeholder="" required autofocus /></td>
+                    </tr>
+                </table>
+                <button [disabled]="!loginForm.form.valid" class="submit-login" type="submit">Login</button>
             </form>
         </mat-card-content>
     </mat-card>

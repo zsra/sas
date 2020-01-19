@@ -4,7 +4,6 @@ import hu.zsra.enaplo.dto.AttendanceDTO;
 import hu.zsra.enaplo.dto.StudentResponseDTO;
 import hu.zsra.enaplo.dto.TeacherResponseDTO;
 import hu.zsra.enaplo.dto.UserResponseDTO;
-import hu.zsra.enaplo.exception.ResourceNotFoundException;
 import hu.zsra.enaplo.model.*;
 import hu.zsra.enaplo.model.user.UserRoleName;
 import hu.zsra.enaplo.model.user.group.Student;
@@ -52,7 +51,7 @@ public class InitData {
     @Autowired
     private AuthorityServiceImpl authorityService;
 
-    public void Init() throws ResourceNotFoundException {
+    public void Init() {
 
         authorityService.save(UserRoleName.ROLE_ADMIN);
         authorityService.save(UserRoleName.ROLE_STUDENT);
@@ -65,7 +64,7 @@ public class InitData {
         testData();
     }
 
-    public void testData() throws ResourceNotFoundException {
+    public void testData() {
         UserResponseDTO user1 = new UserResponseDTO("student1", "student1", "Student1 Student1", "ROLE_STUDENT");
         UserResponseDTO user2 = new UserResponseDTO("student2", "student2", "Student2 Student2", "ROLE_STUDENT");
         UserResponseDTO user3 = new UserResponseDTO("student3", "student3", "Student3 Student3", "ROLE_STUDENT");
