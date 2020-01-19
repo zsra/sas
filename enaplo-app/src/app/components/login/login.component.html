@@ -3,7 +3,7 @@
         <mat-card-title><h3>{{title}}</h3></mat-card-title>
         <mat-card-content>
             <form #loginForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
-                <p *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p>
+                <p *ngIf="notification" class="notification">{{notification.msgBody}}</p>
                 <mat-form-field>
                     <label class="label">Username: </label>
                     <input type="text" id="username" formControlName="username" class="form-control" placeholder="Username" required autofocus /><br>

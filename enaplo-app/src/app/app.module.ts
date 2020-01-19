@@ -14,7 +14,7 @@ import { UserService } from './service/user.service';
 import { ConfigService } from './service/config.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { SummaryComponent } from './components/summary/summary.component';
+import { SummaryComponent } from './components/students/summary/summary.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
@@ -22,6 +22,15 @@ import { AdminPanelComponent } from './components/panels/admin-panel/admin-panel
 import { TeacherPanelComponent } from './components/panels/teacher-panel/teacher-panel.component';
 import { HeadteacherPanelComponent } from './components/panels/headteacher-panel/headteacher-panel.component';
 import { StudentPanelComponent } from './components/panels/student-panel/student-panel.component';
+import { UserListComponent } from './components/users/user-list/user-list.component';
+import { UserCreateComponent } from './components/users/user-create/user-create.component';
+import { StudentDetailsComponent } from './components/students/student-details/student-details.component';
+import { TeacherDetailsComponent } from './components/teachers/teacher-details/teacher-details.component';
+import { TeacherListComponent } from './components/teachers/teacher-list/teacher-list.component';
+import { TeacherCreateComponent } from './components/teachers/teacher-create/teacher-create.component';
+import { StudentCreateComponent } from './components/students/student-create/student-create.component';
+import { StudentUpdateComponent } from './components/students/student-update/student-update.component';
+import { TeacherUpdateComponent } from './components/teachers/teacher-update/teacher-update.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +44,16 @@ import { StudentPanelComponent } from './components/panels/student-panel/student
     AdminPanelComponent,
     TeacherPanelComponent,
     HeadteacherPanelComponent,
-    StudentPanelComponent
+    StudentPanelComponent,
+    UserListComponent,
+    UserCreateComponent,
+    StudentDetailsComponent,
+    TeacherDetailsComponent,
+    TeacherListComponent,
+    TeacherCreateComponent,
+    StudentCreateComponent,
+    StudentUpdateComponent,
+    TeacherUpdateComponent
   ],
   imports: [
     BrowserModule,

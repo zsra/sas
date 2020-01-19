@@ -1,0 +1,27 @@
+<div class="user-list-container" *ngIf="userRole() === 'ROLE_ADMIN'">
+    <app-admin-panel></app-admin-panel>
+    <div class="user-list-header">
+        <h2>User List</h2>
+    </div>
+    <div class="user-list-body">
+        <input class="search-bar" />
+        <table class="user-list-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Fullname</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users | async">
+                    <td>{{user.username}}</td>
+                    <td>{{user.fullName}}</td>
+                    <td>
+                        <button (click)="getDetails(user.id)" class="btn-detais">Details</button>
+                        <button (click)="deleteUser(user.id)" class="btn-detais">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

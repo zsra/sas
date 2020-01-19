@@ -17,13 +17,6 @@ export class HeaderComponent implements OnInit {
   user: any;
   role: string;
 
-  roles: [
-    'ROLE_STUDENT',
-    'ROLE_TEACHER',
-    'ROLE_ADMIN',
-    'ROLE_HEADTEACHER'
-  ];
-
   ngOnInit() {
     
   }
@@ -32,18 +25,6 @@ export class HeaderComponent implements OnInit {
     this.authService.logout().subscribe(res => {
       this.router.navigate(["/login"]);
     });
-  }
-
-  userRole(): string {
-    if(!!this.userService.currentUser) {
-      this.userService.getMyInfo()
-        .subscribe(data =>  this.role = data.authorities[0].authority + '');
-        console.log(this.role)
-          return this.role;
-    } else {
-      return '';
-    }
-    
   }
 
   hasSignedIn() {

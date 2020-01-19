@@ -5,12 +5,14 @@ import { AdminGuard } from './guard/admin.guard';
 import { LoginGuard } from './guard/login.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
-import { SummaryComponent } from './components/summary/summary.component';
+import { SummaryComponent } from './components/students/summary/summary.component';
 import { HomeComponent } from './components/home/home.component';
 import { AdminPanelComponent } from './components/panels/admin-panel/admin-panel.component';
 import { TeacherPanelComponent } from './components/panels/teacher-panel/teacher-panel.component';
 import { StudentPanelComponent } from './components/panels/student-panel/student-panel.component';
 import { HeadteacherPanelComponent } from './components/panels/headteacher-panel/headteacher-panel.component';
+import { UserCreateComponent } from './components/users/user-create/user-create.component';
+import { UserListComponent } from './components/users/user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent
   },
+  /* ----- USERS PANEL ----- */
   {
     path: 'admin',
     component: AdminPanelComponent
@@ -36,6 +39,15 @@ const routes: Routes = [
   {
     path: 'headteacher',
     component: HeadteacherPanelComponent
+  },
+  /* ----- ADMIN - USER MANAGEMENT ----- */
+  {
+    path: 'user/create',
+    component: UserCreateComponent
+  },
+  {
+    path: 'user/list',
+    component: UserListComponent
   },
   {
     path: 'summary',

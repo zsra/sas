@@ -21,7 +21,7 @@ export class StudentService {
     }
 
     findByUserId(user_id : number) {
-        return this.apiService.get(this.configService.getStudentByUserIdUrl, user_id);
+        return this.apiService.get(this.configService.getStudentByUserIdUrl + '/' + user_id);
     }
 
     create() {

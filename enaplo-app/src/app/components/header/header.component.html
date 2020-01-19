@@ -1,11 +1,7 @@
-<mat-toolbar class="toolbar" color="primary">
+<mat-toolbar class="toolbar">
     <span>Enaplo</span>
     <div class="right">
         <button *ngIf="hasSignedIn()" mat-button mat-ripple routerLink="/home" class="home-button">Home</button>
-        <button *ngIf="hasSignedIn() && userRole() === 'ROLE_ADMIN'" mat-button mat-ripple routerLink="/admin" class="admin-button">Admin</button>
-        <button *ngIf="hasSignedIn() && userRole() === 'ROLE_TEACHER'" mat-button mat-ripple routerLink="/teacher" class="teacher-button">Teacher</button>
-        <button *ngIf="hasSignedIn() && userRole() === 'ROLE_STUDENT'" mat-button mat-ripple routerLink="/student" class="student-button">Student</button>
-        <button *ngIf="hasSignedIn() && userRole() === 'ROLE_HEADTEACHER'" mat-button mat-ripple routerLink="/headteacher" class="headteacher-button">Headteacher</button>
         <button *ngIf="hasSignedIn()" class="logout-button" (click)="logout()">Logout</button>
     </div>
     

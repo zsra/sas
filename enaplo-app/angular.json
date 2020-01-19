@@ -125,5 +125,10 @@
       }
     }
   },
-  "defaultProject": "enaplo-app"
+  "defaultProject": "enaplo-app",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

@@ -3,7 +3,7 @@ $secondary: #fff;
 $font-size: 1em;
 $padding-top: 15px;
 $padding-vertical: 15px;
-$td_time: 0.4s;
+$tr: all 0.3s ease;
 
 :host {
     position: relative;
@@ -17,7 +17,7 @@ $td_time: 0.4s;
     font-size: $font-size;
     border: none;
     cursor: pointer;
-    transition-duration: $td_time;
+    transition: $tr;
     padding: $padding-top $padding-vertical;
 
     &:hover {
@@ -44,7 +44,7 @@ $td_time: 0.4s;
     font-size: $font-size;
     border: none;
     cursor: pointer;
-    transition-duration: $td_time;
+    transition: $tr;
     padding: $padding-top $padding-vertical;
 
     &:hover {

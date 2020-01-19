@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
@@ -8,44 +8,24 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   user: any;
 
-  roles: [
-    'ROLE_STUDENT',
-    'ROLE_TEACHER',
-    'ROLE_ADMIN',
-    'ROLE_HEADTEACHER'
-  ];
-
-  constructor(private userService: UserService, private authService: AuthService, 
-    private router: Router) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.user = this.userService.getMyInfo();
-  }
-
-  userRole() {
-    this.user.subscribe(data => {
-      return data.authorities[0].authority;
+    this.userService.getMyInfo().toPromise().then(data =>  {
+      this.user = data;
     });
   }
 
-  teacherPanel() {
-
+  ngOnDestroy() {
+    this.user = null;
   }
 
-  adminPanel() {
-    this.router.navigate(['/admin']);
-  }
-
-  headTeacherPanel() {
-
-  }
-
-  studentPanel() {
-    
+  userRole(): string {
+    return this.user.authorities[0].authority + '';
   }
 
 }
