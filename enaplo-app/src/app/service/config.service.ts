@@ -161,6 +161,8 @@ export class ConfigService {
     private updateCourseUrl = this.courseUrl + '/update';
     private setCourseToStudentUrl = this.courseUrl + '/setCourse';
     private deleteCourseUrl = this.courseUrl;
+    private getCourseByIdUrl = this.courseUrl;
+    private getAllCoursesUrl = this.courseUrl + '/all';
 
     get getCreateCourseUrl(): string {
         return this.createCourseUrl;
@@ -176,6 +178,14 @@ export class ConfigService {
     
     get getDeleteCourseUrl(): string {
         return this.deleteCourseUrl;
+    }
+
+    get getGetCourseByIdUrl(): string {
+        return this.getCourseByIdUrl;
+    }
+
+    get getGetAllCoursesUrl(): string {
+        return this.getAllCoursesUrl;
     }
 
     private examUrl = this.baseUrl + '/exams';

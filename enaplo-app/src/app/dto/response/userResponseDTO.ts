@@ -1,6 +1,5 @@
-export class User {
-
-    id: number;
+export class UserResponseDTO {
+    
     username: string;
     fullName: string;
     role: string;

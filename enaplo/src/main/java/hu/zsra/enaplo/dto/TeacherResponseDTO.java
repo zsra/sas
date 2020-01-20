@@ -12,18 +12,12 @@ TeacherResponseDTO {
     private String email;
     @Getter @Setter
     private String phone;
-    @Getter @Setter
-    private String fullName;
-    @Getter @Setter
-    private String password;
 
     public TeacherResponseDTO() {}
 
-    public TeacherResponseDTO(String username, String password, String email, String phone, String fullName) {
+    public TeacherResponseDTO(String username, String email, String phone) {
         this.username = username;
-        this.password = password;
         this.email = email;
         this.phone = phone;
-        this.fullName = fullName;
     }
 }

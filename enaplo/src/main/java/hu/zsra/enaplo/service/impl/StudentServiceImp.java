@@ -12,6 +12,7 @@ import hu.zsra.enaplo.repository.CourseRepository;
 import hu.zsra.enaplo.repository.user.StudentRepository;
 import hu.zsra.enaplo.repository.user.UserRepository;
 import hu.zsra.enaplo.service.StudentService;
+import org.pmw.tinylog.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -83,7 +84,6 @@ public class StudentServiceImp implements StudentService {
     public Student update(Long id, StudentResponseDTO studentResponseDTO) {
 
         User user = userRepository.findByUsername(studentResponseDTO.getUsername());
-        user.setFullName(studentResponseDTO.getFullName());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
 

@@ -23,7 +23,6 @@ import { TeacherPanelComponent } from './components/panels/teacher-panel/teacher
 import { HeadteacherPanelComponent } from './components/panels/headteacher-panel/headteacher-panel.component';
 import { StudentPanelComponent } from './components/panels/student-panel/student-panel.component';
 import { UserListComponent } from './components/users/user-list/user-list.component';
-import { UserCreateComponent } from './components/users/user-create/user-create.component';
 import { StudentDetailsComponent } from './components/students/student-details/student-details.component';
 import { TeacherDetailsComponent } from './components/teachers/teacher-details/teacher-details.component';
 import { TeacherListComponent } from './components/teachers/teacher-list/teacher-list.component';
@@ -32,6 +31,7 @@ import { StudentCreateComponent } from './components/students/student-create/stu
 import { StudentUpdateComponent } from './components/students/student-update/student-update.component';
 import { TeacherUpdateComponent } from './components/teachers/teacher-update/teacher-update.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ChangePasswordComponent } from './components/users/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -47,14 +47,14 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     HeadteacherPanelComponent,
     StudentPanelComponent,
     UserListComponent,
-    UserCreateComponent,
     StudentDetailsComponent,
     TeacherDetailsComponent,
     TeacherListComponent,
     TeacherCreateComponent,
     StudentCreateComponent,
     StudentUpdateComponent,
-    TeacherUpdateComponent
+    TeacherUpdateComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +63,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

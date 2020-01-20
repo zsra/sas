@@ -103,20 +103,20 @@ public class InitData {
         userService.save(user16);
         userService.save(user17);
 
-        TeacherResponseDTO teacher1 = new TeacherResponseDTO("teacher1", "teacher1",
-                "teacher1@school.com", "0123456", "teacher1 teacher1");
-        TeacherResponseDTO teacher2 = new TeacherResponseDTO("teacher2", "teacher2",
-                "teacher1@school.com", "0123456", "teacher2 teacher2");
-        TeacherResponseDTO teacher3 = new TeacherResponseDTO("teacher3", "teacher3",
-                "teacher1@scool.com", "0123456", "teacher3 teacher3");
-        TeacherResponseDTO teacher4 = new TeacherResponseDTO("teacher4", "teacher4",
-                "teacher1@school.com", "0123456", "teacher4 teacher4");
-        TeacherResponseDTO teacher5 = new TeacherResponseDTO("teacher5", "teacher5",
-                "teacher1@school.com", "0123456", "teacher5 teacher5");
-        TeacherResponseDTO teacher6 = new TeacherResponseDTO("teacher6", "teacher6",
-                "teacher1@school.com", "0123456", "teacher6 teacher6");
-        TeacherResponseDTO teacher7 = new TeacherResponseDTO("teacher7", "teacher7",
-                "teacher1@school.com", "0123456", "teacher7 teacher7");
+        TeacherResponseDTO teacher1 = new TeacherResponseDTO("teacher1",
+                "teacher1@school.com", "0123456");
+        TeacherResponseDTO teacher2 = new TeacherResponseDTO("teacher2",
+                "teacher1@school.com", "0123456");
+        TeacherResponseDTO teacher3 = new TeacherResponseDTO("teacher3",
+                "teacher1@scool.com", "0123456");
+        TeacherResponseDTO teacher4 = new TeacherResponseDTO("teacher4",
+                "teacher1@school.com", "0123456");
+        TeacherResponseDTO teacher5 = new TeacherResponseDTO("teacher5",
+                "teacher1@school.com", "0123456");
+        TeacherResponseDTO teacher6 = new TeacherResponseDTO("teacher6",
+                "teacher1@school.com", "0123456");
+        TeacherResponseDTO teacher7 = new TeacherResponseDTO("teacher7",
+                "teacher1@school.com", "0123456");
 
         teacherService.save(teacher1);
         teacherService.save(teacher2);
@@ -143,43 +143,43 @@ public class InitData {
         StudentResponseDTO student1 = new StudentResponseDTO("student1", LocalDate.of(2002, 3,03),
                 2016, "Messze utca 1.",
                 "12345", "123456", "parent1 name", "parent2 name",
-                1l, "student1 student1", "student1");
+                1l);
         StudentResponseDTO student2 = new StudentResponseDTO("student2", LocalDate.of(2002, 4,22),
                 2016, "Messze utca 2.",
                 "12345", "123456", "parent1 name", "parent2 name",
-                1l, "student2 student2", "student2");
+                1l);
         StudentResponseDTO student3 = new StudentResponseDTO("student3", LocalDate.of(2002, 5,11),
                 2016, "Messze utca 3.",
                 "12345", "123456", "parent1 name", "parent2 name",
-                1l, "student3 student3", "student3");
+                1l);
         StudentResponseDTO student4 = new StudentResponseDTO("student4", LocalDate.of(2002, 6,12),
                 2016, "Messze utca 4.",
                 "12345", "123456", "parent1 name", "parent2 name",
-                1l, "student4 student4", "student4");
+                1l);
         StudentResponseDTO student5 = new StudentResponseDTO("student5", LocalDate.of(2002, 7,30),
                 2016, "Messze utca 5.",
                 "12345", "123456", "parent1 name", "parent2 name",
-                1l, "student5 student5", "student5");
+                1l);
         StudentResponseDTO student6 = new StudentResponseDTO("student6", LocalDate.of(2002, 8,1),
                 2016, "Messze utca 6.",
                 "12345", "123456", "parent1 name", "parent2 name",
-                2l, "student6 student6", "student6");
+                2l);
         StudentResponseDTO student7 = new StudentResponseDTO("student7", LocalDate.of(2002, 9,3),
                 2016, "Messze utca 7.",
                 "12345", "123456", "parent1 name", "parent2 name",
-                2l, "student7 student7", "student7");
+                2l);
         StudentResponseDTO student8 = new StudentResponseDTO("student8", LocalDate.of(2002, 10,4),
                 2016, "Messze utca 8.",
                 "12345", "123456", "parent1 name", "parent2 name",
-                2l, "student8 student8", "student8");
+                2l);
         StudentResponseDTO student9 = new StudentResponseDTO("student9", LocalDate.of(2002, 11,9),
                 2016, "Messze utca 9.",
                 "12345", "123456", "parent1 name", "parent2 name",
-                2l, "student9 student9", "student9");
+                2l);
         StudentResponseDTO student10 = new StudentResponseDTO("student10", LocalDate.of(2002, 12,11),
                 2016, "Messze utca 10.",
                 "12345", "123456", "parent1 name", "parent2 name",
-                2l, "student10 student10", "student10");
+                2l);
 
         studentService.save(student1);
         studentService.save(student2);

@@ -2,10 +2,15 @@ package hu.zsra.enaplo.controller;
 
 import hu.zsra.enaplo.dto.StudentResponseDTO;
 import hu.zsra.enaplo.dto.SummaryDTO;
+import hu.zsra.enaplo.model.user.User;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.service.impl.StudentServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -32,8 +37,12 @@ public class StudentController {
     }
 
     @PostMapping(value = "/students/create")
-    public Student save(@RequestBody StudentResponseDTO studentResponseDTO) {
-        return studentService.save(studentResponseDTO);
+    public ResponseEntity<?> save(@RequestBody StudentResponseDTO studentResponseDTO,
+                                  UriComponentsBuilder ucBuilder) {
+        Student student = studentService.save(studentResponseDTO);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/api/user/{userId}").buildAndExpand(student.getId()).toUri());
+        return new ResponseEntity<Student>(student, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/students/update/{id}")

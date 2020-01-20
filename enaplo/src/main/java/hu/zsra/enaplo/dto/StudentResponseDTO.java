@@ -1,5 +1,6 @@
 package hu.zsra.enaplo.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,18 +24,15 @@ public class StudentResponseDTO {
     private String parent1Name;
     @Getter @Setter
     private String parent2Name;
+    @JsonProperty("classroom_id")
     @Getter @Setter
     private Long classroom_id;
-    @Getter @Setter
-    private String fullName;
-    @Getter @Setter
-    private String password;
 
     public StudentResponseDTO() {}
 
     public StudentResponseDTO(String username, LocalDate dateOfBirth, int start_year, String address,
                               String educationId, String healthCareId, String parent1Name, String parent2Name,
-                              Long classroom_id, String fullName, String password) {
+                              Long classroom_id) {
         this.username = username;
         this.dateOfBirth = dateOfBirth;
         this.start_year = start_year;
@@ -44,7 +42,5 @@ public class StudentResponseDTO {
         this.parent1Name = parent1Name;
         this.parent2Name = parent2Name;
         this.classroom_id = classroom_id;
-        this.fullName = fullName;
-        this.password = password;
     }
 }

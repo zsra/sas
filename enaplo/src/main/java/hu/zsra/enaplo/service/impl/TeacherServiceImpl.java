@@ -66,7 +66,6 @@ public class TeacherServiceImpl implements TeacherService {
     public Teacher update(Long id, TeacherResponseDTO teacherResponseDTO) {
         User user = userRepository.findByUsername(teacherResponseDTO.getUsername());
 
-        user.setFullName(teacherResponseDTO.getFullName());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
 

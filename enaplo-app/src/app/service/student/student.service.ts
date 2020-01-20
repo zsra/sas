@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {ApiService} from '../api.service';
 import {ConfigService} from '../config.service';
 import {map} from 'rxjs/operators';
+import { StudentResponseDTO } from 'src/app/dto/response/studentResponseDTO';
 
 @Injectable({
     providedIn: 'root'
@@ -20,16 +21,16 @@ export class StudentService {
         return this.apiService.get(this.configService.getStudentByUserIdUrl + '/' + user_id);
     }
 
-    create() {
-
+    create(student: StudentResponseDTO) {
+        return this.apiService.post(this.configService.getCreateStudentUrl, student);
     }
 
-    update() {
-
+    update(id: number, student: StudentResponseDTO) {
+        return this.apiService.put(this.configService.getUpdateStudentUrl + '/' + id, student);
     }
 
-    delete() {
-
+    delete(student_id: number) {
+        return this.apiService.delete(this.configService.getDeleteStudentUrl, student_id);
     }
 
     summary(id : number) {

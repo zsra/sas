@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
 import {ConfigService} from './config.service';
 import {map} from 'rxjs/operators';
+import { User } from '../model/user';
+import { Observable } from 'rxjs';
+import { UserResponseDTO } from '../dto/response/userResponseDTO';
 
 @Injectable({
     providedIn: 'root'
@@ -40,5 +43,9 @@ export class UserService {
 
     getById(id: number) {
         return this.apiService.get(this.configService.getGetUserByIdUrl + '/' + id);
+    }
+
+    create(user: UserResponseDTO): Observable<object> {
+        return this.apiService.post(this.configService.getCreateUrl, user);
     }
 }

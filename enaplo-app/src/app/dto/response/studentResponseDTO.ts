@@ -8,5 +8,5 @@ export class StudentResponseDTO {
     healthCareId: string;
     parent1Name: string;
     parent2Name: string;
-    password: string;
+    classroom_id: number;
 }

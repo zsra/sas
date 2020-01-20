@@ -32,7 +32,7 @@ public class Teacher {
     @Setter
     private String email;
 
-    @Column(name = "phone", nullable = false, length = 16)
+    @Column(name = "phone", nullable = false, length = 24)
     @Getter @Setter
     private String phone;
 

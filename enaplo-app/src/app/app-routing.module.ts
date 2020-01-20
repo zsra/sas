@@ -11,10 +11,11 @@ import { AdminPanelComponent } from './components/panels/admin-panel/admin-panel
 import { TeacherPanelComponent } from './components/panels/teacher-panel/teacher-panel.component';
 import { StudentPanelComponent } from './components/panels/student-panel/student-panel.component';
 import { HeadteacherPanelComponent } from './components/panels/headteacher-panel/headteacher-panel.component';
-import { UserCreateComponent } from './components/users/user-create/user-create.component';
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { StudentDetailsComponent } from './components/students/student-details/student-details.component';
 import { TeacherDetailsComponent } from './components/teachers/teacher-details/teacher-details.component';
+import { StudentCreateComponent } from './components/students/student-create/student-create.component';
+import { TeacherCreateComponent } from './components/teachers/teacher-create/teacher-create.component';
 
 const routes: Routes = [
   {
@@ -44,10 +45,6 @@ const routes: Routes = [
   },
   /* ----- ADMIN - USER MANAGEMENT ----- */
   {
-    path: 'user/create',
-    component: UserCreateComponent
-  },
-  {
     path: 'user/list',
     component: UserListComponent
   },
@@ -58,10 +55,18 @@ const routes: Routes = [
     component: StudentDetailsComponent
   },
   {
+    path: 'student/create',
+    component: StudentCreateComponent
+  },
+  {
     path: 'summary',
     component: SummaryComponent
   },
   /* ---- TEACHER ----- */
+  {
+    path: 'teacher/create',
+    component: TeacherCreateComponent
+  },
   {
     path: 'teacher/details/:id',
     component: TeacherDetailsComponent

@@ -1,1 +1,35 @@
-<p>teacher-create works!</p>
+<div *ngIf="isDataLoaded">
+    <div class="teacher-create-container" *ngIf="userRole() === 'ROLE_ADMIN'">
+        <app-admin-panel></app-admin-panel>
+        <h2>Create Teacher</h2>
+        <div class="create-form">
+            <form (ngSubmit)="onUserSubmit()" #form="ngForm" class="form-user">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input [disabled]="userSubmitted" type="text" class="form-control" id="username" required [(ngModel)]="user.username" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input [disabled]="userSubmitted" type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="fullName">Fullname</label>
+                    <input [disabled]="userSubmitted" type="text" class="form-control" id="fullName" required [(ngModel)]="user.fullName" name="fullName" placeholder="Fullname">
+                </div>
+                <button [disabled]="userSubmitted" type="submit" class="btn btn-success">Submit</button>
+            </form>
+            <form *ngIf="userSubmitted" (ngSubmit)="onStudentSubmit()" #form="ngForm" class="form">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input [disabled]="userSubmitted" type="email" class="form-control" id="email" required [(ngModel)]="teacher.email" name="email" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input [disabled]="userSubmitted" type="text" class="form-control" id="phone" required [(ngModel)]="teacher.phone" name="phone" placeholder="+36 10 999 9999">
+                </div>
+                <buttontype="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+    

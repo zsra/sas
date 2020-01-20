@@ -3,9 +3,11 @@ package hu.zsra.enaplo.controller;
 import hu.zsra.enaplo.model.Course;
 import hu.zsra.enaplo.service.impl.CourseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -13,6 +15,16 @@ public class CourseController {
 
     @Autowired
     private CourseServiceImpl courseService;
+
+    @GetMapping(value = "/courses/all")
+    public List<Course> FindAll() {
+        return this.courseService.findAll();
+    }
+
+    @GetMapping(value = "/courses/{id}")
+    public Course FindById(@PathVariable Long id) {
+        return this.courseService.findById(id);
+    }
 
     @PostMapping(value = "/courses/create")
     public Course create(Course course) {

@@ -1,1 +1,60 @@
-<p>student-create works!</p>
+<div *ngIf="isDataLoaded">
+    <div class="student-create-container" *ngIf="userRole() === 'ROLE_ADMIN'">
+        <app-admin-panel></app-admin-panel>
+        <h2>Create Student</h2>
+        <div class="create-form">
+        <form (ngSubmit)="onUserSubmit()" #form="ngForm" class="form-user">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input [disabled]="userSubmitted" type="text" class="form-control" id="username" required [(ngModel)]="user.username" name="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input [disabled]="userSubmitted" type="password" class="form-control" id="password" required [(ngModel)]="user.password" name="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="fullName">Fullname</label>
+                <input [disabled]="userSubmitted" type="text" class="form-control" id="fullName" required [(ngModel)]="user.fullName" name="fullName" placeholder="Fullname">
+            </div>
+            <button [disabled]="userSubmitted" type="submit" class="btn btn-success">Submit</button>
+        </form>
+        <form *ngIf="userSubmitted" (ngSubmit)="onStudentSubmit()" #form="ngForm" class="form">    
+            <div class="form-group">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input type="date" class="form-control" id="dateOfBirth" required [(ngModel)]="student.dateOfBirth" name="dateOfBirth">
+            </div>
+            <div class="form-group">
+                <label for="start_year">Start year</label>
+                <input type="number" class="form-control" id="start_year" required [(ngModel)]="student.start_year" name="start_year" placeholder="2017">
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" required [(ngModel)]="student.address" name="address" placeholder="4444, Kecskecen Vetheln utca 13.">
+            </div>
+            <div class="form-group">
+                <label for="educationId">Education ID</label>
+                <input type="text" class="form-control" id="educationId" required [(ngModel)]="student.educationId" name="educationId" placeholder="1234567">
+            </div>
+            <div class="form-group">
+                <label for="healthCareId">Health Care ID</label>
+                <input type="text" class="form-control" id="healthCareId" required [(ngModel)]="student.healthCareId" name="healthCareId" placeholder="333/222/111">
+            </div>
+            <div class="form-group">
+                <label for="parent1Name">Parent 1</label>
+                <input type="text" class="form-control" id="parent1Name" [(ngModel)]="student.parent1Name" name="parent1Name" placeholder="Firstname Middlename Lastname">
+            </div>
+            <div class="form-group">
+                <label for="parent2Name">Parent 2</label>
+                <input type="text" class="form-control" id="parent2Name" [(ngModel)]="student.parent2Name" name="parent2Name" placeholder="Firstname Middlename Lastname">
+            </div>
+            <div class="form-group">
+                <label for="classroom">Classroom</label>
+               <select name="classroom" class="form-control form-control-sm" [(ngModel)]="selectedOption">
+                    <option *ngFor="let classroom of classrooms" [ngValue]="classroom">{{classroom.year}}/{{classroom.letter}}</option>
+               </select>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+        </div>
+
+</div>
