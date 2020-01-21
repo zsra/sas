@@ -1,0 +1,39 @@
+<div *ngIf="isDataAvailable">
+    <div class="user-list-container" *ngIf="userRole() === 'ROLE_ADMIN'">
+        <app-admin-panel></app-admin-panel>
+        <div class="classroom-list-container-body">
+            <div class="classroom-list-header">
+                <h3>Classrooms</h3>
+            </div>
+            <div class="classroom-list-body">
+                <input class="form-control-searchbox" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" 
+                placeholder="&#171; Search">
+                <table  class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Class tag</th>
+                            <th>Start year</th>
+                            <th>End year</th>
+                            <th>Headteacher</th>
+                            <th>Function</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let classroom of classrooms | filter:searchText">
+                            <td>{{classroom.year}}/{{classroom.letter}}</td>
+                            <td>{{classroom.start_year}}</td>
+                            <td>{{classroom.end_year}}</td>
+                            <td>{{classroom.headTeacher.teacher.fullName}}</td>
+                            <td>
+                                <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
+                                (click)="getUpdate(classroom.id)" class="btn btn-warning">Update</button>
+                                <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
+                                (click)="deleteClassroom(classroom.id)" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

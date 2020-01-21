@@ -1,6 +1,6 @@
 package hu.zsra.enaplo.controller;
 
-import hu.zsra.enaplo.dto.UserResponseDTO;
+import hu.zsra.enaplo.dto.response.UserResponseDTO;
 import hu.zsra.enaplo.model.user.User;
 import hu.zsra.enaplo.service.auth.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

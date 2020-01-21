@@ -6,12 +6,58 @@ import hu.zsra.enaplo.model.Attendance;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * This interface contains all related function definitions to the attendance.
+ */
 public interface AttendanceService {
 
-    List<AttendanceDTO> getForm(Long classroom_id);
-    List<Attendance> create(List<AttendanceDTO> attendanceDTOS, int lesson, LocalDate dateOfMiss);
-    void verify(Long id);
-    List<Attendance> nonVerifyByStudent(Long student_id);
-    List<Attendance> getAllByStudent(Long student_id);
+    /**
+     * Returns a form that contains a list of students
+     * and boolean field for each student.
+     *
+     * @param classroom_id Id of the classroom.
+     * @return A form table to collect the missing students.
+     */
+    List<AttendanceDTO> makeAttendanceFormToClassroom(Long classroom_id);
+
+    /**
+     * Creates new attendances for the missing students.
+     *
+     * @param attendanceDTOS Submitted DTO from web application.
+     * @param lecture Missed lecture of the day.
+     * @param dateOfMiss The day when student didn't come to school.
+     * @return List of Attendances.
+     * @see Attendance
+     */
+    List<Attendance> create(List<AttendanceDTO> attendanceDTOS, int lecture, LocalDate dateOfMiss);
+
+    /**
+     * Deletes an attendances by id.
+     *
+     * @param id Id of the Attendance.
+     */
     void delete(Long id);
+
+    /**
+     * Verifies a missed lecture by id.
+     *
+     * @param id Id of the Attendance.
+     */
+    void verify(Long id);
+
+    /**
+     * Returns a List of non verified attendances by student.
+     *
+     * @param student_id Id of the Student.
+     * @return a list of non verified attendances.
+     */
+    List<Attendance> nonVerifyByStudent(Long student_id);
+
+    /**
+     * Returns a List of Attendances by student id.
+     *
+     * @param student_id Id of the Student.
+     * @return a list of the attendances.
+     */
+    List<Attendance> getAllByStudent(Long student_id);
 }

@@ -1,4 +1,4 @@
-package hu.zsra.enaplo.dto;
+package hu.zsra.enaplo.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

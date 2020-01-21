@@ -1,12 +1,12 @@
 package hu.zsra.enaplo.controller;
 
+import hu.zsra.enaplo.dto.response.ClassroomResponseDTO;
 import hu.zsra.enaplo.model.Classroom;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.service.impl.ClassroomServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,30 +17,24 @@ public class ClassroomController {
     private ClassroomServiceImpl classroomService;
 
     @GetMapping(value = "/classrooms/all")
-    public List<Classroom> getAll() {
-        return classroomService.getAll();
+    public List<Classroom> findAll() {
+        return classroomService.findAll();
+    }
+
+    @GetMapping(value = "/classrooms/{id}")
+    public Classroom findById(Long id) {
+        return classroomService.findById(id);
     }
 
     @PostMapping(value = "/classrooms/create")
-    public Classroom create(@RequestBody Classroom classroom) {
-        return classroomService.create(classroom);
+    public Classroom create(@RequestBody ClassroomResponseDTO classroomResponseDTO) {
+        return classroomService.create(classroomResponseDTO);
     }
 
-    @PutMapping(value = "/classroomsupdate/{id}")
+    @PutMapping(value = "/classrooms/update/{id}")
     public Classroom update(@PathVariable Long id,
-                            @Valid @RequestBody Classroom classroom) {
-        return classroomService.update(id, classroom);
-    }
-
-    @DeleteMapping(value = "/classrooms/{id}")
-    public String delete(Long id) {
-        classroomService.delete(id);
-        return id.toString();
-    }
-
-    @GetMapping(value = "/classrooms/teacher/{id}")
-    public Classroom getByHeadTeacher(@PathVariable Long id) {
-        return classroomService.getByHeadTeacher(id);
+                            @RequestBody ClassroomResponseDTO classroomResponseDTO) {
+        return classroomService.update(id, classroomResponseDTO);
     }
 
     @GetMapping(value = "/classrooms/students/{id}")
@@ -55,8 +49,9 @@ public class ClassroomController {
         return course_id.toString();
     }
 
-    @GetMapping(value = "/classrooms/{id}")
-    public Classroom getById(Long id) {
-        return classroomService.getById(id);
+    @DeleteMapping(value = "/classrooms/{id}")
+    public String delete(Long id) {
+        classroomService.delete(id);
+        return id.toString();
     }
 }

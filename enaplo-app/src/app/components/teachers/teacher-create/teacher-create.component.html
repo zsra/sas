@@ -21,13 +21,13 @@
             <form *ngIf="userSubmitted" (ngSubmit)="onStudentSubmit()" #form="ngForm" class="form">
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input [disabled]="userSubmitted" type="email" class="form-control" id="email" required [(ngModel)]="teacher.email" name="email" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="email" required [(ngModel)]="teacher.email" name="email" placeholder="name@example.com">
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone</label>
-                    <input [disabled]="userSubmitted" type="text" class="form-control" id="phone" required [(ngModel)]="teacher.phone" name="phone" placeholder="+36 10 999 9999">
+                    <input type="text" class="form-control" id="phone" required [(ngModel)]="teacher.phone" name="phone" placeholder="+36 10 999 9999">
                 </div>
-                <buttontype="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
             </form>
         </div>
     </div>

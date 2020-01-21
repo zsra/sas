@@ -1,5 +1,6 @@
 package hu.zsra.enaplo.controller;
 
+import hu.zsra.enaplo.dto.response.TimeTableEntityResponseDTO;
 import hu.zsra.enaplo.model.TimeTableEntity;
 import hu.zsra.enaplo.service.impl.TimeTableServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,23 +13,6 @@ public class TimeTableController {
     @Autowired
     private TimeTableServiceImpl timeTableService;
 
-    @GetMapping(value = "/timetables/create")
-    public TimeTableEntity create(@RequestBody TimeTableEntity timeTableEntity) {
-        return timeTableService.create(timeTableEntity);
-    }
-
-    @PutMapping(value = "/timetables/update/{id}")
-    public TimeTableEntity update(@PathVariable Long id,
-                                  @RequestBody TimeTableEntity timeTableEntity) {
-        return timeTableService.update(id, timeTableEntity);
-    }
-
-    @DeleteMapping(value = "/timetables/{id}")
-    public String delete(@PathVariable Long id) {
-        timeTableService.delete(id);
-        return id.toString();
-    }
-
     @GetMapping(value = "/timetables/student/{id}")
     public TimeTableEntity[][] getTimeTableByStudent(@PathVariable Long id) {
         return timeTableService.getTimeTableByStudent(id);
@@ -38,4 +22,23 @@ public class TimeTableController {
     public TimeTableEntity[][] getTimeTableByTeacher(@PathVariable Long id) {
         return timeTableService.getTimeTableByTeacher(id);
     }
+
+    @GetMapping(value = "/timetables/create")
+    public TimeTableEntity create(@RequestBody TimeTableEntityResponseDTO timeTableEntityResponseDTO) {
+        return timeTableService.create(timeTableEntityResponseDTO);
+    }
+
+    @PutMapping(value = "/timetables/update/{id}")
+    public TimeTableEntity update(@PathVariable Long id,
+                                  @RequestBody TimeTableEntityResponseDTO timeTableEntityResponseDTO) {
+        return timeTableService.update(id, timeTableEntityResponseDTO);
+    }
+
+    @DeleteMapping(value = "/timetables/{id}")
+    public String delete(@PathVariable Long id) {
+        timeTableService.delete(id);
+        return id.toString();
+    }
+
+
 }

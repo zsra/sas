@@ -16,9 +16,9 @@ public class AttendanceController {
     @Autowired
     private AttendanceServiceImpl attendanceService;
 
-    @GetMapping(value = "/attendances/{classroom_id}")
-    public List<AttendanceDTO> getForm(@PathVariable Long classroom_id) {
-        return attendanceService.getForm(classroom_id);
+    @GetMapping(value = "/attendances/all/{student_id}")
+    public List<Attendance> getAllByStudent(Long student_id) {
+        return attendanceService.getAllByStudent(student_id);
     }
 
     @PostMapping(value = "/attendances/create")
@@ -28,6 +28,12 @@ public class AttendanceController {
         return attendanceService.create(attendanceDTOS, lesson, dateOfMiss);
     }
 
+    @DeleteMapping(value = "/attendances/{id}")
+    public String delete(Long id) {
+        attendanceService.delete(id);
+        return id.toString();
+    }
+
     @PutMapping(value = "/attendances/verify/{id}")
     public String verify(@PathVariable Long id) {
         attendanceService.verify(id);
@@ -35,18 +41,12 @@ public class AttendanceController {
     }
 
     @GetMapping(value = "/attendances/nonVerify/{student_id}")
-    public List<Attendance> nonVerifyByStudent( @PathVariable Long student_id) {
+    public List<Attendance> nonVerifyByStudent(@PathVariable Long student_id) {
         return attendanceService.nonVerifyByStudent(student_id);
     }
 
-    @GetMapping(value = "/attendances/all/{student_id}")
-    public List<Attendance> getAllByStudent(Long student_id) {
-        return attendanceService.getAllByStudent(student_id);
-    }
-
-    @DeleteMapping(value = "/attendances/{id}")
-    public String delete(Long id) {
-        attendanceService.delete(id);
-        return id.toString();
+    @GetMapping(value = "/attendances/{classroom_id}")
+    public List<AttendanceDTO> makeAttendanceFormToClassroom(@PathVariable Long classroom_id) {
+        return attendanceService.makeAttendanceFormToClassroom(classroom_id);
     }
 }

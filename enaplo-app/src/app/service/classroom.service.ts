@@ -28,15 +28,15 @@ export class ClassroomService {
         return this.apiService.delete(this.configService.getDeleteClassroomUrl + '/' + classroom_id, classroom_id);
     }  
 
-    getStudentsFromClassroom() {
-
+    getStudentsFromClassroom(id: number) {
+        return this.apiService.get(this.configService.getGetStudentsFromClassroomUrl + '/' + id);
     }
 
-    setCourse() {
-
+    setCourse(classroom_id: number, course_id: number) {
+        return this.apiService.put(this.configService.getSetCourseUrl + '/' + classroom_id, course_id);
     }
 
-    getById() {
-
+    getById(id: number) {
+        return this.apiService.get(this.configService.getGetClassroomByIdUrl + '/' + id);
     }
 }

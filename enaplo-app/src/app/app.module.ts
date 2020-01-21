@@ -32,6 +32,10 @@ import { StudentUpdateComponent } from './components/students/student-update/stu
 import { TeacherUpdateComponent } from './components/teachers/teacher-update/teacher-update.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ChangePasswordComponent } from './components/users/change-password/change-password.component';
+import { ClassroomCreateComponent } from './components/classrooms/classroom-create/classroom-create.component';
+import { ClassroomListComponent } from './components/classrooms/classroom-list/classroom-list.component';
+import { ClassroomUpdateComponent } from './components/classrooms/classroom-update/classroom-update.component';
+import { StudentClassroomListComponent } from './components/students/student-classroom-list/student-classroom-list.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,11 @@ import { ChangePasswordComponent } from './components/users/change-password/chan
     StudentCreateComponent,
     StudentUpdateComponent,
     TeacherUpdateComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ClassroomCreateComponent,
+    ClassroomListComponent,
+    ClassroomUpdateComponent,
+    StudentClassroomListComponent
   ],
   imports: [
     BrowserModule,

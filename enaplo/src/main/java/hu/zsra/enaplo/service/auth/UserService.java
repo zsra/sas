@@ -1,6 +1,6 @@
 package hu.zsra.enaplo.service.auth;
 
-import hu.zsra.enaplo.dto.UserResponseDTO;
+import hu.zsra.enaplo.dto.response.UserResponseDTO;
 import hu.zsra.enaplo.model.user.User;
 
 import java.util.List;

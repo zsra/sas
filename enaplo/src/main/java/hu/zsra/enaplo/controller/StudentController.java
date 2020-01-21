@@ -1,8 +1,7 @@
 package hu.zsra.enaplo.controller;
 
-import hu.zsra.enaplo.dto.StudentResponseDTO;
+import hu.zsra.enaplo.dto.response.StudentResponseDTO;
 import hu.zsra.enaplo.dto.SummaryDTO;
-import hu.zsra.enaplo.model.user.User;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.service.impl.StudentServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +36,9 @@ public class StudentController {
     }
 
     @PostMapping(value = "/students/create")
-    public ResponseEntity<?> save(@RequestBody StudentResponseDTO studentResponseDTO,
+    public ResponseEntity<?> create(@RequestBody StudentResponseDTO studentResponseDTO,
                                   UriComponentsBuilder ucBuilder) {
-        Student student = studentService.save(studentResponseDTO);
+        Student student = studentService.create(studentResponseDTO);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/api/user/{userId}").buildAndExpand(student.getId()).toUri());
         return new ResponseEntity<Student>(student, HttpStatus.CREATED);

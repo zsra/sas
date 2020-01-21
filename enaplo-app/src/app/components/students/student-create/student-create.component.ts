@@ -24,8 +24,7 @@ export class StudentCreateComponent implements OnInit {
   selectedOption: any = {};
 
   constructor(private userService: UserService, private router: Router,
-    private studentService: StudentService, 
-    private classroomService: ClassroomService) { }
+    private studentService: StudentService, private classroomService: ClassroomService) { }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {

@@ -58,4 +58,6 @@ public class Classroom {
     @OneToMany(mappedBy = "classroom")
     @Getter @Setter
     private List<TimeTableEntity> timeTableEntities = new ArrayList<>();
+
+
 }

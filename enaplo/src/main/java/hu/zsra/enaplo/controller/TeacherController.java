@@ -1,6 +1,6 @@
 package hu.zsra.enaplo.controller;
 
-import hu.zsra.enaplo.dto.TeacherResponseDTO;
+import hu.zsra.enaplo.dto.response.TeacherResponseDTO;
 import hu.zsra.enaplo.model.user.group.Teacher;
 import hu.zsra.enaplo.service.impl.TeacherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +31,8 @@ public class TeacherController {
     }
 
     @PostMapping(value = "/teachers/create")
-    public Teacher save(@RequestBody TeacherResponseDTO teacherResponseDTO) {
-        return teacherService.save(teacherResponseDTO);
+    public Teacher create(@RequestBody TeacherResponseDTO teacherResponseDTO) {
+        return teacherService.create(teacherResponseDTO);
     }
 
     @PutMapping(value = "/teachers/update/{id}")

@@ -17,7 +17,7 @@ public class EnaploApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//initData.Init();
+		initData.Init();
 	}
 
 }

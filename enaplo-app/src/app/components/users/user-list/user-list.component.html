@@ -22,9 +22,9 @@
                             <td>{{user.fullName}}</td>
                             <td>
                                 <button *ngIf="!(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
-                                (click)="getDetails(user.id)" class="btn-detais">Details</button>
+                                (click)="getDetails(user.id)" class="btn btn-info">Details</button>
                                 <button *ngIf="!(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
-                                (click)="deleteUser(user.id)" class="btn-detais">Delete</button>
+                                (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
                             </td>
                         </tr>
                     </tbody>

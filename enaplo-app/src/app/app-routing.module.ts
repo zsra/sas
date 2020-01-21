@@ -16,6 +16,8 @@ import { StudentDetailsComponent } from './components/students/student-details/s
 import { TeacherDetailsComponent } from './components/teachers/teacher-details/teacher-details.component';
 import { StudentCreateComponent } from './components/students/student-create/student-create.component';
 import { TeacherCreateComponent } from './components/teachers/teacher-create/teacher-create.component';
+import { ClassroomListComponent } from './components/classrooms/classroom-list/classroom-list.component';
+import { ClassroomCreateComponent } from './components/classrooms/classroom-create/classroom-create.component';
 
 const routes: Routes = [
   {
@@ -43,13 +45,13 @@ const routes: Routes = [
     path: 'headteacher',
     component: HeadteacherPanelComponent
   },
-  /* ----- ADMIN - USER MANAGEMENT ----- */
+  /* ----- ADMIN ----- */
   {
     path: 'user/list',
     component: UserListComponent
   },
 
-  /* ---- STUDENT -----*/
+  /* ----- STUDENT -----*/
   {
     path: 'student/details/:id',
     component: StudentDetailsComponent
@@ -62,7 +64,7 @@ const routes: Routes = [
     path: 'summary',
     component: SummaryComponent
   },
-  /* ---- TEACHER ----- */
+  /* ----- TEACHER ----- */
   {
     path: 'teacher/create',
     component: TeacherCreateComponent
@@ -71,6 +73,16 @@ const routes: Routes = [
     path: 'teacher/details/:id',
     component: TeacherDetailsComponent
   },
+  /* ----- CLASSROOM ----- */
+  {
+    path: 'classroom/all',
+    component: ClassroomListComponent
+  },
+  {
+    path: 'classroom/create',
+    component: ClassroomCreateComponent
+  },
+  /* ----- DEFAULT ----- */
   {
     path: '404',
     component: NotFoundComponent

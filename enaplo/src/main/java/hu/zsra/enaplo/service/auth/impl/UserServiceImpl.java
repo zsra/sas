@@ -1,6 +1,6 @@
 package hu.zsra.enaplo.service.auth.impl;
 
-import hu.zsra.enaplo.dto.UserResponseDTO;
+import hu.zsra.enaplo.dto.response.UserResponseDTO;
 import hu.zsra.enaplo.exception.CustomException;
 import hu.zsra.enaplo.model.user.Authority;
 import hu.zsra.enaplo.model.user.User;

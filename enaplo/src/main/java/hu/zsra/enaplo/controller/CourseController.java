@@ -1,12 +1,11 @@
 package hu.zsra.enaplo.controller;
 
+import hu.zsra.enaplo.dto.response.CourseResponseDTO;
 import hu.zsra.enaplo.model.Course;
 import hu.zsra.enaplo.service.impl.CourseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,7 +16,7 @@ public class CourseController {
     private CourseServiceImpl courseService;
 
     @GetMapping(value = "/courses/all")
-    public List<Course> FindAll() {
+    public List<Course> findALl() {
         return this.courseService.findAll();
     }
 
@@ -27,14 +26,20 @@ public class CourseController {
     }
 
     @PostMapping(value = "/courses/create")
-    public Course create(Course course) {
-        return courseService.create(course);
+    public Course create(CourseResponseDTO courseResponseDTO) {
+        return courseService.create(courseResponseDTO);
     }
 
     @PutMapping(value = "/courses/update/{id}")
     public Course update(@PathVariable Long id,
-                         @Valid @RequestBody Course course) {
-        return courseService.update(id, course);
+                         @RequestBody CourseResponseDTO courseResponseDTO) {
+        return courseService.update(id, courseResponseDTO);
+    }
+
+    @DeleteMapping(value = "/courses/{id}")
+    public String delete(Long id) {
+        courseService.delete(id);
+        return id.toString();
     }
 
     @PutMapping(value = "/courses/setCourse/{student_id}")
@@ -44,9 +49,5 @@ public class CourseController {
         return course_id.toString();
     }
 
-    @DeleteMapping(value = "/courses/{id}")
-    public String delete(Long id) {
-        courseService.delete(id);
-        return id.toString();
-    }
+
 }

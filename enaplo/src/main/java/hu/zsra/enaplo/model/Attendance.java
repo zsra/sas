@@ -16,9 +16,9 @@ public class Attendance {
     @Getter @Setter
     private Long id;
 
-    @Column(name = "letter", nullable = false)
+    @Column(name = "lecture", nullable = false)
     @Getter @Setter
-    private int lesson;
+    private int lecture;
 
     @Column(name = "dateOfMiss", nullable = false)
     @Getter @Setter
@@ -35,9 +35,9 @@ public class Attendance {
 
     public Attendance() {}
 
-    public Attendance(Student student, int lesson, LocalDate dateOfMiss) {
+    public Attendance(Student student, int lecture, LocalDate dateOfMiss) {
         this.student = student;
-        this.lesson = lesson;
+        this.lecture = lecture;
         this.dateOfMiss = dateOfMiss;
         this.isVerified = false;
     }

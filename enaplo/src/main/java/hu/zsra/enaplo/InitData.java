@@ -1,9 +1,9 @@
 package hu.zsra.enaplo;
 
 import hu.zsra.enaplo.dto.AttendanceDTO;
-import hu.zsra.enaplo.dto.StudentResponseDTO;
-import hu.zsra.enaplo.dto.TeacherResponseDTO;
-import hu.zsra.enaplo.dto.UserResponseDTO;
+import hu.zsra.enaplo.dto.response.StudentResponseDTO;
+import hu.zsra.enaplo.dto.response.TeacherResponseDTO;
+import hu.zsra.enaplo.dto.response.UserResponseDTO;
 import hu.zsra.enaplo.model.*;
 import hu.zsra.enaplo.model.user.UserRoleName;
 import hu.zsra.enaplo.model.user.group.Student;

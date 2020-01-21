@@ -1,4 +1,4 @@
-package hu.zsra.enaplo.dto;
+package hu.zsra.enaplo.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;
