@@ -1,0 +1,35 @@
+.course-list-container-body {
+    margin: 3em;
+}
+
+.course-list-body {
+    width: 70%;
+    font-size: 1em;
+    margin: 0 auto;
+    text-align: center;
+}
+
+table {
+    margin-top: 2em;
+}
+
+thead {
+    width: 100%;
+}
+
+.form-control-searchbox {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid $gray;
+    outline: 0;
+    font-size: 1.3rem;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+    
+}
+
+button {
+    margin-right: 0.1em;
+}

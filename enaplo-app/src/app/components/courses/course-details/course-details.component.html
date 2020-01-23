@@ -1,0 +1,27 @@
+<div *ngIf="isDataAvailable">
+    <app-admin-panel *ngIf="userRole() === 'ROLE_ADMIN'"></app-admin-panel>
+    <app-teacher-panel *ngIf="userRole() === 'ROLE_TEACHER'"></app-teacher-panel>
+    <app-student-panel *ngIf="userRole() === 'ROLE_STUDENT'"></app-student-panel>
+    <app-headteacher-panel *ngIf="userRole() === 'ROLE_HEADTEACHER'"></app-headteacher-panel>
+    <div class="course-details-container">
+        <h2>Course</h2>
+        <table class="table table-bordered" *ngIf="course">
+            <tbody>
+                <tr>
+                    <td>Tile</td>
+                    <td>{{course.title}}</td>
+                </tr>
+                <tr>
+                    <td>Year</td>
+                    <td>{{course.year}}</td>
+                </tr>
+                <tr>
+                    <td>Teacher</td>
+                    <td>{{course.teacher.fullName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

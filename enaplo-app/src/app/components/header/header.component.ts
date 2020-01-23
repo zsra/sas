@@ -22,10 +22,18 @@ export class HeaderComponent implements OnInit {
     this.isDataAvailable = true
   }
 
+  home() {
+    this.router.navigate(["/home"]);
+  }
+
   logout() {
     this.authService.logout().subscribe(res => {
       this.router.navigate(["/login"]);
     });
+  }
+
+  login() {
+    this.router.navigate(["/login"]);
   }
 
   hasSignedIn() {

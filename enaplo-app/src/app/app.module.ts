@@ -35,6 +35,10 @@ import { ClassroomCreateComponent } from './components/classrooms/classroom-crea
 import { ClassroomListComponent } from './components/classrooms/classroom-list/classroom-list.component';
 import { ClassroomUpdateComponent } from './components/classrooms/classroom-update/classroom-update.component';
 import { StudentClassroomListComponent } from './components/students/student-classroom-list/student-classroom-list.component';
+import { CourseListComponent } from './components/courses/course-list/course-list.component';
+import { CourseUpdateComponent } from './components/courses/course-update/course-update.component';
+import { CourseDetailsComponent } from './components/courses/course-details/course-details.component';
+import { CourseCreateComponent } from './components/courses/course-create/course-create.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +64,11 @@ import { StudentClassroomListComponent } from './components/students/student-cla
     ClassroomCreateComponent,
     ClassroomListComponent,
     ClassroomUpdateComponent,
-    StudentClassroomListComponent
+    StudentClassroomListComponent,
+    CourseListComponent,
+    CourseUpdateComponent,
+    CourseDetailsComponent,
+    CourseCreateComponent
   ],
   imports: [
     BrowserModule,

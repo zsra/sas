@@ -26,9 +26,9 @@
                             <td>{{classroom.headTeacher.teacher.fullName}}</td>
                             <td>
                                 <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
-                                (click)="getUpdate(classroom.id)" class="btn btn-warning">Update</button>
+                                (click)="update(classroom.id)" class="btn btn-warning">Update</button>
                                 <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
-                                (click)="deleteClassroom(classroom.id)" class="btn btn-danger">Delete</button>
+                                (click)="delete(classroom.id)" class="btn btn-danger">Delete</button>
                             </td>
                         </tr>
                     </tbody>

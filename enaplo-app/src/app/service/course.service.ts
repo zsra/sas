@@ -17,7 +17,7 @@ export class CourseService {
         return this.apiService.get(this.configService.getGetAllCoursesUrl);
     }
 
-    FindById(id: number) {
+    findById(id: number) {
         return this.apiService.get(this.configService.getGetCourseByIdUrl + '/' + id);
     }
 

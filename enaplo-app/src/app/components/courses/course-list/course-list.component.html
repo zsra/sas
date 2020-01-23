@@ -1,0 +1,36 @@
+<div *ngIf="isDataAvailable">
+    <div class="user-list-container" *ngIf="hasSignedIn()">
+        <app-admin-panel></app-admin-panel>
+        <div class="course-list-container-body">
+            <div class="course-list-header">
+                <h3>Courses</h3>
+            </div>
+            <div class="course-list-body">
+                <input class="form-control-searchbox" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" 
+                placeholder="&#171; Search">
+                <table  class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Year</th>
+                            <th>Teacher</th>
+                            <th>Functions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let course of courses | async | filter:searchText">
+                            <td>{{course.title}}</td>
+                            <td>{{course.year}}</td>
+                            <td>{{course.teacher.fullName}}</td>
+                            <td>
+                                <button (click)="getDetails(course.id)" class="btn btn-info">Details</button>
+                                <button (click)="delete(course.id)" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

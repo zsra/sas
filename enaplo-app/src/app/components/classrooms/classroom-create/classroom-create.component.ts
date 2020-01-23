@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Classroom } from 'src/app/model/classroom';
 import { Observable } from 'rxjs';
 import { Teacher } from 'src/app/model/teacher';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { ClassroomService } from 'src/app/service/classroom.service';
+import { ClassroomResponseDTO } from 'src/app/dto/response/classroomResponseDTO';
 
 @Component({
   selector: 'app-classroom-create',
@@ -14,7 +14,7 @@ import { ClassroomService } from 'src/app/service/classroom.service';
 })
 export class ClassroomCreateComponent implements OnInit {
 
-  classroom = new Classroom();
+  classroom = new ClassroomResponseDTO();
   admin: any = {};
   userSubmitted: boolean = false;
   isDataLoaded: boolean  = false;
@@ -35,6 +35,10 @@ export class ClassroomCreateComponent implements OnInit {
   }
 
   onSubmit() {
+    this.classroom.headTeacher_id = Number(this.selectedOption.id);
+    this.classroomService.create(this.classroom).subscribe();
+    this.classroom = new ClassroomResponseDTO();
+    this.goBack();
     
   }
 

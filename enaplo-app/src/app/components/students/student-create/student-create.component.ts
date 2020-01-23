@@ -46,10 +46,10 @@ export class StudentCreateComponent implements OnInit {
   onStudentSubmit() {
     this.student.classroom_id = Number(this.selectedOption.id);
     this.studentService.create(this.student).subscribe();
-    this.goBack();
     this.userSubmitted = false;
     this.user = new UserResponseDTO();
     this.student = new StudentResponseDTO();
+    this.goBack();
   }
 
   goBack() {

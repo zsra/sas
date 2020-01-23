@@ -32,13 +32,13 @@ export class ClassroomListComponent implements OnInit {
     return this.user.authorities[0].authority + '';
   }
 
-  getUpdate(classroom_id: number) {
+  update(classroom_id: number) {
     this.classroomService.getById(classroom_id).subscribe(
       data => this.router.navigate(['/classroom/update', data.id])
     );
   }
 
-  deleteClassroom(classroom_id: number) {
+  delete(classroom_id: number) {
 
   }
 }

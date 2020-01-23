@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
-import { AdminService } from 'src/app/service/admin.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,34 +8,40 @@ import { Router } from '@angular/router';
   templateUrl: './admin-panel.component.html',
   styleUrls: ['./admin-panel.component.scss']
 })
-export class AdminPanelComponent implements OnInit, OnDestroy {
+export class AdminPanelComponent implements OnInit {
 
   constructor(private authService: AuthService, private userService: UserService,
-    private adminService: AdminService, private router: Router) { }
+     private router: Router) { }
 
   ngOnInit() {
+
   }
 
-  ngOnDestroy() {
+  createStudent() {
+    this.router.navigate(['/student/create']);
   }
 
-  createUser() {
-
+  createTeacher() {
+    this.router.navigate(['/teacher/create']);
   }
 
   createCourse() {
-
+    this.router.navigate(['/course/create']);
   }
 
   createClassroom() {
-
+    this.router.navigate(['/classroom/create']);
   }
 
   getAllUser() {
-
+    this.router.navigate(['/users/all']);
   }
 
   getAllClassroom() {
+    this.router.navigate(['/clasrooms/all']);
+  }
 
+  getAllCourse() {
+    this.router.navigate(['/courses/all']);
   }
 }

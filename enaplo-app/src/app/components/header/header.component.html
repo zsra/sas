@@ -3,8 +3,8 @@
         <span>Enaplo</span>
         <div class="right">
             <button *ngIf="hasSignedIn()" mat-button mat-ripple routerLink="/home" class="home-button">Home</button>
-            <button *ngIf="hasSignedIn()" class="logout-button" (click)="logout()">Logout</button>
-            <button *ngIf="!hasSignedIn()" mat-button mat-ripple routerLink="/login" class="logout-button" >Login</button>
+            <button *ngIf="hasSignedIn()" class="log-button" (click)="logout()">Logout</button>
+            <button *ngIf="!hasSignedIn()" mat-button mat-ripple routerLink="/login" class="log-button" >Login</button>
         </div>
     </mat-toolbar>
 </div>
