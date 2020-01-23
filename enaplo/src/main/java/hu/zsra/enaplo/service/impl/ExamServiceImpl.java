@@ -12,6 +12,7 @@ import hu.zsra.enaplo.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,7 +38,7 @@ public class ExamServiceImpl implements ExamService {
      * @return List of the exams.
      */
     @Override
-    public List<Exam> findAllByStudent(long student_id, long course_id) {
+    public List<Exam> findAllByStudent(Long student_id, Long course_id) {
         return examRepository.findAll()
                 .stream()
                 .filter(exam -> exam.getCourse().getId().equals(course_id))
@@ -61,7 +62,7 @@ public class ExamServiceImpl implements ExamService {
 
         return examRepository.save(new Exam(
                 examResponseDTO.getMark(),
-                examResponseDTO.getWrittenAt(),
+                examResponseDTO.getWritten_at(),
                 course,
                 student
         ));
@@ -81,7 +82,7 @@ public class ExamServiceImpl implements ExamService {
         Exam exam = examRepository.getOne(id);
 
         exam.setMark(examResponseDTO.getMark());
-        exam.setWrittenAt(examResponseDTO.getWrittenAt());
+        exam.setWrittenAt(examResponseDTO.getWritten_at());
 
         return examRepository.save(exam);
     }
@@ -101,14 +102,15 @@ public class ExamServiceImpl implements ExamService {
      * and mark field for each student.
      *
      * @param classroom_id Id of the classroom.
+     * @param written_at The exam date.
      * @return A form table to create exams to all student in classroom.
      */
     @Override
-    public List<ExamDTO> makeExamsFormToClassroom(Long classroom_id) {
+    public List<ExamDTO> makeExamsFormToClassroom(Long classroom_id, LocalDate written_at) {
         List<Student> students = getStudentFromClassroom(classroom_id);
         List<ExamDTO> result = new ArrayList<>();
         for (Student student : students) {
-            result.add(new ExamDTO(student));
+            result.add(new ExamDTO(student, written_at));
         }
         return result;
     }
@@ -131,7 +133,7 @@ public class ExamServiceImpl implements ExamService {
             Student student = studentRepository.getOne(examResponseDTO.getStudent_id());
             Exam exam = new Exam(
                     examResponseDTO.getMark(),
-                    examResponseDTO.getWrittenAt(),
+                    examResponseDTO.getWritten_at(),
                     course,
                     student
             ); // Creates a new exam.

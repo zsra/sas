@@ -72,8 +72,8 @@ public class ClassroomServiceImpl implements ClassroomService {
                 classroomResponseDTO.getLetter(),
                 teacher
         ); // Creates a new classroom.
-        /* sets back a teacher role from ROLE_HEADTEACHER to ROLE_TEACHER. */
-        classroomRepository.setHeadteacherFromTeacher(classroom.getHeadTeacher().getTeacher().getId());
+        /* sets back a teacher role from ROLE_TEACHER to ROLE_HEADTEACHER. */
+        classroomRepository.setHeadteacherFromTeacher(teacher.getId());
         return classroomRepository.save(classroom);
     }
 
@@ -99,8 +99,11 @@ public class ClassroomServiceImpl implements ClassroomService {
         classroom.setLetter(classroomResponseDTO.getLetter());
         classroom.setYear(classroomResponseDTO.getYear());
 
-        /* sets  a teacher role from ROLE_TEACHER to ROLE_HEADTEACHER. */
+        /* sets  a teacher role from ROLE_HEADTEACHER to ROLE_TEACHER. */
         classroomRepository.setTeacherFromHeadteacher(classroom.getHeadTeacher().getTeacher().getId());
+        /* sets  a teacher role from ROLE_TEACHER to ROLE_HEADTEACHER. */
+        classroomRepository.setHeadteacherFromTeacher(teacher.getId());
+
         return classroomRepository.save(classroom);
     }
 

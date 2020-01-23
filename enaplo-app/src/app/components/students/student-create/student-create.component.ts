@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
-import { StudentService } from 'src/app/service/student/student.service';
+import { StudentService } from 'src/app/service/student.service';
 import { StudentResponseDTO } from 'src/app/dto/response/studentResponseDTO';
 import { Observable } from 'rxjs';
 import { Classroom } from 'src/app/model/classroom';

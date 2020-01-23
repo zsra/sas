@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {ApiService} from '../api.service';
-import {ConfigService} from '../config.service';
+import {ApiService} from './api.service';
+import {ConfigService} from './config.service';
 import {map} from 'rxjs/operators';
 import { StudentResponseDTO } from 'src/app/dto/response/studentResponseDTO';
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { ConfigService } from './config.service';
 import { Classroom } from '../model/classroom';
+import { ClassroomResponseDTO } from '../dto/response/classroomResponseDTO';
 
 @Injectable({
     providedIn: 'root'
@@ -16,12 +17,12 @@ export class ClassroomService {
         return this.apiService.get(this.configService.getAllClassroomUrl);
     }
 
-    create(classroom: Classroom) {
+    create(classroom: ClassroomResponseDTO) {
         return this.apiService.post(this.configService.getCreateClassroomUrl, classroom);
     }
 
-    update(classroom: Classroom) {
-        return this.apiService.put(this.configService.getUpdateClassroomUrl + '/' + classroom.id, classroom);
+    update(id: number, classroom: ClassroomResponseDTO) {
+        return this.apiService.put(this.configService.getUpdateClassroomUrl + '/' + id, classroom);
     }
 
     delete(classroom_id: number) {

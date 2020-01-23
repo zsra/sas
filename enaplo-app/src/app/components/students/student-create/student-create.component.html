@@ -48,6 +48,14 @@
                 <input type="text" class="form-control" id="parent2Name" [(ngModel)]="student.parent2Name" name="parent2Name" placeholder="Firstname Middlename Lastname">
             </div>
             <div class="form-group">
+                <label for="parent1Phone">Parent 1 Phone</label>
+                <input type="text" class="form-control" id="parent1Phone" [(ngModel)]="student.parent1Phone" name="parent1Phone" placeholder="parent 1 Phone">
+            </div>
+            <div class="form-group">
+                <label for="parent2Phone">Parent 2 Phone</label>
+                <input type="text" class="form-control" id="parent2Phone" [(ngModel)]="student.parent2Phone" name="parent2Phone" placeholder="parent 2 Phone">
+            </div>
+            <div class="form-group">
                 <label for="classroom">Classroom</label>
                <select name="classroom" class="form-control form-control-sm" [(ngModel)]="selectedOption">
                     <option *ngFor="let classroom of classrooms" [ngValue]="classroom">{{classroom.year}}/{{classroom.letter}}</option>

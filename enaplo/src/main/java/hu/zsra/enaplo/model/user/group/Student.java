@@ -57,6 +57,14 @@ public class Student {
     @Getter @Setter
     private String parent2Name;
 
+    @Column(name = "parent1Phone", length = 24)
+    @Getter @Setter
+    private String parent1Phone;
+
+    @Column(name = "parent2Phone", length = 24)
+    @Getter @Setter
+    private String parent2Phone;
+
     @JsonIgnore
     @OneToMany(mappedBy = "student")
     @Getter @Setter

@@ -18,5 +18,16 @@ public class ReportResponseDTO {
     private int mark;
 
     @Getter @Setter
-    private long student_id;
+    private Long student_id;
+
+    public ReportResponseDTO() {
+    }
+
+    public ReportResponseDTO(int year, int semester, String courseName, int mark, Long student_id) {
+        this.year = year;
+        this.semester = semester;
+        this.courseName = courseName;
+        this.mark = mark;
+        this.student_id = student_id;
+    }
 }

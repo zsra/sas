@@ -15,15 +15,15 @@ public class TimeTableEntityResponseDTO {
     private String classroomNumber;
 
     @Getter @Setter
-    private long course_id;
+    private Long course_id;
 
     @Getter @Setter
-    private long classroom_id;
+    private Long classroom_id;
 
     public TimeTableEntityResponseDTO() {
     }
 
-    public TimeTableEntityResponseDTO(int day, int lessonNumber, String classroomNumber, long course_id, long classroom_id) {
+    public TimeTableEntityResponseDTO(int day, int lessonNumber, String classroomNumber, Long course_id, Long classroom_id) {
         this.day = day;
         this.lessonNumber = lessonNumber;
         this.classroomNumber = classroomNumber;

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Teacher } from 'src/app/model/teacher';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
-import { TeacherService } from 'src/app/service/teacher/teacher.service';
+import { TeacherService } from 'src/app/service/teacher.service';
 import { ClassroomService } from 'src/app/service/classroom.service';
 
 @Component({

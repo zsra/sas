@@ -4,7 +4,7 @@ import { TeacherResponseDTO } from 'src/app/dto/response/teacherResponseDTO';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
-import { TeacherService } from 'src/app/service/teacher/teacher.service';
+import { TeacherService } from 'src/app/service/teacher.service';
 
 @Component({
   selector: 'app-teacher-create',

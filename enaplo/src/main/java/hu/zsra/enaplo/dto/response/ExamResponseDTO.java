@@ -11,7 +11,7 @@ public class ExamResponseDTO {
     private int mark;
 
     @Getter @Setter
-    private LocalDate writtenAt;
+    private LocalDate written_at;
 
     @Getter @Setter
     private Long course_id;
@@ -22,9 +22,9 @@ public class ExamResponseDTO {
     public ExamResponseDTO() {
     }
 
-    public ExamResponseDTO(int mark, LocalDate writtenAt, Long course_id, Long student_id) {
+    public ExamResponseDTO(int mark, LocalDate written_at, Long course_id, Long student_id) {
         this.mark = mark;
-        this.writtenAt = writtenAt;
+        this.written_at = written_at;
         this.course_id = course_id;
         this.student_id = student_id;
     }

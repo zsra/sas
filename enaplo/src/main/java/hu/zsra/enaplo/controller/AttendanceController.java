@@ -1,6 +1,7 @@
 package hu.zsra.enaplo.controller;
 
 import hu.zsra.enaplo.dto.AttendanceDTO;
+import hu.zsra.enaplo.dto.response.AttendanceResponseDTO;
 import hu.zsra.enaplo.model.Attendance;
 import hu.zsra.enaplo.service.impl.AttendanceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +18,18 @@ public class AttendanceController {
     private AttendanceServiceImpl attendanceService;
 
     @GetMapping(value = "/attendances/all/{student_id}")
-    public List<Attendance> getAllByStudent(Long student_id) {
+    public List<Attendance> getAllByStudent(@PathVariable Long student_id) {
         return attendanceService.getAllByStudent(student_id);
     }
 
     @PostMapping(value = "/attendances/create")
-    public List<Attendance> create(@RequestBody List<AttendanceDTO> attendanceDTOS,
-                                   @RequestBody int lesson,
-                                   @RequestBody LocalDate dateOfMiss) {
-        return attendanceService.create(attendanceDTOS, lesson, dateOfMiss);
+    public List<Attendance> create(@RequestBody AttendanceResponseDTO attendanceResponseDTO) {
+        return attendanceService.create(attendanceResponseDTO.getAttendanceDTO(),
+                attendanceResponseDTO.getLesson(), attendanceResponseDTO.getDateOfMiss());
     }
 
     @DeleteMapping(value = "/attendances/{id}")
-    public String delete(Long id) {
+    public String delete(@PathVariable Long id) {
         attendanceService.delete(id);
         return id.toString();
     }
@@ -46,7 +46,7 @@ public class AttendanceController {
     }
 
     @GetMapping(value = "/attendances/{classroom_id}")
-    public List<AttendanceDTO> makeAttendanceFormToClassroom(@PathVariable Long classroom_id) {
+        public List<AttendanceDTO> makeAttendanceFormToClassroom(@PathVariable Long classroom_id) {
         return attendanceService.makeAttendanceFormToClassroom(classroom_id);
     }
 }

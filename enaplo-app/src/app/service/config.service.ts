@@ -50,11 +50,11 @@ export class ConfigService {
         return this.getUserByIdUrl;
     }
 
-    private studentUrl = this.baseUrl + '/students';
-    private studentByUserIdUrl = this.studentUrl + '/user';
-    private studentAllUrl = this.studentUrl + '/all';
-    private createStudentUrl =  this.studentUrl + '/create';
+    private studentUrl = this.baseUrl + '/students';           
+    private studentAllUrl = this.studentUrl + '/all'; 
     private studentByIdUrl = this.studentUrl;
+    private studentByUserIdUrl = this.studentUrl + '/user';  
+    private createStudentUrl =  this.studentUrl + '/create';  
     private updateStudentUrl = this.studentUrl + '/update';
     private deleteStudentUrl = this.studentUrl;
     private summaryStudentUrl = this.studentUrl + '/summary';
@@ -88,15 +88,15 @@ export class ConfigService {
     }
 
     private attendanceUrl = this.baseUrl + '/attendances';
-    private getFormUrl = this.attendanceUrl;
+    private makeAttendanceFormToClassroomUrl = this.attendanceUrl;
     private createAttendanceUrl = this.attendanceUrl + '/create';
     private verifyAttendanceUrl = this.attendanceUrl + '/verify';
     private nonVerifyAttendanceUrl = this.attendanceUrl + '/nonVerify';
     private allAttendanceByStudentUrl = this.attendanceUrl + '/all';
     private deleteAttendaceUrl = this.attendanceUrl;
 
-    get getGetFormUrl(): string {
-        return this.getFormUrl;
+    get getMakeAttendanceFormToClassroomUrl(): string {
+        return this.makeAttendanceFormToClassroomUrl;
     }
 
     get getCreateAttendanceUrl(): string {
@@ -122,7 +122,7 @@ export class ConfigService {
     private classroomUrl = this.baseUrl + '/classrooms';
     private allClassroomUrl = this.classroomUrl + '/all';
     private createClassroomUrl = this.classroomUrl + '/create';
-    private updateClassroomUrl = this.classroomUrl;
+    private updateClassroomUrl = this.classroomUrl + '/update';
     private deleteClassroomUrl = this.classroomUrl;
     private getStudentsFromClassroomUrl = this.classroomUrl + '/students';
     private setCourseUrl = this.classroomUrl + '/setCourse';
@@ -189,9 +189,16 @@ export class ConfigService {
     }
 
     private examUrl = this.baseUrl + '/exams';
+    private examfindAllByStudent = this.examUrl + '/student';
     private createExamUrl = this.examUrl + '/create';
     private updateExamUrl = this.examUrl + '/update';
     private deleteExamUrl = this.examUrl;
+    private createExamsFromForm = this.examUrl + 'form/create';
+    private makeExamsFormToClassroom = this.examUrl + '/form';
+
+    get getExamfindAllByStudent(): string {
+        return this.examfindAllByStudent;
+    }
 
     get getCreateExamUrl(): string {
         return this.createExamUrl;
@@ -205,10 +212,25 @@ export class ConfigService {
         return this.deleteExamUrl;
     }
 
+    get getCreateExamsFromForm(): string {
+        return this.createExamsFromForm;
+    }
+
+    get getMakeExamsFormToClassroom(): string {
+        return this.makeExamsFormToClassroom;
+    }
+
     private reportUrl = this.baseUrl + '/reports';
+    private getSemesterResultByStudentUrl = this.reportUrl;
     private createrReportUrl = this.reportUrl + '/create';
     private updateReportUrl = this.reportUrl + '/update';
     private deletereportUrl = this.reportUrl;
+    private makeReportFormToClassroomUrl = this.reportUrl + '/form';
+    private createReportsToClassroomUrl = this.reportUrl + '/form/create';
+
+    get getGetSemesterResultByStudentUrl(): string {
+        return this.getSemesterResultByStudentUrl;
+    }
 
     get getCreateReportUrl(): string {
         return this.createrReportUrl;
@@ -220,6 +242,14 @@ export class ConfigService {
 
     get getDeleteReportUrl(): string {
         return this.deletereportUrl;
+    }
+
+    get getMakeReportFormToClassroomUrl(): string {
+        return this.makeReportFormToClassroomUrl;
+    }
+
+    get getCreateReportsToClassroomUrl(): string {
+        return this.createReportsToClassroomUrl;
     }
 
     private teacherUrl = this.baseUrl + '/teachers';

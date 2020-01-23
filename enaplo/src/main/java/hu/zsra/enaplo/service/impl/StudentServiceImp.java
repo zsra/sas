@@ -101,6 +101,8 @@ public class StudentServiceImp implements StudentService {
         student.setStart_year(studentResponseDTO.getStart_year());
         student.setParent1Name(studentResponseDTO.getParent1Name());
         student.setParent2Name(studentResponseDTO.getParent2Name());
+        student.setParent1Phone(studentResponseDTO.getParent1Phone());
+        student.setParent2Phone(studentResponseDTO.getParent2Phone());
         student.setStudent(user);
         studentRepository.save(student);
         return student;
@@ -133,7 +135,8 @@ public class StudentServiceImp implements StudentService {
         student.setStart_year(studentResponseDTO.getStart_year());
         student.setParent1Name(studentResponseDTO.getParent1Name());
         student.setParent2Name(studentResponseDTO.getParent2Name());
-
+        student.setParent1Phone(studentResponseDTO.getParent1Phone());
+        student.setParent2Phone(studentResponseDTO.getParent2Phone());
 
         return studentRepository.save(student);
     }

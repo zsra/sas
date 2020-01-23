@@ -4,6 +4,7 @@ import hu.zsra.enaplo.dto.ExamDTO;
 import hu.zsra.enaplo.dto.response.ExamResponseDTO;
 import hu.zsra.enaplo.model.Exam;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public interface ExamService {
      * @param course_id Id of the Course.
      * @return List of the exams.
      */
-    List<Exam> findAllByStudent(long student_id, long course_id);
+    List<Exam> findAllByStudent(Long student_id, Long course_id);
 
     /**
      * Creates a new exam and save into the database.
@@ -51,10 +52,10 @@ public interface ExamService {
      * and mark field for each student.
      *
      * @param classroom_id Id of the classroom.
-
+     * @param written_at The exam date.
      * @return A form table to create exams to all student in classroom.
      */
-    List<ExamDTO> makeExamsFormToClassroom(Long classroom_id);
+    List<ExamDTO> makeExamsFormToClassroom(Long classroom_id, LocalDate written_at);
 
     /**
      * Creates a new exams and save into the database.

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '../api.service';
-import { ConfigService } from '../config.service';
+import { ApiService } from './api.service';
+import { ConfigService } from './config.service';
 import { TeacherResponseDTO } from 'src/app/dto/response/teacherResponseDTO';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { TeacherResponseDTO } from 'src/app/dto/response/teacherResponseDTO';
 export class TeacherService {
     
     constructor(private apiService: ApiService, private configService: ConfigService) {
+        
     }
 
     findById(id: number) {

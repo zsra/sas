@@ -1,13 +1,11 @@
 package hu.zsra.enaplo;
 
 import hu.zsra.enaplo.dto.AttendanceDTO;
-import hu.zsra.enaplo.dto.response.StudentResponseDTO;
-import hu.zsra.enaplo.dto.response.TeacherResponseDTO;
-import hu.zsra.enaplo.dto.response.UserResponseDTO;
+import hu.zsra.enaplo.dto.ExamDTO;
+import hu.zsra.enaplo.dto.response.*;
 import hu.zsra.enaplo.model.*;
 import hu.zsra.enaplo.model.user.UserRoleName;
 import hu.zsra.enaplo.model.user.group.Student;
-import hu.zsra.enaplo.model.user.group.Teacher;
 import hu.zsra.enaplo.service.auth.impl.AuthorityServiceImpl;
 import hu.zsra.enaplo.service.auth.impl.UserServiceImpl;
 import hu.zsra.enaplo.service.impl.*;
@@ -15,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -23,286 +22,298 @@ public class InitData {
 
     @Autowired
     private UserServiceImpl userService;
-
     @Autowired
     private TeacherServiceImpl teacherService;
-
     @Autowired
     private ClassroomServiceImpl classroomService;
-
     @Autowired
     private StudentServiceImp studentService;
-
     @Autowired
     private CourseServiceImpl courseService;
-
     @Autowired
     private TimeTableServiceImpl timeTableService;
-
     @Autowired
     private ExamServiceImpl examService;
-
     @Autowired
     private ReportServiceImpl reportService;
-
     @Autowired
     private AttendanceServiceImpl attendanceService;
-
     @Autowired
     private AuthorityServiceImpl authorityService;
 
     public void Init() {
 
-        authorityService.save(UserRoleName.ROLE_ADMIN);
-        authorityService.save(UserRoleName.ROLE_STUDENT);
-        authorityService.save(UserRoleName.ROLE_TEACHER);
-        authorityService.save(UserRoleName.ROLE_HEADTEACHER);
+        if(userService.findAll().isEmpty()) {
+            authorityService.save(UserRoleName.ROLE_ADMIN);
+            authorityService.save(UserRoleName.ROLE_STUDENT);
+            authorityService.save(UserRoleName.ROLE_TEACHER);
+            authorityService.save(UserRoleName.ROLE_HEADTEACHER);
 
-        UserResponseDTO admin = new UserResponseDTO("admin", "admin", "admin", "ROLE_ADMIN");
-        userService.save(admin);
-
-        testData();
-    }
-
-    public void testData() {
-        UserResponseDTO user1 = new UserResponseDTO("student1", "student1", "Student1 Student1", "ROLE_STUDENT");
-        UserResponseDTO user2 = new UserResponseDTO("student2", "student2", "Student2 Student2", "ROLE_STUDENT");
-        UserResponseDTO user3 = new UserResponseDTO("student3", "student3", "Student3 Student3", "ROLE_STUDENT");
-        UserResponseDTO user4 = new UserResponseDTO("student4", "student4", "Student4 Student4", "ROLE_STUDENT");
-        UserResponseDTO user5 = new UserResponseDTO("student5", "student5", "Student5 Student5", "ROLE_STUDENT");
-        UserResponseDTO user6 = new UserResponseDTO("student6", "student6", "Student6 Student6", "ROLE_STUDENT");
-        UserResponseDTO user7 = new UserResponseDTO("student7", "student7", "Student7 Student7", "ROLE_STUDENT");
-        UserResponseDTO user8 = new UserResponseDTO("student8", "student8", "Student8 Student8", "ROLE_STUDENT");
-        UserResponseDTO user9 = new UserResponseDTO("student9", "student9", "Student9 Student9", "ROLE_STUDENT");
-        UserResponseDTO user10 = new UserResponseDTO("student10", "student10", "Student10 Student10", "ROLE_STUDENT");
-
-        UserResponseDTO user11 = new UserResponseDTO("teacher1", "teacher1", "teacher1 teacher1", "ROLE_TEACHER");
-        UserResponseDTO user12 = new UserResponseDTO("teacher2", "teacher2", "teacher2 teacher2", "ROLE_TEACHER");
-        UserResponseDTO user13 = new UserResponseDTO("teacher3", "teacher3", "teacher3 teacher3", "ROLE_TEACHER");
-        UserResponseDTO user14 = new UserResponseDTO("teacher4", "teacher4", "teacher4 teacher4", "ROLE_TEACHER");
-        UserResponseDTO user15 = new UserResponseDTO("teacher5", "teacher5", "teacher5 teacher5", "ROLE_TEACHER");
-        UserResponseDTO user16 = new UserResponseDTO("teacher6", "teacher6", "teacher6 teacher6", "ROLE_TEACHER");
-        UserResponseDTO user17 = new UserResponseDTO("teacher7", "teacher7", "teacher7 teacher7", "ROLE_TEACHER");
-
-        userService.save(user1);
-        userService.save(user2);
-        userService.save(user3);
-        userService.save(user4);
-        userService.save(user5);
-        userService.save(user6);
-        userService.save(user7);
-        userService.save(user8);
-        userService.save(user9);
-        userService.save(user10);
-
-        userService.save(user11);
-        userService.save(user12);
-        userService.save(user13);
-        userService.save(user14);
-        userService.save(user15);
-        userService.save(user16);
-        userService.save(user17);
-
-        TeacherResponseDTO teacher1 = new TeacherResponseDTO("teacher1",
-                "teacher1@school.com", "0123456");
-        TeacherResponseDTO teacher2 = new TeacherResponseDTO("teacher2",
-                "teacher1@school.com", "0123456");
-        TeacherResponseDTO teacher3 = new TeacherResponseDTO("teacher3",
-                "teacher1@scool.com", "0123456");
-        TeacherResponseDTO teacher4 = new TeacherResponseDTO("teacher4",
-                "teacher1@school.com", "0123456");
-        TeacherResponseDTO teacher5 = new TeacherResponseDTO("teacher5",
-                "teacher1@school.com", "0123456");
-        TeacherResponseDTO teacher6 = new TeacherResponseDTO("teacher6",
-                "teacher1@school.com", "0123456");
-        TeacherResponseDTO teacher7 = new TeacherResponseDTO("teacher7",
-                "teacher1@school.com", "0123456");
-
-        teacherService.save(teacher1);
-        teacherService.save(teacher2);
-        teacherService.save(teacher3);
-        teacherService.save(teacher4);
-        teacherService.save(teacher5);
-        teacherService.save(teacher6);
-        teacherService.save(teacher7);
-
-        Teacher cls_teacher1 =teacherService.findById(1l);
-        Teacher cls_teacher2 =teacherService.findById(2l);
-        Teacher cls_teacher3 =teacherService.findById(3l);
-        Teacher cls_teacher4 =teacherService.findById(4l);
-        Teacher cls_teacher5 =teacherService.findById(5l);
-        Teacher cls_teacher6 =teacherService.findById(6l);
-        Teacher cls_teacher7 =teacherService.findById(7l);
-
-        Classroom classroom1 = new Classroom(2016, 2019, 9, 'a', cls_teacher1);
-        Classroom classroom2 = new Classroom(2016, 2019, 9, 'b', cls_teacher2);
-
-        classroomService.create(classroom1);
-        classroomService.create(classroom2);
-
-        StudentResponseDTO student1 = new StudentResponseDTO("student1", LocalDate.of(2002, 3,03),
-                2016, "Messze utca 1.",
-                "12345", "123456", "parent1 name", "parent2 name",
-                1l);
-        StudentResponseDTO student2 = new StudentResponseDTO("student2", LocalDate.of(2002, 4,22),
-                2016, "Messze utca 2.",
-                "12345", "123456", "parent1 name", "parent2 name",
-                1l);
-        StudentResponseDTO student3 = new StudentResponseDTO("student3", LocalDate.of(2002, 5,11),
-                2016, "Messze utca 3.",
-                "12345", "123456", "parent1 name", "parent2 name",
-                1l);
-        StudentResponseDTO student4 = new StudentResponseDTO("student4", LocalDate.of(2002, 6,12),
-                2016, "Messze utca 4.",
-                "12345", "123456", "parent1 name", "parent2 name",
-                1l);
-        StudentResponseDTO student5 = new StudentResponseDTO("student5", LocalDate.of(2002, 7,30),
-                2016, "Messze utca 5.",
-                "12345", "123456", "parent1 name", "parent2 name",
-                1l);
-        StudentResponseDTO student6 = new StudentResponseDTO("student6", LocalDate.of(2002, 8,1),
-                2016, "Messze utca 6.",
-                "12345", "123456", "parent1 name", "parent2 name",
-                2l);
-        StudentResponseDTO student7 = new StudentResponseDTO("student7", LocalDate.of(2002, 9,3),
-                2016, "Messze utca 7.",
-                "12345", "123456", "parent1 name", "parent2 name",
-                2l);
-        StudentResponseDTO student8 = new StudentResponseDTO("student8", LocalDate.of(2002, 10,4),
-                2016, "Messze utca 8.",
-                "12345", "123456", "parent1 name", "parent2 name",
-                2l);
-        StudentResponseDTO student9 = new StudentResponseDTO("student9", LocalDate.of(2002, 11,9),
-                2016, "Messze utca 9.",
-                "12345", "123456", "parent1 name", "parent2 name",
-                2l);
-        StudentResponseDTO student10 = new StudentResponseDTO("student10", LocalDate.of(2002, 12,11),
-                2016, "Messze utca 10.",
-                "12345", "123456", "parent1 name", "parent2 name",
-                2l);
-
-        studentService.save(student1);
-        studentService.save(student2);
-        studentService.save(student3);
-        studentService.save(student4);
-        studentService.save(student5);
-        studentService.save(student6);
-        studentService.save(student7);
-        studentService.save(student8);
-        studentService.save(student9);
-        studentService.save(student10);
-
-
-        Course course1 = new Course("Irodalom", 9, cls_teacher1);
-        Course course2 = new Course("Nyelvtan", 9, cls_teacher1);
-        Course course3 = new Course("Biológia", 9, cls_teacher2);
-        Course course4 = new Course("Kémia", 9, cls_teacher3);
-        Course course5 = new Course("Történelem", 9, cls_teacher4);
-        Course course6 = new Course("Fizika", 9, cls_teacher5);
-        Course course7 = new Course("Matematika", 9, cls_teacher6);
-        Course course8 = new Course("Testnevelés", 9, cls_teacher7);
-        Course course9 = new Course("Ének", 9, cls_teacher4);
-        Course course10 = new Course("Angol", 9, cls_teacher5);
-
-        courseService.create(course1);
-        courseService.create(course2);
-        courseService.create(course3);
-        courseService.create(course4);
-        courseService.create(course5);
-        courseService.create(course6);
-        courseService.create(course7);
-        courseService.create(course8);
-        courseService.create(course9);
-        courseService.create(course10);
-
-        TimeTableEntity timeTableEntity1 = new TimeTableEntity(1, 1, course1, "2. emelet 22.", classroom1);
-        TimeTableEntity timeTableEntity2 = new TimeTableEntity(1, 2, course2, "2. emelet 22.", classroom1);
-        TimeTableEntity timeTableEntity3 = new TimeTableEntity(1, 3, course3, "2. emelet 22.", classroom1);
-        TimeTableEntity timeTableEntity4 = new TimeTableEntity(1, 4, course4, "2. emelet 22.", classroom1);
-        TimeTableEntity timeTableEntity5 = new TimeTableEntity(2, 3, course5, "2. emelet 21.", classroom1);
-        TimeTableEntity timeTableEntity6 = new TimeTableEntity(2, 4, course6, "2. emelet 24.", classroom1);
-        TimeTableEntity timeTableEntity7 = new TimeTableEntity(2, 5, course7, "2. emelet 22.", classroom1);
-        TimeTableEntity timeTableEntity8 = new TimeTableEntity(3, 1, course1, "2. emelet 24.", classroom2);
-        TimeTableEntity timeTableEntity9 = new TimeTableEntity(3, 3, course2, "2. emelet 23.", classroom2);
-        TimeTableEntity timeTableEntity10 = new TimeTableEntity(3, 4, course8, "Tornacsarnok", classroom2);
-        TimeTableEntity timeTableEntity11 = new TimeTableEntity(4, 1, course4, "2. emelet 21.", classroom2);
-        TimeTableEntity timeTableEntity12 = new TimeTableEntity(4, 2, course5, "2. emelet 21.", classroom2);
-        TimeTableEntity timeTableEntity13 = new TimeTableEntity(5, 3, course6, "2. emelet 22.", classroom2);
-        TimeTableEntity timeTableEntity14 = new TimeTableEntity(5, 4, course7, "2. emelet 22.", classroom2);
-
-        timeTableService.create(timeTableEntity1);
-        timeTableService.create(timeTableEntity2);
-        timeTableService.create(timeTableEntity3);
-        timeTableService.create(timeTableEntity4);
-        timeTableService.create(timeTableEntity5);
-        timeTableService.create(timeTableEntity6);
-        timeTableService.create(timeTableEntity7);
-        timeTableService.create(timeTableEntity8);
-        timeTableService.create(timeTableEntity9);
-        timeTableService.create(timeTableEntity10);
-        timeTableService.create(timeTableEntity11);
-        timeTableService.create(timeTableEntity12);
-        timeTableService.create(timeTableEntity13);
-        timeTableService.create(timeTableEntity14);
-
-        classroomService.setCourse(1l, 1l);
-        classroomService.setCourse(1l, 2l);
-        classroomService.setCourse(1l, 3l);
-        classroomService.setCourse(1l, 4l);
-        classroomService.setCourse(1l, 5l);
-        classroomService.setCourse(1l, 6l);
-        classroomService.setCourse(1l, 7l);
-
-        classroomService.setCourse(2l, 1l);
-        classroomService.setCourse(2l, 2l);
-        classroomService.setCourse(2l, 3l);
-        classroomService.setCourse(2l, 4l);
-        classroomService.setCourse(2l, 5l);
-        classroomService.setCourse(2l, 6l);
-        classroomService.setCourse(2l, 7l);
-
-        List<Student> students = studentService.findAll();
-        List<Course> courses = courseService.findAll();
-
-        for(int i = 0; i < 400; i++) {
-            Random rand = new Random();
-            int mark = rand.nextInt(5) + 1;
-            Student student = students.get(rand.nextInt(students.size()));
-            Course course = courses.get(rand.nextInt(courses.size()));
-            int year = rand.nextInt(2) + 2016;
-            int month = rand.nextInt(12) + 1;
-            int day = rand.nextInt(28) + 1;
-            Exam exam = new Exam(mark, LocalDate.of(year, month, day), course, student);
-            examService.create(exam);
+            UserResponseDTO admin = new UserResponseDTO("admin", "admin", "admin", "ROLE_ADMIN");
+            userService.save(admin);
         }
 
-        Report report1 = new Report(students.get(1), 9, 1, "Testnevelés", 5);
-        Report report2 = new Report(students.get(1), 9, 1, "Irodalom", 2);
-        Report report3 = new Report(students.get(1), 9, 1, "Biológia", 3);
-        Report report4 = new Report(students.get(1), 9, 1, "Matematika", 4);
-        Report report5 = new Report(students.get(1), 9, 2, "Irodalom", 2);
-        Report report6 = new Report(students.get(1), 9, 2, "Biológia", 3);
-        Report report7 = new Report(students.get(1), 9, 2, "Matematika", 4);
+        //testData();
+    }
 
-        reportService.create(report1);
-        reportService.create(report2);
-        reportService.create(report3);
-        reportService.create(report4);
-        reportService.create(report5);
-        reportService.create(report6);
-        reportService.create(report7);
+    private void testData() {
 
-        for(int i = 0; i < 20; i++) {
-            List<AttendanceDTO> attendanceDTOS = attendanceService.getForm(1l);
-            for(AttendanceDTO attendanceDTO : attendanceDTOS) {
-                attendanceDTO.setMiss(true);
+        testDataTeacher();
+        testDataClassroom();
+        testDataCourse();
+        testDataTimeTable();
+        testDataStudent();
+        testDataAttendance();
+        testDataExam();
+        testDataReport();
+    }
+
+    private void testDataStudent() {
+        List<String> usernames = new ArrayList<>();
+        for (int i = 1; i < 21; i++) {
+            UserResponseDTO userResponseDTO = new UserResponseDTO(
+                    "student" + i,
+                    "student",
+                    "student" + i + "'s fullname",
+                    "ROLE_STUDENT"
+            );
+            userService.save(userResponseDTO);
+            usernames.add(userResponseDTO.getFullName());
+        }
+
+        for(String username: usernames) {
+            Random random = new Random();
+            int randYear = random.nextInt(2) + 2010;
+            int randMonth = random.nextInt(12) + 1;
+            int randDay = random.nextInt(28) + 1;
+            int randHealthCare = random.nextInt(900) + 100;
+            studentService.create(new StudentResponseDTO(
+                    username,
+                    LocalDate.of(randYear, randMonth, randDay),
+                    2015,
+                    username + "' address",
+                    random.nextInt(100000) + 900000 + "",
+                    randHealthCare + "/" + randHealthCare + "/" + randHealthCare,
+                    "Parent 1 name",
+                    "Parent 2 name",
+                    "+36 00 000 0000",
+                    "+36 00 000 0000",
+                    (long) (random.nextInt(2) + 1)
+            ));
+        }
+    }
+
+    private void testDataTeacher() {
+        List<String> usernames = new ArrayList<>();
+        for (int i = 1; i < 11; i++) {
+            UserResponseDTO userResponseDTO = new UserResponseDTO(
+                    "teacher" + i,
+                    "teacher",
+                    "teacher" + i + "'s fullname",
+                    "ROLE_TEACHER"
+            );
+            userService.save(userResponseDTO);
+            usernames.add(userResponseDTO.getFullName());
+        }
+
+        for(String username: usernames) {
+            teacherService.create(new TeacherResponseDTO(
+                    username,
+                    username + "@school.com",
+                    "+36 00 000 0000"
+            ));
+        }
+    }
+
+    private void testDataClassroom() {
+        classroomService.create(new ClassroomResponseDTO(
+                2025,
+                2028,
+                9,
+                'a',
+                1L
+        ));
+        classroomService.create(new ClassroomResponseDTO(
+                2025,
+                2028,
+                9,
+                'b',
+                2L
+        ));
+    }
+
+    private void testDataCourse() {
+        courseService.create(new CourseResponseDTO(
+                "Irodalom",
+                9,
+                1L
+        ));
+        courseService.create(new CourseResponseDTO(
+                "Nyelvtan",
+                9,
+                2L
+        ));
+        courseService.create(new CourseResponseDTO(
+                "Matematika",
+                9,
+                3L
+        ));
+        courseService.create(new CourseResponseDTO(
+                "Történelem",
+                9,
+                4L
+        ));
+        courseService.create(new CourseResponseDTO(
+                "Testnevelés",
+                9,
+                5L
+        ));
+        courseService.create(new CourseResponseDTO(
+                "Angol",
+                9,
+                6L
+        ));
+        courseService.create(new CourseResponseDTO(
+                "Kémia",
+                9,
+                7L
+        ));
+        courseService.create(new CourseResponseDTO(
+                "Biológia",
+                9,
+                7L
+        ));
+        courseService.create(new CourseResponseDTO(
+                "Fizika",
+                9,
+                8L
+        ));
+        courseService.create(new CourseResponseDTO(
+                "Informatika",
+                9,
+                9L
+        ));
+        courseService.create(new CourseResponseDTO(
+                "Földrajz",
+                9,
+                10L
+        ));
+
+        for(Long i = 1L ; i < 3L; i++) {
+            for(Long j = 1L; j < 12L; j++) {
+                classroomService.setCourse(i, j);
             }
-            Random rand = new Random();
-            int lesson = rand.nextInt(7) + 1;
-            int year = rand.nextInt(2017) + 2016;
-            int month = rand.nextInt(12) + 1;
-            int day = rand.nextInt(28) + 1;
-            attendanceService.create(attendanceDTOS, lesson, LocalDate.of(year, month,day));
+        }
+    }
+
+    private void testDataExam() {
+        List<Course> courses = courseService.findAll();
+        Random random = new Random();
+
+        for(int i = 0; i < 40; i++) {
+            int randYear = random.nextInt(2) + 2025;
+            int randMonth = randYear == 2025 ? random.nextInt(4) + 9
+                    : random.nextInt(6) + 1;
+            int randDay = random.nextInt(28) + 1;
+            Long classroom_id = i % 2 == 0 ? 1L : 2L;
+            Course course = courses.get(random.nextInt(courses.size()));
+            List<ExamDTO> examDTOS = examService.makeExamsFormToClassroom(
+                    classroom_id,
+                    LocalDate.of(randYear, randMonth, randDay));
+            List<ExamResponseDTO> examResponseDTOS = new ArrayList<>();
+
+            for(ExamDTO examDTO: examDTOS) {
+                int mark = random.nextInt(5) + 1;
+                examResponseDTOS.add(new ExamResponseDTO(
+                        mark,
+                        examDTO.getWritten_at(),
+                        course.getId(),
+                        examDTO.getStudent().getId()
+                ));
+            }
+            examService.createExamsFromForm(examResponseDTOS);
+        }
+    }
+
+    private void testDataReport() {
+        List<Course> courses = courseService.findAll();
+        List<Student> students = studentService.findAll();
+        Random random = new Random();
+
+        for(Student student: students) {
+            for(Course course: courses) {
+                int mark = random.nextInt(5) + 1;
+                reportService.create(new ReportResponseDTO(
+                        9,
+                        1,
+                        course.getTitle(),
+                        mark,
+                        student.getId()
+                ));
+            }
+        }
+        for(Student student: students) {
+            for(Course course: courses) {
+                int mark = random.nextInt(5) + 1;
+                reportService.create(new ReportResponseDTO(
+                        9,
+                        2,
+                        course.getTitle(),
+                        mark,
+                        student.getId()
+                ));
+            }
+        }
+    }
+
+    private void testDataAttendance() {
+        Random random = new Random();
+        for(int i = 0; i < 30; i++) {
+            int randLecture = random.nextInt(12) + 1;
+            int randYear = random.nextInt(2) + 2025;
+            int randMonth = randYear == 2025 ? random.nextInt(4) + 9
+                    : random.nextInt(6) + 1;
+            int randDay = random.nextInt(28) + 1;
+
+            Long classroom_id = i % 2 == 0 ? 1L : 2L;
+            List<AttendanceDTO> attendanceDTOS = attendanceService.makeAttendanceFormToClassroom(classroom_id);
+            for(AttendanceDTO attendanceDTO: attendanceDTOS) {
+                boolean randMiss = random.nextBoolean();
+                attendanceDTO.setMiss(randMiss);
+            }
+            attendanceService.create(attendanceDTOS, randLecture, LocalDate.of(randYear, randMonth, randDay));
+         }
+    }
+
+    private void testDataTimeTable() {
+       List<Course> courses = courseService.findAll();
+       TimeTableEntityResponseDTO[][] timeTableEntityResponseDTOS =
+               new TimeTableEntityResponseDTO[12][5];
+       Random random = new Random();
+
+       for(int i = 0; i < 12; i++) {
+           for(int j = 0; j < 5; j++) {
+               timeTableEntityResponseDTOS[i][j] = new TimeTableEntityResponseDTO();
+               Course course = courses.get(random.nextInt(courses.size()));
+               timeTableEntityResponseDTOS[i][j].setClassroom_id(1L);
+               timeTableEntityResponseDTOS[i][j].setCourse_id(course.getId());
+               timeTableEntityResponseDTOS[i][j].setClassroomNumber(i + "" +  j);
+               timeTableEntityResponseDTOS[i][j].setDay(j);
+               timeTableEntityResponseDTOS[i][j].setLessonNumber(i);
+               timeTableService.create(timeTableEntityResponseDTOS[i][j]);
+           }
+       }
+        for(int i = 0; i < 12; i++) {
+            for(int j = 0; j < 5; j++) {
+                timeTableEntityResponseDTOS[i][j] = new TimeTableEntityResponseDTO();
+                Course course = courses.get(random.nextInt(courses.size()));
+                timeTableEntityResponseDTOS[i][j].setClassroom_id(2L);
+                timeTableEntityResponseDTOS[i][j].setCourse_id(course.getId());
+                timeTableEntityResponseDTOS[i][j].setClassroomNumber(i + "" +  j);
+                timeTableEntityResponseDTOS[i][j].setDay(j);
+                timeTableEntityResponseDTOS[i][j].setLessonNumber(i);
+                timeTableService.create(timeTableEntityResponseDTOS[i][j]);
+            }
         }
     }
 }

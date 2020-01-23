@@ -16,9 +16,9 @@ public class ReportController {
     @Autowired
     private ReportServiceImpl reportService;
 
-    @GetMapping(value = "/reports/{student_id}")
+    @GetMapping(value = "/reports/{student_id}/{year}")
     public List<Report> getSemesterResultByStudent(@PathVariable Long student_id,
-                                                   @RequestBody int year, @RequestBody int semester) {
+                                                   @PathVariable int year, @RequestBody int semester) {
         return reportService.getSemesterResultByStudent(student_id, year, semester);
     }
 
@@ -40,12 +40,12 @@ public class ReportController {
     }
 
     @GetMapping(value = "/reports/form/{classroom_id}")
-    List<ReportDTO> makeReportFormToClassroom(@PathVariable Long classroom_id){
+    public List<ReportDTO> makeReportFormToClassroom(@PathVariable Long classroom_id){
         return reportService.makeReportFormToClassroom(classroom_id);
     }
 
     @PostMapping(value = "/reports/form/create")
-    List<Report> createReportsToClassroom(@RequestBody List<ReportResponseDTO> reportResponseDTOS) {
+    public List<Report> createReportsToClassroom(@RequestBody List<ReportResponseDTO> reportResponseDTOS) {
         return reportService.createReportsToClassroom(reportResponseDTOS);
     }
 }

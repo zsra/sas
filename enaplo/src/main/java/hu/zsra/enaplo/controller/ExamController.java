@@ -7,7 +7,9 @@ import hu.zsra.enaplo.service.impl.ExamServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -40,8 +42,9 @@ public class ExamController {
     }
 
     @GetMapping(value = "/exams/form/{classroom_id}")
-    public List<ExamDTO> makeExamsFormToClassroom(@PathVariable Long classroom_id) {
-        return examService.makeExamsFormToClassroom(classroom_id);
+    public List<ExamDTO> makeExamsFormToClassroom(@PathVariable Long classroom_id,
+                                                  @RequestBody LocalDate written_at) {
+        return examService.makeExamsFormToClassroom(classroom_id, written_at);
     }
 
     @PostMapping(value = "/exams/form/create")

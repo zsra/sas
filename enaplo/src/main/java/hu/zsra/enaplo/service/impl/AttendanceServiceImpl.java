@@ -54,7 +54,9 @@ public class AttendanceServiceImpl implements AttendanceService {
     public List<Attendance> create(List<AttendanceDTO> attendanceDTOS, int lecture, LocalDate dateOfMiss) {
         List<Attendance> attendances = new ArrayList<>();
         for(AttendanceDTO attendanceDTO : attendanceDTOS) {
-            attendances.add(new Attendance(attendanceDTO.getStudent(), lecture, dateOfMiss));
+            if(attendanceDTO.isMiss()) {
+                attendances.add(new Attendance(attendanceDTO.getStudent(), lecture, dateOfMiss));
+            }
         }
         return attendanceRepository.saveAll(attendances);
     }

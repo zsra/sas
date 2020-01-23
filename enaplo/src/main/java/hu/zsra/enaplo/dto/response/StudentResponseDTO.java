@@ -24,6 +24,10 @@ public class StudentResponseDTO {
     private String parent1Name;
     @Getter @Setter
     private String parent2Name;
+    @Getter @Setter
+    private String parent1Phone;
+    @Getter @Setter
+    private String parent2Phone;
     @JsonProperty("classroom_id")
     @Getter @Setter
     private Long classroom_id;
@@ -32,7 +36,7 @@ public class StudentResponseDTO {
 
     public StudentResponseDTO(String username, LocalDate dateOfBirth, int start_year, String address,
                               String educationId, String healthCareId, String parent1Name, String parent2Name,
-                              Long classroom_id) {
+                              String parent1Phone, String parent2Phone, Long classroom_id) {
         this.username = username;
         this.dateOfBirth = dateOfBirth;
         this.start_year = start_year;
@@ -41,6 +45,8 @@ public class StudentResponseDTO {
         this.healthCareId = healthCareId;
         this.parent1Name = parent1Name;
         this.parent2Name = parent2Name;
+        this.parent1Phone = parent1Phone;
+        this.parent2Phone = parent2Phone;
         this.classroom_id = classroom_id;
     }
 }

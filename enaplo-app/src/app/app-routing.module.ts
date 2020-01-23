@@ -5,7 +5,6 @@ import { AdminGuard } from './guard/admin.guard';
 import { LoginGuard } from './guard/login.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
-import { SummaryComponent } from './components/students/summary/summary.component';
 import { HomeComponent } from './components/home/home.component';
 import { AdminPanelComponent } from './components/panels/admin-panel/admin-panel.component';
 import { TeacherPanelComponent } from './components/panels/teacher-panel/teacher-panel.component';
@@ -59,10 +58,6 @@ const routes: Routes = [
   {
     path: 'student/create',
     component: StudentCreateComponent
-  },
-  {
-    path: 'summary',
-    component: SummaryComponent
   },
   /* ----- TEACHER ----- */
   {

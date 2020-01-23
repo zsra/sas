@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Teacher } from 'src/app/model/teacher';
 import { UserService } from 'src/app/service/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { TeacherService } from 'src/app/service/teacher/teacher.service';
+import { TeacherService } from 'src/app/service/teacher.service';
 
 @Component({
   selector: 'app-teacher-details',

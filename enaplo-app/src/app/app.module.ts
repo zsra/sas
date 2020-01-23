@@ -14,7 +14,6 @@ import { UserService } from './service/user.service';
 import { ConfigService } from './service/config.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { SummaryComponent } from './components/students/summary/summary.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
@@ -43,7 +42,6 @@ import { StudentClassroomListComponent } from './components/students/student-cla
     LoginComponent,
     NotFoundComponent,
     ForbiddenComponent,
-    SummaryComponent,
     HeaderComponent,
     HomeComponent,
     AdminPanelComponent,

@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
-import { StudentService } from 'src/app/service/student/student.service';
-import { TeacherService } from 'src/app/service/teacher/teacher.service';
+import { StudentService } from 'src/app/service/student.service';
+import { TeacherService } from 'src/app/service/teacher.service';
 import { Student } from 'src/app/model/student';
 import { Teacher } from 'src/app/model/teacher';
 
