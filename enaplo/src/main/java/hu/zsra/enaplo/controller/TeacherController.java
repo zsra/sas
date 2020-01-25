@@ -15,7 +15,7 @@ public class TeacherController {
     @Autowired
     private TeacherServiceImpl teacherService;
 
-    @GetMapping(value = "/teachers/create")
+    @GetMapping(value = "/teachers/all")
     public List<Teacher> findAll() {
         return teacherService.findAll();
     }

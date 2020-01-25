@@ -34,14 +34,14 @@ export class AdminPanelComponent implements OnInit {
   }
 
   getAllUser() {
-    this.router.navigate(['/users/all']);
+    this.router.navigate(['/user/all']);
   }
 
   getAllClassroom() {
-    this.router.navigate(['/clasrooms/all']);
+    this.router.navigate(['/classroom/all']);
   }
 
   getAllCourse() {
-    this.router.navigate(['/courses/all']);
+    this.router.navigate(['/course/all']);
   }
 }

@@ -1,1 +1,53 @@
-<p>student-update works!</p>
+<div *ngIf="isDataAvailable">
+    <div class="student-create-container" *ngIf="userRole() != ROLE_STUDENT || currentUser.id == student.student.id">
+        <app-admin-panel></app-admin-panel>
+        <h2>Update</h2>
+        <div class="create-form">
+            <button  mat-button mat-ripple (click)='getAllUser()' class="admin-button">Users</button>
+            <form (ngSubmit)="submit()" #form="ngForm" class="form">    
+                <div class="form-group">
+                    <label for="dateOfBirth">Date of Birth</label>
+                    <input type="date" class="form-control" id="dateOfBirth" required [(ngModel)]="response.dateOfBirth" name="dateOfBirth" value="{{student.dateOfBirth}}">
+                </div>
+                <div class="form-group" *ngIf="userRole() === 'ROLE_ADMIN'">
+                    <label for="start_year">Start year</label>
+                    <input type="number" class="form-control" id="start_year" required [(ngModel)]="response.start_year" name="start_year" placeholder="{{student.start_year}}" value="{{student.start_year}}">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" required [(ngModel)]="response.address" name="address" placeholder="{{student.address}}" value="{{student.address}}">
+                </div>
+                <div class="form-group" *ngIf="userRole() === 'ROLE_ADMIN'">
+                    <label for="educationId">Education ID</label>
+                    <input type="text" class="form-control" id="educationId" required [(ngModel)]="response.educationId" name="educationId" placeholder="{{student.educationId}}" value="{{student.educationId}}">
+                </div>
+                <div class="form-group" *ngIf="userRole() === 'ROLE_ADMIN'">
+                    <label for="healthCareId">Health Care ID</label>
+                    <input type="text" class="form-control" id="healthCareId" required [(ngModel)]="response.healthCareId" name="healthCareId" placeholder="{{student.healthCareId}}" value="{{student.healthCareId}}">
+                </div>
+                <div class="form-group">
+                    <label for="parent1Name">Parent 1</label>
+                    <input type="text" class="form-control" id="parent1Name" [(ngModel)]="response.parent1Name" name="parent1Name" placeholder="{{student.parent1Name}}" value="{{student.parent1Name}}">
+                </div>
+                <div class="form-group">
+                    <label for="parent2Name">Parent 2</label>
+                    <input type="text" class="form-control" id="parent2Name" [(ngModel)]="response.parent2Name" name="parent2Name" placeholder="{{student.parent2Name}}" value="{{student.parent2Name}}">
+                </div>
+                <div class="form-group">
+                    <label for="parent1Phone">Parent 1 Phone</label>
+                    <input type="text" class="form-control" id="parent1Phone" [(ngModel)]="response.parent1Phone" name="parent1Phone" placeholder="{{student.parent1Phone}}" value="{{student.parent1Phone}}">
+                </div>
+                <div class="form-group">
+                    <label for="parent2Phone">Parent 2 Phone</label>
+                    <input type="text" class="form-control" id="parent2Phone" [(ngModel)]="response.parent2Phone" name="parent2Phone" placeholder="{{student.parent2Phone}}" value="{{student.parent2Phone}}">
+                </div>
+                <div class="form-group" *ngIf="userRole() === 'ROLE_ADMIN'">
+                    <label for="classroom">Classroom</label>
+                   <select name="classroom" class="form-control form-control-sm" [(ngModel)]="selectedOption">
+                        <option *ngFor="let classroom of classrooms" [ngValue]="classroom">{{classroom.year}}/{{classroom.letter}}</option>
+                   </select>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+</div>

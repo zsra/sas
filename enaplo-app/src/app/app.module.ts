@@ -30,7 +30,6 @@ import { StudentCreateComponent } from './components/students/student-create/stu
 import { StudentUpdateComponent } from './components/students/student-update/student-update.component';
 import { TeacherUpdateComponent } from './components/teachers/teacher-update/teacher-update.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { ChangePasswordComponent } from './components/users/change-password/change-password.component';
 import { ClassroomCreateComponent } from './components/classrooms/classroom-create/classroom-create.component';
 import { ClassroomListComponent } from './components/classrooms/classroom-list/classroom-list.component';
 import { ClassroomUpdateComponent } from './components/classrooms/classroom-update/classroom-update.component';
@@ -39,6 +38,7 @@ import { CourseListComponent } from './components/courses/course-list/course-lis
 import { CourseUpdateComponent } from './components/courses/course-update/course-update.component';
 import { CourseDetailsComponent } from './components/courses/course-details/course-details.component';
 import { CourseCreateComponent } from './components/courses/course-create/course-create.component';
+import { UserUpdateComponent } from './components/users/user-update/user-update.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +60,6 @@ import { CourseCreateComponent } from './components/courses/course-create/course
     StudentCreateComponent,
     StudentUpdateComponent,
     TeacherUpdateComponent,
-    ChangePasswordComponent,
     ClassroomCreateComponent,
     ClassroomListComponent,
     ClassroomUpdateComponent,
@@ -68,7 +67,8 @@ import { CourseCreateComponent } from './components/courses/course-create/course
     CourseListComponent,
     CourseUpdateComponent,
     CourseDetailsComponent,
-    CourseCreateComponent
+    CourseCreateComponent,
+    UserUpdateComponent
   ],
   imports: [
     BrowserModule,

@@ -12,5 +12,7 @@ export class Student {
     healthCareId: string;
     parent1Name: string;
     parent2Name: string;
+    parent1Phone: string;
+    parent2Phone: string;
     classroom: Classroom;
 }

@@ -49,10 +49,8 @@ public class InitData {
             authorityService.save(UserRoleName.ROLE_TEACHER);
             authorityService.save(UserRoleName.ROLE_HEADTEACHER);
 
-            UserResponseDTO admin = new UserResponseDTO("admin", "admin", "admin", "ROLE_ADMIN");
-            userService.save(admin);
+            userService.save(new UserResponseDTO("admin", "admin", "admin", "ROLE_ADMIN"));
         }
-
         //testData();
     }
 
@@ -78,7 +76,7 @@ public class InitData {
                     "ROLE_STUDENT"
             );
             userService.save(userResponseDTO);
-            usernames.add(userResponseDTO.getFullName());
+            usernames.add(userResponseDTO.getUsername());
         }
 
         for(String username: usernames) {
@@ -113,7 +111,7 @@ public class InitData {
                     "ROLE_TEACHER"
             );
             userService.save(userResponseDTO);
-            usernames.add(userResponseDTO.getFullName());
+            usernames.add(userResponseDTO.getUsername());
         }
 
         for(String username: usernames) {
@@ -131,14 +129,14 @@ public class InitData {
                 2028,
                 9,
                 'a',
-                1L
+                2L
         ));
         classroomService.create(new ClassroomResponseDTO(
                 2025,
                 2028,
                 9,
                 'b',
-                2L
+                3L
         ));
     }
 

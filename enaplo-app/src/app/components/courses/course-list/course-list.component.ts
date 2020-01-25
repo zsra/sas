@@ -34,7 +34,7 @@ export class CourseListComponent implements OnInit {
 
   details(course_id: number) {
     this.courseService.findById(course_id).subscribe(
-      data => this.router.navigate(['/course/', data.id])
+      data => this.router.navigate(['/course/details/', data.id])
     );
   }
 

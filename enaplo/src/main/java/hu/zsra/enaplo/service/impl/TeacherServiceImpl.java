@@ -100,16 +100,9 @@ public class TeacherServiceImpl implements TeacherService {
      */
     @Override
     public Teacher update(Long id, TeacherResponseDTO teacherResponseDTO) {
-        User user = userRepository.findByUsername(teacherResponseDTO.getUsername());
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-
-        user = userRepository.findByUsername(teacherResponseDTO.getUsername());
         Teacher teacher = teacherRepository.getOne(id);
         teacher.setEmail(teacherResponseDTO.getEmail());
         teacher.setPhone(teacherResponseDTO.getPhone());
-        teacher.setTeacher(user);
 
         return teacherRepository.save(teacher);
     }

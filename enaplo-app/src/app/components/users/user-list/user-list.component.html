@@ -20,11 +20,13 @@
                         <tr *ngFor="let user of users | async | filter:searchText">
                             <td>{{user.username}}</td>
                             <td>{{user.fullName}}</td>
-                            <td>
+                            <td>                 
                                 <button *ngIf="!(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
-                                (click)="getDetails(user.id)" class="btn btn-info">Details</button>
+                                (click)="details(user.id)" class="btn btn-info">Details</button>
                                 <button *ngIf="!(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
-                                (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
+                                (click)="update(user.id)" class="btn btn-warning">Update</button>
+                                <button *ngIf="!(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
+                                (click)="delete(user.id)" class="btn btn-danger">Delete</button>
                             </td>
                         </tr>
                     </tbody>

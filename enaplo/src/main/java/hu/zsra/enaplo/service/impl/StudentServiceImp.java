@@ -118,12 +118,6 @@ public class StudentServiceImp implements StudentService {
      */
     @Override
     public Student update(Long id, StudentResponseDTO studentResponseDTO) {
-
-        User user = userRepository.findByUsername(studentResponseDTO.getUsername());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-
-        user = userRepository.findByUsername(studentResponseDTO.getUsername());
         Classroom classroom = classroomRepository.getOne(studentResponseDTO.getClassroom_id());
         Student student = studentRepository.getOne(id);
 

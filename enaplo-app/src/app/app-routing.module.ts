@@ -17,6 +17,12 @@ import { StudentCreateComponent } from './components/students/student-create/stu
 import { TeacherCreateComponent } from './components/teachers/teacher-create/teacher-create.component';
 import { ClassroomListComponent } from './components/classrooms/classroom-list/classroom-list.component';
 import { ClassroomCreateComponent } from './components/classrooms/classroom-create/classroom-create.component';
+import { UserUpdateComponent } from './components/users/user-update/user-update.component';
+import { StudentUpdateComponent } from './components/students/student-update/student-update.component';
+import { CourseListComponent } from './components/courses/course-list/course-list.component';
+import { CourseCreateComponent } from './components/courses/course-create/course-create.component';
+import { CourseDetailsComponent } from './components/courses/course-details/course-details.component';
+import { TeacherListComponent } from './components/teachers/teacher-list/teacher-list.component';
 
 const routes: Routes = [
   {
@@ -44,10 +50,14 @@ const routes: Routes = [
     path: 'headteacher',
     component: HeadteacherPanelComponent
   },
-  /* ----- ADMIN ----- */
+  /* ----- USER ----- */
   {
-    path: 'user/list',
+    path: 'user/all',
     component: UserListComponent
+  },
+  {
+    path: 'user/update',
+    component: UserUpdateComponent
   },
 
   /* ----- STUDENT -----*/
@@ -59,6 +69,10 @@ const routes: Routes = [
     path: 'student/create',
     component: StudentCreateComponent
   },
+  {
+    path: 'student/update/:id',
+    component: StudentUpdateComponent
+  },
   /* ----- TEACHER ----- */
   {
     path: 'teacher/create',
@@ -68,6 +82,10 @@ const routes: Routes = [
     path: 'teacher/details/:id',
     component: TeacherDetailsComponent
   },
+  {
+    path: 'teacher/all',
+    component: TeacherListComponent
+  },
   /* ----- CLASSROOM ----- */
   {
     path: 'classroom/all',
@@ -76,6 +94,19 @@ const routes: Routes = [
   {
     path: 'classroom/create',
     component: ClassroomCreateComponent
+  },
+  /* ----- COURSE ----- */
+  {
+    path: 'course/all',
+    component: CourseListComponent
+  },
+  {
+    path: 'course/create',
+    component: CourseCreateComponent
+  },
+  {
+    path: 'course/details/:id',
+    component: CourseDetailsComponent
   },
   /* ----- DEFAULT ----- */
   {

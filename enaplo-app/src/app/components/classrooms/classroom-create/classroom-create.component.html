@@ -23,7 +23,7 @@
                 <div class="form-group">
                     <label for="teacher">Headteacher</label>
                    <select name="teacher" class="form-control form-control-sm" [(ngModel)]="selectedOption">
-                        <option *ngFor="let teacher of teacher" [ngValue]="teacher">{{teacher.teacher.fullName}}</option>
+                        <option *ngFor="let teacher of teachers" [ngValue]="teacher">{{teacher.teacher.fullName}}</option>
                    </select>
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>

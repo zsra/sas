@@ -22,7 +22,7 @@ public class ClassroomController {
     }
 
     @GetMapping(value = "/classrooms/{id}")
-    public Classroom findById(Long id) {
+    public Classroom findById(@PathVariable Long id) {
         return classroomService.findById(id);
     }
 

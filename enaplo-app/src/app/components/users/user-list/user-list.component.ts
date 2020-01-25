@@ -33,7 +33,7 @@ export class UserListComponent implements OnInit {
     return this.user.authorities[0].authority + '';
   }
 
-  getDetails(user_id: number) {
+  details(user_id: number) {
     this.userService.getById(user_id).subscribe(data => {
       if(data.authorities[0].authority + '' === 'ROLE_STUDENT') {
         this.studentService.findByUserId(user_id).subscribe(data => this.router.navigate(['student/details', data.id]));
@@ -44,7 +44,18 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  deleteUser(user_id: number) {
+  update(user_id: number) {
+    this.userService.getById(user_id).subscribe(data => {
+      if(data.authorities[0].authority + '' === 'ROLE_STUDENT') {
+        this.studentService.findByUserId(user_id).subscribe(data => this.router.navigate(['student/update', data.id]));
+      } else if(data.authorities[0].authority + '' === 'ROLE_TEACHER' 
+                  || data.authorities[0].authority + '' === 'ROLE_HEADTEACHER') {
+        this.teacherService.findByUserId(user_id).subscribe(data => this.router.navigate(['teacher/update', data.id])); 
+      }
+    });
+  }
+
+  delete(user_id: number) {
 
   }
 }

@@ -45,7 +45,7 @@ export class TeacherCreateComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/user/list']);
+    this.router.navigate(['/user/all']);
   }
 
   userRole(): string {

@@ -1,6 +1,7 @@
 package hu.zsra.enaplo.model.user.group;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import hu.zsra.enaplo.model.*;
 import hu.zsra.enaplo.model.user.User;
 import lombok.Getter;
@@ -75,6 +76,7 @@ public class Student {
     @Getter @Setter
     private List<Attendance> attendances = new ArrayList<>();
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne
     @JoinColumn(name="classroom_id")
     @Getter @Setter

@@ -46,14 +46,7 @@ export class StudentCreateComponent implements OnInit {
   onStudentSubmit() {
     this.student.classroom_id = Number(this.selectedOption.id);
     this.studentService.create(this.student).subscribe();
-    this.userSubmitted = false;
-    this.user = new UserResponseDTO();
-    this.student = new StudentResponseDTO();
-    this.goBack();
-  }
-
-  goBack() {
-    this.router.navigate(['/user/list']);
+    this.router.navigate(['/user/all']);
   }
 
   userRole(): string {
