@@ -30,21 +30,32 @@ public class UserController {
 
     @GetMapping(value = "/user/{id}")
     public User getById(@PathVariable Long id) {
-        return  this.userService.findById(id);
+        return  userService.findById(id);
     }
 
     @PostMapping(value = "/user/reset-credentials/{username}")
     public ResponseEntity<Map> resetCredentials(@PathVariable  String username) {
-        this.userService.resetCredentials(username);
+        userService.resetCredentials(username);
         Map<String, String> result = new HashMap<>();
         result.put("result", "success");
         return ResponseEntity.accepted().body(result);
     }
 
+    @GetMapping(value = "/user/username/{username}")
+    public boolean isUsernameUnique(@PathVariable String username) {
+        return userService.isUsernameUnique(username);
+    }
+
+    @PutMapping(value = "/user/update/{id}")
+    public User update(@PathVariable Long id,
+                       @RequestBody UserResponseDTO userResponseDTO) {
+        return userService.update(id, userResponseDTO);
+    }
+
     @PostMapping(value = "/user/create")
     public ResponseEntity<?> addUser(@RequestBody UserResponseDTO userResponseDTO,
                                      UriComponentsBuilder ucBuilder) {
-        User user = this.userService.save(userResponseDTO);
+        User user = userService.save(userResponseDTO);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/api/user/{userId}").buildAndExpand(user.getId()).toUri());
         return new ResponseEntity<User>(user, HttpStatus.CREATED);

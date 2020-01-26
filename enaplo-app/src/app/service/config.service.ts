@@ -33,6 +33,8 @@ export class ConfigService {
     private allUsersUrl = this.userUrl + '/all';
     private createUrl = this.userUrl + '/create';
     private getUserByIdUrl = this.userUrl;
+    private isUsernameUniqueUrl = this.userUrl + '/username';
+    private updateUserUrl = this.userUrl + '/update';
 
     get getWhoami(): string {
         return this.whoamiUrl;
@@ -48,6 +50,14 @@ export class ConfigService {
 
     get getGetUserByIdUrl(): string {
         return this.getUserByIdUrl;
+    }
+
+    get getIsUsernameUniqueUrl(): string {
+        return this.isUsernameUniqueUrl;
+    }
+
+    get getUpdateUserUrl(): string {
+        return this.updateUserUrl;
     }
 
     private studentUrl = this.baseUrl + '/students';           

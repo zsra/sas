@@ -24,6 +24,7 @@
                             <td>{{course.teacher.fullName}}</td>
                             <td>
                                 <button (click)="details(course.id)" class="btn btn-info">Details</button>
+                                <button (click)="update(course.id)" class="btn btn-warning">Update</button>
                                 <button (click)="delete(course.id)" class="btn btn-danger">Delete</button>
                             </td>
                         </tr>

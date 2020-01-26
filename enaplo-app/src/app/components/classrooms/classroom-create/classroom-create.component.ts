@@ -16,7 +16,6 @@ export class ClassroomCreateComponent implements OnInit {
 
   classroom = new ClassroomResponseDTO();
   admin: any = {};
-  userSubmitted: boolean = false;
   isDataLoaded: boolean  = false;
   teachers: Observable<Teacher[]>;
   selectedOption: any = {};
@@ -36,14 +35,23 @@ export class ClassroomCreateComponent implements OnInit {
 
   onSubmit() {
     this.classroom.headTeacher_id = Number(this.selectedOption.id);
-    this.classroomService.create(this.classroom).subscribe();
+    this.classroomService.create(this.classroom).subscribe(() => this.reset());
+    this.refresh();
+    this.goBack(); 
+  }
+
+  reset() {
     this.classroom = new ClassroomResponseDTO();
-    this.goBack();
-    
+    this.isDataLoaded = false;
+    this.selectedOption = {};
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 
   goBack() {
-    this.router.navigate(['/classroom/all']);
+    this.router.navigate(['/classroom/create']);
   }
 
   userRole(): string {

@@ -24,7 +24,6 @@ import { StudentPanelComponent } from './components/panels/student-panel/student
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { StudentDetailsComponent } from './components/students/student-details/student-details.component';
 import { TeacherDetailsComponent } from './components/teachers/teacher-details/teacher-details.component';
-import { TeacherListComponent } from './components/teachers/teacher-list/teacher-list.component';
 import { TeacherCreateComponent } from './components/teachers/teacher-create/teacher-create.component';
 import { StudentCreateComponent } from './components/students/student-create/student-create.component';
 import { StudentUpdateComponent } from './components/students/student-update/student-update.component';
@@ -55,7 +54,6 @@ import { UserUpdateComponent } from './components/users/user-update/user-update.
     UserListComponent,
     StudentDetailsComponent,
     TeacherDetailsComponent,
-    TeacherListComponent,
     TeacherCreateComponent,
     StudentCreateComponent,
     StudentUpdateComponent,

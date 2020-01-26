@@ -25,9 +25,8 @@ export class StudentUpdateComponent implements OnInit {
   selectedOption: any = {};
   currentClassroom = new Classroom();
 
-  constructor(private userService: UserService, private configService: ConfigService, 
-    private studentService: StudentService, private router: Router,  private route: ActivatedRoute, 
-    private classroomService: ClassroomService) { }
+  constructor(private userService: UserService, private studentService: StudentService, private router: Router,  
+    private route: ActivatedRoute, private classroomService: ClassroomService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -39,18 +38,7 @@ export class StudentUpdateComponent implements OnInit {
       });
     }).then(() =>
       this.classroomService.getAll().subscribe(data => this.classrooms = data)
-    ).then(() => {
-      this.response.address = this.student.address;
-      this.response.parent1Name = this.student.parent1Name;
-      this.response.parent2Name = this.student.parent2Name;
-      this.response.parent1Phone = this.student.parent1Phone;
-      this.response.parent2Phone = this.student.parent2Phone;
-      this.response.dateOfBirth = this.student.dateOfBirth;
-      this.response.educationId = this.student.educationId;
-      this.response.start_year = this.student.start_year;
-      this.response.healthCareId = this.student.healthCareId;
-      this.response.classroom_id = this.currentClassroom.id;
-    }).then(() => this.isDataAvailable = true);
+    ).then(() => this.isDataAvailable = true);
   }
 
   isDataChanged() {

@@ -45,7 +45,15 @@ export class UserService {
         return this.apiService.get(this.configService.getGetUserByIdUrl + '/' + id);
     }
 
-    create(user: UserResponseDTO): Observable<object> {
+    create(user: UserResponseDTO) {
         return this.apiService.post(this.configService.getCreateUrl, user);
+    }
+
+    update(id: number, user: UserResponseDTO) {
+        return this.apiService.put(this.configService.getUpdateUserUrl + '/' + id, user);
+    }
+
+    isUsernameUnique(username: string) {
+        return this.apiService.get(this.configService.getIsUsernameUniqueUrl + '/' + username);
     }
 }

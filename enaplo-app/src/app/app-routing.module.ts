@@ -22,7 +22,6 @@ import { StudentUpdateComponent } from './components/students/student-update/stu
 import { CourseListComponent } from './components/courses/course-list/course-list.component';
 import { CourseCreateComponent } from './components/courses/course-create/course-create.component';
 import { CourseDetailsComponent } from './components/courses/course-details/course-details.component';
-import { TeacherListComponent } from './components/teachers/teacher-list/teacher-list.component';
 
 const routes: Routes = [
   {
@@ -81,10 +80,6 @@ const routes: Routes = [
   {
     path: 'teacher/details/:id',
     component: TeacherDetailsComponent
-  },
-  {
-    path: 'teacher/all',
-    component: TeacherListComponent
   },
   /* ----- CLASSROOM ----- */
   {

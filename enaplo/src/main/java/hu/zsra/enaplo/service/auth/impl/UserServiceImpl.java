@@ -27,19 +27,41 @@ public class UserServiceImpl implements UserService {
     private AuthorityService authService;
 
     @Override
-    public User save(UserResponseDTO user) {
-        if(!userRepository.existsByUsername(user.getUsername())) {
+    public User save(UserResponseDTO userResponseDTO) {
+        if(!userRepository.existsByUsername(userResponseDTO.getUsername())) {
             User newUser = new User();
-            newUser.setUsername(user.getUsername());
-            newUser.setPassword(passwordEncoder.encode(user.getPassword()));
-            newUser.setFullName(user.getFullName());
-            List<Authority> authorities = authService.findByName(user.getRole());
+            newUser.setUsername(userResponseDTO.getUsername());
+            newUser.setPassword(passwordEncoder.encode(userResponseDTO.getPassword()));
+            newUser.setFullName(userResponseDTO.getFullName());
+            List<Authority> authorities = authService.findByName(userResponseDTO.getRole());
             newUser.setAuthorities(authorities);
-            this.userRepository.save(newUser);
+            userRepository.save(newUser);
             return newUser;
         } else {
             throw new CustomException("Username is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
         }
+    }
+
+    @Override
+    public User update(Long id, UserResponseDTO userResponseDTO) {
+        User user = userRepository.getOne(id);
+
+        if(!userRepository.existsByUsername(userResponseDTO.getUsername())){
+            user.setUsername(userResponseDTO.getUsername());
+            if(userResponseDTO.getPassword() != null) {
+                user.setPassword(passwordEncoder.encode(userResponseDTO.getPassword()));
+            }
+            user.setFullName(userResponseDTO.getFullName());
+            userRepository.save(user);
+            return user;
+        } else {
+            throw new CustomException("Username is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+    }
+
+    @Override
+    public boolean isUsernameUnique(String username) {
+        return !userRepository.existsByUsername(username);
     }
 
     @Override
@@ -53,11 +75,6 @@ public class UserServiceImpl implements UserService {
     public User findById(Long id) {
         return userRepository
                 .findById(id).orElse(null);
-    }
-
-    @Override
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
     }
 
     @Override

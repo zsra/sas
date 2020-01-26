@@ -1,1 +1,25 @@
-<p>course-update works!</p>
+<div *ngIf="isDataLoaded">
+    <div class="course-update-container" *ngIf="userRole() === 'ROLE_ADMIN'">
+        <app-admin-panel></app-admin-panel>
+        <h2>Update</h2>
+        <div class="update-form">
+            <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-course">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" required [(ngModel)]="response.title" value="{{course.title}}">
+                </div>
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <input type="number" class="form-control" id="year" required [(ngModel)]="response.year"  value="{{course.year}}">
+                </div>
+                <div class="form-group">
+                    <label for="teacher">Teacher</label>
+                   <select name="teacher" class="form-control form-control-sm" [(ngModel)]="selectedOption">
+                        <option *ngFor="let teacher of teachers" [ngValue]="teacher">{{teacher.teacher.fullName}}</option>
+                   </select>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

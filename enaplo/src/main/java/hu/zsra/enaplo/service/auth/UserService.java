@@ -10,6 +10,7 @@ public interface UserService {
     List<User> findAll();
     void resetCredentials(String username);
     User findById(Long id);
-    User findByUsername(String username);
-    User save(UserResponseDTO user);
+    User save(UserResponseDTO userResponseDTO);
+    User update(Long id, UserResponseDTO userResponseDTO);
+    boolean isUsernameUnique(String username);
 }

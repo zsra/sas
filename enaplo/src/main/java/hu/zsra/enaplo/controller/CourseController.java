@@ -26,7 +26,7 @@ public class CourseController {
     }
 
     @PostMapping(value = "/courses/create")
-    public Course create(CourseResponseDTO courseResponseDTO) {
+    public Course create(@RequestBody CourseResponseDTO courseResponseDTO) {
         return courseService.create(courseResponseDTO);
     }
 
@@ -37,7 +37,7 @@ public class CourseController {
     }
 
     @DeleteMapping(value = "/courses/{id}")
-    public String delete(Long id) {
+    public String delete(@PathVariable Long id) {
         courseService.delete(id);
         return id.toString();
     }

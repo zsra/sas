@@ -1,1 +1,21 @@
-<p>teacher-update works!</p>
+<div *ngIf="isDataLoaded">
+    <div class="teacher-create-container" *ngIf="userRole() === 'ROLE_ADMIN' || currentUser.id == teacher.teacher.id">
+        <app-admin-panel></app-admin-panel>
+        <h2>Update</h2>
+        <div class="create-form">
+            <button  mat-button mat-ripple (click)='userUpdate()' class="btn">Account settings</button>
+            <form (ngSubmit)="submit()" #form="ngForm" class="form">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" class="form-control" id="email" required [(ngModel)]="response.email" name="email" placeholder="{{teacher.email}}" value="{{teacher.email}}">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" required [(ngModel)]="response.phone" name="phone" placeholder="{{teacher.phone}}" value="{{teacher.phone}}">
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+    

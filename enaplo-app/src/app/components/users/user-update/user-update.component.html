@@ -1,1 +1,27 @@
-<p>user-update works!</p>
+<div *ngIf="isDataAvailable">
+    <div class="user-update-container" *ngIf="userRole() == 'ROLE_ADMIN' || currentUser.id == user.id">
+        <app-admin-panel></app-admin-panel>
+        <h2>Update</h2>
+        <div class="create-form">
+            <button (click)='goBack()' class="btn btn-dark">Back</button>
+            <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-user"> 
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input [disabled]="userSubmitted" type="text" class="form-control" id="username" required [(ngModel)]="response.username" name="username" placeholder="{{user.username}}" value="{{user.username}}">
+                </div>
+                <div class="form-group">
+                    <label for="new-password">New Password</label>
+                    <input type="password" class="form-control" id="new-password" required [(ngModel)]="newPassword" name="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="re-password">Re-Enter Password</label>
+                    <input type="password" class="form-control" id="re-password" required [(ngModel)]="reEnterPassword" name="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="fullName">Fullname</label>
+                    <input type="text" class="form-control" id="fullName" required [(ngModel)]="response.fullName" name="fullName" placeholder="Fullname">
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+</div>
