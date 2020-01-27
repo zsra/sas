@@ -21,6 +21,7 @@ export class CourseUpdateComponent implements OnInit {
   teachers: Observable<Teacher[]>;
   course = new Course();
   response = new CourseResponseDTO();
+  selectedOption: any = {};
 
   constructor(private userService: UserService, private teacherService: TeacherService, 
     private router: Router, private route: ActivatedRoute, private courseService: CourseService) { }
@@ -36,14 +37,21 @@ export class CourseUpdateComponent implements OnInit {
   }
 
   isDataChanged() {
-    
+    if(!this.response.title
+      || !this.response.year
+      || !this.response.teacher_id) return true;
+    return false;
   }
 
   onSubmit() {
-  }
-
-  reset() {
-
+    if(this.isDataChanged) {
+      if(!this.selectedOption) this.response.teacher_id = this.course.teacher.id;
+      else this.response.teacher_id = Number(this.selectedOption.id);
+      if(!this.response.title) this.response.title = this.course.title;
+      if(!this.response.year) this.response.year = this.course.year;
+      this.courseService.update(this.id, this.response).subscribe();
+    }
+    this.goBack();
   }
 
   goBack() {
@@ -51,7 +59,7 @@ export class CourseUpdateComponent implements OnInit {
   }
 
   userRole(): string {
-    return this.admin.authorities[0].authority + '';
+    return this.currentUser.authorities[0].authority + '';
   }
 
 }

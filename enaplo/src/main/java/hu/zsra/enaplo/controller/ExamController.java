@@ -48,7 +48,7 @@ public class ExamController {
     }
 
     @PostMapping(value = "/exams/form/create")
-    List<Exam> createExamsFromForm(@RequestBody List<ExamResponseDTO> examResponseDTOS) {
+    public List<Exam> createExamsFromForm(@RequestBody List<ExamResponseDTO> examResponseDTOS) {
         return examService.createExamsFromForm(examResponseDTOS);
     }
 }

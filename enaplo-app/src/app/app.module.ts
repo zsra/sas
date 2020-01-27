@@ -38,6 +38,18 @@ import { CourseUpdateComponent } from './components/courses/course-update/course
 import { CourseDetailsComponent } from './components/courses/course-details/course-details.component';
 import { CourseCreateComponent } from './components/courses/course-create/course-create.component';
 import { UserUpdateComponent } from './components/users/user-update/user-update.component';
+import { SetCourseComponent } from './components/courses/set-course/set-course.component';
+import { SetCourseClassroomComponent } from './components/classrooms/set-course-classroom/set-course-classroom.component';
+import { CreateExamComponent } from './components/exams/create-exam/create-exam.component';
+import { UpdateExamComponent } from './components/exams/update-exam/update-exam.component';
+import { CreateExamClassroomComponent } from './components/exams/create-exam-classroom/create-exam-classroom.component';
+import { ExamListComponent } from './components/exams/exam-list/exam-list.component';
+import { SemesterViewComponent } from './components/reports/semester-view/semester-view.component';
+import { CreateReportComponent } from './components/reports/create-report/create-report.component';
+import { UpdateReportComponent } from './components/reports/update-report/update-report.component';
+import { CreateReportClassroomComponent } from './components/reports/create-report-classroom/create-report-classroom.component';
+import { SummaryStudentComponent } from './components/students/summary-student/summary-student.component';
+import { SummaryClassroomComponent } from './components/classrooms/summary-classroom/summary-classroom.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +78,19 @@ import { UserUpdateComponent } from './components/users/user-update/user-update.
     CourseUpdateComponent,
     CourseDetailsComponent,
     CourseCreateComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    SetCourseComponent,
+    SetCourseClassroomComponent,
+    CreateExamComponent,
+    UpdateExamComponent,
+    CreateExamClassroomComponent,
+    ExamListComponent,
+    SemesterViewComponent,
+    CreateReportComponent,
+    UpdateReportComponent,
+    CreateReportClassroomComponent,
+    SummaryStudentComponent,
+    SummaryClassroomComponent
   ],
   imports: [
     BrowserModule,

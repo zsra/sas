@@ -30,7 +30,7 @@ export class StudentCreateComponent implements OnInit {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.admin = data;
     }).then(() => {
-      this.classroomService.getAll().subscribe(data =>
+      this.classroomService.findAll().subscribe(data =>
         this.classrooms = data);
     })
     .then(() => this.isDataLoaded = true);

@@ -22,6 +22,12 @@ import { StudentUpdateComponent } from './components/students/student-update/stu
 import { CourseListComponent } from './components/courses/course-list/course-list.component';
 import { CourseCreateComponent } from './components/courses/course-create/course-create.component';
 import { CourseDetailsComponent } from './components/courses/course-details/course-details.component';
+import { SummaryStudentComponent } from './components/students/summary-student/summary-student.component';
+import { TeacherUpdateComponent } from './components/teachers/teacher-update/teacher-update.component';
+import { SetCourseClassroomComponent } from './components/classrooms/set-course-classroom/set-course-classroom.component';
+import { SummaryClassroomComponent } from './components/classrooms/summary-classroom/summary-classroom.component';
+import { SetCourseComponent } from './components/courses/set-course/set-course.component';
+import { CourseUpdateComponent } from './components/courses/course-update/course-update.component';
 
 const routes: Routes = [
   {
@@ -71,6 +77,10 @@ const routes: Routes = [
   {
     path: 'student/update/:id',
     component: StudentUpdateComponent
+  }, 
+  {
+    path: 'student/summary/:id',
+    component: SummaryStudentComponent
   },
   /* ----- TEACHER ----- */
   {
@@ -81,6 +91,10 @@ const routes: Routes = [
     path: 'teacher/details/:id',
     component: TeacherDetailsComponent
   },
+  {
+    path: 'teacher/update/:id',
+    component: TeacherUpdateComponent
+  },
   /* ----- CLASSROOM ----- */
   {
     path: 'classroom/all',
@@ -89,6 +103,14 @@ const routes: Routes = [
   {
     path: 'classroom/create',
     component: ClassroomCreateComponent
+  },
+  {
+    path: 'classroom/setCourse/:id',
+    component: SetCourseClassroomComponent
+  },
+  {
+    path: 'classroom/summaries/:id',
+    component: SummaryClassroomComponent
   },
   /* ----- COURSE ----- */
   {
@@ -102,6 +124,14 @@ const routes: Routes = [
   {
     path: 'course/details/:id',
     component: CourseDetailsComponent
+  },
+  {
+    path: 'course/update/:id',
+    component: CourseUpdateComponent
+  },
+  {
+    path: 'course/setCourse/:id',
+    component: SetCourseComponent
   },
   /* ----- DEFAULT ----- */
   {

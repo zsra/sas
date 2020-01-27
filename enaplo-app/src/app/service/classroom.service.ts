@@ -13,7 +13,7 @@ export class ClassroomService {
 
     }
 
-    getAll() {
+    findAll() {
         return this.apiService.get(this.configService.getAllClassroomUrl);
     }
 
@@ -37,7 +37,7 @@ export class ClassroomService {
         return this.apiService.put(this.configService.getSetCourseUrl + '/' + classroom_id, course_id);
     }
 
-    getById(id: number) {
+    findById(id: number) {
         return this.apiService.get(this.configService.getGetClassroomByIdUrl + '/' + id);
     }
 }

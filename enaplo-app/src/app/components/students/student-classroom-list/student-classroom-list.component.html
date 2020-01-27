@@ -1,1 +1,35 @@
-<p>student-classroom-list works!</p>
+<div *ngIf="isDataAvailable">
+    <div class="student-list-container" *ngIf="isHeadTeacher()">
+        <app-admin-panel></app-admin-panel>
+        <div class="user-list-container-body">
+            <div class="user-list-header">
+                <h3>Student List</h3>
+            </div>
+            <div class="user-list-body">
+                <input class="form-control-searchbox" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" 
+                placeholder="&#171; Search">
+                <table  class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Username</th>
+                            <th>Fullname</th>
+                            <th>Function</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users | async | filter:searchText">
+                            <td>{{user.username}}</td>
+                            <td>{{user.fullName}}</td>
+                            <td>                 
+                                <button (click)="details(user.id)" class="btn btn-info">Details</button>
+                                <button (click)="update(user.id)" class="btn btn-warning">Update</button>
+                                <button (click)="summary(user.id)" class="btn btn-dark">Summary</button>
+                                <button (click)="reports(user.id)" class="btn btn-dark">Reports</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Student } from 'src/app/model/student';
 import { StudentResponseDTO } from 'src/app/dto/response/studentResponseDTO';
 import { UserService } from 'src/app/service/user.service';
-import { ConfigService } from 'src/app/service/config.service';
 import { StudentService } from 'src/app/service/student.service';
 import { Observable } from 'rxjs';
 import { Classroom } from 'src/app/model/classroom';
@@ -34,10 +33,10 @@ export class StudentUpdateComponent implements OnInit {
       this.currentUser = data;
       this.studentService.findById(this.id).subscribe(data => {
         this.student = data;
-        this.classroomService.getById(data.classroom.id).subscribe(data => this.currentClassroom = data);
+        this.classroomService.findById(data.classroom.id).subscribe(data => this.currentClassroom = data);
       });
     }).then(() =>
-      this.classroomService.getAll().subscribe(data => this.classrooms = data)
+      this.classroomService.findAll().subscribe(data => this.classrooms = data)
     ).then(() => this.isDataAvailable = true);
   }
 

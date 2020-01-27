@@ -23,7 +23,7 @@ export class ClassroomListComponent implements OnInit {
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.user = data;
-      this.classroomService.getAll().subscribe(data =>
+      this.classroomService.findAll().subscribe(data =>
         this.classrooms = data);
     }).then(() => this.isDataAvailable = true);
   }
@@ -33,7 +33,7 @@ export class ClassroomListComponent implements OnInit {
   }
 
   update(classroom_id: number) {
-    this.classroomService.getById(classroom_id).subscribe(
+    this.classroomService.findById(classroom_id).subscribe(
       data => this.router.navigate(['/classroom/update', data.id])
     );
   }
