@@ -1,6 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from 'src/app/service/auth.service';
-import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,8 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AdminPanelComponent implements OnInit {
 
-  constructor(private authService: AuthService, private userService: UserService,
-     private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
 

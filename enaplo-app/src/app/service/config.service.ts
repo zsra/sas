@@ -131,6 +131,7 @@ export class ConfigService {
 
     private classroomUrl = this.baseUrl + '/classrooms';
     private allClassroomUrl = this.classroomUrl + '/all';
+    private findByHeadteacherIdUrl = this.classroomUrl + '/headteacher';
     private createClassroomUrl = this.classroomUrl + '/create';
     private updateClassroomUrl = this.classroomUrl + '/update';
     private deleteClassroomUrl = this.classroomUrl;
@@ -140,6 +141,10 @@ export class ConfigService {
 
     get getAllClassroomUrl(): string {
         return this.allClassroomUrl;
+    }
+
+    get getFindByHeadteacherIdUrl(): string {
+        return this.findByHeadteacherIdUrl;
     }
 
     get getCreateClassroomUrl(): string {

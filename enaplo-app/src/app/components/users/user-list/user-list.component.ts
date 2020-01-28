@@ -5,8 +5,6 @@ import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { StudentService } from 'src/app/service/student.service';
 import { TeacherService } from 'src/app/service/teacher.service';
-import { Student } from 'src/app/model/student';
-import { Teacher } from 'src/app/model/teacher';
 
 @Component({
   selector: 'app-user-list',
@@ -19,6 +17,7 @@ export class UserListComponent implements OnInit {
   users: Observable<User[]>;
   isDataAvailable:boolean = false;
   user: any;
+  
   constructor(private userService: UserService, private router: Router,
     private studentService: StudentService, private teacherService: TeacherService) { }
 

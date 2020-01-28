@@ -55,6 +55,22 @@ public class ClassroomServiceImpl implements ClassroomService {
     }
 
     /**
+     * Returns a Classroom object by Headteacher Id if classroom exist
+     * or returns a null value.
+     *
+     * @param id Id of the headteacher
+     * @return a classroom object by headteacher id.
+     */
+    @Override
+    public Classroom findByHeadteacher(Long id) {
+        return classroomRepository.findAll()
+                .stream()
+                .filter(classroom -> classroom.getHeadTeacher().getId().equals(id))
+                .findAny()
+                .orElse(null);
+    }
+
+    /**
      * Creates a new classroom and save into the database.
      *
      * @param classroomResponseDTO Submitted DTO from web application.
@@ -144,7 +160,11 @@ public class ClassroomServiceImpl implements ClassroomService {
      */
     @Override
     public void setCourse(Long classroom_id, Long course_id) {
-        List<Student> students = getStudentsFromClassroom(classroom_id);
+        List<Student> students = studentRepository
+                .findAll()
+                .stream()
+                .filter(student -> student.getClassroom().getId().equals(classroom_id))
+                .collect(Collectors.toList());
         for(Student student : students) {
             classroomRepository.setCourseForClassroom(student.getId(), course_id);
         }

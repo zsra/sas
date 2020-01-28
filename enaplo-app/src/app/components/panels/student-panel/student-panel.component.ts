@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Student } from 'src/app/model/student';
+import { StudentService } from 'src/app/service/student.service';
+import { UserService } from 'src/app/service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-panel',
@@ -7,9 +11,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentPanelComponent implements OnInit {
 
-  constructor() { }
+  currentUser: any = {};
+  student = new Student();
+  isDataAvailable: boolean = false;
+
+  constructor(private userService: UserService, private router: Router, 
+    private studentService: StudentService) { }
 
   ngOnInit() {
+    this.userService.getMyInfo().toPromise().then(data =>  {
+      this.currentUser = data;
+    }).then(() => this.isDataAvailable = true);
   }
 
+  summary() {
+    this.studentService.findByUserId(this.currentUser.id).subscribe(data => this.router.navigate(['student/summary', data.id]));
+  }
+
+  timetable() {
+
+  }
+
+  reports() {
+
+  }
+
+  update() {
+    this.studentService.findByUserId(this.currentUser.id).subscribe(data => this.router.navigate(['student/update', data.id]));
+  }
+
+  details() {
+    this.studentService.findByUserId(this.currentUser.id).subscribe(data => this.router.navigate(['student/details', data.id]));
+  }
 }

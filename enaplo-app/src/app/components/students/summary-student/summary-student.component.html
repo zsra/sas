@@ -1,1 +1,25 @@
-<p>summary-student works!</p>
+<div *ngIf="isDataAvailable">
+    <app-admin-panel *ngIf="userRole() === 'ROLE_ADMIN'"></app-admin-panel>
+    <app-teacher-panel *ngIf="userRole() === 'ROLE_TEACHER' || userRole() === 'ROLE_HEADTEACHER'"></app-teacher-panel>
+    <app-student-panel *ngIf="userRole() === 'ROLE_STUDENT'"></app-student-panel>
+    <app-headteacher-panel *ngIf="userRole() === 'ROLE_HEADTEACHER'"></app-headteacher-panel>
+    <div class="student-container" *ngIf="userRole() != 'ROLE_STUDENT' || currentUser.id == student.student.id">  
+        <h2>Summary</h2>
+        <div class="summaries">
+            <table class="table table-striped table-sm table-bordered">
+                <thead  class="thead-dark">
+                  <th>Subject</th>
+                  <th>Marks</th>
+                  <th>Avg.</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let summary of summaries">
+                    <td>{{summary.courseName}}</td>
+                    <td><span *ngFor="let mark of summary.marks">{{mark}},</span></td>
+                    <td>{{summary.average  |  number : '1.2-2'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>

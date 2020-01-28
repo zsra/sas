@@ -51,16 +51,16 @@ public class InitData {
 
             userService.save(new UserResponseDTO("admin", "admin", "admin", "ROLE_ADMIN"));
         }
-        //testData();
+        testData();
     }
 
     private void testData() {
 
         testDataTeacher();
         testDataClassroom();
+        testDataStudent();
         testDataCourse();
         testDataTimeTable();
-        testDataStudent();
         testDataAttendance();
         testDataExam();
         testDataReport();
@@ -198,7 +198,7 @@ public class InitData {
         ));
 
         for(Long i = 1L ; i < 3L; i++) {
-            for(Long j = 1L; j < 12L; j++) {
+            for(long j = 1L; j < 12L; j++) {
                 classroomService.setCourse(i, j);
             }
         }

@@ -34,7 +34,7 @@ export class StudentService {
     }
 
     summary(id : number) {
-        return this.apiService.get(this.configService.getSummaryStudentUrl, id);
+        return this.apiService.get(this.configService.getSummaryStudentUrl + '/' + id);
     }
 
 }

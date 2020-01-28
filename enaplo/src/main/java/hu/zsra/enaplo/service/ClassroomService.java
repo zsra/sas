@@ -29,6 +29,15 @@ public interface ClassroomService {
     Classroom findById(Long id);
 
     /**
+     * Returns a Classroom object by Headteacher Id if classroom exist
+     * or returns a null value.
+     *
+     * @param id Id of the headteacher
+     * @return a classroom object by headteacher id.
+     */
+    Classroom findByHeadteacher(Long id);
+
+    /**
      * Creates a new classroom and save into the database.
      *
      * @param classroomResponseDTO Submitted DTO from web application.

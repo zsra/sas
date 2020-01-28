@@ -41,6 +41,10 @@ export class StudentClassroomListComponent implements OnInit {
     });
   }
 
+  update(user_id: number) {
+    this.studentService.findByUserId(user_id).subscribe(data => this.router.navigate(['student/update', data.id]));
+  }
+
   isHeadTeacher() {
     return this.user.authorities[0].authority + '' == 'ROLE_HEADTEACHER';
   }

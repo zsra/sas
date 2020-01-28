@@ -28,6 +28,7 @@ import { SetCourseClassroomComponent } from './components/classrooms/set-course-
 import { SummaryClassroomComponent } from './components/classrooms/summary-classroom/summary-classroom.component';
 import { SetCourseComponent } from './components/courses/set-course/set-course.component';
 import { CourseUpdateComponent } from './components/courses/course-update/course-update.component';
+import { StudentClassroomListComponent } from './components/students/student-classroom-list/student-classroom-list.component';
 
 const routes: Routes = [
   {
@@ -61,7 +62,7 @@ const routes: Routes = [
     component: UserListComponent
   },
   {
-    path: 'user/update',
+    path: 'user/update/:id',
     component: UserUpdateComponent
   },
 
@@ -81,6 +82,10 @@ const routes: Routes = [
   {
     path: 'student/summary/:id',
     component: SummaryStudentComponent
+  },
+  {
+    path: 'student/classroom/:id',
+    component: StudentClassroomListComponent
   },
   /* ----- TEACHER ----- */
   {

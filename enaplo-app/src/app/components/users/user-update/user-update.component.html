@@ -1,9 +1,8 @@
 <div *ngIf="isDataAvailable">
-    <div class="user-update-container" *ngIf="userRole() == 'ROLE_ADMIN' || currentUser.id == user.id">
-        <app-admin-panel></app-admin-panel>
+    <div class="user-update-container" *ngIf="currentUser.id == user.id">
         <h2>Update</h2>
         <div class="create-form">
-            <button (click)='goBack()' class="btn btn-dark">Back</button>
+            <button (click)='goBack()' id="back" class="btn btn-dark">Back</button>
             <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-user"> 
                 <div class="form-group">
                     <label for="username">Username</label>

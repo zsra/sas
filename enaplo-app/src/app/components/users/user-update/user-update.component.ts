@@ -28,8 +28,9 @@ export class UserUpdateComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data;
-      this.userService.getById(this.id).subscribe(data => this.user = data);
-    }).then(() => this.isDataAvailable = true);
+      
+    }).then(() => this.userService.getById(this.id).subscribe(data => this.user = data))
+    .then(() => this.isDataAvailable = true);
   }
 
   onSubmit() {

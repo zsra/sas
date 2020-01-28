@@ -17,6 +17,14 @@ export class ClassroomService {
         return this.apiService.get(this.configService.getAllClassroomUrl);
     }
 
+    findById(id: number) {
+        return this.apiService.get(this.configService.getGetClassroomByIdUrl + '/' + id);
+    }
+
+    findByHeadteacherId(teacher_id: number) {
+        return this.apiService.get(this.configService.getFindByHeadteacherIdUrl + '/' + teacher_id);
+    }
+
     create(classroom: ClassroomResponseDTO) {
         return this.apiService.post(this.configService.getCreateClassroomUrl, classroom);
     }
@@ -35,9 +43,5 @@ export class ClassroomService {
 
     setCourse(classroom_id: number, course_id: number) {
         return this.apiService.put(this.configService.getSetCourseUrl + '/' + classroom_id, course_id);
-    }
-
-    findById(id: number) {
-        return this.apiService.get(this.configService.getGetClassroomByIdUrl + '/' + id);
-    }
+    }    
 }

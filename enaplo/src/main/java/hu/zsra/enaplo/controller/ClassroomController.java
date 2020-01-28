@@ -26,6 +26,11 @@ public class ClassroomController {
         return classroomService.findById(id);
     }
 
+    @GetMapping(value = "/classrooms/headteacher/{id}")
+    public Classroom findByHeadteacherId(@PathVariable Long id) {
+        return classroomService.findByHeadteacher(id);
+    }
+
     @PostMapping(value = "/classrooms/create")
     public Classroom create(@RequestBody ClassroomResponseDTO classroomResponseDTO) {
         return classroomService.create(classroomResponseDTO);

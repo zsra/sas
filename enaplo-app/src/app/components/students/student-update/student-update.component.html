@@ -1,9 +1,9 @@
 <div *ngIf="isDataAvailable">
     <div class="student-create-container" *ngIf="userRole() != 'ROLE_STUDENT' || currentUser.id == student.student.id">
-        <app-admin-panel></app-admin-panel>
+        <app-student-panel *ngIf="userRole() === 'ROLE_STUDENT'"></app-student-panel>
         <h2>Update</h2>
         <div class="create-form">
-            <button  mat-button mat-ripple (click)='userUpdate()' class="btn">Account settings</button>
+            <button mat-button mat-ripple (click)='userUpdate()' id="account" class="btn btn-dark">Account settings</button>
             <form (ngSubmit)="submit()" #form="ngForm" class="form">    
                 <div class="form-group">
                     <label for="dateOfBirth">Date of Birth</label>
