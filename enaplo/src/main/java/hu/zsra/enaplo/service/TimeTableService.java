@@ -3,6 +3,8 @@ package hu.zsra.enaplo.service;
 import hu.zsra.enaplo.dto.response.TimeTableEntityResponseDTO;
 import hu.zsra.enaplo.model.TimeTableEntity;
 
+import java.util.List;
+
 /**
  * This interface contains all related function definitions to the timetable.
  */
@@ -27,6 +29,23 @@ public interface TimeTableService {
      * @return a TimeTable 2d matrix.
      */
     TimeTableEntity[][] getTimeTableByTeacher(Long id);
+
+    /**
+     * Returns a List of TimeTableEntity, which are connected with a course.
+     * The course get by id. If the course id not valid or a list empty returns null.
+     *
+     * @param course_id Id of the Course.
+     * @return a List of the TimeTableEntity.
+     */
+    List<TimeTableEntity> getTimeTableEntitiesByCourse(Long course_id);
+
+    /**
+     * Returns an TimeTableEntity Object by id.
+     *
+     * @param id Id of the TimeTableEntity
+     * @return a TimeTableEntity object.
+     */
+    TimeTableEntity findById(Long id);
 
     /**
      * Creates a new TimeTableEntity and save into the database.

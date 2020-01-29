@@ -2,7 +2,7 @@ export class TimeTableEntityResponseDTO {
 
     day: number;
     lessonNumber: number;
-    classroomNumber: number;
+    classroomNumber: string;
     course_id: number;
     classroom_id: number;
 }

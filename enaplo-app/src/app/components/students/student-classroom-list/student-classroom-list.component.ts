@@ -50,7 +50,7 @@ export class StudentClassroomListComponent implements OnInit {
   }
 
   summary(user_id: number) {
-
+    this.studentService.findByUserId(user_id).subscribe(data => this.router.navigate(['student/summary', data.id]));
   }
 
   reports(user_id: number) {

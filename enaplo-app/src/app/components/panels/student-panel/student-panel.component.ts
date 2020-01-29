@@ -29,11 +29,10 @@ export class StudentPanelComponent implements OnInit {
   }
 
   timetable() {
-
+    this.studentService.findByUserId(this.currentUser.id).subscribe(data => this.router.navigate(['timetable/view', data.id]));
   }
 
   reports() {
-
   }
 
   update() {

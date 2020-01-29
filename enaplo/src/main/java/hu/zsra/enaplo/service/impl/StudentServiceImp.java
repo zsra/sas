@@ -156,16 +156,17 @@ public class StudentServiceImp implements StudentService {
         Student student = studentRepository.getOne(id);
         List<SummaryDTO> summaryDTOList = new ArrayList<>();
         for(Course course : courseRepository.findAll()) {
-            List<Exam> exams = student.getExams()
-                    .stream()
-                    .filter(exam -> exam.getCourse().getId().equals(course.getId()))
-                    .collect(Collectors.toList());
+            if(student.getCourses().contains(course)) {
+                List<Exam> exams = student.getExams()
+                        .stream()
+                        .filter(exam -> exam.getCourse().getId().equals(course.getId()))
+                        .collect(Collectors.toList());
 
-            double average = exams.stream().mapToDouble(Exam::getMark).average().orElse(Double.NaN);
+                double average = exams.stream().mapToDouble(Exam::getMark).average().orElse(Double.NaN);
 
-            summaryDTOList.add(new SummaryDTO(course.getTitle(),
-                    exams.stream().mapToInt(Exam::getMark).toArray(), average));
-
+                summaryDTOList.add(new SummaryDTO(course.getTitle(),
+                        exams.stream().mapToInt(Exam::getMark).toArray(), average));
+            }
         }
         return summaryDTOList;
     }

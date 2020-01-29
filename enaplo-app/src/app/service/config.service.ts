@@ -308,8 +308,14 @@ export class ConfigService {
     private createTimeTableUrl = this.timetableUrl + '/create';
     private updateTimeTableUrl = this.timetableUrl + '/update';
     private deleteTimeTableUrl = this.timetableUrl;
+    private findByIdTimeTableUrl = this.timetableUrl;
     private getTimeTableByStudentUrl = this.timetableUrl + '/student';
     private getTimeTableByTeacherUrl = this.timetableUrl + '/teacher';
+    private getTimeTableEntitiesByCourseUrl = this.timetableUrl + '/course';
+
+    get getFindByIdTimeTableUrl(): string {
+        return this.findByIdTimeTableUrl;
+    }
 
     get getCreateTimeTableUrl(): string {
         return this.createTimeTableUrl;
@@ -329,5 +335,9 @@ export class ConfigService {
 
     get getGetTimeTableByTeacherUrl(): string {
         return this.getTimeTableByTeacherUrl;
+    }
+
+    get getGetTimeTableEntitiesByCourseUrl(): string {
+        return this.getTimeTableEntitiesByCourseUrl;
     }
 }

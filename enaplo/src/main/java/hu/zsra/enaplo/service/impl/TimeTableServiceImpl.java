@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This class contains all related function implementations to the timeTableEntity.
@@ -71,6 +72,32 @@ public class TimeTableServiceImpl implements TimeTableService {
             result[tableEntity.getLessonNumber()][tableEntity.getDay()] = tableEntity;
         }
         return result;
+    }
+
+    /**
+     * Returns a List of TimeTableEntity, which are connected with a course.
+     * The course get by id. If the course id not valid or a list empty returns null.
+     *
+     * @param course_id Id of the Course.
+     * @return a List of the TimeTableEntity.
+     */
+    @Override
+    public List<TimeTableEntity> getTimeTableEntitiesByCourse(Long course_id) {
+        return timeTableRepository.findAll()
+                .stream()
+                .filter(timeTableEntity -> timeTableEntity.getCourse().getId().equals(course_id))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Returns an TimeTableEntity Object by id.
+     *
+     * @param id Id of the TimeTableEntity
+     * @return a TimeTableEntity object.
+     */
+    @Override
+    public TimeTableEntity findById(Long id) {
+        return timeTableRepository.getOne(id);
     }
 
     /**

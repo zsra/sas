@@ -50,6 +50,10 @@ import { UpdateReportComponent } from './components/reports/update-report/update
 import { CreateReportClassroomComponent } from './components/reports/create-report-classroom/create-report-classroom.component';
 import { SummaryStudentComponent } from './components/students/summary-student/summary-student.component';
 import { SummaryClassroomComponent } from './components/classrooms/summary-classroom/summary-classroom.component';
+import { TimetableEntityCreateComponent } from './components/timetables/timetable-entity-create/timetable-entity-create.component';
+import { TimetableEntityUpdateComponent } from './components/timetables/timetable-entity-update/timetable-entity-update.component';
+import { TimetableEntityViewComponent } from './components/timetables/timetable-entity-view/timetable-entity-view.component';
+import { TimetableListComponent } from './components/timetables/timetable-list/timetable-list.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +94,11 @@ import { SummaryClassroomComponent } from './components/classrooms/summary-class
     UpdateReportComponent,
     CreateReportClassroomComponent,
     SummaryStudentComponent,
-    SummaryClassroomComponent
+    SummaryClassroomComponent,
+    TimetableEntityCreateComponent,
+    TimetableEntityUpdateComponent,
+    TimetableEntityViewComponent,
+    TimetableListComponent
   ],
   imports: [
     BrowserModule,

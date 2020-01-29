@@ -22,8 +22,12 @@ export class TimeTableService {
         return this.apiService.get(this.configService.getGetTimeTableByTeacherUrl + '/' + id);
     }
 
-    create(timeTableEntity: TimeTableEntityResponseDTO) {
-        return this.apiService.post(this.configService.getCreateTimeTableUrl, timeTableEntity);
+    findById(id: number) {
+        return this.apiService.get(this.configService.getFindByIdTimeTableUrl + '/' + id);
+    }
+
+    create(timetable_id: number, timeTableEntity: TimeTableEntityResponseDTO) {
+        return this.apiService.post(this.configService.getCreateTimeTableUrl + '/' + timetable_id, timeTableEntity);
     }
 
     update(id: number, timeTableEntity: TimeTableEntityResponseDTO) {
@@ -32,5 +36,9 @@ export class TimeTableService {
 
     delete(id: number) {
         return this.apiService.delete(this.configService.getDeleteTimeTableUrl + '/' + id, id);
+    }
+
+    getTimeTableEntitiesByCourse(course_id: number) {
+        return this.apiService.get(this.configService.getGetTimeTableEntitiesByCourseUrl + '/' + course_id);
     }
 }

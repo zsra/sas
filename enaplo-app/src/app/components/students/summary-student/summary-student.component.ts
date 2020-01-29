@@ -39,6 +39,4 @@ export class SummaryStudentComponent implements OnInit {
   userRole(): string {
     return this.currentUser.authorities[0].authority + '';
   }
-
-
 }

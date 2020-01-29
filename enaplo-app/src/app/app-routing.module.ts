@@ -29,6 +29,10 @@ import { SummaryClassroomComponent } from './components/classrooms/summary-class
 import { SetCourseComponent } from './components/courses/set-course/set-course.component';
 import { CourseUpdateComponent } from './components/courses/course-update/course-update.component';
 import { StudentClassroomListComponent } from './components/students/student-classroom-list/student-classroom-list.component';
+import { TimetableEntityCreateComponent } from './components/timetables/timetable-entity-create/timetable-entity-create.component';
+import { TimetableEntityUpdateComponent } from './components/timetables/timetable-entity-update/timetable-entity-update.component';
+import { TimetableEntityViewComponent } from './components/timetables/timetable-entity-view/timetable-entity-view.component';
+import { TimetableListComponent } from './components/timetables/timetable-list/timetable-list.component';
 
 const routes: Routes = [
   {
@@ -137,6 +141,23 @@ const routes: Routes = [
   {
     path: 'course/setCourse/:id',
     component: SetCourseComponent
+  },
+  /* ----- TIMETABLE ----- */
+  {
+    path: 'timetable/create/:id',
+    component: TimetableEntityCreateComponent
+  },
+  {
+    path: 'timetable/update/:id',
+    component: TimetableEntityUpdateComponent
+  },
+  {
+    path: 'timetable/view/:id',
+    component: TimetableEntityViewComponent
+  },
+  {
+    path: 'timetable/course/:id',
+    component: TimetableListComponent
   },
   /* ----- DEFAULT ----- */
   {

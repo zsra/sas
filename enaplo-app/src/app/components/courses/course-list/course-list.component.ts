@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { Course } from 'src/app/model/course';
+import { TimeTableService } from 'src/app/service/timeTable.service';
+import { TimeTableEntity } from 'src/app/model/timeTableEntity';
 
 @Component({
   selector: 'app-course-list',
@@ -16,16 +18,18 @@ export class CourseListComponent implements OnInit {
   courses: Observable<Course[]>;
   isDataAvailable:boolean = false;
   user: any;
-
+  
   constructor(private userService: UserService, private router: Router,
-    private courseService: CourseService) { }
+    private courseService: CourseService, private timeTableService: TimeTableService) { }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.user = data;
-      this.courseService.findAll().subscribe(data =>
-        this.courses = data);
-    }).then(() => this.isDataAvailable = true);
+      this.courseService.findAll().subscribe(data => {
+        this.courses = data;
+        this.isDataAvailable = true;
+      });
+    });
   }
 
   hasSignedIn() {
@@ -42,6 +46,10 @@ export class CourseListComponent implements OnInit {
     this.courseService.findById(course_id).subscribe(
       data => this.router.navigate(['/course/update', data.id])
     );
+  }
+
+  timetable(course_id: number) {
+    this.router.navigate(['/timetable/course', course_id]);
   }
 
   delete(course_id: number) {
