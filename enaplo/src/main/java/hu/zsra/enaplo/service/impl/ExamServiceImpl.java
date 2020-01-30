@@ -47,6 +47,17 @@ public class ExamServiceImpl implements ExamService {
     }
 
     /**
+     * Returns an Exam object by id.
+     *
+     * @param id Id of the Exam.
+     * @return an exam object.
+     */
+    @Override
+    public Exam findById(Long id) {
+        return examRepository.getOne(id);
+    }
+
+    /**
      * Creates a new exam and save into the database.
      *
      * @param examResponseDTO Submitted DTO from web application.

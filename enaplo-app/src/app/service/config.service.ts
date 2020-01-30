@@ -172,6 +172,7 @@ export class ConfigService {
     }
 
     private courseUrl = this.baseUrl + '/courses';
+    private getCoursesByTeacherIdUrl = this.courseUrl + '/teacher';
     private createCourseUrl = this.courseUrl + '/create';
     private updateCourseUrl = this.courseUrl + '/update';
     private setCourseToStudentUrl = this.courseUrl + '/setCourse';
@@ -181,6 +182,10 @@ export class ConfigService {
 
     get getCreateCourseUrl(): string {
         return this.createCourseUrl;
+    }
+
+    get getGetCoursesByTeacherIdUrl(): string {
+        return this.getCoursesByTeacherIdUrl;
     }
 
     get getUpdateCourseUrl(): string {
@@ -204,15 +209,20 @@ export class ConfigService {
     }
 
     private examUrl = this.baseUrl + '/exams';
-    private examfindAllByStudent = this.examUrl + '/student';
+    private findExamByIdUrl = this.examUrl;
+    private examfindAllByStudentUrl = this.examUrl + '/student';
     private createExamUrl = this.examUrl + '/create';
     private updateExamUrl = this.examUrl + '/update';
     private deleteExamUrl = this.examUrl;
-    private createExamsFromForm = this.examUrl + 'form/create';
-    private makeExamsFormToClassroom = this.examUrl + '/form';
+    private createExamsFromFormUrl = this.examUrl + 'form/create';
+    private makeExamsFormToClassroomUrl = this.examUrl + '/form';
 
-    get getExamfindAllByStudent(): string {
-        return this.examfindAllByStudent;
+    get getExamfindAllByStudentUrl(): string {
+        return this.examfindAllByStudentUrl;
+    }
+
+    get getFindExamByIdUrl(): string {
+        return this.findExamByIdUrl;
     }
 
     get getCreateExamUrl(): string {
@@ -227,12 +237,12 @@ export class ConfigService {
         return this.deleteExamUrl;
     }
 
-    get getCreateExamsFromForm(): string {
-        return this.createExamsFromForm;
+    get getCreateExamsFromFormUrl(): string {
+        return this.createExamsFromFormUrl;
     }
 
-    get getMakeExamsFormToClassroom(): string {
-        return this.makeExamsFormToClassroom;
+    get getMakeExamsFormToClassroomUrl(): string {
+        return this.makeExamsFormToClassroomUrl;
     }
 
     private reportUrl = this.baseUrl + '/reports';

@@ -22,6 +22,14 @@ public interface ExamService {
     List<Exam> findAllByStudent(Long student_id, Long course_id);
 
     /**
+     * Returns an Exam object by id.
+     *
+     * @param id Id of the Exam.
+     * @return an exam object.
+     */
+    Exam findById(Long id);
+
+    /**
      * Creates a new exam and save into the database.
      *
      * @param examResponseDTO Submitted DTO from web application.

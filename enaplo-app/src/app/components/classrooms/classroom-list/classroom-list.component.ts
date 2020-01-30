@@ -41,4 +41,16 @@ export class ClassroomListComponent implements OnInit {
   delete(classroom_id: number) {
 
   }
+
+  exam(classroom_id: number) {
+
+  }
+
+  report(classroom_id: number) {
+
+  }
+
+  students(classroom_id: number) {
+    this.router.navigate(['student/classroom', classroom_id]);
+  }
 }

@@ -1,6 +1,6 @@
 <div *ngIf="isDataLoaded">
+    <app-panel-loader></app-panel-loader>
     <div class="teacher-create-container" *ngIf="userRole() === 'ROLE_ADMIN' || currentUser.id == teacher.teacher.id">
-        <app-admin-panel></app-admin-panel>
         <h2>Update</h2>
         <div class="create-form">
             <button  mat-button mat-ripple (click)='userUpdate()' class="btn">Account settings</button>

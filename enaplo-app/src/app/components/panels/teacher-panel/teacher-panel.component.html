@@ -1,1 +1,12 @@
-<p>teacher-panel works!</p>
+<mat-toolbar class="teacher-panel">
+    <div *ngIf="isDataAvailable" class="teacher-panel-container">
+        <span class="title">Teacher</span>
+            <div class="right" >
+                <button mat-button mat-ripple (click)='classrooms()' class="teacher-button">Classes</button>
+                <button mat-button mat-ripple (click)='classExam()' class="teacher-button">Class Exam</button>
+                <button mat-button mat-ripple (click)='classReport()' class="teacher-button">Class Report</button>
+                <button mat-button mat-ripple (click)='attendances()' class="teacher-button">Attendances</button>
+                <button mat-button mat-ripple (click)='createAttendance()' class="teacher-button">Create Attendance</button>
+            </div>
+        </div>
+</mat-toolbar>

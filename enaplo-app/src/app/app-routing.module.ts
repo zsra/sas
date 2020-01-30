@@ -25,7 +25,6 @@ import { CourseDetailsComponent } from './components/courses/course-details/cour
 import { SummaryStudentComponent } from './components/students/summary-student/summary-student.component';
 import { TeacherUpdateComponent } from './components/teachers/teacher-update/teacher-update.component';
 import { SetCourseClassroomComponent } from './components/classrooms/set-course-classroom/set-course-classroom.component';
-import { SummaryClassroomComponent } from './components/classrooms/summary-classroom/summary-classroom.component';
 import { SetCourseComponent } from './components/courses/set-course/set-course.component';
 import { CourseUpdateComponent } from './components/courses/course-update/course-update.component';
 import { StudentClassroomListComponent } from './components/students/student-classroom-list/student-classroom-list.component';
@@ -33,6 +32,10 @@ import { TimetableEntityCreateComponent } from './components/timetables/timetabl
 import { TimetableEntityUpdateComponent } from './components/timetables/timetable-entity-update/timetable-entity-update.component';
 import { TimetableEntityViewComponent } from './components/timetables/timetable-entity-view/timetable-entity-view.component';
 import { TimetableListComponent } from './components/timetables/timetable-list/timetable-list.component';
+import { CreateExamClassroomComponent } from './components/exams/create-exam-classroom/create-exam-classroom.component';
+import { CreateExamComponent } from './components/exams/create-exam/create-exam.component';
+import { UpdateExamComponent } from './components/exams/update-exam/update-exam.component';
+import { ExamListComponent } from './components/exams/exam-list/exam-list.component';
 
 const routes: Routes = [
   {
@@ -117,10 +120,6 @@ const routes: Routes = [
     path: 'classroom/setCourse/:id',
     component: SetCourseClassroomComponent
   },
-  {
-    path: 'classroom/summaries/:id',
-    component: SummaryClassroomComponent
-  },
   /* ----- COURSE ----- */
   {
     path: 'course/all',
@@ -158,6 +157,23 @@ const routes: Routes = [
   {
     path: 'timetable/course/:id',
     component: TimetableListComponent
+  },
+  /* ----- EXAM ----- */
+  {
+    path: 'exam/create/:id',
+    component: CreateExamComponent
+  },
+  {
+    path: 'exam/update/:id',
+    component: UpdateExamComponent
+  },
+  {
+    path: 'exam/classroom/:id',
+    component: CreateExamClassroomComponent
+  },
+  {
+    path: 'exam/list/:id',
+    component: ExamListComponent
   },
   /* ----- DEFAULT ----- */
   {

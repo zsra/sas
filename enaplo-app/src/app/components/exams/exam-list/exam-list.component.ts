@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Exam } from 'src/app/model/exam';
+import { Course } from 'src/app/model/course';
+import { UserService } from 'src/app/service/user.service';
+import { CourseService } from 'src/app/service/course.service';
+import { ExamService } from 'src/app/service/exam.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-exam-list',
@@ -7,9 +14,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExamListComponent implements OnInit {
 
-  constructor() { }
+  student_id: number;
+  currentUser: any = {};
+  exams: Observable<Exam[]>;
+  courses: Observable<Course[]>;
+  selected: boolean = false;
+  isDataAvailable: boolean = false;
+  selectedOption: any = {};
+
+  constructor(private userService: UserService, private courseService: CourseService, 
+    private examService: ExamService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.student_id = this.route.snapshot.params['id'];
+    this.userService.getMyInfo().toPromise().then(data =>  {
+      this.currentUser = data; 
+      this.courseService.getCoursesByTeacherId(data.id).subscribe(data => {
+        this.courses = data;
+        this.isDataAvailable = true;
+      });
+    });
+  }
+
+  create() {
+    this.router.navigate(['exam/create', this.student_id]);
+  }
+
+  onSubmit() {
+    console.log(this.selectedOption.id);
+    this.examService.findAllByStudent(this.student_id, this.selectedOption.id).subscribe(data => {
+      this.exams = data;
+      this.selected = true;
+    });
+  }
+
+  update(exam_id: number) {
+    this.router.navigate(['exam/update/', exam_id]);
+  }
+
+  delete(exam_id: number) {
+
+  }
+
+  userRole(): string {
+    return this.currentUser.authorities[0].authority + '';
   }
 
 }

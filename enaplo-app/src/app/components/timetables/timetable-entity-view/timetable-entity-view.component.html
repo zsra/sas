@@ -1,8 +1,5 @@
 <div *ngIf="isDataAvailable">
-    <app-admin-panel *ngIf="userRole() === 'ROLE_ADMIN'"></app-admin-panel>
-    <app-teacher-panel *ngIf="userRole() === 'ROLE_TEACHER' || userRole() === 'ROLE_HEADTEACHER'"></app-teacher-panel>
-    <app-student-panel *ngIf="userRole() === 'ROLE_STUDENT'"></app-student-panel>
-    <app-headteacher-panel *ngIf="userRole() === 'ROLE_HEADTEACHER'"></app-headteacher-panel>
+    <app-panel-loader></app-panel-loader>
     <div class="timetable-container">  
         <h2>Timetable</h2>
         <div class="timetable table-responsive">

@@ -22,15 +22,17 @@ export class HeadteacherPanelComponent implements OnInit {
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentuser = data;
-    }).then(() => this.teacherService.findByUserId(this.currentuser.id).subscribe(data => this.teacher = data))
-    .then(() => this.isDataAvailable = true);
+      this.teacherService.findByUserId(this.currentuser.id).subscribe(data =>  {
+        this.teacher = data;
+        this.isDataAvailable = true
+      })
+    });
   }
 
   getMyClassroom() {
     this.classroomService.findByHeadteacherId(this.teacher.id).subscribe(data => {
       this.router.navigate(['student/classroom', data.id]);
-    });
-    
+    });  
   }
 
   getAttendances() {

@@ -54,6 +54,10 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  setCourse(student_id: number) {
+    this.router.navigate(['course/setCourse', student_id]);
+  }
+
   delete(user_id: number) {
 
   }

@@ -28,6 +28,14 @@ public interface CourseService {
     Course findById(Long id);
 
     /**
+     * Returns a List of Courses by Teacher id.
+     *
+     * @param teacher_id Id of the Teacher.
+     * @return a list of courses.
+     */
+    List<Course> getCoursesByTeacherId(Long teacher_id);
+
+    /**
      * Creates a new course and save into the database.
      *
      * @param courseResponseDTO Submitted DTO from web application.

@@ -1,6 +1,6 @@
 <div *ngIf="isDataAvailable">
+    <app-panel-loader></app-panel-loader>
     <div class="student-create-container" *ngIf="userRole() != 'ROLE_STUDENT' || currentUser.id == student.student.id">
-        <app-student-panel *ngIf="userRole() === 'ROLE_STUDENT'"></app-student-panel>
         <h2>Update</h2>
         <div class="create-form">
             <button mat-button mat-ripple (click)='userUpdate()' id="account" class="btn btn-dark">Account settings</button>

@@ -89,7 +89,7 @@ public class ClassroomServiceImpl implements ClassroomService {
                 teacher
         ); // Creates a new classroom.
         /* sets back a teacher role from ROLE_TEACHER to ROLE_HEADTEACHER. */
-        classroomRepository.setHeadteacherFromTeacher(teacher.getId());
+        classroomRepository.setHeadteacherFromTeacher(teacherRepository.GetUserIdByTeacherId(teacher.getId()));
         return classroomRepository.save(classroom);
     }
 
@@ -118,7 +118,7 @@ public class ClassroomServiceImpl implements ClassroomService {
         /* sets  a teacher role from ROLE_HEADTEACHER to ROLE_TEACHER. */
         classroomRepository.setTeacherFromHeadteacher(classroom.getHeadTeacher().getTeacher().getId());
         /* sets  a teacher role from ROLE_TEACHER to ROLE_HEADTEACHER. */
-        classroomRepository.setHeadteacherFromTeacher(teacher.getId());
+        classroomRepository.setHeadteacherFromTeacher(teacher.getTeacher().getId());
 
         return classroomRepository.save(classroom);
     }

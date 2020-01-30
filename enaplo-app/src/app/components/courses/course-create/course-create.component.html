@@ -1,6 +1,6 @@
 <div *ngIf="isDataLoaded">
-    <div class="course-create-container" *ngIf="userRole() === 'ROLE_ADMIN'">
-        <app-admin-panel></app-admin-panel>
+    <app-panel-loader></app-panel-loader>
+    <div class="course-create-container" *ngIf="userRole() === 'ROLE_ADMIN'"> 
         <h2>Create Course</h2>
         <div class="create-form">
             <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-course">

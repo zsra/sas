@@ -18,10 +18,15 @@ public class ExamController {
     @Autowired
     private ExamServiceImpl examService;
 
-    @GetMapping(value = "/exams/student/{student_id}")
+    @PostMapping(value = "/exams/student/{student_id}")
     public List<Exam> findAllByStudent(@PathVariable Long student_id,
                                        @RequestBody Long course_id) {
-        return this.examService.findAllByStudent(student_id, course_id);
+        return examService.findAllByStudent(student_id, course_id);
+    }
+
+    @GetMapping(value = "/exams/{id}")
+    public Exam findById(@PathVariable Long id) {
+        return examService.findById(id);
     }
 
     @PostMapping(value = "/exams/create")
@@ -30,7 +35,7 @@ public class ExamController {
     }
 
     @PutMapping(value = "/exams/update/{id}")
-    public Exam update(@PathVariable Long id,
+        public Exam update(@PathVariable Long id,
                        @RequestBody ExamResponseDTO examResponseDTO) {
         return examService.update(id, examResponseDTO);
     }

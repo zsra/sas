@@ -57,4 +57,16 @@ export class StudentClassroomListComponent implements OnInit {
 
   }
 
+  attendances(user_id: number) {
+
+  }
+
+  exam(student_id: number) {
+    this.router.navigate(['exam/list', student_id]);
+  }
+
+  report(student_id: number) {
+    
+  }
+
 }

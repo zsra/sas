@@ -1,6 +1,6 @@
 <div *ngIf="isDataAvailable">
+    <app-panel-loader></app-panel-loader>
     <div class="user-list-container" *ngIf="userRole() === 'ROLE_ADMIN'">
-        <app-admin-panel></app-admin-panel>
         <div class="user-list-container-body">
             <div class="user-list-header">
                 <h3>User List</h3>
@@ -27,6 +27,8 @@
                                 (click)="update(user.id)" class="btn btn-warning">Update</button>
                                 <button *ngIf="!(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
                                 (click)="delete(user.id)" class="btn btn-danger">Delete</button>
+                                <button *ngIf="!(user.authorities[0].authority + '' === 'ROLE_STUDENT')" 
+                                (click)="setCourse(user.id)" class="btn btn-secondary">Set Course</button>
                             </td>
                         </tr>
                     </tbody>

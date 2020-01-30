@@ -1,1 +1,21 @@
-<p>set-course-classroom works!</p>
+<div *ngIf="isDataAvailable">
+    <app-panel-loader></app-panel-loader>
+    <div class="user-list-container" *ngIf="userRole() === 'ROLE_ADMIN'">
+        <div class="course-container-body">
+            <div class="course-list-header">
+                <h3>Set course to class</h3>
+            </div>
+            <div>
+                <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-course">           
+                    <div class="form-group">
+                        <label for="course">Course</label>
+                        <select name="course" class="form-control form-control-sm" [(ngModel)]="selectedOption">
+                            <option *ngFor="let course of courses" [ngValue]="course">{{course.title}}/{{course.year}}</option>
+                        </select>
+                    </div>  
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -17,12 +17,17 @@ public class CourseController {
 
     @GetMapping(value = "/courses/all")
     public List<Course> findAll() {
-        return this.courseService.findAll();
+        return courseService.findAll();
     }
 
     @GetMapping(value = "/courses/{id}")
     public Course FindById(@PathVariable Long id) {
-        return this.courseService.findById(id);
+        return courseService.findById(id);
+    }
+
+    @GetMapping(value = "/courses/teacher/{teacher_id}")
+    public List<Course> getCoursesByTeacherId(@PathVariable Long teacher_id) {
+        return  courseService.getCoursesByTeacherId(teacher_id);
     }
 
     @PostMapping(value = "/courses/create")

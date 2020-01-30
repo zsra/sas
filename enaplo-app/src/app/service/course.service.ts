@@ -21,6 +21,10 @@ export class CourseService {
         return this.apiService.get(this.configService.getGetCourseByIdUrl + '/' + id);
     }
 
+    getCoursesByTeacherId(teacher_id: number) {
+        return this.apiService.get(this.configService.getGetCoursesByTeacherIdUrl + '/' + teacher_id);
+    }
+
     create(course: CourseResponseDTO) {
         return this.apiService.post(this.configService.getCreateCourseUrl, course);
     }

@@ -49,11 +49,13 @@ import { CreateReportComponent } from './components/reports/create-report/create
 import { UpdateReportComponent } from './components/reports/update-report/update-report.component';
 import { CreateReportClassroomComponent } from './components/reports/create-report-classroom/create-report-classroom.component';
 import { SummaryStudentComponent } from './components/students/summary-student/summary-student.component';
-import { SummaryClassroomComponent } from './components/classrooms/summary-classroom/summary-classroom.component';
 import { TimetableEntityCreateComponent } from './components/timetables/timetable-entity-create/timetable-entity-create.component';
 import { TimetableEntityUpdateComponent } from './components/timetables/timetable-entity-update/timetable-entity-update.component';
 import { TimetableEntityViewComponent } from './components/timetables/timetable-entity-view/timetable-entity-view.component';
 import { TimetableListComponent } from './components/timetables/timetable-list/timetable-list.component';
+import { CreateAttendanceComponent } from './components/attendances/create-attendance/create-attendance.component';
+import { ViewAttendanceComponent } from './components/attendances/view-attendance/view-attendance.component';
+import { PanelLoaderComponent } from './components/panels/panel-loader/panel-loader.component';
 
 @NgModule({
   declarations: [
@@ -94,11 +96,13 @@ import { TimetableListComponent } from './components/timetables/timetable-list/t
     UpdateReportComponent,
     CreateReportClassroomComponent,
     SummaryStudentComponent,
-    SummaryClassroomComponent,
     TimetableEntityCreateComponent,
     TimetableEntityUpdateComponent,
     TimetableEntityViewComponent,
-    TimetableListComponent
+    TimetableListComponent,
+    CreateAttendanceComponent,
+    ViewAttendanceComponent,
+    PanelLoaderComponent
   ],
   imports: [
     BrowserModule,
