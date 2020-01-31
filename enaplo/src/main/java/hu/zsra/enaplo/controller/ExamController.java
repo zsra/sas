@@ -46,10 +46,10 @@ public class ExamController {
         return id.toString();
     }
 
-    @GetMapping(value = "/exams/form/{classroom_id}")
+    @PostMapping(value = "/exams/form/{classroom_id}")
     public List<ExamDTO> makeExamsFormToClassroom(@PathVariable Long classroom_id,
-                                                  @RequestBody LocalDate written_at) {
-        return examService.makeExamsFormToClassroom(classroom_id, written_at);
+                                                  @RequestBody String written_at) {
+        return examService.makeExamsFormToClassroom(classroom_id,LocalDate.parse(written_at));
     }
 
     @PostMapping(value = "/exams/form/create")

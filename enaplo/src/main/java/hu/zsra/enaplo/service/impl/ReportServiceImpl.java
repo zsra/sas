@@ -46,6 +46,17 @@ public class ReportServiceImpl implements ReportService {
     }
 
     /**
+     * Returns a Report object by id.
+     *
+     * @param id Id of the Course.
+     * @return a report object.
+     */
+    @Override
+    public Report findById(Long id) {
+        return reportRepository.getOne(id);
+    }
+
+    /**
      * Creates a new report and save into the database.
      *
      * @param reportResponseDTO Submitted DTO from web application.

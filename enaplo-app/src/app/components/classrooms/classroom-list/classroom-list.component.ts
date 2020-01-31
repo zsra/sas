@@ -23,9 +23,11 @@ export class ClassroomListComponent implements OnInit {
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data;
-      this.classroomService.findAll().subscribe(data =>
-        this.classrooms = data);
-    }).then(() => this.isDataAvailable = true);
+      this.classroomService.findAll().subscribe(data => {
+        this.classrooms = data;
+        this.isDataAvailable = true;
+      });
+    });
   }
 
   userRole(): string {
@@ -41,7 +43,7 @@ export class ClassroomListComponent implements OnInit {
   }
 
   exam(classroom_id: number) {
-
+    this.router.navigate(['exam/classroom' , classroom_id]);
   }
 
   report(classroom_id: number) {

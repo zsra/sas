@@ -214,7 +214,7 @@ export class ConfigService {
     private createExamUrl = this.examUrl + '/create';
     private updateExamUrl = this.examUrl + '/update';
     private deleteExamUrl = this.examUrl;
-    private createExamsFromFormUrl = this.examUrl + 'form/create';
+    private createExamsFromFormUrl = this.examUrl + '/form/create';
     private makeExamsFormToClassroomUrl = this.examUrl + '/form';
 
     get getExamfindAllByStudentUrl(): string {
@@ -247,6 +247,7 @@ export class ConfigService {
 
     private reportUrl = this.baseUrl + '/reports';
     private getSemesterResultByStudentUrl = this.reportUrl;
+    private findReportByIdUrl = this.reportUrl;
     private createrReportUrl = this.reportUrl + '/create';
     private updateReportUrl = this.reportUrl + '/update';
     private deletereportUrl = this.reportUrl;
@@ -255,6 +256,10 @@ export class ConfigService {
 
     get getGetSemesterResultByStudentUrl(): string {
         return this.getSemesterResultByStudentUrl;
+    }
+
+    get getFindReportByIdUrl(): string {
+        return this.findReportByIdUrl;
     }
 
     get getCreateReportUrl(): string {

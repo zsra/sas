@@ -24,6 +24,14 @@ public interface ReportService {
     List<Report> getSemesterResultByStudent(Long student_id, int year, int semester);
 
     /**
+     * Returns a Report object by id.
+     *
+     * @param id Id of the Course.
+     * @return a report object.
+     */
+    Report findById(Long id);
+
+    /**
      * Creates a new report and save into the database.
      *
      * @param reportResponseDTO Submitted DTO from web application.

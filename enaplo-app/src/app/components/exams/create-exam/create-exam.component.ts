@@ -17,7 +17,7 @@ import { TeacherService } from 'src/app/service/teacher.service';
 })
 export class CreateExamComponent implements OnInit {
 
-  exam_id: number;
+  student_id: number;
   currentUser: any = {};
   isDataAvailable: boolean  = false;
   exam = new ExamResponseDTO();
@@ -29,7 +29,7 @@ export class CreateExamComponent implements OnInit {
     private courseService: CourseService, private studentService: StudentService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.exam_id = this.route.snapshot.params['id'];
+    this.student_id = this.route.snapshot.params['id'];
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data;
       this.teacherService.findByUserId(this.currentUser.id).subscribe(data => {
@@ -42,7 +42,7 @@ export class CreateExamComponent implements OnInit {
   }
 
   onSubmit() {
-    this.exam.student_id = this.exam_id;
+    this.exam.student_id = this.student_id;
     this.exam.course_id = this.selectedOption.id;
     this.examService.create(this.exam).subscribe(() => {
       this.goBack();
@@ -50,7 +50,7 @@ export class CreateExamComponent implements OnInit {
   }
 
   goBack() {
-    this.studentService.findById(this.exam_id).subscribe(data => {
+    this.studentService.findById(this.student_id).subscribe(data => {
       this.router.navigate(['/student/classroom', data.classroom.id]);
     });
   }

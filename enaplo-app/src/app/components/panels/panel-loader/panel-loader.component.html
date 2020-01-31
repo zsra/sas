@@ -1,4 +1,4 @@
-<div class="p-container">
+<div class="p-container" *ngIf="isDataAvailable">
     <app-admin-panel *ngIf="userRole() === 'ROLE_ADMIN'"></app-admin-panel>
     <app-teacher-panel *ngIf="userRole() === 'ROLE_TEACHER' || userRole() === 'ROLE_HEADTEACHER'"></app-teacher-panel>
     <app-student-panel *ngIf="userRole() === 'ROLE_STUDENT'"></app-student-panel>

@@ -16,10 +16,15 @@ public class ReportController {
     @Autowired
     private ReportServiceImpl reportService;
 
-    @GetMapping(value = "/reports/{student_id}/{year}")
+    @PostMapping(value = "/reports/{student_id}/{year}")
     public List<Report> getSemesterResultByStudent(@PathVariable Long student_id,
                                                    @PathVariable int year, @RequestBody int semester) {
         return reportService.getSemesterResultByStudent(student_id, year, semester);
+    }
+
+    @GetMapping(value = "/reports/{id}")
+    public Report findById(@PathVariable Long id) {
+        return reportService.findById(id);
     }
 
     @PostMapping(value = "/reports/create")

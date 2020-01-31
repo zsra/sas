@@ -14,7 +14,11 @@ export class ReportService {
     }
 
     getSemesterResultByStudent(student_id: number, year: number, semester: number) {
-        return this.apiService.get(this.configService.getGetSemesterResultByStudentUrl + '/' + student_id + '/' + year, semester);
+        return this.apiService.post(this.configService.getGetSemesterResultByStudentUrl + '/' + student_id + '/' + year, semester);
+    }
+
+    findByIdUrl(id: number) {
+        return this.apiService.get(this.configService.getFindReportByIdUrl + '/' + id);
     }
 
     create(report: ReportResponseDTO) {

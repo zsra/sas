@@ -1,1 +1,29 @@
-<p>update-report works!</p>
+<div *ngIf="isDataAvailable">
+    <app-panel-loader></app-panel-loader>
+    <div class="container" *ngIf="userRole() != 'ROLE_STUDENT'">
+        <h2>Update</h2>
+        <div class="container">
+            <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-report">
+                <div class="form-group">
+                    <label for="course">Course</label>
+                    <select name="course" class="form-control form-control-sm" [(ngModel)]="selectedOption">
+                        <option *ngFor="let course of courses" [ngValue]="course">{{course.title}}/{{course.year}}</option>
+                    </select>
+                </div>                  
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <input type="number" class="form-control" id="year" required [(ngModel)]="report.year" min="1" max="14" name="year">
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester</label>
+                    <input type="number" class="form-control" id="semester" required [(ngModel)]="report.semester" min="1" max="2" name="semester">
+                </div>
+                <div class="form-group">
+                    <label for="mark">Mark</label>
+                    <input type="number" class="form-control" id="mark" required [(ngModel)]="report.mark" min="1" max="5" name="mark">
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

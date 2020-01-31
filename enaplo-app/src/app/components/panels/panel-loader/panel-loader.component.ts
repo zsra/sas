@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -6,20 +6,18 @@ import { UserService } from 'src/app/service/user.service';
   templateUrl: './panel-loader.component.html',
   styleUrls: ['./panel-loader.component.scss']
 })
-export class PanelLoaderComponent implements OnInit, OnDestroy {
+export class PanelLoaderComponent implements OnInit {
 
   user: any = {};
+  isDataAvailable: boolean = false;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.user = data;
+      this.isDataAvailable = true;
     });
-  }
-
-  ngOnDestroy() {
-    this.user = null;
   }
 
   userRole(): string {

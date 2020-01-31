@@ -6,6 +6,7 @@ import { UserService } from 'src/app/service/user.service';
 import { CourseService } from 'src/app/service/course.service';
 import { ExamService } from 'src/app/service/exam.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TeacherService } from 'src/app/service/teacher.service';
 
 @Component({
   selector: 'app-exam-list',
@@ -22,16 +23,18 @@ export class ExamListComponent implements OnInit {
   isDataAvailable: boolean = false;
   selectedOption: any = {};
 
-  constructor(private userService: UserService, private courseService: CourseService, 
+  constructor(private userService: UserService, private courseService: CourseService, private teacherService: TeacherService,
     private examService: ExamService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.student_id = this.route.snapshot.params['id'];
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data; 
-      this.courseService.getCoursesByTeacherId(data.id).subscribe(data => {
-        this.courses = data;
-        this.isDataAvailable = true;
+      this.teacherService.findByUserId(this.currentUser.id).subscribe(data => {
+        this.courseService.getCoursesByTeacherId(data.id).subscribe(data => {
+          this.courses = data;
+          this.isDataAvailable = true;
+        });
       });
     });
   }

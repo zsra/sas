@@ -38,8 +38,4 @@ export class HeadteacherPanelComponent implements OnInit {
   getAttendances() {
 
   }
-
-  getSummaries() {
-
-  }
 }

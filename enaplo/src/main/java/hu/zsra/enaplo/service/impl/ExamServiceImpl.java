@@ -71,12 +71,15 @@ public class ExamServiceImpl implements ExamService {
         /* Finds course by id. */
         Course course = courseRepository.getOne(examResponseDTO.getCourse_id());
 
-        return examRepository.save(new Exam(
-                examResponseDTO.getMark(),
-                examResponseDTO.getWritten_at(),
-                course,
-                student
-        ));
+        if(examResponseDTO.getMark() <= 1 && examResponseDTO.getMark() >= 5) {
+            return examRepository.save(new Exam(
+                    examResponseDTO.getMark(),
+                    examResponseDTO.getWritten_at(),
+                    course,
+                    student
+            ));
+        }
+        return null;
     }
 
     /**
@@ -92,9 +95,10 @@ public class ExamServiceImpl implements ExamService {
         /* Finds exam by id. */
         Exam exam = examRepository.getOne(id);
 
-        exam.setMark(examResponseDTO.getMark());
-        exam.setWrittenAt(examResponseDTO.getWritten_at());
-
+        if(examResponseDTO.getMark() >= 1 && examResponseDTO.getMark() <= 5) {
+            exam.setMark(examResponseDTO.getMark());
+            exam.setWrittenAt(examResponseDTO.getWritten_at());
+        }
         return examRepository.save(exam);
     }
 
@@ -141,15 +145,18 @@ public class ExamServiceImpl implements ExamService {
 
         for(ExamResponseDTO examResponseDTO : examResponseDTOS) {
             /* Finds student by id. */
-            Student student = studentRepository.getOne(examResponseDTO.getStudent_id());
-            Exam exam = new Exam(
-                    examResponseDTO.getMark(),
-                    examResponseDTO.getWritten_at(),
-                    course,
-                    student
-            ); // Creates a new exam.
-            result.add(exam);
-            examRepository.save(exam); //Saves the exam.
+            if(examResponseDTO.getMark() >= 1 && examResponseDTO.getMark() <= 5) {
+                Student student = studentRepository.getOne(examResponseDTO.getStudent_id());
+                Exam exam = new Exam(
+                        examResponseDTO.getMark(),
+                        examResponseDTO.getWritten_at(),
+                        course,
+                        student
+                ); // Creates a new exam.
+                result.add(exam);
+                examRepository.save(exam); //Saves the exam.
+            }
+
         }
         return result;
     }

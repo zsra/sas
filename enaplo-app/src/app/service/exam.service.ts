@@ -34,7 +34,7 @@ export class ExamService {
     }
 
     makeExamsFormToClassroom(classroom_id: number, written_at: string) {
-        return this.apiService.get(this.configService.getMakeExamsFormToClassroomUrl + '/' + classroom_id, written_at);
+        return this.apiService.post(this.configService.getMakeExamsFormToClassroomUrl + '/' + classroom_id, written_at);
     }
 
     createExamsFromForm(examResponseDTOS: ExamResponseDTO[]) {

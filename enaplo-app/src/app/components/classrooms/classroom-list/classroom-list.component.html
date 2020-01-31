@@ -25,21 +25,12 @@
                             <td>{{classroom.end_year}}</td>
                             <td>{{classroom.headTeacher.teacher.fullName}}</td>
                             <td>
-                                <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
-                                (click)="update(classroom.id)" class="btn btn-warning">Update</button>
-                                <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
-                                (click)="delete(classroom.id)" class="btn btn-danger">Delete</button>
-                                <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
-                                (click)="setCourse(classroom.id)" class="btn btn-info">Set Course</button>
-                                <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_TEACHER'
-                                || user.authorities[0].authority + '' === 'ROLE_HEADTEACHER')" 
-                                (click)="exam(classroom.id)" class="btn btn-secondary">Exam</button>
-                                <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_TEACHER'
-                                || user.authorities[0].authority + '' === 'ROLE_HEADTEACHER')" 
-                                (click)="report(classroom.id)" class="btn btn-secondary">Report</button>
-                                <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_TEACHER'
-                                || user.authorities[0].authority + '' === 'ROLE_HEADTEACHER')" 
-                                (click)="students(classroom.id)" class="btn btn-secondary">Students</button>
+                                <button *ngIf="userRole() === 'ROLE_ADMIN'" (click)="update(classroom.id)" class="btn btn-warning">Update</button>
+                                <button *ngIf="userRole() === 'ROLE_ADMIN'" (click)="delete(classroom.id)" class="btn btn-danger">Delete</button>
+                                <button *ngIf="userRole() === 'ROLE_ADMIN'" (click)="setCourse(classroom.id)" class="btn btn-info">Set Course</button>
+                                <button *ngIf="userRole() === 'ROLE_TEACHER'|| userRole() === 'ROLE_HEADTEACHER'" (click)="exam(classroom.id)" class="btn btn-secondary">Exam</button>
+                                <button *ngIf="userRole() === 'ROLE_TEACHER'|| userRole() === 'ROLE_HEADTEACHER'" (click)="report(classroom.id)" class="btn btn-secondary">Report</button>
+                                <button *ngIf="userRole() === 'ROLE_TEACHER' || userRole() === 'ROLE_HEADTEACHER'" (click)="students(classroom.id)" class="btn btn-secondary">Students</button>
                             </td>
                         </tr>
                     </tbody>

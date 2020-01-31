@@ -11,14 +11,15 @@
                     </select>
                 </div>           
                 <div class="form-group">
-                    <label for="mark">mark</label>
-                    <input type="number" class="form-control" id="mark" required [(ngModel)]="exam.mark" name="mark">
+                    <label for="mark">Mark</label>
+                    <input type="number" class="form-control" id="mark" required [(ngModel)]="exam.mark" min="1" max="5" name="mark">
                 </div>
                 <div class="form-group">
                     <label for="written_at">Written At</label>
                     <input type="date" class="form-control" id="written_at" required [(ngModel)]="exam.written_at" name="written_at">
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
+                <button (click)="goBack()" class="btn btn-dark">Back</button>
             </form>
         </div>
     </div>
