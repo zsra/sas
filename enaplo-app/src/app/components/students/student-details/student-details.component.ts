@@ -11,7 +11,7 @@ import { StudentService } from 'src/app/service/student.service';
 })
 export class StudentDetailsComponent implements OnInit {
 
-  user: any = {};
+  currentUser: any = {};
   id: number = 0;
   student = new Student();
   isDataAvailable:boolean = false;
@@ -22,13 +22,16 @@ export class StudentDetailsComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.user = data;
-    }).then(() => this.studentService.findById(this.id).subscribe(data => this.student = data))
-    .then(() => this.isDataAvailable = true);
+      this.currentUser = data;
+      this.studentService.findById(this.id).subscribe(data => { 
+        this.student = data;
+        this.isDataAvailable = true;
+      });
+    });
   }
 
   userRole(): string {
-    return this.user.authorities[0].authority + '';
+    return this.currentUser.authorities[0].authority + '';
   }
 
 }

@@ -32,14 +32,16 @@ export class TimetableEntityViewComponent implements OnInit {
       this.studentService.findById(this.id).subscribe(data => { 
         student = data;
         if(student) {
-          this.timeTableService.getTimeTableByStudent(this.id).subscribe(data => { this.timetable = data;
+          this.timeTableService.getTimeTableByStudent(this.id).subscribe(data => { 
+            this.timetable = data;
             this.isDataAvailable = true;
           });
         } else {
           this.teacherService.findById(this.id).subscribe(data => {
             teacher = data;
             if(teacher) {
-              this.timeTableService.getTimeTableByTeacher(this.id).subscribe(data => { this.timetable = data;
+              this.timeTableService.getTimeTableByTeacher(this.id).subscribe(data => { 
+                this.timetable = data;
                 this.isDataAvailable = true;
               });
             }
@@ -51,6 +53,10 @@ export class TimetableEntityViewComponent implements OnInit {
 
   userRole(): string {
     return this.currentUser.authorities[0].authority + '';
+  }
+
+  hasSignedIn() {
+    return !!this.userService.currentUser;
   }
 
 }

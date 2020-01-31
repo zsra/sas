@@ -6,6 +6,7 @@ import hu.zsra.enaplo.model.user.Authority;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.model.user.group.Teacher;
 import hu.zsra.enaplo.repository.ClassroomRepository;
+import hu.zsra.enaplo.repository.CourseRepository;
 import hu.zsra.enaplo.repository.user.StudentRepository;
 import hu.zsra.enaplo.repository.user.TeacherRepository;
 import hu.zsra.enaplo.service.ClassroomService;
@@ -26,6 +27,8 @@ public class ClassroomServiceImpl implements ClassroomService {
     private ClassroomRepository classroomRepository;
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private CourseRepository courseRepository;
     @Autowired
     TeacherRepository teacherRepository;
     @Autowired
@@ -166,7 +169,9 @@ public class ClassroomServiceImpl implements ClassroomService {
                 .filter(student -> student.getClassroom().getId().equals(classroom_id))
                 .collect(Collectors.toList());
         for(Student student : students) {
-            classroomRepository.setCourseForClassroom(student.getId(), course_id);
+            if(courseRepository.courseIsAlreadyTaken(student.getId(), course_id) == 0) {
+                classroomRepository.setCourseForClassroom(student.getId(), course_id);
+            }
         }
     }
 

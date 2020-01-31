@@ -15,7 +15,7 @@ import { TimeTableService } from 'src/app/service/timeTable.service';
 export class TimetableEntityCreateComponent implements OnInit {
 
   id: number;
-  admin: any = {};
+  currentUser: any = {};
   isDataAvailable: boolean = false;
   selectedOptionClassroom: any = {};
   classrooms: Observable<Classroom[]>;
@@ -27,7 +27,7 @@ export class TimetableEntityCreateComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.admin = data;
+      this.currentUser = data;
       this.classroomService.findAll().subscribe(data => {
         this.classrooms = data;
         this.isDataAvailable = true;
@@ -57,7 +57,7 @@ export class TimetableEntityCreateComponent implements OnInit {
   }
 
   userRole(): string {
-    return this.admin.authorities[0].authority + '';
+    return this.currentUser.authorities[0].authority + '';
   }
 
 }

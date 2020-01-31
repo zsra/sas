@@ -1,9 +1,11 @@
 <div *ngIf="isDataAvailable">
     <app-panel-loader></app-panel-loader>
-    <div class="timetable-container">  
-        <h2>Timetable</h2>
-        <div class="timetable table-responsive">
-            <table class="table table-sm" id="inside">
+    <div class="container" *ngIf="hasSingedIn()">
+        <div class="container">
+            <h2>Timetable</h2>
+        </div>    
+        <div class="container">
+            <table class="table table-sm">
                 <thead class="thead-dark">
                   <th>#</th>
                   <th>Monday</th>

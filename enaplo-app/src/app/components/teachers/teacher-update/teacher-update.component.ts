@@ -39,8 +39,13 @@ export class TeacherUpdateComponent implements OnInit {
     if(this.isDataChanged) {
       if(!this.response.email) this.response.email = this.teacher.email;
       if(!this.response.phone) this.response.phone = this.teacher.phone;
-      this.teacherService.update(this.id, this.response).subscribe();
+      this.teacherService.update(this.id, this.response).subscribe(() => this.goBack());
+    } else {
+      this.goBack();
     }
+  }
+
+  goBack() {
     if(this.currentUser.authorities[0].authority + '' === 'ROLE_ADMIN') {
       this.router.navigate(['/user/all']);
     } else {

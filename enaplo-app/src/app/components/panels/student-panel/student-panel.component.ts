@@ -21,7 +21,8 @@ export class StudentPanelComponent implements OnInit {
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data;
-    }).then(() => this.isDataAvailable = true);
+      this.isDataAvailable = true;
+    });
   }
 
   summary() {
@@ -33,6 +34,10 @@ export class StudentPanelComponent implements OnInit {
   }
 
   reports() {
+  }
+
+  course() {
+    this.router.navigate(['course/all']);
   }
 
   update() {

@@ -4,7 +4,6 @@ import { Exam } from 'src/app/model/exam';
 import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ExamService } from 'src/app/service/exam.service';
-import { StudentService } from 'src/app/service/student.service';
 
 @Component({
   selector: 'app-update-exam',
@@ -13,22 +12,22 @@ import { StudentService } from 'src/app/service/student.service';
 })
 export class UpdateExamComponent implements OnInit {
 
-  id: number;
+  exam_id: number;
   currentUser: any = {};
-  isDataLoaded: boolean  = false;
+  isDataAvailable: boolean  = false;
   response = new ExamResponseDTO();
   exam = new Exam();
 
   constructor(private userService: UserService, private router: Router, 
-    private examService: ExamService,  private studentService: StudentService, private route: ActivatedRoute) { }
+    private examService: ExamService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
+    this.exam_id = this.route.snapshot.params['id'];
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data;
-      this.examService.findById(this.id).subscribe(data => {
+      this.examService.findById(this.exam_id).subscribe(data => {
         this.exam = data;
-        this.isDataLoaded = true;
+        this.isDataAvailable = true;
       });
     });
   }
@@ -45,9 +44,11 @@ export class UpdateExamComponent implements OnInit {
       this.response.student_id = this.exam.student.id;
       if(!this.response.mark) this.response.mark = this.exam.mark;
       if(!this.response.written_at) this.response.written_at = this.exam.writtenAt;
-      this.examService.update(this.id, this.response).subscribe(); 
+      this.examService.update(this.exam_id, this.response).subscribe(() => this.goBack()); 
+    } else {
+      this.goBack();
     }
-    this.goBack();
+    
   }
 
   goBack() {

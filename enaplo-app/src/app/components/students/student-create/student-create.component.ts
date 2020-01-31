@@ -17,9 +17,9 @@ export class StudentCreateComponent implements OnInit {
 
   user = new UserResponseDTO();
   student = new StudentResponseDTO();
-  admin: any = {};
+  currentUser: any = {};
   userSubmitted: boolean = false;
-  isDataLoaded: boolean  = false;
+  isDataAvailable: boolean  = false;
   classrooms: Observable<Classroom[]>;
   selectedOption: any = {};
 
@@ -28,12 +28,12 @@ export class StudentCreateComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.admin = data;
-    }).then(() => {
-      this.classroomService.findAll().subscribe(data =>
-        this.classrooms = data);
-    })
-    .then(() => this.isDataLoaded = true);
+      this.currentUser = data;
+      this.classroomService.findAll().subscribe(data => {
+        this.classrooms = data;
+        this.isDataAvailable = true;
+      });
+    });
   }
 
   onUserSubmit() {
@@ -50,7 +50,7 @@ export class StudentCreateComponent implements OnInit {
   }
 
   userRole(): string {
-    return this.admin.authorities[0].authority + '';
+    return this.currentUser.authorities[0].authority + '';
   }
 
 }

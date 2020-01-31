@@ -33,11 +33,15 @@ export class StudentUpdateComponent implements OnInit {
       this.currentUser = data;
       this.studentService.findById(this.id).subscribe(data => {
         this.student = data;
-        this.classroomService.findById(data.classroom.id).subscribe(data => this.currentClassroom = data);
+        this.classroomService.findById(data.classroom.id).subscribe(data => { 
+          this.currentClassroom = data;
+          this.classroomService.findAll().subscribe(data => { 
+            this.classrooms = data;
+            this.isDataAvailable = true;
+          });
+        });
       });
-    }).then(() =>
-      this.classroomService.findAll().subscribe(data => this.classrooms = data)
-    ).then(() => this.isDataAvailable = true);
+    });
   }
 
   isDataChanged() {
@@ -66,8 +70,14 @@ export class StudentUpdateComponent implements OnInit {
       if(!this.response.start_year) this.response.start_year = this.student.start_year;
       if(!this.response.healthCareId) this.response.healthCareId = this.student.healthCareId;
       if(!this.response.classroom_id) this.response.classroom_id = this.currentClassroom.id;
-      this.studentService.update(this.id, this.response).subscribe();
+      this.studentService.update(this.id, this.response).subscribe(() => this.goBack());
+    } else {
+      this.goBack();
     }
+    
+  }
+
+  goBack() {
     if(this.currentUser.authorities[0].authority + '' === 'ROLE_ADMIN') {
       this.router.navigate(['/user/all']);
     } else {

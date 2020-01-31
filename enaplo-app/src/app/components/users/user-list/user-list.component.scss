@@ -1,23 +1,9 @@
 $gray: #9b9b9b;
 
-.user-list-container-body {
-    margin: 3em;
-}
-
-.user-list-body {
-    width: 50%;
-    font-size: 1em;
-    margin: 0 auto;
-    text-align: center;
-}
-
 table {
     margin-top: 2em;
 }
 
-thead {
-    width: 100%;
-}
 
 .form-control-searchbox {
     font-family: inherit;
@@ -31,6 +17,6 @@ thead {
     transition: border-color 0.2s; 
 }
 
-button {
+td > button {
     margin-right: 0.1em;
 }

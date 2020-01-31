@@ -14,28 +14,26 @@ export class ClassroomListComponent implements OnInit {
 
   searchText;
   classrooms: Observable<Classroom[]>;
-  isDataAvailable:boolean = false;
-  user: any;
+  isDataAvailable: boolean = false;
+  currentUser: any = {};
 
   constructor(private userService: UserService, private router: Router,
     private classroomService: ClassroomService) { }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.user = data;
+      this.currentUser = data;
       this.classroomService.findAll().subscribe(data =>
         this.classrooms = data);
     }).then(() => this.isDataAvailable = true);
   }
 
   userRole(): string {
-    return this.user.authorities[0].authority + '';
+    return this.currentUser.authorities[0].authority + '';
   }
 
   update(classroom_id: number) {
-    this.classroomService.findById(classroom_id).subscribe(
-      data => this.router.navigate(['/classroom/update', data.id])
-    );
+    this.router.navigate(['classroom/update', classroom_id]);
   }
 
   delete(classroom_id: number) {
@@ -52,5 +50,9 @@ export class ClassroomListComponent implements OnInit {
 
   students(classroom_id: number) {
     this.router.navigate(['student/classroom', classroom_id]);
+  }
+
+  setCourse(classroom_id: number) {
+    this.router.navigate(['classroom/setCourse', classroom_id]);
   }
 }

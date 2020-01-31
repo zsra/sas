@@ -1,8 +1,10 @@
-<div *ngIf="isDataLoaded">
+<div *ngIf="isDataAvailable">
     <app-panel-loader></app-panel-loader>
-    <div class="course-update-container" *ngIf="userRole() === 'ROLE_ADMIN'">
-        <h2>Update</h2>
-        <div class="update-form">
+    <div class="container" *ngIf="userRole() === 'ROLE_ADMIN'">
+        <div class="container">
+            <h2>Update</h2>
+        </div>
+        <div class="container">
             <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-course">
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -19,6 +21,7 @@
                    </select>
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
+                <button (click)="goBack()" class="btn btn-dark">Back</button>
             </form>
         </div>
     </div>

@@ -17,14 +17,14 @@ export class CourseListComponent implements OnInit {
   searchText;
   courses: Observable<Course[]>;
   isDataAvailable:boolean = false;
-  user: any;
+  currentUser: any = {};
   
   constructor(private userService: UserService, private router: Router,
-    private courseService: CourseService, private timeTableService: TimeTableService) { }
+    private courseService: CourseService) { }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.user = data;
+      this.currentUser = data;
       this.courseService.findAll().subscribe(data => {
         this.courses = data;
         this.isDataAvailable = true;
@@ -34,6 +34,10 @@ export class CourseListComponent implements OnInit {
 
   hasSignedIn() {
     return !!this.userService.currentUser;
+  }
+
+  userRole(): string {
+    return this.currentUser.authorities[0].authority + '';
   }
 
   details(course_id: number) {

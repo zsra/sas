@@ -1,11 +1,11 @@
 <div *ngIf="isDataAvailable">
     <app-panel-loader></app-panel-loader>
-    <div class="user-list-container" *ngIf="userRole() != 'ROLE_STUDENT'">
-        <div class="classroom-list-container-body">
-            <div class="classroom-list-header">
+    <div class="container" *ngIf="userRole() != 'ROLE_STUDENT'">
+        <div class="container">
+            <div class="container">
                 <h3>Classrooms</h3>
             </div>
-            <div class="classroom-list-body">
+            <div class="container">
                 <input class="form-control-searchbox" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" 
                 placeholder="&#171; Search">
                 <table  class="table table-striped table-sm">
@@ -29,6 +29,8 @@
                                 (click)="update(classroom.id)" class="btn btn-warning">Update</button>
                                 <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
                                 (click)="delete(classroom.id)" class="btn btn-danger">Delete</button>
+                                <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_ADMIN')" 
+                                (click)="setCourse(classroom.id)" class="btn btn-info">Set Course</button>
                                 <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_TEACHER'
                                 || user.authorities[0].authority + '' === 'ROLE_HEADTEACHER')" 
                                 (click)="exam(classroom.id)" class="btn btn-secondary">Exam</button>

@@ -30,10 +30,14 @@ export class ClassroomUpdateComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data;
-      this.classroomService.findById(this.id).subscribe(data => this.classroom = data);
-    })
-    .then(() => this.teacherService.findAll().subscribe(data => this.teachers = data))
-    .then(() => this.isDataAvailable = true);
+      this.classroomService.findById(this.id).subscribe(data =>  {
+        this.classroom = data;
+        this.teacherService.findAll().subscribe(data => { 
+          this.teachers = data;
+          this.isDataAvailable = true;
+        });
+      });
+    });
   }
 
   isDataChanged() {
@@ -47,13 +51,14 @@ export class ClassroomUpdateComponent implements OnInit {
 
   onSubmit() {
     if(this.isDataChanged) {
-      if(!this.selectedOption) this.response.headTeacher_id = this.classroom.headTeacher.id;
-      else this.response.headTeacher_id = Number(this.selectedOption.id);
+      this.response.headTeacher_id = Number(this.selectedOption.id);
+      if(!this.response.headTeacher_id) this.response.headTeacher_id = this.classroom.headTeacher.id;
       if(!this.response.end_year) this.response.end_year = this.classroom.end_year;
       if(!this.response.letter) this.response.letter = this.classroom.letter;
       if(!this.response.start_year) this.response.start_year = this.classroom.start_year;
       if(!this.response.year) this.response.year = this.classroom.year;
-      this.classroomService.update(this.id, this.response).subscribe();
+      this.classroomService.update(this.id, this.response).subscribe(() => this.goBack());
+    } else {
       this.goBack();
     }
   }

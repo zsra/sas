@@ -1,22 +1,15 @@
 $gray: #9b9b9b;
 
-.course-list-container-body {
-    margin: 3em;
-}
-
-.course-list-body {
-    width: 70%;
-    font-size: 1em;
-    margin: 0 auto;
-    text-align: center;
+h3 {
+    margin-top: 1em;
 }
 
 table {
-    margin-top: 2em;
+    margin-top: 1em;
 }
 
-thead {
-    width: 100%;
+table > tbody > tr > td > button {
+    margin-right: 0.1em;
 }
 
 .form-control-searchbox {
@@ -28,10 +21,5 @@ thead {
     font-size: 1.3rem;
     padding: 7px 0;
     background: transparent;
-    transition: border-color 0.2s;
-    
-}
-
-button {
-    margin-right: 0.1em;
+    transition: border-color 0.2s;   
 }

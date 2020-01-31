@@ -15,8 +15,8 @@ import { CourseResponseDTO } from 'src/app/dto/response/courseResponseDTO';
 export class CourseCreateComponent implements OnInit {
 
   course = new CourseResponseDTO();
-  admin: any = {};
-  isDataLoaded: boolean  = false;
+  currentUser: any = {};
+  isDataAvailable: boolean  = false;
   teachers: Observable<Teacher[]>;
   selectedOption: any = {};
 
@@ -27,12 +27,12 @@ export class CourseCreateComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.admin = data;
-    }).then(() => {
-      this.teacherService.findAll().subscribe(data =>
-        this.teachers = data);
-    })
-    .then(() => this.isDataLoaded = true);
+      this.currentUser = data;
+      this.teacherService.findAll().subscribe(data => {
+        this.teachers = data;
+        this.isDataAvailable = true;
+      });
+    });
   }
 
   onSubmit() {
@@ -45,7 +45,7 @@ export class CourseCreateComponent implements OnInit {
 
   reset() {
     this.course = new CourseResponseDTO();
-    this.isDataLoaded = false;
+    this.isDataAvailable = false;
     this.selectedOption = {};
   }
 
@@ -58,7 +58,7 @@ export class CourseCreateComponent implements OnInit {
   }
 
   userRole(): string {
-    return this.admin.authorities[0].authority + '';
+    return this.currentUser.authorities[0].authority + '';
   }
 
 }

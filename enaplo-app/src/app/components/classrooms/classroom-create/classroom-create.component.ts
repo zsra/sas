@@ -15,8 +15,8 @@ import { ClassroomResponseDTO } from 'src/app/dto/response/classroomResponseDTO'
 export class ClassroomCreateComponent implements OnInit {
 
   classroom = new ClassroomResponseDTO();
-  admin: any = {};
-  isDataLoaded: boolean  = false;
+  currentUser: any = {};
+  isDataAvailable: boolean  = false;
   teachers: Observable<Teacher[]>;
   selectedOption: any = {};
 
@@ -25,12 +25,12 @@ export class ClassroomCreateComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.admin = data;
+      this.currentUser = data;
     }).then(() => {
       this.teacherService.findAll().subscribe(data =>
         this.teachers = data);
     })
-    .then(() => this.isDataLoaded = true);
+    .then(() => this.isDataAvailable = true);
   }
 
   onSubmit() {
@@ -42,7 +42,7 @@ export class ClassroomCreateComponent implements OnInit {
 
   reset() {
     this.classroom = new ClassroomResponseDTO();
-    this.isDataLoaded = false;
+    this.isDataAvailable = false;
     this.selectedOption = {};
   }
 
@@ -55,7 +55,7 @@ export class ClassroomCreateComponent implements OnInit {
   }
 
   userRole(): string {
-    return this.admin.authorities[0].authority + '';
+    return this.currentUser.authorities[0].authority + '';
   }
 
 }

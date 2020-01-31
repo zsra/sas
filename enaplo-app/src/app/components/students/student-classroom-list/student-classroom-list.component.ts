@@ -17,7 +17,7 @@ export class StudentClassroomListComponent implements OnInit {
   searchText;
   students: Observable<Student[]>;
   isDataAvailable:boolean = false;
-  user: any;
+  currentUser: any = {};
 
   constructor(private userService: UserService, private router: Router,
     private classroomService: ClassroomService, private route: ActivatedRoute, 
@@ -26,13 +26,13 @@ export class StudentClassroomListComponent implements OnInit {
   ngOnInit() {
     this.classroom_id = this.route.snapshot.params['id'];
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.user = data;
+      this.currentUser = data;
       this.classroomService.getStudentsFromClassroom(this.classroom_id).subscribe(data => this.students = data);
     }).then(() => this.isDataAvailable = true);
   }
 
   userRole(): string {
-    return this.user.authorities[0].authority + '';
+    return this.currentUser.authorities[0].authority + '';
   }
 
   details(user_id: number) {
@@ -46,7 +46,7 @@ export class StudentClassroomListComponent implements OnInit {
   }
 
   isHeadTeacher() {
-    return this.user.authorities[0].authority + '' == 'ROLE_HEADTEACHER';
+    return this.currentUser.authorities[0].authority + '' == 'ROLE_HEADTEACHER';
   }
 
   summary(user_id: number) {

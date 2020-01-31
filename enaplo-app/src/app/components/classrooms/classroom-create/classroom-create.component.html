@@ -1,8 +1,8 @@
-<div *ngIf="isDataLoaded">
+<div *ngIf="isDataAvailable">
     <app-panel-loader></app-panel-loader>
-    <div class="teacher-create-container" *ngIf="userRole() === 'ROLE_ADMIN'">
-        <h2>Create Teacher</h2>
-        <div class="create-form">
+    <div class="container" *ngIf="userRole() === 'ROLE_ADMIN'">
+        <h2>Create</h2>
+        <div class="container">
             <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-classroom">
                 <div class="form-group">
                     <label for="year">Year</label>

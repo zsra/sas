@@ -1,12 +1,12 @@
 <div *ngIf="isDataAvailable">
     <app-panel-loader></app-panel-loader>
-    <div class="timeTableEntity-list-container" *ngIf="userRole() === 'ROLE_ADMIN'">
-        <div class="timeTableEntity-list-container-body">
-            <div class="timeTableEntity-list-header">
-                <h3>timeTableEntity for {{course.courseName}}</h3>
+    <div class="container" *ngIf="userRole() === 'ROLE_ADMIN'">
+        <div class="container">
+            <div class="container">
+                <h3>TimeTable Entity for {{course.courseName}}</h3>
                 <button (click)="create(course.id)" class="btn btn-primary">New</button>
             </div>
-            <div class="timeTableEntity-list-body">
+            <div class="container">
                 <input class="form-control-searchbox" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" 
                 placeholder="&#171; Search">
                 <table  class="table table-striped table-sm">

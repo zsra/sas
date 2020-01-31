@@ -16,7 +16,7 @@ import { TimeTableService } from 'src/app/service/timeTable.service';
 export class TimetableEntityUpdateComponent implements OnInit {
 
   id: number;
-  admin: any = {};
+  currentUser: any = {};
   isDataAvailable: boolean = false;
   selectedOptionClassroom: any = {};
   classrooms: Observable<Classroom[]>;
@@ -29,7 +29,7 @@ export class TimetableEntityUpdateComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.admin = data;
+      this.currentUser = data;
       this.classroomService.findAll().subscribe(data => {
         this.classrooms = data;
         this.timeTableService.findById(this.id).subscribe(data => {
@@ -66,7 +66,7 @@ export class TimetableEntityUpdateComponent implements OnInit {
   }
 
   userRole(): string {
-    return this.admin.authorities[0].authority + '';
+    return this.currentUser.authorities[0].authority + '';
   }
 
 }

@@ -15,9 +15,9 @@ export class TeacherCreateComponent implements OnInit {
 
   user = new UserResponseDTO();
   teacher = new TeacherResponseDTO();
-  admin: any = {};
+  currentUser: any = {};
   userSubmitted: boolean = false;
-  isDataLoaded: boolean  = false;
+  isDataAvailable: boolean  = false;
   selectedOption: any = {};
 
   constructor(private userService: UserService, private router: Router,
@@ -25,8 +25,9 @@ export class TeacherCreateComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.admin = data;
-    }).then(() => this.isDataLoaded = true);
+      this.currentUser = data;
+      this.isDataAvailable = true;
+    });
   }
 
   onUserSubmit() {
@@ -49,6 +50,6 @@ export class TeacherCreateComponent implements OnInit {
   }
 
   userRole(): string {
-    return this.admin.authorities[0].authority + '';
+    return this.currentUser.authorities[0].authority + '';
   }
 }

@@ -17,7 +17,7 @@ export class CourseUpdateComponent implements OnInit {
 
   currentUser: any = {};
   isDataAvailable: boolean = false;
-  id: number;
+  course_id: number;
   teachers: Observable<Teacher[]>;
   course = new Course();
   response = new CourseResponseDTO();
@@ -27,13 +27,17 @@ export class CourseUpdateComponent implements OnInit {
     private router: Router, private route: ActivatedRoute, private courseService: CourseService) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
+    this.course_id = this.route.snapshot.params['id'];
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data;
-      this.courseService.findById(this.id).subscribe(data => this.course = data);
-    })
-    .then(() => this.teacherService.findAll().subscribe(data => this.teachers = data))
-    .then(() => this.isDataAvailable = true);
+      this.courseService.findById(this.course_id).subscribe(data => {
+        this.course = data;
+        this.teacherService.findAll().subscribe(data => { 
+          this.teachers = data;
+          this.isDataAvailable = true;
+        });
+      });
+    });
   }
 
   isDataChanged() {
@@ -49,9 +53,11 @@ export class CourseUpdateComponent implements OnInit {
       else this.response.teacher_id = Number(this.selectedOption.id);
       if(!this.response.title) this.response.title = this.course.title;
       if(!this.response.year) this.response.year = this.course.year;
-      this.courseService.update(this.id, this.response).subscribe();
+      this.courseService.update(this.course_id, this.response).subscribe(() => this.goBack);
+    } else {
+      this.goBack();
     }
-    this.goBack();
+    
   }
 
   goBack() {

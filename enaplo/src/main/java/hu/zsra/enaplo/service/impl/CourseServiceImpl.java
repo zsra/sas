@@ -127,7 +127,9 @@ public class CourseServiceImpl implements CourseService {
     public void setCourse(Long student_id, Long course_id) {
         Student student = studentRepository.getOne(student_id);
         Course course = courseRepository.getOne(course_id);
-        course.getStudents().add(student);
-        courseRepository.save(course);
+        if(courseRepository.courseIsAlreadyTaken(student_id, course_id) == 0) {
+            course.getStudents().add(student);
+            courseRepository.save(course);
+        }
     }
 }

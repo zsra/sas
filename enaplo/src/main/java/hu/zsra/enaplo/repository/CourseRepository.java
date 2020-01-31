@@ -11,4 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
+    @Query(value = "SELECT COUNT(*) FROM students_course WHERE student_id=:student_id AND course_id=:course_id", nativeQuery = true)
+    @Transactional
+    int courseIsAlreadyTaken(@Param("student_id") Long student_id, @Param("course_id") Long course_id);
 }

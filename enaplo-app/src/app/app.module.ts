@@ -23,7 +23,6 @@ import { HeadteacherPanelComponent } from './components/panels/headteacher-panel
 import { StudentPanelComponent } from './components/panels/student-panel/student-panel.component';
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { StudentDetailsComponent } from './components/students/student-details/student-details.component';
-import { TeacherDetailsComponent } from './components/teachers/teacher-details/teacher-details.component';
 import { TeacherCreateComponent } from './components/teachers/teacher-create/teacher-create.component';
 import { StudentCreateComponent } from './components/students/student-create/student-create.component';
 import { StudentUpdateComponent } from './components/students/student-update/student-update.component';
@@ -71,7 +70,6 @@ import { PanelLoaderComponent } from './components/panels/panel-loader/panel-loa
     StudentPanelComponent,
     UserListComponent,
     StudentDetailsComponent,
-    TeacherDetailsComponent,
     TeacherCreateComponent,
     StudentCreateComponent,
     StudentUpdateComponent,

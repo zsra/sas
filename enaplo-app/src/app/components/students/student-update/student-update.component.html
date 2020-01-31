@@ -1,8 +1,10 @@
 <div *ngIf="isDataAvailable">
     <app-panel-loader></app-panel-loader>
-    <div class="student-create-container" *ngIf="userRole() != 'ROLE_STUDENT' || currentUser.id == student.student.id">
-        <h2>Update</h2>
-        <div class="create-form">
+    <div class="container" *ngIf="userRole() != 'ROLE_STUDENT' || currentUser.id == student.student.id">
+        <div class="container">
+            <h2>Update</h2>
+        </div> 
+        <div class="container">
             <button mat-button mat-ripple (click)='userUpdate()' id="account" class="btn btn-dark">Account settings</button>
             <form (ngSubmit)="submit()" #form="ngForm" class="form">    
                 <div class="form-group">
@@ -48,6 +50,7 @@
                    </select>
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
+                <button (click)="goBack()" class="btn btn-dark">Back</button>
             </form>
         </div>
 </div>

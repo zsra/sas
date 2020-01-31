@@ -28,9 +28,12 @@ export class UserUpdateComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data;
+      this.userService.getById(this.id).subscribe(data => { 
+        this.user = data;
+        this.isDataAvailable = true;
+      });
       
-    }).then(() => this.userService.getById(this.id).subscribe(data => this.user = data))
-    .then(() => this.isDataAvailable = true);
+    });
   }
 
   onSubmit() {
@@ -38,9 +41,11 @@ export class UserUpdateComponent implements OnInit {
       if(!this.response.fullName) this.response.fullName = this.user.fullName;
       if(!this.response.username) this.response.username = this.user.username;
       if(!this.newPassword) this.response.password = this.newPassword;
-      this.userService.update(this.id, this.response).subscribe();
+      this.userService.update(this.id, this.response).subscribe(() => this.goBack());
+    } else {
+      this.goBack();
     }
-    this.goBack();
+    
   }
 
   isDataChanged() {

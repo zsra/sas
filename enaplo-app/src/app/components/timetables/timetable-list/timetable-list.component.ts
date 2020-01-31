@@ -15,7 +15,7 @@ import { TimeTableService } from 'src/app/service/timeTable.service';
 export class TimetableListComponent implements OnInit {
 
   course_id: number;
-  admin: any = {};
+  currentUser: any = {};
   course = new Course();
   isDataAvailable: boolean = false;
   timeTable: Observable<TimeTableEntity[]>;
@@ -26,7 +26,7 @@ export class TimetableListComponent implements OnInit {
   ngOnInit() {
     this.course_id = this.route.snapshot.params['id'];
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.admin = data;
+      this.currentUser = data;
       this.courseService.findById(this.course_id).subscribe(data => {
         this.course = data;
         this.timeTableService.getTimeTableEntitiesByCourse(this.course_id).subscribe(data => {
@@ -38,15 +38,17 @@ export class TimetableListComponent implements OnInit {
   }
 
   create() {
-    this.courseService.findById(this.course_id).subscribe(data => this.router.navigate(['/timetable/create', data.id]));
+    this.courseService.findById(this.course_id).subscribe(data => 
+      this.router.navigate(['/timetable/create', data.id])
+    );
   }
 
   userRole(): string {
-    return this.admin.authorities[0].authority + '';
+    return this.currentUser.authorities[0].authority + '';
   }
 
   update(entity_id: number) {
-
+    this.router.navigate(['timetable/update', entity_id]);
   }
 
   delete(entity_id: number) {

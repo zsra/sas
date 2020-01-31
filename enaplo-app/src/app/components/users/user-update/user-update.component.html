@@ -1,9 +1,10 @@
 <div *ngIf="isDataAvailable">
     <app-panel-loader></app-panel-loader>
-    <div class="user-update-container" *ngIf="currentUser.id == user.id">
-        <h2>Update</h2>
-        <div class="create-form">
-            <button (click)='goBack()' id="back" class="btn btn-dark">Back</button>
+    <div class="container" *ngIf="currentUser.id == user.id">
+        <div class="container">
+            <h2>Update</h2>
+        </div>
+        <div class="container">         
             <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-user"> 
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -22,6 +23,7 @@
                     <input type="text" class="form-control" id="fullName" required [(ngModel)]="response.fullName" name="fullName" placeholder="Fullname">
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
+                <button (click)='goBack()' class="btn btn-dark">Back</button>
             </form>
         </div>
 </div>

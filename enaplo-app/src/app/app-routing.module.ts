@@ -12,7 +12,6 @@ import { StudentPanelComponent } from './components/panels/student-panel/student
 import { HeadteacherPanelComponent } from './components/panels/headteacher-panel/headteacher-panel.component';
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { StudentDetailsComponent } from './components/students/student-details/student-details.component';
-import { TeacherDetailsComponent } from './components/teachers/teacher-details/teacher-details.component';
 import { StudentCreateComponent } from './components/students/student-create/student-create.component';
 import { TeacherCreateComponent } from './components/teachers/teacher-create/teacher-create.component';
 import { ClassroomListComponent } from './components/classrooms/classroom-list/classroom-list.component';
@@ -36,6 +35,7 @@ import { CreateExamClassroomComponent } from './components/exams/create-exam-cla
 import { CreateExamComponent } from './components/exams/create-exam/create-exam.component';
 import { UpdateExamComponent } from './components/exams/update-exam/update-exam.component';
 import { ExamListComponent } from './components/exams/exam-list/exam-list.component';
+import { ClassroomUpdateComponent } from './components/classrooms/classroom-update/classroom-update.component';
 
 const routes: Routes = [
   {
@@ -100,10 +100,6 @@ const routes: Routes = [
     component: TeacherCreateComponent
   },
   {
-    path: 'teacher/details/:id',
-    component: TeacherDetailsComponent
-  },
-  {
     path: 'teacher/update/:id',
     component: TeacherUpdateComponent
   },
@@ -115,6 +111,10 @@ const routes: Routes = [
   {
     path: 'classroom/create',
     component: ClassroomCreateComponent
+  },
+  {
+    path: 'classroom/update/:id',
+    component: ClassroomUpdateComponent
   },
   {
     path: 'classroom/setCourse/:id',

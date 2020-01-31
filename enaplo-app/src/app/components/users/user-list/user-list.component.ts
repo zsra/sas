@@ -16,20 +16,20 @@ export class UserListComponent implements OnInit {
   searchText;
   users: Observable<User[]>;
   isDataAvailable:boolean = false;
-  user: any;
+  currentUser: any = {};
   
   constructor(private userService: UserService, private router: Router,
     private studentService: StudentService, private teacherService: TeacherService) { }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.user = data;
+      this.currentUser = data;
       this.users = this.userService.getAll();
     }).then(() => this.isDataAvailable = true);
   }
 
   userRole(): string {
-    return this.user.authorities[0].authority + '';
+    return this.currentUser.authorities[0].authority + '';
   }
 
   details(user_id: number) {

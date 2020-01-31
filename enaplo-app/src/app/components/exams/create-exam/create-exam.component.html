@@ -1,8 +1,8 @@
-<div *ngIf="isDataLoaded">
+<div *ngIf="isDataAvailable">
     <app-panel-loader></app-panel-loader>
-    <div class="exam-create-container" *ngIf="userRole() != 'ROLE_STUDENT'">
-        <h2>Create Exam</h2>
-        <div class="create-form">
+    <div class="container" *ngIf="userRole() != 'ROLE_STUDENT'">
+        <h2>Create</h2>
+        <div class="container">
             <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-exam">
                 <div class="form-group">
                     <label for="course">Course</label>

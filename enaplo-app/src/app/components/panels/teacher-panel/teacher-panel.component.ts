@@ -24,7 +24,7 @@ export class TeacherPanelComponent implements OnInit {
       this.currentuser = data;
       this.teacherService.findByUserId(this.currentuser.id).subscribe(data => {
         this.teacher = data;
-        this.isDataAvailable = true
+        this.isDataAvailable = true;
       })
     });
   }
