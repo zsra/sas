@@ -2,7 +2,8 @@ import { AttendanceDTO } from '../AttendanceDTO';
 
 export class AttendanceResponseDTO {
 
-    attendanceDTO: AttendanceDTO[];
+    student_id: number;
+    miss: boolean;
     lesson: number;
     dateOfMiss: string;
 }

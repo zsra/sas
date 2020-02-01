@@ -16,7 +16,10 @@
                 </div>
                 <div class="form-group">
                     <label for="semester">Semester</label>
-                    <input type="number" class="form-control" id="semester" required [(ngModel)]="report.semester" min="1" max="2" name="semester">
+                    <select id="semester" class="form-control" required [(ngModel)]="semester" name="semster">
+                        <option [ngValue]="1">1</option>
+                        <option [ngValue]="2">2</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="mark">Mark</label>

@@ -125,7 +125,9 @@ public class CourseServiceImpl implements CourseService {
      */
     @Override
     public void setCourse(Long student_id, Long course_id) {
+        /* Finds student by id. */
         Student student = studentRepository.getOne(student_id);
+        /* Finds course by id. */
         Course course = courseRepository.getOne(course_id);
         if(courseRepository.courseIsAlreadyTaken(student_id, course_id) == 0) {
             course.getStudents().add(student);

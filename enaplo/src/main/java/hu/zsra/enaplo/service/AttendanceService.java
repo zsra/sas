@@ -1,6 +1,7 @@
 package hu.zsra.enaplo.service;
 
 import hu.zsra.enaplo.dto.AttendanceDTO;
+import hu.zsra.enaplo.dto.response.AttendanceResponseDTO;
 import hu.zsra.enaplo.model.Attendance;
 
 import java.time.LocalDate;
@@ -23,13 +24,11 @@ public interface AttendanceService {
     /**
      * Creates new attendances for the missing students.
      *
-     * @param attendanceDTOS Submitted DTO from web application.
-     * @param lecture Missed lecture of the day.
-     * @param dateOfMiss The day when student didn't come to school.
+     * @param attendanceResponseDTOS Submitted DTOs from web application.
      * @return List of Attendances.
      * @see Attendance
      */
-    List<Attendance> create(List<AttendanceDTO> attendanceDTOS, int lecture, LocalDate dateOfMiss);
+    List<Attendance> create(List<AttendanceResponseDTO> attendanceResponseDTOS);
 
     /**
      * Deletes an attendances by id.

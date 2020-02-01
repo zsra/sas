@@ -244,9 +244,10 @@ public class InitData {
                 reportService.create(new ReportResponseDTO(
                         9,
                         1,
-                        course.getTitle(),
                         mark,
-                        student.getId()
+                        student.getId(),
+                        course.getId()
+
                 ));
             }
         }
@@ -256,9 +257,9 @@ public class InitData {
                 reportService.create(new ReportResponseDTO(
                         9,
                         2,
-                        course.getTitle(),
                         mark,
-                        student.getId()
+                        student.getId(),
+                        course.getId()
                 ));
             }
         }
@@ -279,7 +280,7 @@ public class InitData {
                 boolean randMiss = random.nextBoolean();
                 attendanceDTO.setMiss(randMiss);
             }
-            attendanceService.create(attendanceDTOS, randLecture, LocalDate.of(randYear, randMonth, randDay));
+            //attendanceService.create(attendanceDTOS);
          }
     }
 

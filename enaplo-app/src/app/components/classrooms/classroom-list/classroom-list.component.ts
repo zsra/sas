@@ -38,6 +38,10 @@ export class ClassroomListComponent implements OnInit {
     this.router.navigate(['classroom/update', classroom_id]);
   }
 
+  attendance(classroom_id: number) {
+    this.router.navigate(['attendance/create', classroom_id]);
+  }
+
   delete(classroom_id: number) {
 
   }
@@ -47,7 +51,7 @@ export class ClassroomListComponent implements OnInit {
   }
 
   report(classroom_id: number) {
-
+    this.router.navigate(['report/classroom', classroom_id]);
   }
 
   students(classroom_id: number) {

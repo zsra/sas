@@ -16,7 +16,7 @@ export class CourseListComponent implements OnInit {
 
   searchText;
   courses: Observable<Course[]>;
-  isDataAvailable:boolean = false;
+  isDataAvailable: boolean = false;
   currentUser: any = {};
   
   constructor(private userService: UserService, private router: Router,

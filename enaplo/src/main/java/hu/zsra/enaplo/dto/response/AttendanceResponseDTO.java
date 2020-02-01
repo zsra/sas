@@ -10,7 +10,10 @@ import java.util.List;
 public class AttendanceResponseDTO {
 
     @Getter @Setter
-    private List<AttendanceDTO> attendanceDTO;
+    private Long student_id;
+
+    @Getter @Setter
+    private boolean miss;
 
     @Getter @Setter
     private int lesson;
@@ -21,8 +24,9 @@ public class AttendanceResponseDTO {
     public AttendanceResponseDTO() {
     }
 
-    public AttendanceResponseDTO(List<AttendanceDTO> attendanceDTO, int lesson, LocalDate dateOfMiss) {
-        this.attendanceDTO = attendanceDTO;
+    public AttendanceResponseDTO(Long student_id,boolean miss, int lesson, LocalDate dateOfMiss) {
+        this.student_id = student_id;
+        this.miss = miss;
         this.lesson = lesson;
         this.dateOfMiss = dateOfMiss;
     }

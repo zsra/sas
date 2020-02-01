@@ -23,9 +23,8 @@ public class AttendanceController {
     }
 
     @PostMapping(value = "/attendances/create")
-    public List<Attendance> create(@RequestBody AttendanceResponseDTO attendanceResponseDTO) {
-        return attendanceService.create(attendanceResponseDTO.getAttendanceDTO(),
-                attendanceResponseDTO.getLesson(), attendanceResponseDTO.getDateOfMiss());
+    public List<Attendance> create(@RequestBody List<AttendanceResponseDTO> attendanceResponseDTOS) {
+        return attendanceService.create(attendanceResponseDTOS);
     }
 
     @DeleteMapping(value = "/attendances/{id}")

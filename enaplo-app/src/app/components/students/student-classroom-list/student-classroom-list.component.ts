@@ -53,8 +53,8 @@ export class StudentClassroomListComponent implements OnInit {
     this.studentService.findByUserId(user_id).subscribe(data => this.router.navigate(['student/summary', data.id]));
   }
 
-  reports(user_id: number) {
-
+  reports(student_id: number) {
+    this.router.navigate(['report/student', student_id]);
   }
 
   attendances(user_id: number) {
@@ -66,7 +66,7 @@ export class StudentClassroomListComponent implements OnInit {
   }
 
   report(student_id: number) {
-    
+    this.router.navigate(['report/create', student_id]);
   }
 
 }

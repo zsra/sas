@@ -1,1 +1,68 @@
-<p>view-attendance works!</p>
+<div *ngIf="isDataAvailable">
+    <app-panel-loader></app-panel-loader>
+    <div class="container" *ngIf="userRole() != 'ROLE_STUDENT' || currentUser.id == student.student.id">
+        <div class="container">
+            <div class="container">
+                <h3>Attendances</h3>
+            </div>
+            <div class="container">
+                <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-attendance">           
+                    <div class="form-group">
+                        <label for="course">Course</label>
+                        <select name="course" class="form-control form-control-sm" [(ngModel)]="selectedOption">
+                            <option *ngFor="let course of courses" [ngValue]="course">{{course.title}}/{{course.year}}</option>
+                        </select>
+                    </div>  
+                    <button type="submit" class="btn btn-success">Search</button>
+                </form>
+            </div>
+            <div class="container" *ngIf="allAttendances">
+                <input class="form-control-searchbox" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" 
+                placeholder="&#171; Search">
+                <table  class="table table-striped table-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Written At</th>
+                            <th>Mark</th>
+                            <th>Functions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let exam of exams | filter:searchText">
+                            <td>{{exam.writtenAt}}</td>
+                            <td>{{exam.mark}}</td>
+                            <td>
+                                <button (click)="update(exam.id)" class="btn btn-warning">Update</button>
+                                <button (click)="delete(exam.id)" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>    
+                    </tbody>
+                </table>
+            </div>
+            <div class="container" *ngIf="allAttendances">
+                <input class="form-control-searchbox" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" 
+                placeholder="&#171; Search">
+                <table  class="table table-striped table-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Written At</th>
+                            <th>Mark</th>
+                            <th>Functions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let exam of exams | filter:searchText">
+                            <td>{{exam.writtenAt}}</td>
+                            <td>{{exam.mark}}</td>
+                            <td>
+                                <button (click)="update(exam.id)" class="btn btn-warning">Update</button>
+                                <button (click)="delete(exam.id)" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

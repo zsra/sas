@@ -32,20 +32,4 @@ export class TeacherPanelComponent implements OnInit {
   classrooms() {
     this.router.navigate(['/classroom/all']);
   }
-
-  classExam() {
-
-  }
-
-  classReport() {
-
-  }
-
-  attendances() {
-
-  }
-
-  createAttendance() {
-
-  }
 }

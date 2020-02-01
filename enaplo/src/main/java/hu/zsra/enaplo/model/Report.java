@@ -28,9 +28,10 @@ public class Report {
     @Getter @Setter
     private int semester;
 
-    @Column(name = "courseName", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "course_id")
     @Getter @Setter
-    private String courseName;
+    private Course course;
 
     @Column(name = "mark", nullable = false)
     @Getter @Setter
@@ -39,11 +40,11 @@ public class Report {
     public Report() {
     }
 
-    public Report(Student student, int year, int semester, String courseName, int mark) {
+    public Report(Student student, int year, int semester, Course course, int mark) {
         this.student = student;
         this.year = year;
         this.semester = semester;
-        this.courseName = courseName;
+        this.course = course;
         this.mark = mark;
     }
 }

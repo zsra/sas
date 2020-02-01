@@ -55,4 +55,9 @@ public class Course {
     @Getter @Setter
     private List<TimeTableEntity> lessons = new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "course")
+    @Getter @Setter
+    private List<Report> reports = new ArrayList<>();
+
 }

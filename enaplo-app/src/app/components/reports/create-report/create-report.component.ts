@@ -22,6 +22,7 @@ export class CreateReportComponent implements OnInit {
   report = new ReportResponseDTO();
   courses: Observable<Course[]>;
   selectedOption: any = {};
+  semester: any = {};
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute,
     private teacherService: TeacherService, private reportService: ReportService, 
@@ -44,7 +45,8 @@ export class CreateReportComponent implements OnInit {
   onSubmit() {
     this.report.student_id = this.student_id;
     if(this.selectedOption) {
-      this.report.courseName = this.selectedOption.title;
+      this.report.semester = this.semester;
+      this.report.course_id = this.selectedOption.id;
       this.reportService.create(this.report).subscribe(() => {
         this.goBack();
       });

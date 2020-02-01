@@ -31,8 +31,7 @@ export class CreateExamClassroomComponent implements OnInit {
   selectedCourse: any = {};
 
   constructor(private userService: UserService, private courseService: CourseService, private router: Router,
-    private examService: ExamService, private classroomService: ClassroomService, private teacherService: TeacherService, 
-    private route: ActivatedRoute) { }
+    private examService: ExamService, private teacherService: TeacherService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.classroom_id = this.route.snapshot.params['id'];
@@ -59,7 +58,6 @@ export class CreateExamClassroomComponent implements OnInit {
     this.examService.createExamsFromForm(this.collect(this.marks, this.raw_exams, this.selectedCourse.id, this.written_at))
     .subscribe(data =>  {     
       this.goBack();
-
     });
   }
 
@@ -80,7 +78,6 @@ export class CreateExamClassroomComponent implements OnInit {
       }    
       index++;
     }
-
     return result;
   }
 

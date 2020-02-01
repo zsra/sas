@@ -1,1 +1,54 @@
-<p>semester-view works!</p>
+<div *ngIf="isDataAvailable">
+    <app-panel-loader></app-panel-loader>
+    <div class="container" *ngIf="hasPermit()">
+        <div class="container">
+            <h2>Reports</h2>
+        </div>
+        <div class="container">
+            <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-report">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label for="year">Year</label>
+                                    <input type="number" class="form-control" id="year" required [(ngModel)]="year" min="1" max="14" name="year">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label for="semester">Semester</label>
+                                    <select id="semester" class="form-control" required [(ngModel)]="semester" name="semster">
+                                        <option [ngValue]="1">1</option>
+                                        <option [ngValue]="2">2</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>                 
+                <button type="submit" class="btn btn-success">Submit</button>
+                <button *ngIf="userRole() != 'ROLE_STUDENT'" (click)="goBack()" class="btn btn-dark">Back</button>
+            </form>
+        </div>
+        <div class="container" *ngIf="selected">
+            <table class="table table-striped table-sm table-bordered" id="form-response">
+                <thead  class="thead-dark">
+                  <th>Subject</th>
+                  <th>Marks</th>
+                  <th *ngIf="userRole() != 'ROLE_STUDENT'">Function</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let report of reports">
+                    <td>{{report.course.title}}</td>
+                    <td>{{report.mark}}</td>
+                    <td *ngIf="userRole() != 'ROLE_STUDENT'">
+                        <button (click)="update(report.id)" class="btn btn-warning">Update</button>
+                        <button (click)="delete(report.id)" class="btn btn-danger">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>

@@ -10,13 +10,13 @@ public class ReportDTO {
     @Getter @Setter
     private Student student;
     @Getter @Setter
-    private ReportResponseDTO reportResponseDTO;
+    private int mark;
 
     public ReportDTO() {
     }
 
     public ReportDTO(Student student) {
         this.student = student;
-        this.reportResponseDTO = new ReportResponseDTO();
+        this.mark = 0;
     }
 }

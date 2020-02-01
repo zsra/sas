@@ -2,7 +2,7 @@ export class ReportResponseDTO {
 
     year: number;
     semester: number;
-    courseName: string;
     mark: number;
+    course_id: number;
     student_id: number;
 }

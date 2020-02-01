@@ -12,22 +12,22 @@ public class ReportResponseDTO {
     private int semester;
 
     @Getter @Setter
-    private String courseName;
-
-    @Getter @Setter
     private int mark;
 
     @Getter @Setter
     private Long student_id;
 
+    @Getter @Setter
+    private Long course_id;
+
     public ReportResponseDTO() {
     }
 
-    public ReportResponseDTO(int year, int semester, String courseName, int mark, Long student_id) {
+    public ReportResponseDTO(int year, int semester, int mark, Long student_id, Long course_id) {
         this.year = year;
         this.semester = semester;
-        this.courseName = courseName;
         this.mark = mark;
         this.student_id = student_id;
+        this.course_id = course_id;
     }
 }

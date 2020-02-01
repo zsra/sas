@@ -36,6 +36,11 @@ import { CreateExamComponent } from './components/exams/create-exam/create-exam.
 import { UpdateExamComponent } from './components/exams/update-exam/update-exam.component';
 import { ExamListComponent } from './components/exams/exam-list/exam-list.component';
 import { ClassroomUpdateComponent } from './components/classrooms/classroom-update/classroom-update.component';
+import { SemesterViewComponent } from './components/reports/semester-view/semester-view.component';
+import { CreateReportComponent } from './components/reports/create-report/create-report.component';
+import { UpdateReportComponent } from './components/reports/update-report/update-report.component';
+import { CreateReportClassroomComponent } from './components/reports/create-report-classroom/create-report-classroom.component';
+import { CreateAttendanceComponent } from './components/attendances/create-attendance/create-attendance.component';
 
 const routes: Routes = [
   {
@@ -174,6 +179,28 @@ const routes: Routes = [
   {
     path: 'exam/list/:id',
     component: ExamListComponent
+  },
+  /* ----- REPORT ----- */
+  {
+    path: 'report/student/:id',
+    component: SemesterViewComponent
+  },
+  {
+    path: 'report/create/:id',
+    component: CreateReportComponent
+  },
+  {
+    path: 'report/update/:id',
+    component: UpdateReportComponent
+  },
+  {
+    path: 'report/classroom/:id',
+    component: CreateReportClassroomComponent
+  },
+  /* ----- ATTENDANCES ----- */
+  {
+    path: 'attendance/create/:id',
+    component: CreateAttendanceComponent
   },
   /* ----- DEFAULT ----- */
   {

@@ -55,6 +55,7 @@ import { TimetableListComponent } from './components/timetables/timetable-list/t
 import { CreateAttendanceComponent } from './components/attendances/create-attendance/create-attendance.component';
 import { ViewAttendanceComponent } from './components/attendances/view-attendance/view-attendance.component';
 import { PanelLoaderComponent } from './components/panels/panel-loader/panel-loader.component';
+import { ClassAttendanceComponent } from './components/attendances/class-attendance/class-attendance.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { PanelLoaderComponent } from './components/panels/panel-loader/panel-loa
     TimetableListComponent,
     CreateAttendanceComponent,
     ViewAttendanceComponent,
-    PanelLoaderComponent
+    PanelLoaderComponent,
+    ClassAttendanceComponent
   ],
   imports: [
     BrowserModule,

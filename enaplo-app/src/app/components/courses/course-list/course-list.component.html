@@ -24,9 +24,9 @@
                             <td>{{course.teacher.teacher.fullName}}</td>
                             <td>
                                 <button (click)="details(course.id)" class="btn btn-info">Details</button>
-                                <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_ADMIN')" (click)="update(course.id)" class="btn btn-warning">Update</button>
-                                <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_ADMIN')" (click)="delete(course.id)" class="btn btn-danger">Delete</button>
-                                <button *ngIf="(user.authorities[0].authority + '' === 'ROLE_ADMIN')" (click)="timetable(course.id)" class="btn btn-dark">TimeTable</button>
+                                <button *ngIf="currentUser.authorities[0].authority + '' === 'ROLE_ADMIN'" (click)="update(course.id)" class="btn btn-warning">Update</button>
+                                <button *ngIf="currentUser.authorities[0].authority + '' === 'ROLE_ADMIN'" (click)="delete(course.id)" class="btn btn-danger">Delete</button>
+                                <button *ngIf="currentUser.authorities[0].authority + '' === 'ROLE_ADMIN'" (click)="timetable(course.id)" class="btn btn-dark">TimeTable</button>
                             </td>
                         </tr>    
                     </tbody>

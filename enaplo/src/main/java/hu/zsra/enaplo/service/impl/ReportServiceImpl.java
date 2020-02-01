@@ -2,8 +2,10 @@ package hu.zsra.enaplo.service.impl;
 
 import hu.zsra.enaplo.dto.ReportDTO;
 import hu.zsra.enaplo.dto.response.ReportResponseDTO;
+import hu.zsra.enaplo.model.Course;
 import hu.zsra.enaplo.model.Report;
 import hu.zsra.enaplo.model.user.group.Student;
+import hu.zsra.enaplo.repository.CourseRepository;
 import hu.zsra.enaplo.repository.ReportRepository;
 import hu.zsra.enaplo.repository.user.StudentRepository;
 import hu.zsra.enaplo.service.ReportService;
@@ -24,6 +26,8 @@ public class ReportServiceImpl implements ReportService {
     private ReportRepository reportRepository;
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private CourseRepository courseRepository;
 
     /**
      * Returns a Summary of semester for student. One
@@ -67,13 +71,15 @@ public class ReportServiceImpl implements ReportService {
     public Report create(ReportResponseDTO reportResponseDTO) {
         /* Finds student by id. */
         Student student = studentRepository.getOne(reportResponseDTO.getStudent_id());
-        return new Report(
+        /* Finds course by id. */
+        Course course = courseRepository.getOne(reportResponseDTO.getCourse_id());
+        return reportRepository.save(new Report(
                 student,
                 reportResponseDTO.getYear(),
                 reportResponseDTO.getSemester(),
-                reportResponseDTO.getCourseName(),
+                course,
                 reportResponseDTO.getMark()
-        );
+        ));
     }
 
     /**
@@ -88,11 +94,12 @@ public class ReportServiceImpl implements ReportService {
     public Report update(Long id, ReportResponseDTO reportResponseDTO) {
         /* Finds report by id. */
         Report report = reportRepository.getOne(id);
-
+        /* Finds course by id. */
+        Course course = courseRepository.getOne(reportResponseDTO.getCourse_id());
         report.setMark(reportResponseDTO.getMark());
         report.setSemester(reportResponseDTO.getSemester());
         report.setYear(reportResponseDTO.getYear());
-        report.setCourseName(reportResponseDTO.getCourseName());
+        report.setCourse(course);
 
         return reportRepository.save(report);
     }
@@ -137,11 +144,13 @@ public class ReportServiceImpl implements ReportService {
         for(ReportResponseDTO reportResponseDTO : reportResponseDTOS) {
             /* Finds student by id. */
             Student student = studentRepository.getOne(reportResponseDTO.getStudent_id());
+            /* Finds course by id. */
+            Course course = courseRepository.getOne(reportResponseDTO.getCourse_id());
             Report report = new Report(
                     student,
                     reportResponseDTO.getYear(),
                     reportResponseDTO.getSemester(),
-                    reportResponseDTO.getCourseName(),
+                    course,
                     reportResponseDTO.getMark()
             );
             reports.add(report);

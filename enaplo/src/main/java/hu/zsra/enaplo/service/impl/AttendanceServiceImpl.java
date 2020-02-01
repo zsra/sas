@@ -1,6 +1,7 @@
 package hu.zsra.enaplo.service.impl;
 
 import hu.zsra.enaplo.dto.AttendanceDTO;
+import hu.zsra.enaplo.dto.response.AttendanceResponseDTO;
 import hu.zsra.enaplo.model.Attendance;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.repository.AttendanceRepository;
@@ -44,21 +45,27 @@ public class AttendanceServiceImpl implements AttendanceService {
     /**
      * Creates new attendances for the missing students.
      *
-     * @param attendanceDTOS Submitted DTO from web application.
-     * @param lecture Missed lecture of the day.
-     * @param dateOfMiss The day when student didn't come to school.
+     * @param attendanceResponseDTOS Submitted DTOs from web application.
      * @return List of Attendances.
      * @see Attendance
      */
     @Override
-    public List<Attendance> create(List<AttendanceDTO> attendanceDTOS, int lecture, LocalDate dateOfMiss) {
-        List<Attendance> attendances = new ArrayList<>();
-        for(AttendanceDTO attendanceDTO : attendanceDTOS) {
-            if(attendanceDTO.isMiss()) {
-                attendances.add(new Attendance(attendanceDTO.getStudent(), lecture, dateOfMiss));
+    public List<Attendance> create(List<AttendanceResponseDTO> attendanceResponseDTOS) {
+        List<Attendance> result = new ArrayList<>();
+        for(AttendanceResponseDTO attendanceResponseDTO: attendanceResponseDTOS) {
+            if(attendanceResponseDTO.isMiss()) {
+                /* Finds student by id. */
+                Student student = studentRepository.getOne(attendanceResponseDTO.getStudent_id());
+                Attendance attendance = new Attendance(
+                        student,
+                        attendanceResponseDTO.getLesson(),
+                        attendanceResponseDTO.getDateOfMiss()
+                );
+                result.add(attendance);
+                attendanceRepository.save(attendance);
             }
         }
-        return attendanceRepository.saveAll(attendances);
+        return result;
     }
 
     /**

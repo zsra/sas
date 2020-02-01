@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/app/model/course';
 import { UserService } from 'src/app/service/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from 'src/app/service/course.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class CourseDetailsComponent implements OnInit {
   isDataAvailable:boolean = false;
 
   constructor(private userService: UserService, private route: ActivatedRoute, 
-    private courseService: CourseService) { }
+    private courseService: CourseService, private router: Router) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -30,7 +30,11 @@ export class CourseDetailsComponent implements OnInit {
     });
   }
 
-  hasSignedIn() {
+  goBack() {
+    this.router.navigate(['course/all']);
+  }
+
+  hasSignedId() {
     return !!this.userService.currentUser;
   }
 }

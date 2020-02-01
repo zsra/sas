@@ -15,26 +15,27 @@ export class AttendanceService {
     }
 
     getAllByStudent(student_id: number) {
-        this.apiService.get(this.configService.getAllAttendanceByStudentUrl + '/' + student_id);
+        return this.apiService.get(this.configService.getAllAttendanceByStudentUrl + '/' + student_id);
     }
 
-    create(attendances: AttendanceResponseDTO) {
-        this.apiService.post(this.configService.getCreateAttendanceUrl, attendances);
+    create(attendances: AttendanceResponseDTO[]) {
+        return this.apiService.post(this.configService.getCreateAttendanceUrl, attendances);
     }
 
     delete(id: number) {
-        this.apiService.delete(this.configService.getDeleteAttendaceUrl + '/' + id, id);
+        return this.apiService.delete(this.configService.getDeleteAttendaceUrl + '/' + id, id);
     }
 
     verify(id: number) {
-        this.apiService.put(this.configService.getVerifyAttendanceUrl + '/' + id, id);
+        return this.apiService.put(this.configService.getVerifyAttendanceUrl + '/' + id, id);
     }
 
     nonVerifyByStudent(student_id: number) {
-        this.apiService.get(this.configService.getNonVerifyAttendanceUrl);
+        return this.apiService.get(this.configService.getNonVerifyAttendanceUrl + '/' + student_id);
     }
 
     makeAttendanceFormToClassroom(classroom_id: number) {
-        this.apiService.get(this.configService.getMakeAttendanceFormToClassroomUrl + '/' + classroom_id);
+        return this.apiService.get(this.configService.getMakeAttendanceFormToClassroomUrl + '/' + classroom_id);
     }
+
 }

@@ -1,1 +1,50 @@
-<p>create-report-classroom works!</p>
+<div *ngIf="isDataAvailable">
+    <app-panel-loader></app-panel-loader>
+    <div class="container" *ngIf="isTeacher()">
+        <div class="container">
+            <h2>Create reports for class</h2>
+        </div>
+        <div class="container">
+            <form (ngSubmit)="setBasic()" #form="ngForm" class="form-basic">
+                <div class="form-group">
+                    <label for="course">Course</label>
+                    <select name="course" class="form-control form-control-sm" [(ngModel)]="selectedCourse">
+                        <option *ngFor="let course of courses" [ngValue]="course">{{course.title}}/{{course.year}}</option>
+                    </select>
+                </div>     
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <input type="number" class="form-control" id="year" required [(ngModel)]="report.year" min="1" max="14" name="year">
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester</label>
+                    <input type="number" class="form-control" id="semester" required [(ngModel)]="report.semester" min="1" max="2" name="semester">
+                </div>
+                <button type="submit" class="btn btn-dark">Create Form</button>
+            </form>
+        </div>
+        <div class="container" id="form-response" *ngIf="isBasicSet">
+            <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-students">
+                <div class="form-objects">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr *ngFor="let report of reports; index as i">
+                                <td>
+                                    <i>{{report.student.student.username}}</i>         
+                                </td>
+                                <td>
+                                    <b>{{report.student.student.fullName}}</b>         
+                                </td>
+                                <td>
+                                    <input type="number" class="mark-input" required [(ngModel)]="marks[i]" min="1" max="5" name="mark">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+                <button (click)="goBack()" class="btn btn-dark">Back</button>
+            </form>
+        </div>
+    </div>
+</div>

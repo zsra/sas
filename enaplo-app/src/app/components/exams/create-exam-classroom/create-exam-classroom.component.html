@@ -26,6 +26,9 @@
                         <tbody>
                             <tr *ngFor="let exam of exams; index as i">
                                 <td>
+                                    <i>{{exam.student.student.username}}</i>         
+                                </td>
+                                <td>
                                     <b>{{exam.student.student.fullName}}</b>         
                                 </td>
                                 <td>

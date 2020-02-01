@@ -17,7 +17,7 @@ export class ReportService {
         return this.apiService.post(this.configService.getGetSemesterResultByStudentUrl + '/' + student_id + '/' + year, semester);
     }
 
-    findByIdUrl(id: number) {
+    findById(id: number) {
         return this.apiService.get(this.configService.getFindReportByIdUrl + '/' + id);
     }
 

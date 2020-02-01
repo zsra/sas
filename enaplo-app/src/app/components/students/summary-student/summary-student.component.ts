@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SummaryDTO } from 'src/app/dto/summaryDTO';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
 import { StudentService } from 'src/app/service/student.service';
 import { Student } from 'src/app/model/student';
@@ -15,7 +15,7 @@ export class SummaryStudentComponent implements OnInit {
 
   currentUser: any = {};
   student = new Student();
-  summaries: Observable<SummaryDTO[]>;
+  summaries: SummaryDTO[];
   isDataAvailable: boolean  = false;
   id: number;
 
@@ -29,11 +29,18 @@ export class SummaryStudentComponent implements OnInit {
       this.studentService.findById(this.id).subscribe(data => {
         this.student = data;
         this.studentService.summary(this.student.id).subscribe(data => { 
-          this.summaries = data;
+          this.summaries = this.format(data);
           this.isDataAvailable = true;
         });
       }); 
     });
+  }
+
+  format(summaries: SummaryDTO[]) {
+    for(let key in summaries) {
+      if(isNaN(summaries[key].average)) summaries[key].average = 0;
+    }
+    return summaries;
   }
 
   userRole(): string {

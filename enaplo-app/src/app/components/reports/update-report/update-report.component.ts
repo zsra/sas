@@ -24,6 +24,7 @@ export class UpdateReportComponent implements OnInit {
   response = new ReportResponseDTO();
   courses: Observable<Course[]>;
   selectedOption: any = {};
+  semester: any = {};
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute,
     private teacherService: TeacherService, private reportService: ReportService, 
@@ -36,7 +37,7 @@ export class UpdateReportComponent implements OnInit {
       this.teacherService.findByUserId(this.currentUser.id).subscribe(data => {
         this.courseService.getCoursesByTeacherId(data.id).subscribe(data => {
           this.courses = data;
-          this.reportService.findByIdUrl(this.report_id).subscribe(data => {
+          this.reportService.findById(this.report_id).subscribe(data => {
             this.report = data;
             this.isDataAvailable = true;
           });
@@ -55,9 +56,10 @@ export class UpdateReportComponent implements OnInit {
   onSubmit() {
     if(this.isDataChanged()) {
       this.response.student_id = this.report.student.id;
-      if(!this.selectedOption) this.response.courseName = this.selectedOption.title;
-      else this.response.courseName = this.report.courseName;
-      if(!this.response.semester) this.response.semester = this.report.semester;
+      if(!this.selectedOption) this.response.course_id = this.selectedOption.course.id;
+      else this.response.course_id = this.report.course.id;
+      if(this.semester) this.response.semester = Number(this.semester);
+      else this.response.semester = this.report.semester;
       if(!this.response.year) this.response.year = this.report.year;
       if(!this.response.mark) this.response.mark = this.report.mark;
       this.reportService.update(this.report.id, this.response).subscribe(() => {
