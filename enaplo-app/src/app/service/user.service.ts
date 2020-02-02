@@ -53,6 +53,10 @@ export class UserService {
         return this.apiService.put(this.configService.getUpdateUserUrl + '/' + id, user);
     }
 
+    delete(id: number) {
+        return this.apiService.delete(this.configService.getDeleteUrl + '/' + id, id);
+    }
+
     isUsernameUnique(username: string) {
         return this.apiService.get(this.configService.getIsUsernameUniqueUrl + '/' + username);
     }

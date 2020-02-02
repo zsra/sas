@@ -92,17 +92,17 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     /**
-     * Returns a List of non verified attendances by student.
+     * Returns a List of non verified attendances by classroom.
      *
-     * @param student_id Id of the Student.
-     * @return a list of non verified attendances.
+     * @param classroom_id Id of the Classroom.
+     * @return a list of attendances.
      */
     @Override
-    public List<Attendance> nonVerifyByStudent(Long student_id) {
+    public List<Attendance> getAllAttendancesByClassroom(Long classroom_id) {
         return attendanceRepository
                 .findAll()
                 .stream()
-                .filter(attendance -> attendance.getStudent().getId().equals(student_id))
+                .filter(attendance -> attendance.getStudent().getClassroom().getId().equals(classroom_id))
                 .collect(Collectors.toList());
     }
 

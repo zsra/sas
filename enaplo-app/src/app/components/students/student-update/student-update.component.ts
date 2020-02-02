@@ -87,7 +87,7 @@ export class StudentUpdateComponent implements OnInit {
   
   userUpdate() {
     this.userService.getById(this.student.student.id).subscribe(data =>
-      this.router.navigate(['user/update', data.id]))
+      this.router.navigate(['user/update', data.id]));
   }
 
   userRole(): string {

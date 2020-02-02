@@ -57,6 +57,8 @@ export class CourseListComponent implements OnInit {
   }
 
   delete(course_id: number) {
-
+    this.courseService.delete(course_id).subscribe(() => {
+      
+    });
   }
 }

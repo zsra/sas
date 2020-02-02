@@ -12,5 +12,6 @@ public interface UserService {
     User findById(Long id);
     User save(UserResponseDTO userResponseDTO);
     User update(Long id, UserResponseDTO userResponseDTO);
+    String delete(Long user_id);
     boolean isUsernameUnique(String username);
 }

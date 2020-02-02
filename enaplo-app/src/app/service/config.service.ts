@@ -32,6 +32,7 @@ export class ConfigService {
     private whoamiUrl = this.userUrl + '/whoami';
     private allUsersUrl = this.userUrl + '/all';
     private createUrl = this.userUrl + '/create';
+    private deleteUrl = this.userUrl;
     private getUserByIdUrl = this.userUrl;
     private isUsernameUniqueUrl = this.userUrl + '/username';
     private updateUserUrl = this.userUrl + '/update';
@@ -46,6 +47,10 @@ export class ConfigService {
 
     get getCreateUrl(): string {
         return this.createUrl;
+    }
+
+    get getDeleteUrl(): string {
+        return this.deleteUrl;
     }
 
     get getGetUserByIdUrl(): string {
@@ -101,7 +106,7 @@ export class ConfigService {
     private makeAttendanceFormToClassroomUrl = this.attendanceUrl;
     private createAttendanceUrl = this.attendanceUrl + '/create';
     private verifyAttendanceUrl = this.attendanceUrl + '/verify';
-    private nonVerifyAttendanceUrl = this.attendanceUrl + '/nonVerify';
+    private getAllAttendancesByClassroomUrl = this.attendanceUrl + '/classroom';
     private allAttendanceByStudentUrl = this.attendanceUrl + '/all';
     private deleteAttendaceUrl = this.attendanceUrl;
 
@@ -117,8 +122,8 @@ export class ConfigService {
         return this.verifyAttendanceUrl;
     }
 
-    get getNonVerifyAttendanceUrl(): string {
-        return this.nonVerifyAttendanceUrl;
+    get getGetAllAttendancesByClassroomUrl(): string {
+        return this.getAllAttendancesByClassroomUrl;
     }
 
     get getAllAttendanceByStudentUrl(): string {

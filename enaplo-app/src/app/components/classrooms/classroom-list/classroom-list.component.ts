@@ -43,7 +43,9 @@ export class ClassroomListComponent implements OnInit {
   }
 
   delete(classroom_id: number) {
-
+    this.classroomService.delete(classroom_id).subscribe(() => {
+      
+    });
   }
 
   exam(classroom_id: number) {

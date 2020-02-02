@@ -41,6 +41,8 @@ import { CreateReportComponent } from './components/reports/create-report/create
 import { UpdateReportComponent } from './components/reports/update-report/update-report.component';
 import { CreateReportClassroomComponent } from './components/reports/create-report-classroom/create-report-classroom.component';
 import { CreateAttendanceComponent } from './components/attendances/create-attendance/create-attendance.component';
+import { ViewAttendanceComponent } from './components/attendances/view-attendance/view-attendance.component';
+import { ClassAttendanceComponent } from './components/attendances/class-attendance/class-attendance.component';
 
 const routes: Routes = [
   {
@@ -202,6 +204,14 @@ const routes: Routes = [
     path: 'attendance/create/:id',
     component: CreateAttendanceComponent
   },
+  {
+    path: 'attendance/student/:id',
+    component: ViewAttendanceComponent
+  },
+  {
+    path: 'attendance/classroom/:id',
+    component: ClassAttendanceComponent
+  },
   /* ----- DEFAULT ----- */
   {
     path: '404',
@@ -213,7 +223,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/login'
+    redirectTo: '/home'
   }
 ];
 

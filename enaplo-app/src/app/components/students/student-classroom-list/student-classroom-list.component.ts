@@ -57,8 +57,8 @@ export class StudentClassroomListComponent implements OnInit {
     this.router.navigate(['report/student', student_id]);
   }
 
-  attendances(user_id: number) {
-
+  attendances(student_id: number) {
+    this.router.navigate(['attendance/student', student_id]);
   }
 
   exam(student_id: number) {

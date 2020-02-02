@@ -6,5 +6,5 @@ export class Attendance {
     lecture: number;
     dateOfMiss: string;
     student: Student;
-    isVerified: boolean;
+    verified: boolean;
 }

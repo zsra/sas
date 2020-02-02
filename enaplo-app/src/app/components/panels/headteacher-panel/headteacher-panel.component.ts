@@ -12,7 +12,7 @@ import { Teacher } from 'src/app/model/teacher';
 })
 export class HeadteacherPanelComponent implements OnInit {
 
-  currentuser: any = {};
+  currentUser: any = {};
   teacher = new Teacher();
   isDataAvailable: boolean = false;
 
@@ -21,8 +21,8 @@ export class HeadteacherPanelComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.currentuser = data;
-      this.teacherService.findByUserId(this.currentuser.id).subscribe(data =>  {
+      this.currentUser = data;
+      this.teacherService.findByUserId(this.currentUser.id).subscribe(data =>  {
         this.teacher = data;
         this.isDataAvailable = true;
       })
@@ -36,6 +36,8 @@ export class HeadteacherPanelComponent implements OnInit {
   }
 
   getAttendances() {
-
+    this.classroomService.findByHeadteacherId(this.teacher.id).subscribe(data => {
+      this.router.navigate(['attendance/classroom', data.id]);
+    });  
   }
 }

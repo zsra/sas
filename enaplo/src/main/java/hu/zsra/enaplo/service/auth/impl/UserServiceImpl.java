@@ -60,6 +60,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public String delete(Long user_id) {
+        User user = userRepository.getOne(user_id);
+        userRepository.delete(user);
+        return user.getUsername();
+    }
+
+    @Override
     public boolean isUsernameUnique(String username) {
         return !userRepository.existsByUsername(username);
     }

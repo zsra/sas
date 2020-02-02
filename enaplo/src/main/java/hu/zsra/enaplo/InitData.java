@@ -276,11 +276,19 @@ public class InitData {
 
             Long classroom_id = i % 2 == 0 ? 1L : 2L;
             List<AttendanceDTO> attendanceDTOS = attendanceService.makeAttendanceFormToClassroom(classroom_id);
+            List<AttendanceResponseDTO> attendanceResponseDTOS = new ArrayList<>();
             for(AttendanceDTO attendanceDTO: attendanceDTOS) {
                 boolean randMiss = random.nextBoolean();
-                attendanceDTO.setMiss(randMiss);
+                AttendanceResponseDTO attendance = new AttendanceResponseDTO(
+                        attendanceDTO.getStudent().getId(),
+                        randMiss,
+                        randLecture,
+                        LocalDate.of(randYear, randMonth, randDay)
+                );
+                attendanceResponseDTOS.add(attendance);
+
             }
-            //attendanceService.create(attendanceDTOS);
+            attendanceService.create(attendanceResponseDTOS);
          }
     }
 

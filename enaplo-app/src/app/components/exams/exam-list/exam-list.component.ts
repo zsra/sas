@@ -56,7 +56,9 @@ export class ExamListComponent implements OnInit {
   }
 
   delete(exam_id: number) {
-
+    this.examService.delete(exam_id).subscribe(() => {
+      
+    });
   }
 
   userRole(): string {

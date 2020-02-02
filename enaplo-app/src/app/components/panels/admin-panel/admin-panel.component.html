@@ -1,5 +1,5 @@
 <mat-toolbar class="admin-panel">
-    <div class="admin-panel-container">
+    <div *ngIf="isDataAvailable" class="admin-panel-container">
         <span class="title">Admin</span>
             <div class="right" >
                 <button  mat-button mat-ripple (click)='createStudent()' class="admin-button">Create Student</button>
@@ -9,6 +9,7 @@
                 <button  mat-button mat-ripple (click)='getAllUser()' class="admin-button">Users</button>
                 <button  mat-button mat-ripple (click)='getAllClassroom()' class="admin-button">Classrooms</button>
                 <button  mat-button mat-ripple (click)='getAllCourse()' class="admin-button">Courses</button>
+                <button  mat-button mat-ripple (click)='update()' class="admin-button">Update</button>
             </div>
         </div>
 </mat-toolbar>

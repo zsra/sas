@@ -12,7 +12,7 @@ import { TeacherService } from 'src/app/service/teacher.service';
 })
 export class TeacherPanelComponent implements OnInit {
 
-  currentuser: any = {};
+  currentUser: any = {};
   teacher = new Teacher();
   isDataAvailable: boolean = false;
 
@@ -21,8 +21,8 @@ export class TeacherPanelComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
-      this.currentuser = data;
-      this.teacherService.findByUserId(this.currentuser.id).subscribe(data => {
+      this.currentUser = data;
+      this.teacherService.findByUserId(this.currentUser.id).subscribe(data => {
         this.teacher = data;
         this.isDataAvailable = true;
       })
@@ -31,5 +31,13 @@ export class TeacherPanelComponent implements OnInit {
 
   classrooms() {
     this.router.navigate(['/classroom/all']);
+  }
+
+  update() {
+    this.teacherService.findByUserId(this.currentUser.id).subscribe(data => this.router.navigate(['student/update', data.id]));
+  }
+
+  details() {
+    this.teacherService.findByUserId(this.currentUser.id).subscribe(data => this.router.navigate(['student/details', data.id]));
   }
 }

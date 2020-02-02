@@ -24,7 +24,7 @@ public class AttendanceResponseDTO {
     public AttendanceResponseDTO() {
     }
 
-    public AttendanceResponseDTO(Long student_id,boolean miss, int lesson, LocalDate dateOfMiss) {
+    public AttendanceResponseDTO(Long student_id, boolean miss, int lesson, LocalDate dateOfMiss) {
         this.student_id = student_id;
         this.miss = miss;
         this.lesson = lesson;

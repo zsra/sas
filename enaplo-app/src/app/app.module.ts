@@ -56,6 +56,8 @@ import { CreateAttendanceComponent } from './components/attendances/create-atten
 import { ViewAttendanceComponent } from './components/attendances/view-attendance/view-attendance.component';
 import { PanelLoaderComponent } from './components/panels/panel-loader/panel-loader.component';
 import { ClassAttendanceComponent } from './components/attendances/class-attendance/class-attendance.component';
+import { AdministrationComponent } from './components/admins/administration/administration.component';
+import { ArchivesListComponent } from './components/admins/archives-list/archives-list.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +104,9 @@ import { ClassAttendanceComponent } from './components/attendances/class-attenda
     CreateAttendanceComponent,
     ViewAttendanceComponent,
     PanelLoaderComponent,
-    ClassAttendanceComponent
+    ClassAttendanceComponent,
+    AdministrationComponent,
+    ArchivesListComponent
   ],
   imports: [
     BrowserModule,

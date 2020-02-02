@@ -52,6 +52,11 @@ public class UserController {
         return userService.update(id, userResponseDTO);
     }
 
+    @DeleteMapping(value = "/user/{id}")
+    public String delete(@PathVariable Long id) {
+        return userService.delete(id);
+    }
+
     @PostMapping(value = "/user/create")
     public ResponseEntity<?> addUser(@RequestBody UserResponseDTO userResponseDTO,
                                      UriComponentsBuilder ucBuilder) {

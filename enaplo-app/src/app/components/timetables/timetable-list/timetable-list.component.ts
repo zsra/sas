@@ -52,6 +52,8 @@ export class TimetableListComponent implements OnInit {
   }
 
   delete(entity_id: number) {
-
+    this.timeTableService.delete(entity_id).subscribe(() => {
+      
+    });
   }
 }

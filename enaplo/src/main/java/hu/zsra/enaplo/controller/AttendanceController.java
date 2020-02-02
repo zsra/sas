@@ -39,9 +39,9 @@ public class AttendanceController {
         return id.toString();
     }
 
-    @GetMapping(value = "/attendances/nonVerify/{student_id}")
-    public List<Attendance> nonVerifyByStudent(@PathVariable Long student_id) {
-        return attendanceService.nonVerifyByStudent(student_id);
+    @GetMapping(value = "/attendances/classroom/{classroom_id}")
+    public List<Attendance> getAllAttendancesByClassroom(Long classroom_id) {
+        return  attendanceService.getAllAttendancesByClassroom(classroom_id);
     }
 
     @GetMapping(value = "/attendances/{classroom_id}")

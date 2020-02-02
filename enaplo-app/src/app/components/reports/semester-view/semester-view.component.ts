@@ -73,7 +73,7 @@ export class SemesterViewComponent implements OnInit {
   }
 
   delete(report_id: number) {
-
+    this.reportService.delete(report_id).subscribe(() => {});
   }
 
 }

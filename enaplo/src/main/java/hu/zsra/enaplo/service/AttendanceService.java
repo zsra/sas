@@ -45,12 +45,12 @@ public interface AttendanceService {
     void verify(Long id);
 
     /**
-     * Returns a List of non verified attendances by student.
+     * Returns a List of non verified attendances by classroom.
      *
-     * @param student_id Id of the Student.
-     * @return a list of non verified attendances.
+     * @param classroom_id Id of the Classroom.
+     * @return a list of attendances.
      */
-    List<Attendance> nonVerifyByStudent(Long student_id);
+    List<Attendance> getAllAttendancesByClassroom(Long classroom_id);
 
     /**
      * Returns a List of Attendances by student id.

@@ -59,6 +59,25 @@ export class UserListComponent implements OnInit {
   }
 
   delete(user_id: number) {
+    this.userService.getById(user_id).subscribe(data => {
+      if(data.authorities[0].authority + '' === 'ROLE_STUDENT') {
+        this.studentService.findByUserId(user_id).subscribe(data => {
+          this.studentService.delete(data.id).subscribe(() => {
+              this.userService.delete(user_id).subscribe(() => {
 
+              });
+          });
+        });
+      } else if(data.authorities[0].authority + '' === 'ROLE_TEACHER' 
+                  || data.authorities[0].authority + '' === 'ROLE_HEADTEACHER') {
+        this.teacherService.findByUserId(user_id).subscribe(data => {
+          this.teacherService.delete(data.id).subscribe(() => {
+            this.userService.delete(user_id).subscribe(() => {
+                
+              });
+          });
+        }); 
+      }
+    });
   }
 }
