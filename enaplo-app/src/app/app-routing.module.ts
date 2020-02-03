@@ -43,6 +43,9 @@ import { CreateReportClassroomComponent } from './components/reports/create-repo
 import { CreateAttendanceComponent } from './components/attendances/create-attendance/create-attendance.component';
 import { ViewAttendanceComponent } from './components/attendances/view-attendance/view-attendance.component';
 import { ClassAttendanceComponent } from './components/attendances/class-attendance/class-attendance.component';
+import { ArchivesListComponent } from './components/admins/archives-list/archives-list.component';
+import { ArchiveDetailsComponent } from './components/admins/archive-details/archive-details.component';
+import { AdministrationComponent } from './components/admins/administration/administration.component';
 
 const routes: Routes = [
   {
@@ -211,6 +214,19 @@ const routes: Routes = [
   {
     path: 'attendance/classroom/:id',
     component: ClassAttendanceComponent
+  },
+  /* ----- ARCHIVES ----- */
+  {
+    path: 'archive/all',
+    component: ArchivesListComponent
+  },
+  {
+    path: 'archive/:id',
+    component: ArchiveDetailsComponent
+  },
+  {
+    path: 'admin',
+    component: AdministrationComponent 
   },
   /* ----- DEFAULT ----- */
   {

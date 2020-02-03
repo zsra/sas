@@ -28,6 +28,8 @@
                                 <button *ngIf="userRole() === 'ROLE_ADMIN'" (click)="update(classroom.id)" class="btn btn-warning">Update</button>
                                 <button *ngIf="userRole() === 'ROLE_ADMIN'" (click)="delete(classroom.id)" class="btn btn-danger">Delete</button>
                                 <button *ngIf="userRole() === 'ROLE_ADMIN'" (click)="setCourse(classroom.id)" class="btn btn-info">Set Course</button>
+                                <button *ngIf="userRole() === 'ROLE_ADMIN'" (click)="finished(classroom.id)" class="btn btn-info">Graduated</button>
+
                                 <button *ngIf="userRole() === 'ROLE_TEACHER'|| userRole() === 'ROLE_HEADTEACHER'" (click)="exam(classroom.id)" class="btn btn-secondary">Exam</button>
                                 <button *ngIf="userRole() === 'ROLE_TEACHER'|| userRole() === 'ROLE_HEADTEACHER'" (click)="report(classroom.id)" class="btn btn-secondary">Report</button>
                                 <button *ngIf="userRole() === 'ROLE_TEACHER' || userRole() === 'ROLE_HEADTEACHER'" (click)="attendance(classroom.id)" class="btn btn-secondary">Attendance</button>

@@ -58,6 +58,7 @@ import { PanelLoaderComponent } from './components/panels/panel-loader/panel-loa
 import { ClassAttendanceComponent } from './components/attendances/class-attendance/class-attendance.component';
 import { AdministrationComponent } from './components/admins/administration/administration.component';
 import { ArchivesListComponent } from './components/admins/archives-list/archives-list.component';
+import { ArchiveDetailsComponent } from './components/admins/archive-details/archive-details.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import { ArchivesListComponent } from './components/admins/archives-list/archive
     PanelLoaderComponent,
     ClassAttendanceComponent,
     AdministrationComponent,
-    ArchivesListComponent
+    ArchivesListComponent,
+    ArchiveDetailsComponent
   ],
   imports: [
     BrowserModule,

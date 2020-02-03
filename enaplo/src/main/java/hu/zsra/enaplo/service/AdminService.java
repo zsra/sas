@@ -28,7 +28,15 @@ public interface AdminService {
      *
      * @return a list of archive report.
      */
-    List<ArchiveReport> getArchive();
+    List<Archive> getArchive();
+
+    /**
+     * Returns an Archive by student id.
+     *
+     * @param id Id of the archive;
+     * @return a list of archive report.
+     */
+    Archive getArchiveById(Long id);
 
     /**
      * If, the class finished the school, this function delete the class

@@ -1,1 +1,35 @@
-<p>archives-list works!</p>
+<div *ngIf="isDataAvailable">
+    <app-panel-loader></app-panel-loader>
+    <div class="container" *ngIf="userRole() === 'ROLE_ADMIN'">
+        <div class="container">
+            <div class="container">
+                <h3>Archives</h3>
+            </div>
+            <div class="container">
+                <input class="form-control-searchbox" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" 
+                placeholder="&#171; Search">
+                <table  class="table table-striped table-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Username</th>
+                            <th>Fullname</th>
+                            <th>Date of birth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let archive of archives | filter:searchText">
+                            <td>{{archive.username}}</td>
+                            <td>{{archive.fullName}}</td>
+                            <td>{{archive.dateOfBirth}}</td>
+                            <td>                 
+                                <button (click)="details(archive.id)" class="btn btn-info">Details</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

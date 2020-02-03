@@ -4,6 +4,7 @@ import { Classroom } from 'src/app/model/classroom';
 import { ClassroomService } from 'src/app/service/classroom.service';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/service/admin.service';
 
 @Component({
   selector: 'app-classroom-list',
@@ -18,7 +19,7 @@ export class ClassroomListComponent implements OnInit {
   currentUser: any = {};
 
   constructor(private userService: UserService, private router: Router,
-    private classroomService: ClassroomService) { }
+    private classroomService: ClassroomService, private adminService: AdminService) { }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
@@ -46,6 +47,10 @@ export class ClassroomListComponent implements OnInit {
     this.classroomService.delete(classroom_id).subscribe(() => {
       
     });
+  }
+
+  finished(classroom_id: number) {
+    this.adminService.finished(classroom_id).subscribe(() => {});
   }
 
   exam(classroom_id: number) {

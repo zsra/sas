@@ -1,6 +1,6 @@
 package hu.zsra.enaplo.controller;
 
-import hu.zsra.enaplo.model.archive.ArchiveReport;
+import hu.zsra.enaplo.model.archive.Archive;
 import hu.zsra.enaplo.service.impl.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +29,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "/admin/archives")
-    public List<ArchiveReport> getArchive() {
+    public List<Archive> getArchive() {
         return adminService.getArchive();
     }
 
@@ -37,5 +37,10 @@ public class AdminController {
     public String finished(@PathVariable Long classroom_id) {
         adminService.finished(classroom_id);
         return "Finished";
+    }
+
+    @GetMapping(value = "/admin/archive/{id}")
+    public Archive getArchiveByArchiveId(@PathVariable Long id){
+        return adminService.getArchiveById(id);
     }
 }

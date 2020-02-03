@@ -8,6 +8,7 @@ import hu.zsra.enaplo.model.user.Authority;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.repository.*;
 import hu.zsra.enaplo.repository.archive.ArchiveReportRepository;
+import hu.zsra.enaplo.repository.archive.ArchiveRepository;
 import hu.zsra.enaplo.repository.user.StudentRepository;
 import hu.zsra.enaplo.repository.user.TeacherRepository;
 import hu.zsra.enaplo.repository.user.UserRepository;
@@ -40,6 +41,8 @@ public class AdminServiceImpl implements AdminService {
     private AttendanceRepository attendanceRepository;
     @Autowired
     private ArchiveReportRepository archiveReportRepository;
+    @Autowired
+    private ArchiveRepository archiveRepository;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -87,8 +90,19 @@ public class AdminServiceImpl implements AdminService {
      * @return a list of archive report.
      */
     @Override
-    public List<ArchiveReport> getArchive() {
-        return archiveReportRepository.findAll();
+    public List<Archive> getArchive() {
+        return archiveRepository.findAll();
+    }
+
+    /**
+     * Returns an Archive  by student id.
+     *
+     * @param id Id of the archive;
+     * @return a list of archive report.
+     */
+    @Override
+    public Archive getArchiveById(Long id) {
+        return archiveRepository.getOne(id);
     }
 
     /**

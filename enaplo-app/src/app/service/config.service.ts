@@ -360,4 +360,31 @@ export class ConfigService {
     get getGetTimeTableEntitiesByCourseUrl(): string {
         return this.getTimeTableEntitiesByCourseUrl;
     }
+
+    private adminUrl = this.baseUrl;
+    private newYearUrl = this.adminUrl + '/newYear';
+    private createArchiveUrl = this.adminUrl + '/createArchive';
+    private getArchiveUrl = this.adminUrl + '/archives';
+    private finishedUrl = this.adminUrl + '/finished';
+    private getArchiveByIdUrl = this.adminUrl + '/archive';
+
+    get getNewYearUrl(): string {
+        return this.newYearUrl;
+    }
+
+    get getCreateArchiveUrl(): string {
+        return this.createArchiveUrl;
+    }
+
+    get getGetArchiveUrl(): string {
+        return this.getArchiveUrl;
+    }
+
+    get getFinishedUrl(): string {
+        return this.finishedUrl;
+    }
+
+    get getGetArchiveByIdUrl(): string {
+        return this.getArchiveByIdUrl;
+    }
 }
