@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { ClassroomService } from 'src/app/service/classroom.service';
 import { ClassroomResponseDTO } from 'src/app/dto/response/classroomResponseDTO';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-classroom-create',
@@ -21,37 +22,39 @@ export class ClassroomCreateComponent implements OnInit {
   selectedOption: any = {};
 
   constructor(private userService: UserService, private router: Router,
-    private teacherService: TeacherService, private classroomService: ClassroomService) { }
+    private teacherService: TeacherService, private classroomService: ClassroomService, 
+    private _snackBar: MatSnackBar) { }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data;
-    }).then(() => {
-      this.teacherService.findAll().subscribe(data =>
-        this.teachers = data);
-    })
-    .then(() => this.isDataAvailable = true);
+      this.teacherService.findAll().subscribe(data => {
+        this.teachers = data;
+        this.isDataAvailable = true;
+      });
+    });
   }
 
   onSubmit() {
     this.classroom.headTeacher_id = Number(this.selectedOption.id);
-    this.classroomService.create(this.classroom).subscribe(() => this.reset());
-    this.refresh();
-    this.goBack(); 
+    this.classroomService.create(this.classroom).subscribe(() => { 
+      this.reset();
+    });
   }
 
   reset() {
     this.classroom = new ClassroomResponseDTO();
-    this.isDataAvailable = false;
     this.selectedOption = {};
   }
 
-  refresh(): void {
-    window.location.reload();
-  }
-
   goBack() {
-    this.router.navigate(['/classroom/create']);
+    this.router.navigate(['/classroom/all']);
   }
 
   userRole(): string {

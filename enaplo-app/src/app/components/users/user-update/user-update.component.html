@@ -22,8 +22,8 @@
                     <label for="fullName">Fullname</label>
                     <input type="text" class="form-control" id="fullName" required [(ngModel)]="response.fullName" name="fullName" placeholder="Fullname">
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
-                <button (click)='goBack()' class="btn btn-dark">Back</button>
+                <button type="submit" (click)="goBack()" class="btn btn-dark">Back</button>
+                <button type="submit" (click)="openSnackBar('User updated', 'Ok')" class="btn btn-success">Submit</button>
             </form>
         </div>
 </div>

@@ -6,6 +6,7 @@ import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ClassroomService } from 'src/app/service/classroom.service';
 import { TimeTableService } from 'src/app/service/timeTable.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-timetable-entity-create',
@@ -22,7 +23,7 @@ export class TimetableEntityCreateComponent implements OnInit {
   timeTableEntity = new TimeTableEntityResponseDTO();
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute,
-    private classroomService: ClassroomService, private timeTableService: TimeTableService) { }
+    private classroomService: ClassroomService, private timeTableService: TimeTableService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -32,6 +33,12 @@ export class TimetableEntityCreateComponent implements OnInit {
         this.classrooms = data;
         this.isDataAvailable = true;
       });
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
@@ -50,10 +57,6 @@ export class TimetableEntityCreateComponent implements OnInit {
 
   goBack() {
     this.router.navigate(['/timetable/course', this.id]);
-  }
-  
-  refresh(): void {
-    window.location.reload();
   }
 
   userRole(): string {

@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ReportService } from 'src/app/service/report.service';
 import { ClassroomService } from 'src/app/service/classroom.service';
 import { TeacherService } from 'src/app/service/teacher.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-report-classroom',
@@ -30,7 +31,7 @@ export class CreateReportClassroomComponent implements OnInit {
   semester: any = {};
   selectedCourse: any = {};
 
-  constructor(private userService: UserService, private courseService: CourseService, private router: Router,
+  constructor(private userService: UserService, private courseService: CourseService, private router: Router, private _snackBar: MatSnackBar,
     private reportService: ReportService, private classroomService: ClassroomService, private teacherService: TeacherService, 
     private route: ActivatedRoute) { }
 
@@ -47,6 +48,12 @@ export class CreateReportClassroomComponent implements OnInit {
       });
     }
 
+    openSnackBar(message: string, action: string) {
+      this._snackBar.open(message, action, {
+        duration: 2000,
+      });
+    }
+
     setBasic() {
       this.reportService.makeReportFormToClassroom(this.classroom_id).subscribe(data => {
         this.reports = data;  
@@ -57,9 +64,17 @@ export class CreateReportClassroomComponent implements OnInit {
   
     onSubmit() {
       this.reportService.createReportsToClassroom(this.collect(this.marks, this.raw_reports, this.selectedCourse.id, this.year, this.semester))
-      .subscribe(data =>  {     
-        this.goBack();
+      .subscribe(data =>  {
+        this.refresh();
       });
+    }
+
+    refresh() {
+     this.response = [];
+     this.marks = {};
+     this.year = {};
+     this.semester = {};
+     this.selectedCourse = {};
     }
   
     collect(marks: number[], entities: ReportDTO[], course_id: number, 
@@ -92,6 +107,4 @@ export class CreateReportClassroomComponent implements OnInit {
       return this.currentUser.authorities[0].authority + '' === 'ROLE_TEACHER' 
       || this.currentUser.authorities[0].authority + '' === 'ROLE_HEADTEACHER'; 
     }
-  
-
 }

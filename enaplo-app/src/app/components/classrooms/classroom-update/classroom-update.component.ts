@@ -7,6 +7,7 @@ import { TeacherService } from 'src/app/service/teacher.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Classroom } from 'src/app/model/classroom';
 import { ClassroomResponseDTO } from 'src/app/dto/response/classroomResponseDTO';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-classroom-update',
@@ -23,7 +24,7 @@ export class ClassroomUpdateComponent implements OnInit {
   response = new ClassroomResponseDTO();
   selectedOption: any = {};
 
-  constructor(private userService: UserService, private teacherService: TeacherService, 
+  constructor(private userService: UserService, private teacherService: TeacherService, private _snackBar: MatSnackBar,
     private router: Router, private route: ActivatedRoute, private classroomService: ClassroomService) { }
 
   ngOnInit() {
@@ -37,6 +38,12 @@ export class ClassroomUpdateComponent implements OnInit {
           this.isDataAvailable = true;
         });
       });
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
@@ -57,10 +64,18 @@ export class ClassroomUpdateComponent implements OnInit {
       if(!this.response.letter) this.response.letter = this.classroom.letter;
       if(!this.response.start_year) this.response.start_year = this.classroom.start_year;
       if(!this.response.year) this.response.year = this.classroom.year;
-      this.classroomService.update(this.id, this.response).subscribe(() => this.goBack());
-    } else {
-      this.goBack();
+      this.classroomService.update(this.id, this.response).subscribe(() => {
+        this.refresh();
+      });
     }
+  }
+
+  refresh() {
+    this.response = new ClassroomResponseDTO();
+    this.selectedOption = {};
+    this.classroomService.findById(this.id).subscribe(data =>  {
+      this.classroom = data;
+    });
   }
 
   goBack() {

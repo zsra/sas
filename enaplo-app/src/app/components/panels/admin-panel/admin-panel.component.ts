@@ -29,14 +29,6 @@ export class AdminPanelComponent implements OnInit {
     this.router.navigate(['/teacher/create']);
   }
 
-  createCourse() {
-    this.router.navigate(['/course/create']);
-  }
-
-  createClassroom() {
-    this.router.navigate(['/classroom/create']);
-  }
-
   getAllUser() {
     this.router.navigate(['/user/all']);
   }
@@ -52,5 +44,13 @@ export class AdminPanelComponent implements OnInit {
   update() {
     this.userService.getById(this.currentUser.id).subscribe(data =>
       this.router.navigate(['user/update', data.id]));
+  }
+
+  admin() {
+    this.router.navigate(['admin/control']);
+  }
+
+  archives() {
+    this.router.navigate(['archive/all']);
   }
 }

@@ -29,7 +29,7 @@ public class Archive {
     @Getter @Setter
     private LocalDate dateOfBirth;
 
-    @OneToMany(mappedBy = "archive")
+    @OneToMany(mappedBy = "archive", cascade=CascadeType.ALL)
     @Getter @Setter
     private List<ArchiveReport> reports;
 

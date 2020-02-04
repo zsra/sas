@@ -20,8 +20,8 @@
                         <option *ngFor="let teacher of teachers" [ngValue]="teacher">{{teacher.teacher.fullName}}</option>
                    </select>
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
-                <button (click)="goBack()" class="btn btn-dark">Back</button>
+                <button type="submit" (click)="goBack()" class="btn btn-dark">Back</button>
+                <button type="submit" (click)="openSnackBar('Course updated', 'Ok')" class="btn btn-success">Submit</button>
             </form>
         </div>
     </div>

@@ -14,12 +14,13 @@
                             <th>Username</th>
                             <th>Fullname</th>
                             <th>Date of birth</th>
+                            <th>Function</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let archive of archives | filter:searchText">
                             <td>{{archive.username}}</td>
-                            <td>{{archive.fullName}}</td>
+                            <td>{{archive.studentName}}</td>
                             <td>{{archive.dateOfBirth}}</td>
                             <td>                 
                                 <button (click)="details(archive.id)" class="btn btn-info">Details</button>

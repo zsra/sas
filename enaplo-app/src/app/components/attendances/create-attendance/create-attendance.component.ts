@@ -5,6 +5,7 @@ import { AttendanceDTO } from 'src/app/dto/AttendanceDTO';
 import { AttendanceService } from 'src/app/service/attendace.service';
 import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-attendance',
@@ -25,7 +26,7 @@ export class CreateAttendanceComponent implements OnInit {
   raw_attendances: AttendanceDTO[];
 
 
-  constructor(private userService: UserService, private router: Router,
+  constructor(private userService: UserService, private router: Router, private _snackBar: MatSnackBar,
     private attendanceService: AttendanceService,  private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -33,6 +34,12 @@ export class CreateAttendanceComponent implements OnInit {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data;
       this.isDataAvailable = true; 
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
@@ -46,7 +53,6 @@ export class CreateAttendanceComponent implements OnInit {
 
   onSubmit() {
     this.attendanceService.create(this.collect(this.miss, this.raw_attendances, this.lesson, this.dom)).subscribe(data => {
-      this.goBack();
     });
   }
 

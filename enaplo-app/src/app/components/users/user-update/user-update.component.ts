@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { StudentService } from 'src/app/service/student.service';
 import { User } from 'src/app/model/user';
 import { UserResponseDTO } from 'src/app/dto/response/userResponseDTO';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-update',
@@ -21,7 +22,7 @@ export class UserUpdateComponent implements OnInit {
   newPassword: string;
   reEnterPassword: string;
 
-  constructor(private userService: UserService, private teacherService: TeacherService, 
+  constructor(private userService: UserService, private teacherService: TeacherService, private _snackBar: MatSnackBar,
     private router: Router, private route: ActivatedRoute, private studentService: StudentService) { }
 
   ngOnInit() {
@@ -36,16 +37,30 @@ export class UserUpdateComponent implements OnInit {
     });
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   onSubmit() {
     if(this.isDataChanged && this.isUsernameUnique && this.isPasswordMatch) {
       if(!this.response.fullName) this.response.fullName = this.user.fullName;
       if(!this.response.username) this.response.username = this.user.username;
       if(!this.newPassword) this.response.password = this.newPassword;
-      this.userService.update(this.id, this.response).subscribe(() => this.goBack());
-    } else {
-      this.goBack();
+      this.userService.update(this.id, this.response).subscribe(() => {
+        this.refresh();
+      });
     }
-    
+  }
+
+  refresh() {
+    this.userService.getById(this.id).subscribe(data => { 
+      this.user = data;
+    });
+    this.response = new UserResponseDTO();
+    this.newPassword = null;
+    this.reEnterPassword = null;
   }
 
   isDataChanged() {

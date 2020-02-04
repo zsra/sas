@@ -14,4 +14,9 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     @Query(value = "SELECT COUNT(*) FROM student_course WHERE student_id=:student_id AND course_id=:course_id", nativeQuery = true)
     @Transactional
     int courseIsAlreadyTaken(@Param("student_id") Long student_id, @Param("course_id") Long course_id);
+
+    @Modifying
+    @Query(value = "DELETE FROM student_course WHERE course_id=:course_id", nativeQuery = true)
+    @Transactional
+    void deleteFromStudentCourse(@Param("course_id") Long course_id);
 }

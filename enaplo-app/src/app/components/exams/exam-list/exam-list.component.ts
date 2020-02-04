@@ -57,7 +57,7 @@ export class ExamListComponent implements OnInit {
 
   delete(exam_id: number) {
     this.examService.delete(exam_id).subscribe(() => {
-      
+      this.refresh();
     });
   }
 
@@ -65,4 +65,7 @@ export class ExamListComponent implements OnInit {
     return this.currentUser.authorities[0].authority + '';
   }
 
+  refresh(): void {
+    window.location.reload();
+  }
 }

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { TeacherService } from 'src/app/service/teacher.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-teacher-create',
@@ -21,12 +22,18 @@ export class TeacherCreateComponent implements OnInit {
   selectedOption: any = {};
 
   constructor(private userService: UserService, private router: Router,
-    private teacherService: TeacherService) { }
+    private teacherService: TeacherService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data;
       this.isDataAvailable = true;
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
@@ -39,10 +46,14 @@ export class TeacherCreateComponent implements OnInit {
 
   onTeacherSubmit() {
     this.teacherService.create(this.teacher).subscribe();
-    this.goBack();
+    this.refresh();
+  }
+  
+  refresh() {
     this.userSubmitted = false;
     this.user = new UserResponseDTO();
     this.teacher = new TeacherResponseDTO();
+    this.selectedOption = {};
   }
 
   goBack() {

@@ -1,7 +1,9 @@
 <div *ngIf="isDataAvailable">
     <app-panel-loader></app-panel-loader>
     <div class="container" *ngIf="userRole() != 'ROLE_STUDENT'">
-        <h2>Create</h2>
+        <div class="container">
+            <h2>Create</h2>
+        </div> 
         <div class="container">
             <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-report">
                 <div class="form-group">
@@ -25,8 +27,8 @@
                     <label for="mark">Mark</label>
                     <input type="number" class="form-control" id="mark" required [(ngModel)]="report.mark" min="1" max="5" name="mark">
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
-                <button (click)="goBack()" class="btn btn-dark">Back</button>
+                <button type="submit" (click)="goBack()" class="btn btn-dark">Back</button>
+                <button type="submit" (click)="openSnackBar('Report created', 'Ok')" class="btn btn-success">Submit</button>
             </form>
         </div>
     </div>

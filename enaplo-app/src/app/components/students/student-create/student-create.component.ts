@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Classroom } from 'src/app/model/classroom';
 import { ClassroomService } from 'src/app/service/classroom.service';
 import { UserResponseDTO } from 'src/app/dto/response/userResponseDTO';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-student-create',
@@ -23,7 +24,7 @@ export class StudentCreateComponent implements OnInit {
   classrooms: Observable<Classroom[]>;
   selectedOption: any = {};
 
-  constructor(private userService: UserService, private router: Router,
+  constructor(private userService: UserService, private router: Router, private _snackBar: MatSnackBar, 
     private studentService: StudentService, private classroomService: ClassroomService) { }
 
   ngOnInit() {
@@ -33,6 +34,12 @@ export class StudentCreateComponent implements OnInit {
         this.classrooms = data;
         this.isDataAvailable = true;
       });
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
@@ -46,6 +53,17 @@ export class StudentCreateComponent implements OnInit {
   onStudentSubmit() {
     this.student.classroom_id = Number(this.selectedOption.id);
     this.studentService.create(this.student).subscribe();
+    this.refresh();
+  }
+  
+  refresh() {
+    this.user = new UserResponseDTO();
+    this.student = new StudentResponseDTO();
+    this.userSubmitted = false;
+    this.selectedOption = {};
+  }
+
+  goBack() {
     this.router.navigate(['/user/all']);
   }
 

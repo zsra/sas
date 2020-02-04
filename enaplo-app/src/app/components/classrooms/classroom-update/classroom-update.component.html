@@ -2,8 +2,7 @@
     <app-panel-loader></app-panel-loader>
     <div class="container" *ngIf="userRole() === 'ROLE_ADMIN' || isHeadTeacher()">  
         <div class="container">
-            <h2>Update</h2>
-            
+            <h2>Update</h2>        
         </div>   
         <div class="container">
             <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-classroom">
@@ -29,7 +28,7 @@
                         <option *ngFor="let teacher of teachers" [ngValue]="teacher">{{teacher.teacher.fullName}}</option>
                    </select>
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" (click)="openSnackBar(' Class updated', 'Ok')" class="btn btn-success">Submit</button>
                 <button (click)="goBack()" class="btn btn-dark">Back</button>
             </form>
         </div>

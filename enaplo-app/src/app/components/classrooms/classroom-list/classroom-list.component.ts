@@ -45,7 +45,7 @@ export class ClassroomListComponent implements OnInit {
 
   delete(classroom_id: number) {
     this.classroomService.delete(classroom_id).subscribe(() => {
-      
+      this.refresh();
     });
   }
 
@@ -67,5 +67,13 @@ export class ClassroomListComponent implements OnInit {
 
   setCourse(classroom_id: number) {
     this.router.navigate(['classroom/setCourse', classroom_id]);
+  }
+
+  createClassroom() {
+    this.router.navigate(['classroom/create']);
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 }

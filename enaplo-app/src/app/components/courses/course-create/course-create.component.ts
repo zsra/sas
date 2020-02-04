@@ -6,6 +6,7 @@ import { TeacherService } from 'src/app/service/teacher.service';
 import { Observable } from 'rxjs';
 import { Teacher } from 'src/app/model/teacher';
 import { CourseResponseDTO } from 'src/app/dto/response/courseResponseDTO';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-course-create',
@@ -20,7 +21,7 @@ export class CourseCreateComponent implements OnInit {
   teachers: Observable<Teacher[]>;
   selectedOption: any = {};
 
-  constructor(private userService: UserService, private router: Router,
+  constructor(private userService: UserService, private router: Router, private _snackBar: MatSnackBar, 
     private teacherService: TeacherService, private courseService: CourseService) {
      
   }
@@ -35,6 +36,13 @@ export class CourseCreateComponent implements OnInit {
     });
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+
   onSubmit() {
     this.course.teacher_id = Number(this.selectedOption.id);
     this.courseService.create(this.course).subscribe(() => { 
@@ -45,7 +53,6 @@ export class CourseCreateComponent implements OnInit {
 
   reset() {
     this.course = new CourseResponseDTO();
-    this.isDataAvailable = false;
     this.selectedOption = {};
   }
 

@@ -49,8 +49,8 @@
                         <option *ngFor="let classroom of classrooms" [ngValue]="classroom">{{classroom.year}}/{{classroom.letter}}</option>
                    </select>
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
-                <button (click)="goBack()" class="btn btn-dark">Back</button>
+                <button type="submit" (click)="goBack()" class="btn btn-dark">Back</button>
+                <button type="submit" (click)="openSnackBar('Student updated', 'Ok')" class="btn btn-success">Submit</button>
             </form>
         </div>
 </div>

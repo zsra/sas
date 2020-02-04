@@ -59,6 +59,7 @@ import { ClassAttendanceComponent } from './components/attendances/class-attenda
 import { AdministrationComponent } from './components/admins/administration/administration.component';
 import { ArchivesListComponent } from './components/admins/archives-list/archives-list.component';
 import { ArchiveDetailsComponent } from './components/admins/archive-details/archive-details.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -118,6 +119,7 @@ import { ArchiveDetailsComponent } from './components/admins/archive-details/arc
     ReactiveFormsModule,
     BrowserAnimationsModule,
     Ng2SearchPipeModule,
+    MatSnackBarModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

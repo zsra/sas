@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Classroom } from 'src/app/model/classroom';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ClassroomService } from 'src/app/service/classroom.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-student-update',
@@ -25,7 +26,7 @@ export class StudentUpdateComponent implements OnInit {
   currentClassroom = new Classroom();
 
   constructor(private userService: UserService, private studentService: StudentService, private router: Router,  
-    private route: ActivatedRoute, private classroomService: ClassroomService) { }
+    private route: ActivatedRoute, private classroomService: ClassroomService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -41,6 +42,12 @@ export class StudentUpdateComponent implements OnInit {
           });
         });
       });
+    });
+  }
+  
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
@@ -70,11 +77,10 @@ export class StudentUpdateComponent implements OnInit {
       if(!this.response.start_year) this.response.start_year = this.student.start_year;
       if(!this.response.healthCareId) this.response.healthCareId = this.student.healthCareId;
       if(!this.response.classroom_id) this.response.classroom_id = this.currentClassroom.id;
-      this.studentService.update(this.id, this.response).subscribe(() => this.goBack());
-    } else {
-      this.goBack();
+      this.studentService.update(this.id, this.response).subscribe(() => {
+        this.refresh();
+      });
     }
-    
   }
 
   goBack() {
@@ -86,8 +92,19 @@ export class StudentUpdateComponent implements OnInit {
   }
   
   userUpdate() {
-    this.userService.getById(this.student.student.id).subscribe(data =>
-      this.router.navigate(['user/update', data.id]));
+    this.userService.getById(this.student.student.id).subscribe(data => {
+      this.student = data;
+      this.response = new StudentResponseDTO();
+      this.selectedOption = {};
+    });
+  }
+
+  refresh() {
+    this.userService.getById(this.student.student.id).subscribe(data => {
+      this.student = data;
+    });
+    this.response = new StudentResponseDTO();
+    this.selectedOption = {};
   }
 
   userRole(): string {

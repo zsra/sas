@@ -7,6 +7,7 @@ import { Course } from 'src/app/model/course';
 import { CourseResponseDTO } from 'src/app/dto/response/courseResponseDTO';
 import { Observable } from 'rxjs';
 import { Teacher } from 'src/app/model/teacher';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-course-update',
@@ -23,7 +24,7 @@ export class CourseUpdateComponent implements OnInit {
   response = new CourseResponseDTO();
   selectedOption: any = {};
 
-  constructor(private userService: UserService, private teacherService: TeacherService, 
+  constructor(private userService: UserService, private teacherService: TeacherService, private _snackBar: MatSnackBar, 
     private router: Router, private route: ActivatedRoute, private courseService: CourseService) { }
 
   ngOnInit() {
@@ -40,6 +41,12 @@ export class CourseUpdateComponent implements OnInit {
     });
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   isDataChanged() {
     if(!this.response.title
       || !this.response.year
@@ -53,11 +60,18 @@ export class CourseUpdateComponent implements OnInit {
       else this.response.teacher_id = Number(this.selectedOption.id);
       if(!this.response.title) this.response.title = this.course.title;
       if(!this.response.year) this.response.year = this.course.year;
-      this.courseService.update(this.course_id, this.response).subscribe(() => this.goBack);
-    } else {
-      this.goBack();
+      this.courseService.update(this.course_id, this.response).subscribe(() => {
+        this.refresh();
+      });
     }
-    
+  }
+
+  refresh() {
+    this.courseService.findById(this.course_id).subscribe(data => {
+      this.course = data;
+    });
+    this.response = new CourseResponseDTO();
+    this.selectedOption = {};
   }
 
   goBack() {

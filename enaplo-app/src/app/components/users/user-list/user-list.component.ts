@@ -24,8 +24,11 @@ export class UserListComponent implements OnInit {
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data;
-      this.users = this.userService.getAll();
-    }).then(() => this.isDataAvailable = true);
+       this.userService.getAll().subscribe(data => {
+        this.users = data;
+        this.isDataAvailable = true;
+      });
+    });
   }
 
   userRole(): string {

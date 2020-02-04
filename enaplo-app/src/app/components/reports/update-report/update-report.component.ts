@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { ReportService } from 'src/app/service/report.service';
 import { CourseService } from 'src/app/service/course.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { StudentService } from 'src/app/service/student.service';
 
 @Component({
@@ -27,8 +28,8 @@ export class UpdateReportComponent implements OnInit {
   semester: any = {};
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute,
-    private teacherService: TeacherService, private reportService: ReportService, 
-    private courseService: CourseService, private studentService: StudentService) { }
+    private teacherService: TeacherService, private reportService: ReportService, private studentService: StudentService,
+    private courseService: CourseService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.report_id = this.route.snapshot.params['id'];
@@ -43,6 +44,12 @@ export class UpdateReportComponent implements OnInit {
           });
         });
       });
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
@@ -63,15 +70,24 @@ export class UpdateReportComponent implements OnInit {
       if(!this.response.year) this.response.year = this.report.year;
       if(!this.response.mark) this.response.mark = this.report.mark;
       this.reportService.update(this.report.id, this.response).subscribe(() => {
-        this.goBack();
+        this.refresh();
       });
-    } else {
-      this.goBack();
-    }  
+    } 
+  }
+
+  refresh() {
+    this.reportService.findById(this.report_id).subscribe(data => {
+      this.report = data;
+    });
+    this.response = new ReportResponseDTO();
+    this.selectedOption = {};
+    this.semester = {};
   }
 
   goBack() {
-    this.router.navigate(['home']);
+    this.studentService.findById(this.report.student.id).subscribe(data => {
+      this.router.navigate(['student/classroom', data.id]);
+    });
   }
 
   userRole(): string {

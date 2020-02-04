@@ -361,7 +361,7 @@ export class ConfigService {
         return this.getTimeTableEntitiesByCourseUrl;
     }
 
-    private adminUrl = this.baseUrl;
+    private adminUrl = this.baseUrl + '/admin';
     private newYearUrl = this.adminUrl + '/newYear';
     private createArchiveUrl = this.adminUrl + '/createArchive';
     private getArchiveUrl = this.adminUrl + '/archives';

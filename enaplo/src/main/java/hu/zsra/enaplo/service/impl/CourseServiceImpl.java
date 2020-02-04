@@ -114,6 +114,7 @@ public class CourseServiceImpl implements CourseService {
      */
     @Override
     public void delete(Long id) {
+        courseRepository.deleteFromStudentCourse(id);
         courseRepository.delete(courseRepository.getOne(id));
     }
 

@@ -119,6 +119,7 @@ public class AdminServiceImpl implements AdminService {
             userRepository.delete(student.getStudent());
             deleteClassroomById(classroom_id);
         }
+        classroomRepository.delete(classroomRepository.getOne(classroom_id));
     }
 
     /**
@@ -136,7 +137,7 @@ public class AdminServiceImpl implements AdminService {
                         report.getCourse().getTitle(),
                         report.getYear(),
                         report.getMark(),
-                        archive
+                        archiveRepository.save(archive)
                 );
                 result.add(archiveReport);
                 archiveReportRepository.save(archiveReport);

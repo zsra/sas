@@ -7,9 +7,8 @@ import { UserService } from 'src/app/service/user.service';
 import { CourseService } from 'src/app/service/course.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ExamService } from 'src/app/service/exam.service';
-import { ClassroomService } from 'src/app/service/classroom.service';
 import { TeacherService } from 'src/app/service/teacher.service';
-import { Teacher } from 'src/app/model/teacher';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-exam-classroom',
@@ -31,7 +30,7 @@ export class CreateExamClassroomComponent implements OnInit {
   selectedCourse: any = {};
 
   constructor(private userService: UserService, private courseService: CourseService, private router: Router,
-    private examService: ExamService, private teacherService: TeacherService, private route: ActivatedRoute) { }
+    private examService: ExamService, private teacherService: TeacherService, private route: ActivatedRoute, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.classroom_id = this.route.snapshot.params['id'];
@@ -46,6 +45,12 @@ export class CreateExamClassroomComponent implements OnInit {
     });
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   setBasic() {
     this.examService.makeExamsFormToClassroom(this.classroom_id, this.written_at).subscribe(data => {
       this.exams = data;  
@@ -57,8 +62,16 @@ export class CreateExamClassroomComponent implements OnInit {
   onSubmit() {
     this.examService.createExamsFromForm(this.collect(this.marks, this.raw_exams, this.selectedCourse.id, this.written_at))
     .subscribe(data =>  {     
-      this.goBack();
+      this.refresh();
     });
+  }
+
+  refresh() {
+    this.response = [];
+    this.isBasicSet = false;
+    this.marks = {};
+    this.written_at = {};
+    this.selectedCourse= {};
   }
 
   collect(marks: number[], entities: ExamDTO[], course_id: number, 

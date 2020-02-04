@@ -14,8 +14,8 @@
                     <label for="written_at">Written At</label>
                     <input type="date" class="form-control" id="written_at" required [(ngModel)]="exam.written_at" name="written_at">
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
-                <button (click)="goBack()" class="btn btn-dark">Back</button>
+                <button type="submit" (click)="goBack()" class="btn btn-dark">Back</button>
+                <button type="submit" (click)="openSnackBar('Exams updated', 'Ok')" class="btn btn-success">Submit</button>
             </form>
         </div>
     </div>

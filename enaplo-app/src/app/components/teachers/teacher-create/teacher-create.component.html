@@ -29,7 +29,8 @@
                     <label for="phone">Phone</label>
                     <input type="text" class="form-control" id="phone" required [(ngModel)]="teacher.phone" name="phone" placeholder="+36 10 999 9999">
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" (click)="goBack()" class="btn btn-dark">Back</button>
+                <button type="submit" (click)="openSnackBar('Teacher updated', 'Ok')" class="btn btn-success">Submit</button>
             </form>
         </div>
     </div>

@@ -7,6 +7,7 @@ import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ClassroomService } from 'src/app/service/classroom.service';
 import { TimeTableService } from 'src/app/service/timeTable.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-timetable-entity-update',
@@ -24,7 +25,7 @@ export class TimetableEntityUpdateComponent implements OnInit {
   timeTableEntity = new TimeTableEntity();
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute,
-    private classroomService: ClassroomService, private timeTableService: TimeTableService) { }
+    private classroomService: ClassroomService, private timeTableService: TimeTableService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -37,6 +38,12 @@ export class TimetableEntityUpdateComponent implements OnInit {
           this.isDataAvailable = true;
         });
       });
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
@@ -56,9 +63,16 @@ export class TimetableEntityUpdateComponent implements OnInit {
       if(!this.response.lessonNumber) this.response.lessonNumber = this.timeTableEntity.lessonNumber;
       this.response.classroom_id = this.selectedOptionClassroom.id;
       if(!this.response.classroom_id) this.response.classroom_id = this.timeTableEntity.classroom.id;
-      this.timeTableService.update(this.id, this.response).subscribe();
-      this.goBack(this.response.course_id);
+      this.timeTableService.update(this.id, this.response).subscribe(() => {
+        this.refresh();
+      });
     }
+  }
+
+  refresh() {
+    this.response = new TimeTableEntityResponseDTO();
+    this.timeTableEntity = new TimeTableEntity();
+    this.selectedOptionClassroom = {};
   }
 
   goBack(course_id: number) {

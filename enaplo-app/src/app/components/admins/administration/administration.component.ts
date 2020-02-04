@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { AdminService } from 'src/app/service/admin.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-administration',
@@ -11,9 +12,10 @@ import { Router } from '@angular/router';
 export class AdministrationComponent implements OnInit {
 
   currentUser: any = {};
-  isDataAvailable:boolean = false;
+  isDataAvailable: boolean = false;
 
-  constructor(private userService: UserService, private adminService: AdminService) { }
+  constructor(private userService: UserService, private adminService: AdminService, 
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
@@ -22,15 +24,25 @@ export class AdministrationComponent implements OnInit {
     });
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   create() {
-    this.adminService.createArchive().subscribe(() => {});
+    this.adminService.createArchive().subscribe(data => {
+      console.log(data);
+    });
   }
 
   newYear() {
-    this.adminService.newYear().subscribe(() => {});
+    this.adminService.newYear().subscribe(data => {
+      console.log(data);
+    });
   }
 
-  finished() {
-    this.adminService.finished().subscribe(() => {});
+  userRole(): string {
+    return this.currentUser.authorities[0].authority + '';
   }
 }

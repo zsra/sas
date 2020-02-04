@@ -9,6 +9,7 @@ import { Course } from 'src/app/model/course';
 import { StudentService } from 'src/app/service/student.service';
 import { Classroom } from 'src/app/model/classroom';
 import { TeacherService } from 'src/app/service/teacher.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-exam',
@@ -26,7 +27,7 @@ export class CreateExamComponent implements OnInit {
   classroom = new Classroom();
 
   constructor(private userService: UserService, private router: Router, private examService: ExamService, private teacherService: TeacherService, 
-    private courseService: CourseService, private studentService: StudentService, private route: ActivatedRoute) { }
+    private courseService: CourseService, private studentService: StudentService, private route: ActivatedRoute, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.student_id = this.route.snapshot.params['id'];
@@ -41,12 +42,23 @@ export class CreateExamComponent implements OnInit {
     });
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   onSubmit() {
     this.exam.student_id = this.student_id;
     this.exam.course_id = this.selectedOption.id;
     this.examService.create(this.exam).subscribe(() => {
-      this.goBack();
+      this.refresh();
     });
+  }
+
+  refresh() {
+    this.exam = new ExamResponseDTO();
+    this.selectedOption = {};
   }
 
   goBack() {

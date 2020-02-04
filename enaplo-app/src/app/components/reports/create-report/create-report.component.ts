@@ -8,6 +8,7 @@ import { TeacherService } from 'src/app/service/teacher.service';
 import { ReportService } from 'src/app/service/report.service';
 import { CourseService } from 'src/app/service/course.service';
 import { StudentService } from 'src/app/service/student.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-report',
@@ -26,7 +27,7 @@ export class CreateReportComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute,
     private teacherService: TeacherService, private reportService: ReportService, 
-    private courseService: CourseService, private studentService: StudentService) { }
+    private courseService: CourseService, private studentService: StudentService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.student_id = this.route.snapshot.params['id'];
@@ -41,6 +42,11 @@ export class CreateReportComponent implements OnInit {
     });
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
   onSubmit() {
     this.report.student_id = this.student_id;
@@ -48,11 +54,15 @@ export class CreateReportComponent implements OnInit {
       this.report.semester = this.semester;
       this.report.course_id = this.selectedOption.id;
       this.reportService.create(this.report).subscribe(() => {
-        this.goBack();
+        this.refresh();
       });
-    } else {
+    } 
+  }
 
-    }
+  refresh() {
+    this.report = new ReportResponseDTO();
+    this.selectedOption = {};
+    this.semester = {};
   }
 
   goBack() {

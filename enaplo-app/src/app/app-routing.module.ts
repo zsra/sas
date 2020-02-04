@@ -225,7 +225,7 @@ const routes: Routes = [
     component: ArchiveDetailsComponent
   },
   {
-    path: 'admin',
+    path: 'admin/control',
     component: AdministrationComponent 
   },
   /* ----- DEFAULT ----- */

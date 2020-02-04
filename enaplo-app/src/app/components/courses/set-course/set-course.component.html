@@ -13,7 +13,8 @@
                             <option *ngFor="let course of courses" [ngValue]="course">{{course.title}}/{{course.year}}</option>
                         </select>
                     </div>  
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" (click)="goBack()" class="btn btn-dark">Back</button>
+                    <button type="submit" (click)="openSnackBar('Course set to student', 'Ok')" class="btn btn-success">Submit</button>
                 </form>
             </div>
         </div>

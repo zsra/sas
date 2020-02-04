@@ -5,6 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 import { CourseService } from 'src/app/service/course.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClassroomService } from 'src/app/service/classroom.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-set-course-classroom',
@@ -20,7 +21,7 @@ export class SetCourseClassroomComponent implements OnInit {
   courses: Observable<Course[]>;
 
   constructor(private userService: UserService, private courseService: CourseService, private route: ActivatedRoute,
-    private router: Router, private classroomService: ClassroomService) { }
+    private router: Router, private classroomService: ClassroomService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.classroom_id = this.route.snapshot.params['id'];
@@ -33,9 +34,20 @@ export class SetCourseClassroomComponent implements OnInit {
     });
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   onSubmit() {
-    this.classroomService.setCourse(this.classroom_id, this.selectedOption.id).subscribe();
-    this.goBack();
+    this.classroomService.setCourse(this.classroom_id, this.selectedOption.id).subscribe(() => {
+      this.refresh();
+    });
+  }
+
+  refresh() {
+    this.selectedOption = {};
   }
 
   goBack() {
