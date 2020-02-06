@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { TimeTableEntity } from 'src/app/model/timeTableEntity';
 import { Course } from 'src/app/model/course';
 import { TimeTableService } from 'src/app/service/timeTable.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-timetable-list',
@@ -20,7 +21,7 @@ export class TimetableListComponent implements OnInit {
   isDataAvailable: boolean = false;
   timeTable: Observable<TimeTableEntity[]>;
 
-  constructor(private userService: UserService, private courseService: CourseService, 
+  constructor(private userService: UserService, private courseService: CourseService, private _snackBar: MatSnackBar,
     private router: Router, private route: ActivatedRoute, private timeTableService: TimeTableService) { }
 
   ngOnInit() {
@@ -34,6 +35,12 @@ export class TimetableListComponent implements OnInit {
           this.isDataAvailable = true;
         });
       });
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
@@ -54,6 +61,7 @@ export class TimetableListComponent implements OnInit {
   delete(entity_id: number) {
     this.timeTableService.delete(entity_id).subscribe(() => {
       this.refresh();
+      this.openSnackBar('Time table entity created', 'Ok');
     });
   }
 

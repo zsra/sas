@@ -63,7 +63,8 @@ export class CreateExamClassroomComponent implements OnInit {
     this.examService.createExamsFromForm(this.collect(this.marks, this.raw_exams, this.selectedCourse.id, this.written_at))
     .subscribe(data =>  {     
       this.refresh();
-    });
+      this.openSnackBar('Exams created', 'Ok');
+    }, error => {this.openSnackBar('Failed.', 'Ok');});
   }
 
   refresh() {

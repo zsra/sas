@@ -8,11 +8,11 @@
             <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-course">
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" id="title" required [(ngModel)]="response.title" value="{{course.title}}">
+                    <input type="text" class="form-control" id="title" required [(ngModel)]="response.title" name="title" value="{{course.title}}" placeholder="{{course.title}}">
                 </div>
                 <div class="form-group">
                     <label for="year">Year</label>
-                    <input type="number" class="form-control" id="year" required [(ngModel)]="response.year"  value="{{course.year}}">
+                    <input type="number" class="form-control" id="year" required [(ngModel)]="response.year" name="year"  value="{{course.year}}" placeholder="{{course.year}}">
                 </div>
                 <div class="form-group">
                     <label for="teacher">Teacher</label>
@@ -21,7 +21,7 @@
                    </select>
                 </div>
                 <button type="submit" (click)="goBack()" class="btn btn-dark">Back</button>
-                <button type="submit" (click)="openSnackBar('Course updated', 'Ok')" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
             </form>
         </div>
     </div>

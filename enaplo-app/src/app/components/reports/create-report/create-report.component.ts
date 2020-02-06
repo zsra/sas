@@ -55,7 +55,8 @@ export class CreateReportComponent implements OnInit {
       this.report.course_id = this.selectedOption.id;
       this.reportService.create(this.report).subscribe(() => {
         this.refresh();
-      });
+        this.openSnackBar('Report created.', 'Ok');
+      }, error => { this.openSnackBar('Failed', 'Ok');});
     } 
   }
 

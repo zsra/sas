@@ -66,6 +66,7 @@ export class CreateReportClassroomComponent implements OnInit {
       this.reportService.createReportsToClassroom(this.collect(this.marks, this.raw_reports, this.selectedCourse.id, this.year, this.semester))
       .subscribe(data =>  {
         this.refresh();
+        this.openSnackBar('Reports created.', 'Ok');
       });
     }
 

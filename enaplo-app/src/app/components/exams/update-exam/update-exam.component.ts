@@ -53,7 +53,8 @@ export class UpdateExamComponent implements OnInit {
       if(!this.response.written_at) this.response.written_at = this.exam.writtenAt;
       this.examService.update(this.exam_id, this.response).subscribe(() => {
         this.refresh();
-      }); 
+        this.openSnackBar('Exams updated.', 'Ok');
+      }, error => {this.openSnackBar('Failed.', 'Ok');}); 
     }
   }
 

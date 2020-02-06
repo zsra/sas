@@ -5,7 +5,7 @@
             <h2>Create</h2>
         </div>
         <div class="container">
-            <form (ngSubmit)="onUserSubmit()" #form="ngForm" class="form-user">
+            <form (ngSubmit)="onUserSubmit()" #form="ngForm" class="form">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input [disabled]="userSubmitted" type="text" class="form-control" id="username" required [(ngModel)]="user.username" name="username" placeholder="Username">
@@ -20,7 +20,7 @@
                 </div>
                 <button [disabled]="userSubmitted" type="submit" class="btn btn-success">Submit</button>
             </form>
-            <form *ngIf="userSubmitted" (ngSubmit)="onStudentSubmit()" #form="ngForm" class="form">
+            <form *ngIf="userSubmitted" (ngSubmit)="onTeacherSubmit()" #form="ngForm" class="form">
                 <div class="form-group">
                     <label for="email">E-mail</label>
                     <input type="email" class="form-control" id="email" required [(ngModel)]="teacher.email" name="email" placeholder="name@example.com">
@@ -30,7 +30,7 @@
                     <input type="text" class="form-control" id="phone" required [(ngModel)]="teacher.phone" name="phone" placeholder="+36 10 999 9999">
                 </div>
                 <button type="submit" (click)="goBack()" class="btn btn-dark">Back</button>
-                <button type="submit" (click)="openSnackBar('Teacher updated', 'Ok')" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
             </form>
         </div>
     </div>

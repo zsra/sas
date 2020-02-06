@@ -42,12 +42,12 @@ export class CourseCreateComponent implements OnInit {
     });
   }
 
-
   onSubmit() {
     this.course.teacher_id = Number(this.selectedOption.id);
     this.courseService.create(this.course).subscribe(() => { 
       this.reset();
-    });
+      this.openSnackBar('Course created.', 'Ok');
+    }, error => {this.openSnackBar('Failed.', 'Ok');});
     this.refresh(); 
   }
 

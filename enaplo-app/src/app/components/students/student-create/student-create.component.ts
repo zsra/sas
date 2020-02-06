@@ -46,13 +46,17 @@ export class StudentCreateComponent implements OnInit {
   onUserSubmit() {
     this.user.role = 'ROLE_STUDENT';
     this.student.username = this.user.username;  
-    this.userService.create(this.user).subscribe();
+    this.userService.create(this.user).subscribe(() => {
+     this.openSnackBar('Student created.', 'Ok');
+    }, error => {this.openSnackBar('Failed.', 'Ok');});
     this.userSubmitted = true;
   }
 
   onStudentSubmit() {
     this.student.classroom_id = Number(this.selectedOption.id);
-    this.studentService.create(this.student).subscribe();
+    this.studentService.create(this.student).subscribe(() => {
+
+    }, error => {this.openSnackBar('Failed.', 'Ok');});
     this.refresh();
   }
   

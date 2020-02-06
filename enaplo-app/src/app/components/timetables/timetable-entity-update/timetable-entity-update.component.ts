@@ -65,6 +65,7 @@ export class TimetableEntityUpdateComponent implements OnInit {
       if(!this.response.classroom_id) this.response.classroom_id = this.timeTableEntity.classroom.id;
       this.timeTableService.update(this.id, this.response).subscribe(() => {
         this.refresh();
+        this.openSnackBar('Time table entity updated', 'Ok');
       });
     }
   }

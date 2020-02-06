@@ -52,7 +52,8 @@ export class TimetableEntityCreateComponent implements OnInit {
     this.timeTableEntity.course_id = this.id;
     this.timeTableService.create(this.id, this.timeTableEntity).subscribe(() => {
       this.reset();
-    });
+      this.openSnackBar('Time table entity created', 'Ok');
+    }, error => {this.openSnackBar('Failed', 'Ok');});
   }
 
   goBack() {

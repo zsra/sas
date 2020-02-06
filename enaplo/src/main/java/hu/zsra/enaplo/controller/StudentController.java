@@ -7,6 +7,7 @@ import hu.zsra.enaplo.service.impl.StudentServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -51,6 +52,7 @@ public class StudentController {
     }
 
     @DeleteMapping(value = "/students/{id}")
+    @ResponseBody
     public String delete(@PathVariable Long id) {
         studentService.delete(id);
         return id.toString();

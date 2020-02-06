@@ -78,7 +78,10 @@ export class StudentUpdateComponent implements OnInit {
       if(!this.response.healthCareId) this.response.healthCareId = this.student.healthCareId;
       if(!this.response.classroom_id) this.response.classroom_id = this.currentClassroom.id;
       this.studentService.update(this.id, this.response).subscribe(() => {
+        this.openSnackBar('Student updated.', 'Ok');
         this.refresh();
+      }, error => { 
+        this.openSnackBar('Failed.', 'Ok');
       });
     }
   }
@@ -96,6 +99,8 @@ export class StudentUpdateComponent implements OnInit {
       this.student = data;
       this.response = new StudentResponseDTO();
       this.selectedOption = {};
+    }, error => { 
+      this.openSnackBar('Failed.', 'Ok'); 
     });
   }
 

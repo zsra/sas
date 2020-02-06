@@ -50,6 +50,7 @@ export class UserUpdateComponent implements OnInit {
       if(!this.newPassword) this.response.password = this.newPassword;
       this.userService.update(this.id, this.response).subscribe(() => {
         this.refresh();
+        this.openSnackBar('User updated.', 'Ok');
       });
     }
   }
@@ -83,10 +84,15 @@ export class UserUpdateComponent implements OnInit {
   goBack() {
     this.userService.getById(this.id).subscribe(data => {
       if(data.authorities[0].authority + '' === 'ROLE_STUDENT') {
-        this.studentService.findByUserId(this.id).subscribe(data => this.router.navigate(['student/update', data.id]));
+        this.studentService.findByUserId(this.id).subscribe(data => {
+          this.router.navigate(['student/update', data.id]);
+          
+      });
       } else if(data.authorities[0].authority + '' === 'ROLE_TEACHER' 
                   || data.authorities[0].authority + '' === 'ROLE_HEADTEACHER') {
-        this.teacherService.findByUserId(this.id).subscribe(data => this.router.navigate(['teacher/update', data.id])); 
+        this.teacherService.findByUserId(this.id).subscribe(data => {
+          this.router.navigate(['teacher/update', data.id]);
+        }); 
       }
     });
   }

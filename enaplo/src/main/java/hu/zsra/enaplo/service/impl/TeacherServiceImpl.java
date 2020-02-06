@@ -2,12 +2,14 @@ package hu.zsra.enaplo.service.impl;
 
 import hu.zsra.enaplo.dto.response.TeacherResponseDTO;
 import hu.zsra.enaplo.model.Course;
+import hu.zsra.enaplo.model.user.Authority;
 import hu.zsra.enaplo.model.user.User;
 import hu.zsra.enaplo.model.user.group.Teacher;
 import hu.zsra.enaplo.repository.CourseRepository;
 import hu.zsra.enaplo.repository.user.TeacherRepository;
 import hu.zsra.enaplo.repository.user.UserRepository;
 import hu.zsra.enaplo.service.TeacherService;
+import hu.zsra.enaplo.service.auth.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,8 @@ public class TeacherServiceImpl implements TeacherService {
     private CourseRepository courseRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private AuthorityService authService;
 
     /**
      * Returns a List of Teachers.
@@ -85,6 +89,8 @@ public class TeacherServiceImpl implements TeacherService {
         Teacher teacher = new Teacher();
         teacher.setEmail(teacherResponseDTO.getEmail());
         teacher.setPhone(teacherResponseDTO.getPhone());
+        List<Authority> authorities = authService.findByName("ROLE_TEACHER");
+        user.setAuthorities(authorities);
         teacher.setTeacher(user);
 
         return teacherRepository.save(teacher);
@@ -114,6 +120,7 @@ public class TeacherServiceImpl implements TeacherService {
      */
     @Override
     public void delete(Long id) {
+
         teacherRepository.delete(teacherRepository.getOne(id));
     }
 

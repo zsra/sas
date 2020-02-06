@@ -3,11 +3,15 @@ package hu.zsra.enaplo.controller;
 import hu.zsra.enaplo.dto.response.UserResponseDTO;
 import hu.zsra.enaplo.model.user.User;
 import hu.zsra.enaplo.service.auth.UserService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -52,6 +56,13 @@ public class UserController {
         return userService.update(id, userResponseDTO);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ApiOperation(value = "${UserController.delete}")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Something went wrong"),
+            @ApiResponse(code = 403, message = "Access denied"),
+            @ApiResponse(code = 404, message = "The user doesn't exist"),
+            @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
     @DeleteMapping(value = "/user/{id}")
     public String delete(@PathVariable Long id) {
         return userService.delete(id);

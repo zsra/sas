@@ -61,6 +61,7 @@ export class CourseUpdateComponent implements OnInit {
       if(!this.response.title) this.response.title = this.course.title;
       if(!this.response.year) this.response.year = this.course.year;
       this.courseService.update(this.course_id, this.response).subscribe(() => {
+        this.openSnackBar('Course updated', 'Ok');
         this.refresh();
       });
     }

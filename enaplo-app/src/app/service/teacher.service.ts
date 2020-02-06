@@ -37,6 +37,6 @@ export class TeacherService {
     }
 
     delete(id: number) {
-        return this.apiService.put(this.configService.getDeleteTeacherUrl + '/' + id, id);
+        return this.apiService.delete(this.configService.getDeleteTeacherUrl + '/' + id, id);
     }
 }

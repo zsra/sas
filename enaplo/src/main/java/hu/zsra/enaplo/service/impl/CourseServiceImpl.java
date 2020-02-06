@@ -5,6 +5,7 @@ import hu.zsra.enaplo.model.Course;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.model.user.group.Teacher;
 import hu.zsra.enaplo.repository.CourseRepository;
+import hu.zsra.enaplo.repository.ExamRepository;
 import hu.zsra.enaplo.repository.user.StudentRepository;
 import hu.zsra.enaplo.repository.user.TeacherRepository;
 import hu.zsra.enaplo.service.CourseService;
@@ -103,6 +104,7 @@ public class CourseServiceImpl implements CourseService {
         course.setTeacher(teacher);
         course.setTitle(course.getTitle());
         course.setYear(course.getYear());
+        courseRepository.setTeacher(course.getId(), teacher.getId());
 
         return courseRepository.save(course);
     }

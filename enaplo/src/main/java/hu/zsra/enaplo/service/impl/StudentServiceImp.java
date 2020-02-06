@@ -2,13 +2,10 @@ package hu.zsra.enaplo.service.impl;
 
 import hu.zsra.enaplo.dto.response.StudentResponseDTO;
 import hu.zsra.enaplo.dto.SummaryDTO;
-import hu.zsra.enaplo.model.Classroom;
-import hu.zsra.enaplo.model.Course;
-import hu.zsra.enaplo.model.Exam;
+import hu.zsra.enaplo.model.*;
 import hu.zsra.enaplo.model.user.User;
 import hu.zsra.enaplo.model.user.group.Student;
-import hu.zsra.enaplo.repository.ClassroomRepository;
-import hu.zsra.enaplo.repository.CourseRepository;
+import hu.zsra.enaplo.repository.*;
 import hu.zsra.enaplo.repository.user.StudentRepository;
 import hu.zsra.enaplo.repository.user.UserRepository;
 import hu.zsra.enaplo.service.StudentService;
@@ -35,7 +32,11 @@ public class StudentServiceImp implements StudentService {
     @Autowired
     private CourseRepository courseRepository;
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private ExamRepository examRepository;
+    @Autowired
+    private ReportRepository reportRepository;
+    @Autowired
+    private AttendanceRepository attendanceRepository;
 
     /**
      * Returns a List of Students.
@@ -142,6 +143,7 @@ public class StudentServiceImp implements StudentService {
      */
     @Override
     public void delete(Long id) {
+        deleteStudentData(id);
         studentRepository.deleteById(id);
     }
 
@@ -169,5 +171,35 @@ public class StudentServiceImp implements StudentService {
             }
         }
         return summaryDTOList;
+    }
+
+    private void deleteStudentData(Long student_id) {
+        deleteAllAttendanceByStudent(student_id);
+        deleteAllExamByStudent(student_id);
+        deleteAllReportByStudent(student_id);
+    }
+
+    private void deleteAllExamByStudent(Long student_id) {
+        for(Exam exam: examRepository.findAll()) {
+            if(exam.getStudent().getId().equals(student_id)) {
+                examRepository.delete(exam);
+            }
+        }
+    }
+
+    private void deleteAllReportByStudent(Long student_id) {
+        for(Report report: reportRepository.findAll()) {
+            if(report.getStudent().getId().equals(student_id)) {
+                reportRepository.delete(report);
+            }
+        }
+    }
+
+    private void deleteAllAttendanceByStudent(Long student_id) {
+        for(Attendance attendance: attendanceRepository.findAll()) {
+            if(attendance.getStudent().getId().equals(student_id)) {
+                attendanceRepository.delete(attendance);
+            }
+        }
     }
 }

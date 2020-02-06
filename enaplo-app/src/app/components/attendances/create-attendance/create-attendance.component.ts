@@ -53,6 +53,9 @@ export class CreateAttendanceComponent implements OnInit {
 
   onSubmit() {
     this.attendanceService.create(this.collect(this.miss, this.raw_attendances, this.lesson, this.dom)).subscribe(data => {
+      this.openSnackBar('Attendance created.', 'Ok');
+    }, error => {
+      this.openSnackBar('Failed.', 'Ok');
     });
   }
 

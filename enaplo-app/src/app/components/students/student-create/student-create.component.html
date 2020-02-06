@@ -5,7 +5,7 @@
             <h2>Create</h2>
         </div>
         <div class="container">
-        <form (ngSubmit)="onUserSubmit()" #form="ngForm" class="form-user">
+        <form (ngSubmit)="onUserSubmit()" #form="ngForm" class="form">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input [disabled]="userSubmitted" type="text" class="form-control" id="username" required [(ngModel)]="user.username" name="username" placeholder="Username">
@@ -64,7 +64,7 @@
                </select>
             </div>
             <button type="submit" (click)="goBack()" class="btn btn-dark">Back</button>
-                <button type="submit" (click)="openSnackBar('Student created', 'Ok')" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
         </form>
         </div>
 

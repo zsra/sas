@@ -45,6 +45,9 @@ export class ClassroomCreateComponent implements OnInit {
     this.classroom.headTeacher_id = Number(this.selectedOption.id);
     this.classroomService.create(this.classroom).subscribe(() => { 
       this.reset();
+      this.openSnackBar('Classroom created.', 'Ok');
+    }, error => {
+      this.openSnackBar('Failed..', 'Ok');
     });
   }
 

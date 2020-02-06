@@ -23,8 +23,8 @@
                             <td>                 
                                 <button (click)="details(user.id)" class="btn btn-info">Details</button>
                                 <button (click)="update(user.id)" class="btn btn-warning">Update</button>
-                                <button *ngIf="userRole() != 'ROLE_ADMIN'" (click)="delete(user.id)" class="btn btn-danger">Delete</button>
-                                <button (click)="setCourse(user.id)" class="btn btn-secondary">Set Course</button>
+                                <button *ngIf="user.id != currentUser.id" (click)="delete(user.id)" class="btn btn-danger">Delete</button>
+                                <button *ngIf="user.authorities[0].authority + '' === 'ROLE_STUDENT'" (click)="setCourse(user.id)" class="btn btn-secondary">Set Course</button>
                             </td>
                         </tr>
                     </tbody>

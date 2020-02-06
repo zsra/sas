@@ -5,6 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AttendanceService } from 'src/app/service/attendace.service';
 import { StudentService } from 'src/app/service/student.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-view-attendance',
@@ -20,7 +21,7 @@ export class ViewAttendanceComponent implements OnInit {
   attendances: Observable<Attendance[]>;
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, 
-    private attendanceService: AttendanceService, private studentService: StudentService) { }
+    private attendanceService: AttendanceService, private studentService: StudentService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.student_id = this.route.snapshot.params['id'];
@@ -33,13 +34,21 @@ export class ViewAttendanceComponent implements OnInit {
     });
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   userRole(): string {
     return this.currentUser.authorities[0].authority + '';
   }
 
   delete(attendace_id: number) {
     this.attendanceService.delete(attendace_id).subscribe(() => {
-      
+      this.openSnackBar('Attendance deleted.', 'Ok');
+    }, error => {
+      this.openSnackBar('Failed.', 'Ok');
     });
   }
 

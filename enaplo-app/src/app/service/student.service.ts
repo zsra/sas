@@ -30,7 +30,7 @@ export class StudentService {
     }
 
     delete(student_id: number) {
-        return this.apiService.delete(this.configService.getDeleteStudentUrl, student_id);
+        return this.apiService.delete(this.configService.getDeleteStudentUrl + '/' + student_id, student_id);
     }
 
     summary(id : number) {

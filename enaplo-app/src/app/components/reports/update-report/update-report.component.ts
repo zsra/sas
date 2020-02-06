@@ -71,7 +71,8 @@ export class UpdateReportComponent implements OnInit {
       if(!this.response.mark) this.response.mark = this.report.mark;
       this.reportService.update(this.report.id, this.response).subscribe(() => {
         this.refresh();
-      });
+        this.openSnackBar('Report updated.', 'Ok');
+      }, error => { this.openSnackBar('Failed.', 'Ok');});
     } 
   }
 

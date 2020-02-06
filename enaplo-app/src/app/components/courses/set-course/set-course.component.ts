@@ -43,7 +43,8 @@ export class SetCourseComponent implements OnInit {
   onSubmit() {
     this.courseService.setCourse(this.student_id, this.selectedOption.id).subscribe(() => {
       this.refresh();
-    });
+      this.openSnackBar('Course set to student.', 'Ok');
+    }, error => { this.openSnackBar('Failed.', 'Ok');});
   }
 
   refresh() {

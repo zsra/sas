@@ -38,15 +38,20 @@ export class TeacherCreateComponent implements OnInit {
   }
 
   onUserSubmit() {
-    this.user.role = 'ROLE_STUDENT';
+    this.user.role = 'ROLE_TEACHER';
     this.teacher.username = this.user.username;  
-    this.userService.create(this.user).subscribe();
+    this.userService.create(this.user).subscribe(() => {
+      this.openSnackBar('Teacher Created.', 'Ok');
+    }, error => { this.openSnackBar('Failed.', 'Ok');});
     this.userSubmitted = true;
   }
 
   onTeacherSubmit() {
-    this.teacherService.create(this.teacher).subscribe();
+    this.teacherService.create(this.teacher).subscribe(() => {
+     
+    } , error => { this.openSnackBar('Failed.', 'Ok');});
     this.refresh();
+    this.openSnackBar('Teacher created', 'Ok')
   }
   
   refresh() {

@@ -7,6 +7,7 @@ import { CourseService } from 'src/app/service/course.service';
 import { ExamService } from 'src/app/service/exam.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TeacherService } from 'src/app/service/teacher.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-exam-list',
@@ -24,7 +25,7 @@ export class ExamListComponent implements OnInit {
   selectedOption: any = {};
 
   constructor(private userService: UserService, private courseService: CourseService, private teacherService: TeacherService,
-    private examService: ExamService, private router: Router, private route: ActivatedRoute) { }
+    private examService: ExamService, private router: Router, private route: ActivatedRoute, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.student_id = this.route.snapshot.params['id'];
@@ -36,6 +37,12 @@ export class ExamListComponent implements OnInit {
           this.isDataAvailable = true;
         });
       });
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
@@ -58,7 +65,8 @@ export class ExamListComponent implements OnInit {
   delete(exam_id: number) {
     this.examService.delete(exam_id).subscribe(() => {
       this.refresh();
-    });
+      this.openSnackBar('Exam deleted.', 'Ok');
+    }, error => { this.openSnackBar('Failed.', 'Ok');});
   }
 
   userRole(): string {

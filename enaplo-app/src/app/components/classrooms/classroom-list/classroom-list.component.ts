@@ -5,6 +5,7 @@ import { ClassroomService } from 'src/app/service/classroom.service';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/service/admin.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-classroom-list',
@@ -18,7 +19,7 @@ export class ClassroomListComponent implements OnInit {
   isDataAvailable: boolean = false;
   currentUser: any = {};
 
-  constructor(private userService: UserService, private router: Router,
+  constructor(private userService: UserService, private router: Router, private _snackBar: MatSnackBar,
     private classroomService: ClassroomService, private adminService: AdminService) { }
 
   ngOnInit() {
@@ -28,6 +29,12 @@ export class ClassroomListComponent implements OnInit {
         this.classrooms = data;
         this.isDataAvailable = true;
       });
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
@@ -46,7 +53,8 @@ export class ClassroomListComponent implements OnInit {
   delete(classroom_id: number) {
     this.classroomService.delete(classroom_id).subscribe(() => {
       this.refresh();
-    });
+      this.openSnackBar('Classroom deleted.', 'Ok');
+    }, error => {this.openSnackBar('Failed.', 'Ok');});
   }
 
   finished(classroom_id: number) {

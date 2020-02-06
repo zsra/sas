@@ -4,6 +4,7 @@ import { Attendance } from 'src/app/model/attendance';
 import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AttendanceService } from 'src/app/service/attendace.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-class-attendance',
@@ -21,7 +22,7 @@ export class ClassAttendanceComponent implements OnInit {
   raw_attendances: Attendance[];
   
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, 
-    private attendanceService: AttendanceService) { }
+    private attendanceService: AttendanceService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.classroom_id = this.route.snapshot.params['id'];
@@ -32,6 +33,12 @@ export class ClassAttendanceComponent implements OnInit {
         this.raw_attendances = data;
         this.isDataAvailable = true;
       });
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
@@ -46,6 +53,9 @@ export class ClassAttendanceComponent implements OnInit {
         this.attendanceService.verify(attendance.id).subscribe();
       }
       index++;
+    }
+    if(index > 0) {
+      this.openSnackBar('Attendances verified.', 'Ok');
     }
   }
 

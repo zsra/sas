@@ -55,7 +55,7 @@ public class ClassroomController {
     }
 
     @DeleteMapping(value = "/classrooms/{id}")
-    public String delete(Long id) {
+    public String delete(@PathVariable Long id) {
         classroomService.delete(id);
         return id.toString();
     }

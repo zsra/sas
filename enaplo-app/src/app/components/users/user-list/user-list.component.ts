@@ -5,6 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { StudentService } from 'src/app/service/student.service';
 import { TeacherService } from 'src/app/service/teacher.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-list',
@@ -18,7 +19,7 @@ export class UserListComponent implements OnInit {
   isDataAvailable:boolean = false;
   currentUser: any = {};
   
-  constructor(private userService: UserService, private router: Router,
+  constructor(private userService: UserService, private router: Router, private _snackBar: MatSnackBar,
     private studentService: StudentService, private teacherService: TeacherService) { }
 
   ngOnInit() {
@@ -57,6 +58,12 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 4000,
+    });
+  }
+
   setCourse(student_id: number) {
     this.router.navigate(['course/setCourse', student_id]);
   }
@@ -67,7 +74,8 @@ export class UserListComponent implements OnInit {
         this.studentService.findByUserId(user_id).subscribe(data => {
           this.studentService.delete(data.id).subscribe(() => {
               this.userService.delete(user_id).subscribe(() => {
-
+                this.refresh();
+                this.openSnackBar('Student deleted.', 'Ok');
               });
           });
         });
@@ -76,11 +84,16 @@ export class UserListComponent implements OnInit {
         this.teacherService.findByUserId(user_id).subscribe(data => {
           this.teacherService.delete(data.id).subscribe(() => {
             this.userService.delete(user_id).subscribe(() => {
-                
+                this.refresh();
+                this.openSnackBar('Teacher deleted.', 'Ok');
               });
-          });
+          },  error => {this.openSnackBar('Failed, you must update ther courses, and classes!', 'Ok');});
         }); 
       }
     });
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 }

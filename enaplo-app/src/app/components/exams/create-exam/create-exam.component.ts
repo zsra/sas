@@ -53,7 +53,8 @@ export class CreateExamComponent implements OnInit {
     this.exam.course_id = this.selectedOption.id;
     this.examService.create(this.exam).subscribe(() => {
       this.refresh();
-    });
+      this.openSnackBar('Exam created.', 'Ok');
+    }, error => {this.openSnackBar('Failed.', 'Ok');});
   }
 
   refresh() {

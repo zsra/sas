@@ -32,14 +32,14 @@ export class AdministrationComponent implements OnInit {
 
   create() {
     this.adminService.createArchive().subscribe(data => {
-      console.log(data);
-    });
+      this.openSnackBar('Archive created.', 'Ok');
+    }, error => { this.openSnackBar('Failed.', 'Ok');});
   }
 
   newYear() {
     this.adminService.newYear().subscribe(data => {
-      console.log(data);
-    });
+      this.openSnackBar('New Year Started!', 'Ok');
+    }, error => { this.openSnackBar('Failed.', 'Ok');});
   }
 
   userRole(): string {

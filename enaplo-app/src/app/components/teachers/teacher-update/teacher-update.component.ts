@@ -5,6 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 import { ConfigService } from 'src/app/service/config.service';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-teacher-update',
@@ -20,7 +21,7 @@ export class TeacherUpdateComponent implements OnInit {
   isDataAvailable: boolean  = false;
 
   constructor(private userService: UserService, private teacherService: TeacherService, 
-    private router: Router, private route: ActivatedRoute) { }
+    private router: Router, private route: ActivatedRoute, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -28,6 +29,12 @@ export class TeacherUpdateComponent implements OnInit {
       this.currentUser = data; 
       this.teacherService.findById(this.id).subscribe(data => this.teacher = data);
     }).then(() => this.isDataAvailable = true);
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   isDataChanged() {
@@ -39,9 +46,9 @@ export class TeacherUpdateComponent implements OnInit {
     if(this.isDataChanged) {
       if(!this.response.email) this.response.email = this.teacher.email;
       if(!this.response.phone) this.response.phone = this.teacher.phone;
-      this.teacherService.update(this.id, this.response).subscribe(() => this.goBack());
-    } else {
-      this.goBack();
+      this.teacherService.update(this.id, this.response).subscribe(() => {
+        this.openSnackBar('Teacher updated.', 'Ok');
+      }, error => { this.openSnackBar('Failed.', 'Ok');});
     }
   }
 

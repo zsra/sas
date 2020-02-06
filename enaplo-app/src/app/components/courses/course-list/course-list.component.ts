@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Course } from 'src/app/model/course';
 import { TimeTableService } from 'src/app/service/timeTable.service';
 import { TimeTableEntity } from 'src/app/model/timeTableEntity';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-course-list',
@@ -20,7 +21,7 @@ export class CourseListComponent implements OnInit {
   currentUser: any = {};
   
   constructor(private userService: UserService, private router: Router,
-    private courseService: CourseService) { }
+    private courseService: CourseService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
@@ -29,6 +30,12 @@ export class CourseListComponent implements OnInit {
         this.courses = data;
         this.isDataAvailable = true;
       });
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 
@@ -59,7 +66,8 @@ export class CourseListComponent implements OnInit {
   delete(course_id: number) {
     this.courseService.delete(course_id).subscribe(() => {
       this.refresh();
-    });
+      this.openSnackBar('Course deleted.', 'Ok');
+    }, error => { this.openSnackBar('Failed.', 'Ok');});
   }
 
   createCourse() {

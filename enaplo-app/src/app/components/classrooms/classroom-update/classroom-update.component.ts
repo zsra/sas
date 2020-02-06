@@ -66,7 +66,8 @@ export class ClassroomUpdateComponent implements OnInit {
       if(!this.response.year) this.response.year = this.classroom.year;
       this.classroomService.update(this.id, this.response).subscribe(() => {
         this.refresh();
-      });
+        this.openSnackBar('Classroom updated.', 'Ok');
+      }, error => {this.openSnackBar('Failed.', 'Ok');});
     }
   }
 
