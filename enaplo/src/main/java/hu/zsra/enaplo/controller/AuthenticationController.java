@@ -1,8 +1,10 @@
 package hu.zsra.enaplo.controller;
 
+import hu.zsra.enaplo.model.Attendance;
 import hu.zsra.enaplo.model.user.UserTokenState;
 import hu.zsra.enaplo.security.TokenHelper;
 import hu.zsra.enaplo.service.auth.impl.CustomUserDetailsService;
+import hu.zsra.enaplo.service.impl.AttendanceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
@@ -16,8 +18,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The {@link AuthenticationController} contains all rest api function that need to
+ * manage the User authentication.
+ *
+ * @see CustomUserDetailsService
+ */
 @RestController
-@RequestMapping( value = "/api", produces = MediaType.APPLICATION_JSON_VALUE )
+@RequestMapping( value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthenticationController {
 
     @Autowired
