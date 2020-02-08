@@ -17,6 +17,8 @@ public class StudentResponseDTO {
     @Getter @Setter
     private String address;
     @Getter @Setter
+    private String gender;
+    @Getter @Setter
     private String educationId;
     @Getter @Setter
     private String healthCareId;
@@ -34,13 +36,14 @@ public class StudentResponseDTO {
 
     public StudentResponseDTO() {}
 
-    public StudentResponseDTO(String username, LocalDate dateOfBirth, int start_year, String address,
+    public StudentResponseDTO(String username, LocalDate dateOfBirth, int start_year, String address, String gender,
                               String educationId, String healthCareId, String parent1Name, String parent2Name,
                               String parent1Phone, String parent2Phone, Long classroom_id) {
         this.username = username;
         this.dateOfBirth = dateOfBirth;
         this.start_year = start_year;
         this.address = address;
+        this.gender = gender;
         this.educationId = educationId;
         this.healthCareId = healthCareId;
         this.parent1Name = parent1Name;

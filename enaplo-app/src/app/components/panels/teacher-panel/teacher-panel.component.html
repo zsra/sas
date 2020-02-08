@@ -1,10 +1,11 @@
 <mat-toolbar class="teacher-panel">
     <div *ngIf="isDataAvailable" class="teacher-panel-container">
         <span class="title">Teacher</span>
-            <div class="right" >
+            <div class="right">
+                <button mat-button mat-ripple (click)='timetable()' class="teacher-button">Timetable</button>
                 <button mat-button mat-ripple (click)='classrooms()' class="teacher-button">Classes</button>
-                <button  mat-button mat-ripple (click)='update()' class="student-button">Update</button>
-                <button  mat-button mat-ripple (click)='details()' class="student-button">Details</button>
+                <button  mat-button mat-ripple (click)='update()' class="teacher-button">Update</button>
+                <button  mat-button mat-ripple (click)='details()' class="teacher-button">Details</button>
             </div>
         </div>
 </mat-toolbar>

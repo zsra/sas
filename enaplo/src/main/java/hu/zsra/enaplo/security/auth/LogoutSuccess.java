@@ -21,7 +21,7 @@ public class LogoutSuccess implements LogoutSuccessHandler {
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) {
         Map<String, String> result = new HashMap<>();
-        result.put( "result", "success" );
+        result.put("result", "success");
         httpServletResponse.setContentType("application/json");
         try {
             httpServletResponse.getWriter().write(objectMapper.writeValueAsString(result));

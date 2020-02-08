@@ -19,6 +19,12 @@
                     <label for="address">Address</label>
                     <input type="text" class="form-control" id="address" required [(ngModel)]="response.address" name="address" placeholder="{{student.address}}" value="{{student.address}}">
                 </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                   <select name="gender" class="form-control form-control-sm" [(ngModel)]="selectedOptionGender">
+                        <option *ngFor="let gender of genders" [ngValue]="gender">{{gender}}</option>
+                   </select>
+                </div>
                 <div class="form-group" *ngIf="userRole() === 'ROLE_ADMIN'">
                     <label for="educationId">Education ID</label>
                     <input type="text" class="form-control" id="educationId" required [(ngModel)]="response.educationId" name="educationId" placeholder="{{student.educationId}}" value="{{student.educationId}}">

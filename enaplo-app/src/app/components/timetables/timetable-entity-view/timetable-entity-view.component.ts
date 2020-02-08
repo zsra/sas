@@ -28,26 +28,33 @@ export class TimetableEntityViewComponent implements OnInit {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data; 
       var student = {};
-      var teacher = {}; 
-      this.studentService.findById(this.id).subscribe(data => { 
-        student = data;
-        if(student) {
-          this.timeTableService.getTimeTableByStudent(this.id).subscribe(data => { 
-            this.timetable = data;
-            this.isDataAvailable = true;
-          });
-        } else {
-          this.teacherService.findById(this.id).subscribe(data => {
-            teacher = data;
-            if(teacher) {
-              this.timeTableService.getTimeTableByTeacher(this.id).subscribe(data => { 
-                this.timetable = data;
-                this.isDataAvailable = true;
-              });
-            }
-          });
-        }
-      }); 
+      var teacher = {};
+      console.log(data);
+      if(this.userRole() == 'ROLE_TEACHER' || this.userRole() == 'ROLE_HEADTEACHER') {
+        this.teacherService.findById(this.id).subscribe(data => {
+          teacher = data;
+          if(teacher) {
+            this.timeTableService.getTimeTableByTeacher(this.id).subscribe(data => { 
+              this.timetable = data;
+              this.isDataAvailable = true;
+            });
+          }
+        });
+      } else if(this.userRole() == 'ROLE_STUDENT') {
+        this.studentService.findById(this.id).subscribe(data => { 
+          student = data;
+          if(student) {
+            this.timeTableService.getTimeTableByStudent(this.id).subscribe(data => { 
+              this.timetable = data;
+              this.isDataAvailable = true;
+            });
+          } else {
+            
+          }
+        }); 
+      } else {
+        this.isDataAvailable = true;
+      }
     });
   }
 

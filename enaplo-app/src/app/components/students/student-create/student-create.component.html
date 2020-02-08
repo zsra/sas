@@ -34,6 +34,12 @@
                 <input type="text" class="form-control" id="address" required [(ngModel)]="student.address" name="address" placeholder="4444, Kecskecen Vetheln utca 13.">
             </div>
             <div class="form-group">
+                <label for="gender">Gender</label>
+               <select name="gender" class="form-control form-control-sm" [(ngModel)]="selectedOptionGender">
+                    <option *ngFor="let gender of genders" [ngValue]="gender">{{gender}}</option>
+               </select>
+            </div>
+            <div class="form-group">
                 <label for="educationId">Education ID</label>
                 <input type="text" class="form-control" id="educationId" required [(ngModel)]="student.educationId" name="educationId" placeholder="1234567">
             </div>

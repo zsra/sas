@@ -23,6 +23,8 @@ export class StudentCreateComponent implements OnInit {
   isDataAvailable: boolean  = false;
   classrooms: Observable<Classroom[]>;
   selectedOption: any = {};
+  selectedOptionGender: any = {};
+  genders: string[] = ['Male', 'Female', 'Other'];
 
   constructor(private userService: UserService, private router: Router, private _snackBar: MatSnackBar, 
     private studentService: StudentService, private classroomService: ClassroomService) { }
@@ -54,6 +56,7 @@ export class StudentCreateComponent implements OnInit {
 
   onStudentSubmit() {
     this.student.classroom_id = Number(this.selectedOption.id);
+    this.student.gender = this.selectedOptionGender;
     this.studentService.create(this.student).subscribe(() => {
 
     }, error => {this.openSnackBar('Failed.', 'Ok');});

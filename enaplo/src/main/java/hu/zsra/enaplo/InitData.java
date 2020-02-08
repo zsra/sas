@@ -5,6 +5,7 @@ import hu.zsra.enaplo.dto.ExamDTO;
 import hu.zsra.enaplo.dto.response.*;
 import hu.zsra.enaplo.model.*;
 import hu.zsra.enaplo.model.user.UserRoleName;
+import hu.zsra.enaplo.model.user.group.Gender;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.service.auth.impl.AuthorityServiceImpl;
 import hu.zsra.enaplo.service.auth.impl.UserServiceImpl;
@@ -90,6 +91,7 @@ public class InitData {
                     LocalDate.of(randYear, randMonth, randDay),
                     2015,
                     username + "' address",
+                    "FEMALE",
                     random.nextInt(100000) + 900000 + "",
                     randHealthCare + "/" + randHealthCare + "/" + randHealthCare,
                     "Parent 1 name",

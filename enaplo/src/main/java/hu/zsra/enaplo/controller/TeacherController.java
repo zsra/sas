@@ -50,7 +50,6 @@ public class TeacherController {
         return teacherService.findById(id);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ApiOperation(value = "${TeacherController.findById}")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),

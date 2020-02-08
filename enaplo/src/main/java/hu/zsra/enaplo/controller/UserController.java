@@ -3,6 +3,7 @@ package hu.zsra.enaplo.controller;
 import hu.zsra.enaplo.dto.response.UserResponseDTO;
 import hu.zsra.enaplo.model.user.User;
 import hu.zsra.enaplo.service.auth.UserService;
+import hu.zsra.enaplo.service.auth.impl.UserServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -31,7 +32,7 @@ import java.util.Map;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ApiOperation(value = "${UserController.getAll}")
@@ -40,7 +41,6 @@ public class UserController {
             @ApiResponse(code = 403, message = "Access denied"),
             @ApiResponse(code = 404, message = "The users don't exists"),
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-    @DeleteMapping(value = "/user/{id}")
     @GetMapping(value = "/user/all")
     public List<User> getAll() {
         return userService.findAll();

@@ -31,7 +31,7 @@ public class Archive {
     private String username;
 
     /**
-     * Student fulla name.
+     * Student full name.
      */
     @Column(name = "studentName", nullable = false)
     @Getter @Setter
@@ -45,13 +45,6 @@ public class Archive {
     private LocalDate dateOfBirth;
 
     /**
-     * All reports to student.
-     */
-    @OneToMany(mappedBy = "archive", cascade=CascadeType.ALL)
-    @Getter @Setter
-    private List<ArchiveReport> reports;
-
-    /**
      * Empty Constructor.
      */
     public Archive() {
@@ -61,7 +54,7 @@ public class Archive {
      * Constructor to make a new instance.
      * 
      * @param username Student login username.
-     * @param studentName Student fullname.
+     * @param studentName Student full name.
      * @param dateOfBirth Student date of birth.
      */
     public Archive(String username, String studentName, LocalDate dateOfBirth) {
@@ -69,4 +62,12 @@ public class Archive {
         this.studentName = studentName;
         this.dateOfBirth = dateOfBirth;
     }
+
+    /**
+     * All reports to student.
+     */
+    @OneToMany(mappedBy = "archive", cascade=CascadeType.ALL)
+    @Getter @Setter
+    private List<ArchiveReport> reports;
+
 }

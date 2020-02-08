@@ -4,6 +4,7 @@ export class StudentResponseDTO {
     dateOfBirth: string;
     start_year: number;
     address: string;
+    gender: string;
     educationId: string;
     healthCareId: string;
     parent1Name: string;

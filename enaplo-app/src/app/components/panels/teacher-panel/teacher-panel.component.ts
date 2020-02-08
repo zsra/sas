@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Teacher } from 'src/app/model/teacher';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
-import { ClassroomService } from 'src/app/service/classroom.service';
 import { TeacherService } from 'src/app/service/teacher.service';
 
 @Component({
@@ -16,8 +15,7 @@ export class TeacherPanelComponent implements OnInit {
   teacher = new Teacher();
   isDataAvailable: boolean = false;
 
-  constructor(private userService: UserService, private router: Router, 
-    private classroomService: ClassroomService, private teacherService: TeacherService) { }
+  constructor(private userService: UserService, private router: Router, private teacherService: TeacherService) { }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
@@ -34,10 +32,14 @@ export class TeacherPanelComponent implements OnInit {
   }
 
   update() {
-    this.teacherService.findByUserId(this.currentUser.id).subscribe(data => this.router.navigate(['student/update', data.id]));
+    this.teacherService.findByUserId(this.currentUser.id).subscribe(data => this.router.navigate(['teacher/update', data.id]));
   }
 
   details() {
     this.teacherService.findByUserId(this.currentUser.id).subscribe(data => this.router.navigate(['student/details', data.id]));
+  }
+
+  timetable() {
+    this.router.navigate(['timetable/view', this.teacher.id]);
   }
 }

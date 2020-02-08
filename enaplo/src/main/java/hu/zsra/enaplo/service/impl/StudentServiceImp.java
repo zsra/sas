@@ -4,13 +4,13 @@ import hu.zsra.enaplo.dto.response.StudentResponseDTO;
 import hu.zsra.enaplo.dto.SummaryDTO;
 import hu.zsra.enaplo.model.*;
 import hu.zsra.enaplo.model.user.User;
+import hu.zsra.enaplo.model.user.group.Gender;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.repository.*;
 import hu.zsra.enaplo.repository.user.StudentRepository;
 import hu.zsra.enaplo.repository.user.UserRepository;
 import hu.zsra.enaplo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -97,6 +97,7 @@ public class StudentServiceImp implements StudentService {
         student.setAddress(studentResponseDTO.getAddress());
         student.setClassroom(classroom);
         student.setDateOfBirth(studentResponseDTO.getDateOfBirth());
+        student.setGender(Gender.valueOf(studentResponseDTO.getGender()));
         student.setEducationId(studentResponseDTO.getEducationId());
         student.setHealthCareId(studentResponseDTO.getHealthCareId());
         student.setStart_year(studentResponseDTO.getStart_year());
@@ -125,6 +126,7 @@ public class StudentServiceImp implements StudentService {
         student.setAddress(studentResponseDTO.getAddress());
         student.setClassroom(classroom);
         student.setDateOfBirth(studentResponseDTO.getDateOfBirth());
+        student.setGender(Gender.valueOf(studentResponseDTO.getGender()));
         student.setEducationId(studentResponseDTO.getEducationId());
         student.setHealthCareId(studentResponseDTO.getHealthCareId());
         student.setStart_year(studentResponseDTO.getStart_year());
@@ -173,12 +175,22 @@ public class StudentServiceImp implements StudentService {
         return summaryDTOList;
     }
 
+    /**
+     * Deletes all data, which connected to Student.
+     *
+     * @param student_id Id of the student.
+     */
     private void deleteStudentData(Long student_id) {
         deleteAllAttendanceByStudent(student_id);
         deleteAllExamByStudent(student_id);
         deleteAllReportByStudent(student_id);
     }
 
+    /**
+     * Deletes all exam which student wrote.
+     *
+     * @param student_id Id of the student.
+     */
     private void deleteAllExamByStudent(Long student_id) {
         for(Exam exam: examRepository.findAll()) {
             if(exam.getStudent().getId().equals(student_id)) {
@@ -187,6 +199,11 @@ public class StudentServiceImp implements StudentService {
         }
     }
 
+    /**
+     * Deletes all reports which connected to student except the archived reports.
+     *
+     * @param student_id Id of the student.
+     */
     private void deleteAllReportByStudent(Long student_id) {
         for(Report report: reportRepository.findAll()) {
             if(report.getStudent().getId().equals(student_id)) {
@@ -194,7 +211,11 @@ public class StudentServiceImp implements StudentService {
             }
         }
     }
-
+    /**
+     * Deletes all attendances which connected to student.
+     *
+     * @param student_id Id of the student.
+     */
     private void deleteAllAttendanceByStudent(Long student_id) {
         for(Attendance attendance: attendanceRepository.findAll()) {
             if(attendance.getStudent().getId().equals(student_id)) {

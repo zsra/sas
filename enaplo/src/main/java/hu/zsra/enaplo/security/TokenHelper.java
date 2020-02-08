@@ -21,16 +21,12 @@ public class TokenHelper {
 
     @Value("${app.name}")
     private String APP_NAME;
-
     @Value("${jwt.secret}")
     private String SECRET;
-
     @Value("${jwt.expires_in}")
     private int EXPIRES_IN;
-
     @Value("${jwt.header}")
     private String AUTH_HEADER;
-
     @Value("${jwt.cookie}")
     private String AUTH_COOKIE;
 
@@ -116,12 +112,10 @@ public class TokenHelper {
     }
 
     private Date generateExpirationDate() {
-
         return new Date(getCurrentTimeMillis() + this.EXPIRES_IN * 1000);
     }
 
     public String getToken( HttpServletRequest request ) {
-
         Cookie authCookie = getCookieValueByName( request, AUTH_COOKIE );
         if ( authCookie != null ) {
             return authCookie.getValue();
@@ -131,7 +125,6 @@ public class TokenHelper {
         if ( authHeader != null && authHeader.startsWith("Bearer ")) {
             return authHeader.substring(7);
         }
-
         return null;
     }
 

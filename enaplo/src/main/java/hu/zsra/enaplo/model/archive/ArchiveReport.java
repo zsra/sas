@@ -45,16 +45,6 @@ public class ArchiveReport {
     private int mark;
 
     /**
-     * Connects the report to the student.
-     */
-    @JsonIgnore
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToOne
-    @JoinColumn(name="archive_id")
-    @Getter @Setter
-    private Archive archive;
-
-    /**
      * Empty constructor
      */
     public ArchiveReport() {
@@ -75,5 +65,13 @@ public class ArchiveReport {
         this.archive = archive;
     }
 
-
+    /**
+     * Connects the report to the student.
+     */
+    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne
+    @JoinColumn(name="archive_id")
+    @Getter @Setter
+    private Archive archive;
 }

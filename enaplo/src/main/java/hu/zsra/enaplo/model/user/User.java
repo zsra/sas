@@ -14,31 +14,56 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * User object to store user data.
+ */
 @Entity
 @Table(name = "users")
 public class User implements UserDetails, Serializable {
 
+    /**
+     * Id field [GENERATED AUTOMATICALLY].
+     */
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter
     private Long id;
 
+    /**
+     * User username.
+     */
     @Column(name = "username", nullable = false, length = 16)
     @Getter @Setter
     private String username;
 
+    /**
+     * User password.
+     */
     @JsonIgnore
     @Column(name = "password", nullable = false)
     @Getter @Setter
     private String password;
 
+    /**
+     * User full name.
+     */
     @Column(name = "fullName", nullable = false, length = 32)
     @Getter @Setter
     private String fullName;
 
+    /**
+     * Empty constructor.
+     */
     public User() {}
 
+    /**
+     * Constructor to make a new instance.
+     *
+     * @param username User username.
+     * @param password User password.
+     * @param fullName User full name.
+     */
     public User(String username, String password, String fullName) {
         this.username = username;
         this.password = password;

@@ -28,7 +28,6 @@ public class ClassroomController {
     @Autowired
     private ClassroomServiceImpl classroomService;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_TEACHER') or hasRole('ROLE_HEADTEACHER')")
     @ApiOperation(value = "${ClassroomController.findAll}")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),
@@ -40,7 +39,6 @@ public class ClassroomController {
         return classroomService.findAll();
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_TEACHER') or hasRole('ROLE_HEADTEACHER')")
     @ApiOperation(value = "${ClassroomController.findById}")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),
@@ -89,7 +87,7 @@ public class ClassroomController {
         return classroomService.update(id, classroomResponseDTO);
     }
 
-    @PreAuthorize("hasRole('ROLE_TEACHER') or hasRole('ROLE_HEADTEACHER')")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_TEACHER') or hasRole('ROLE_HEADTEACHER')")
     @ApiOperation(value = "${ClassroomController.getStudentsFromClassroom}")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),

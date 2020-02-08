@@ -23,7 +23,8 @@ export class StudentUpdateComponent implements OnInit {
   isDataAvailable: boolean  = false;
   classrooms: Observable<Classroom[]>;
   selectedOption: any = {};
-  currentClassroom = new Classroom();
+  selectedOptionGender: any = {};
+  genders: string[] = ['Male', 'Female', 'Other'];
 
   constructor(private userService: UserService, private studentService: StudentService, private router: Router,  
     private route: ActivatedRoute, private classroomService: ClassroomService, private _snackBar: MatSnackBar) { }
@@ -35,7 +36,6 @@ export class StudentUpdateComponent implements OnInit {
       this.studentService.findById(this.id).subscribe(data => {
         this.student = data;
         this.classroomService.findById(data.classroom.id).subscribe(data => { 
-          this.currentClassroom = data;
           this.classroomService.findAll().subscribe(data => { 
             this.classrooms = data;
             this.isDataAvailable = true;
@@ -61,12 +61,14 @@ export class StudentUpdateComponent implements OnInit {
       || !this.response.educationId
       || !this.response.start_year   
       || !this.response.healthCareId
-      || !this.response.classroom_id) return true;
+      || !this.response.classroom_id
+      || !this.response.gender) return true;
     return false;
   }
 
   submit() {
     if(this.isDataChanged) {
+      if(!this.selectedOptionGender)
       if(!this.response.address) this.response.address = this.student.address;
       if(!this.response.parent1Name) this.response.parent1Name = this.student.parent1Name;
       if(!this.response.parent2Name) this.response.parent2Name = this.student.parent2Name;
@@ -76,7 +78,10 @@ export class StudentUpdateComponent implements OnInit {
       if(!this.response.educationId) this.response.educationId = this.student.educationId;
       if(!this.response.start_year) this.response.start_year = this.student.start_year;
       if(!this.response.healthCareId) this.response.healthCareId = this.student.healthCareId;
-      if(!this.response.classroom_id) this.response.classroom_id = this.currentClassroom.id;
+      if(!this.selectedOption) this.response.classroom_id = this.student.classroom.id;
+      else this.response.classroom_id = Number(this.selectedOption.id);
+      if(!this.selectedOptionGender) this.response.gender = this.student.gender;
+      else this.response.gender = this.selectedOptionGender;
       this.studentService.update(this.id, this.response).subscribe(() => {
         this.openSnackBar('Student updated.', 'Ok');
         this.refresh();

@@ -28,7 +28,7 @@ export class SummaryStudentComponent implements OnInit {
       this.currentUser = data;
       this.studentService.findById(this.id).subscribe(data => {
         this.student = data;
-        this.studentService.summary(this.student.id).subscribe(data => { 
+        this.studentService.summary(this.student.id, this.currentUser.id).subscribe(data => { 
           this.summaries = this.format(data);
           this.isDataAvailable = true;
         });
