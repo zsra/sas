@@ -5,7 +5,7 @@ School Administration System
 -- RUN ---
 
 Before you start running this application, you most have a MySQL server and "enaplodb" database.
-If you are using different user/password then the default setting in the MySQL server, you have to change the 
+If you are using different user/password then the defaults setting in the MySQL server, you have to change the 
 
 <b>spring.datasource.username</b>=<i>user</i></br>
 <b>spring.datasource.password</b>=<i>password</i>
