@@ -27,6 +27,6 @@ ________________________________________________________________________________
 
 Default admin user login: admin/admin</br>
 Default student user login: student[0-20]/student</br>
-Default teacher user login: student[0-8]/teacher
+Default teacher user login: teacher[0-8]/teacher
 
 
