@@ -15,7 +15,8 @@ in the enaplo > src > main > resources > application.properties configuration fi
 ________________________________________________________________________________________________________________
 
 If you don't want init data you can set in
-sas/enaplo/src/main/java/hu/zsra/enaplo/InitData.java by turning into a comment the the testData() method.
+sas/enaplo/src/main/java/hu/zsra/enaplo/InitData.java by turning into a comment the the testData() method 
+in the line 55.
 ________________________________________________________________________________________________________________
 
 commands to run:
