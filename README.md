@@ -23,4 +23,10 @@ commands to run:
 
 <b>Back-end: enaplo > mvn spring-boot:run</b> </br>
 <b>Front-end: enaplo-app > ng serve --open</b>
+________________________________________________________________________________________________________________
+
+Default admin user login: admin/admin
+Default student user login: student[0-20]/student
+Default teacher user login: student[0-8]/teacher
+
 
