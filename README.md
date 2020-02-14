@@ -25,8 +25,8 @@ commands to run:
 <b>Front-end: enaplo-app > ng serve --open</b>
 ________________________________________________________________________________________________________________
 
-Default admin user login: admin/admin
-Default student user login: student[0-20]/student
+Default admin user login: admin/admin</br>
+Default student user login: student[0-20]/student</br>
 Default teacher user login: student[0-8]/teacher
 
 
