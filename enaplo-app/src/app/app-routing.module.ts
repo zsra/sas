@@ -46,6 +46,11 @@ import { ClassAttendanceComponent } from './components/attendances/class-attenda
 import { ArchivesListComponent } from './components/admins/archives-list/archives-list.component';
 import { ArchiveDetailsComponent } from './components/admins/archive-details/archive-details.component';
 import { AdministrationComponent } from './components/admins/administration/administration.component';
+import { CreateMessageComponent } from './components/messages/create-message/create-message.component';
+import { UpdateMessageComponent } from './components/messages/update-message/update-message.component';
+import { RemarkCreateComponent } from './components/remarks/remark-create/remark-create.component';
+import { RemarkUpdateComponent } from './components/remarks/remark-update/remark-update.component';
+import { RemarkListComponent } from './components/remarks/remark-list/remark-list.component';
 
 const routes: Routes = [
   {
@@ -227,6 +232,28 @@ const routes: Routes = [
   {
     path: 'admin/control',
     component: AdministrationComponent 
+  },
+  /* ----- MESSAGES ----- */
+  {
+    path: 'message/create',
+    component: CreateMessageComponent
+  },
+  {
+    path: 'message/update/:id',
+    component: UpdateMessageComponent
+  },
+  /* ----- REMARK ----- */
+  {
+    path: 'remark/create',
+    component: RemarkCreateComponent
+  },
+  {
+    path: 'remark/update/:id',
+    component: RemarkUpdateComponent
+  },
+  {
+    path: 'remark/:id',
+    component: RemarkListComponent
   },
   /* ----- DEFAULT ----- */
   {

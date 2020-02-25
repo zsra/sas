@@ -387,4 +387,70 @@ export class ConfigService {
     get getGetArchiveByIdUrl(): string {
         return this.getArchiveByIdUrl;
     }
+
+    private headteacherUrl = this.baseUrl + '/headteacher';
+    private findFailedStudentsInClassUrl = this.headteacherUrl + '/find-failed';
+    private showResultByCourseUrl = this.headteacherUrl + '/show-result';
+
+    get getFindFailedStudentsInClassUrl(): string {
+        return this.findFailedStudentsInClassUrl;
+    }
+
+    get getShowResultByCourseUrl(): string {
+        return this.showResultByCourseUrl;
+    }
+
+    private messageUrl = this.baseUrl + '/messages';
+    private findByMessageIdUrl = this.messageUrl;
+    private findAllMessagesUrl = this.messageUrl + '/all';
+    private createMessageUrl = this.messageUrl + '/create';
+    private updateMessageUrl = this.messageUrl + '/update';
+    private deleteMessageUrl = this.messageUrl;
+
+    get getFindAllMessagesUrl(): string {
+        return this.findAllMessagesUrl;
+    }
+
+    get getFindByMessageIdUrl(): string {
+        return this.findByMessageIdUrl;
+    }
+
+    get getCreateMessageUrl(): string {
+        return this.createMessageUrl;
+    }
+
+    get getUpdateMessageUrl(): string {
+        return this.updateMessageUrl;
+    }
+
+    get getDeleteMessageUrl(): string {
+        return this.deleteMessageUrl;
+    }
+
+    private remarkUrl = this.baseUrl + '/remarks';
+    private findByRemarkIdUrl = this.remarkUrl;
+    private findAllRemarksUrl = this.remarkUrl + '/all';
+    private createRemarkUrl = this.remarkUrl + '/create';
+    private updateRemarkUrl = this.remarkUrl + '/update';
+    private deleteRemarkUrl = this.remarkUrl;
+
+    get getFindAllRemarksUrl(): string {
+        return this.findAllRemarksUrl;
+    }
+
+    get getFindByRemarkIdUrl(): string {
+        return this.findByRemarkIdUrl;
+    }
+
+    get getCreateRemarkUrl(): string {
+        return this.createRemarkUrl;
+    }
+
+    get getUpdateRemarkUrl(): string {
+        return this.updateRemarkUrl;
+    }
+
+    get getDeleteRemarkUrl(): string {
+        return this.deleteRemarkUrl;
+    }
 }

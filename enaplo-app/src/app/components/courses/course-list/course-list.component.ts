@@ -4,8 +4,6 @@ import { Observable } from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { Course } from 'src/app/model/course';
-import { TimeTableService } from 'src/app/service/timeTable.service';
-import { TimeTableEntity } from 'src/app/model/timeTableEntity';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

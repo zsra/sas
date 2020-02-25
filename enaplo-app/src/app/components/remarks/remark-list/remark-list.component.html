@@ -1,0 +1,18 @@
+<div *ngIf="isDataAvailable">
+    <div class="container" *ngIf="userRole() != 'ROLE_STUDENT' || currentUser.id == student.student.id">
+        <div class="container">
+            <h3>Info</h3>
+            <button *ngIf="userRole() != 'ROLE_STUDENT'"  (click)="create()" class="btn btn-dark">Create Message</button> 
+        </div>
+        <div class="container">
+            <div *ngFor="let remark of remarks" class="remark">
+                <p>{{remark.text}}</p>
+               <div class="footer">
+                    <strong class="time">{{remark.writtenAt}}</strong>
+                    <button *ngIf="userRole() != 'ROLE_STUDENT'" (click)="update(remark.id)" class="btn btn-warning">Update</button> 
+                    <button *ngIf="userRole() != 'ROLE_STUDENT'" (click)="delete(remark.id)" class="btn btn-danger">Delete</button> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

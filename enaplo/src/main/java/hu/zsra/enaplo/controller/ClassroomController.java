@@ -39,6 +39,8 @@ public class ClassroomController {
         return classroomService.findAll();
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_TEACHER') or hasRole('ROLE_HEADTEACHER')" +
+            "or @securityService.hasStudentAccess(principal.id, #student_id)")
     @ApiOperation(value = "${ClassroomController.findById}")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),

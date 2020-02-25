@@ -60,6 +60,12 @@ import { AdministrationComponent } from './components/admins/administration/admi
 import { ArchivesListComponent } from './components/admins/archives-list/archives-list.component';
 import { ArchiveDetailsComponent } from './components/admins/archive-details/archive-details.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { StatisticsComponent } from './components/headteachers/statistics/statistics.component';
+import { CreateMessageComponent } from './components/messages/create-message/create-message.component';
+import { UpdateMessageComponent } from './components/messages/update-message/update-message.component';
+import { RemarkListComponent } from './components/remarks/remark-list/remark-list.component';
+import { RemarkCreateComponent } from './components/remarks/remark-create/remark-create.component';
+import { RemarkUpdateComponent } from './components/remarks/remark-update/remark-update.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +115,13 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ClassAttendanceComponent,
     AdministrationComponent,
     ArchivesListComponent,
-    ArchiveDetailsComponent
+    ArchiveDetailsComponent,
+    StatisticsComponent,
+    CreateMessageComponent,
+    UpdateMessageComponent,
+    RemarkListComponent,
+    RemarkCreateComponent,
+    RemarkUpdateComponent
   ],
   imports: [
     BrowserModule,

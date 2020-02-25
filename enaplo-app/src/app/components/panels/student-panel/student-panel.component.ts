@@ -48,4 +48,8 @@ export class StudentPanelComponent implements OnInit {
   details() {
     this.studentService.findByUserId(this.currentUser.id).subscribe(data => this.router.navigate(['student/details', data.id]));
   }
+
+  remarks() {
+    this.studentService.findByUserId(this.currentUser.id).subscribe(data =>  this.router.navigate(['remark', data.id]));
+  }
 }

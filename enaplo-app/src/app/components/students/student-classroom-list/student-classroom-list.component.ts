@@ -69,4 +69,7 @@ export class StudentClassroomListComponent implements OnInit {
     this.router.navigate(['report/create', student_id]);
   }
 
+  remark(student_id: number) {
+    this.router.navigate(['remark', student_id]);
+  }
 }
