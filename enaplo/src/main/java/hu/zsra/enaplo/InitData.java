@@ -52,7 +52,7 @@ public class InitData {
 
             userService.save(new UserResponseDTO("admin", "admin", "admin", "ROLE_ADMIN"));
         }
-        testData();
+        //testData();
     }
 
     private void testData() {

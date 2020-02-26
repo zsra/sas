@@ -1,4 +1,5 @@
 <div *ngIf="isDataAvailable">
+    <app-panel-loader></app-panel-loader>
     <div class="container" *ngIf="userRole() != 'ROLE_STUDENT' || currentUser.id == student.student.id">
         <div class="container">
             <h3>Info</h3>

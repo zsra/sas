@@ -1,18 +1,20 @@
 <app-panel-loader></app-panel-loader>
-<div *ngIf="isDataAvailable">
-    <div class="container">
-        <div class="container">
-            <h3>Info</h3>
-            <button *ngIf="userRole() == 'ROLE_ADMIN'"  (click)="create()" class="btn btn-dark">Create Message</button> 
+<div class="container">
+    <div id="header_message" class="container">
+        <h3>Info</h3>
+        <div *ngIf="isDataAvailable">
+            <button *ngIf="userRole() === 'ROLE_ADMIN'"  (click)="create()" class="btn btn-dark">Create Message</button> 
         </div>
-        <div class="container">
-            <div *ngFor="let message of messages" class="message">
-                <p>{{message.text}}</p>
-               <div class="footer">
-                    <strong class="time">{{message.writtenAt}}</strong>
-                    <button *ngIf="userRole() == 'ROLE_ADMIN'" (click)="update(message.id)" class="btn btn-warning">Update</button> 
-                    <button *ngIf="userRole() == 'ROLE_ADMIN'" (click)="delete(message.id)" class="btn btn-danger">Delete</button> 
-                </div>
+    </div>
+    <div class="container">
+        <div *ngFor="let message of messages" class="message">
+            <p>{{message.text}}</p>
+           <div class="footer">
+                <strong class="time">{{message.createdAt | date:'medium'}}</strong>
+                <div *ngIf="isDataAvailable" class="container">
+                    <button *ngIf="userRole() === 'ROLE_ADMIN'" (click)="update(message.id)" class="btn btn-warning">Update</button> 
+                    <button *ngIf="userRole() === 'ROLE_ADMIN'" (click)="delete(message.id)" class="btn btn-danger">Delete</button> 
+                </div>          
             </div>
         </div>
     </div>

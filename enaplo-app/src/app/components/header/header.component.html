@@ -1,6 +1,6 @@
 <div *ngIf="isDataAvailable">
     <mat-toolbar class="toolbar">
-        <span>Enaplo</span>
+        <span mat-button mat-ripple routerLink="/home">Enaplo</span>
         <div class="right">
             <button *ngIf="hasSignedIn()" mat-button mat-ripple routerLink="/home" class="home-button">Home</button>
             <button *ngIf="hasSignedIn()" class="log-button" (click)="logout()">Logout</button>

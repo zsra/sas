@@ -7,7 +7,9 @@ import hu.zsra.enaplo.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This class contains all related function implementations to the message.
@@ -25,7 +27,10 @@ public class MessageServiceImpl implements MessageService {
      */
     @Override
     public List<Message> findAll() {
-        return messageRepository.findAll();
+        return messageRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(Message::getCreatedAt).reversed())
+                .collect(Collectors.toList());
     }
 
     /**

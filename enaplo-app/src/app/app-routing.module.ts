@@ -51,6 +51,7 @@ import { UpdateMessageComponent } from './components/messages/update-message/upd
 import { RemarkCreateComponent } from './components/remarks/remark-create/remark-create.component';
 import { RemarkUpdateComponent } from './components/remarks/remark-update/remark-update.component';
 import { RemarkListComponent } from './components/remarks/remark-list/remark-list.component';
+import { StatisticsComponent } from './components/headteachers/statistics/statistics.component';
 
 const routes: Routes = [
   {
@@ -254,6 +255,10 @@ const routes: Routes = [
   {
     path: 'remark/:id',
     component: RemarkListComponent
+  },
+  {
+    path: 'statistics/:id',
+    component: StatisticsComponent
   },
   /* ----- DEFAULT ----- */
   {

@@ -40,4 +40,10 @@ export class HeadteacherPanelComponent implements OnInit {
       this.router.navigate(['attendance/classroom', data.id]);
     });  
   }
+
+  getStatistics() {
+    this.classroomService.findByHeadteacherId(this.teacher.id).subscribe(data => {
+      this.router.navigate(['statistics', data.id]);
+    }); 
+  }
 }

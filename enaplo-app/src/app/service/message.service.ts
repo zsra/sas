@@ -16,6 +16,10 @@ export class MessageService {
         return this.apiService.get(this.configService.getFindAllMessagesUrl);
     }
 
+    findById(id: number) {
+        return this.apiService.get(this.configService.getFindByMessageIdUrl + '/' + id);
+    }
+
     create(message: MessageResponseDTO) {
         return this.apiService.post(this.configService.getCreateMessageUrl, message);
     }

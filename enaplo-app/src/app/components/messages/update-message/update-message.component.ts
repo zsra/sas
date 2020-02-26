@@ -29,6 +29,8 @@ export class UpdateMessageComponent implements OnInit {
       this.currentUser = data;
       this.messageService.findById(this.message_id).subscribe(data => {
         this.message = data;
+        this.response.text = this.message.text;
+        console.log(this.message);
         this.isDataAvailable = true;
       });
     });
@@ -41,7 +43,7 @@ export class UpdateMessageComponent implements OnInit {
   }
 
   isDataChanged() {
-    if(!this.response.text) return true;
+    if(!this.response.text || this.response.text == this.message.text) return true;
     return false;
   }
 
@@ -50,16 +52,9 @@ export class UpdateMessageComponent implements OnInit {
       if(!this.response.text) this.response.text = this.message.text;
       this.messageService.update(this.message_id, this.response).subscribe(() => {
         this.openSnackBar('Message updated', 'Ok');
-        this.refresh();
+        this.goBack();
       });
     }
-  }
-
-  refresh() {
-    this.messageService.findById(this.message_id).subscribe(data => {
-      this.message = data;
-    });
-    this.response = new MessageResponseDTO();
   }
 
   goBack() {
@@ -69,6 +64,4 @@ export class UpdateMessageComponent implements OnInit {
   userRole(): string {
     return this.currentUser.authorities[0].authority + '';
   }
-
-
 }

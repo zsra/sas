@@ -24,10 +24,6 @@ import java.util.stream.Collectors;
 public class HeadTeacherServiceImpl implements HeadTeacherService {
 
     @Autowired
-    private ClassroomRepository classroomRepository;
-    @Autowired
-    private ExamRepository examRepository;
-    @Autowired
     private StudentRepository studentRepository;
     @Autowired
     private CourseRepository courseRepository;
@@ -47,16 +43,18 @@ public class HeadTeacherServiceImpl implements HeadTeacherService {
             List<Course> failedCourses = new ArrayList<>();
             for(Course course : courseRepository.findAll()) {
                 if(student.getCourses().contains(course)) {
-                    if(calcAverageByStudent(student, course.getId()) < 2 &&
-                    calcAverageByStudent(student, course.getId()) != Double.NaN) {
+                    double avg = calcAverageByStudent(student, course.getId());
+                    if(avg < 2 && avg >= 1) {
                         failedCourses.add(course);
                     }
                 }
             }
-            result.add(new FailedStudentDTO(
-                    student,
-                    failedCourses
-            ));
+            if(!failedCourses.isEmpty()) {
+                result.add(new FailedStudentDTO(
+                        student,
+                        failedCourses
+                ));
+            }
         }
         return result;
     }
@@ -72,13 +70,15 @@ public class HeadTeacherServiceImpl implements HeadTeacherService {
     public List<ClassroomCourseResultDTO> showResultByCourse(Long classroom_id) {
         List<ClassroomCourseResultDTO> result = new ArrayList<>();
         List<Student> students = getStudentsFromClassroom(classroom_id);
+        List<Long> courses = new ArrayList<>();
         for(Student student: students) {
             for(Course course : courseRepository.findAll()) {
-                if(student.getCourses().contains(course)) {
+                if(student.getCourses().contains(course) && !courses.contains(course.getId())) {
                     result.add(new ClassroomCourseResultDTO(
                             course,
                             collectResultByCourse(classroom_id, course.getId())
                     ));
+                    courses.add(course.getId());
                 }
             }
         }
@@ -93,7 +93,7 @@ public class HeadTeacherServiceImpl implements HeadTeacherService {
                 .collect(Collectors.toList());
     }
 
-    private Double collectResultByCourse(Long classroom_id, Long course_id) {
+    private double collectResultByCourse(Long classroom_id, Long course_id) {
         List<Double> result = new ArrayList<>();
         List<Student> students = getStudentsFromClassroom(classroom_id);
         for(Student student: students) {

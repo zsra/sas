@@ -6,7 +6,9 @@
             <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-message">           
                 <div class="form-group">
                     <label for="text">Text area</label>
-                    <textarea class="form-control" id="text" required [(ngModel)]="response.text" name="text" rows="3">{{message.text}}</textarea>
+                    <textarea class="form-control" id="text" required [(ngModel)]="response.text" name="text" rows="3">
+                        {{response.text}}
+                    </textarea>
                   </div>
                 <button type="submit" (click)="goBack()" class="btn btn-dark">Back</button>
                 <button type="submit" class="btn btn-success">Submit</button>

@@ -26,7 +26,7 @@ public class HeadTeacherController {
     @Autowired
     private HeadTeacherServiceImpl headTeacherService;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole(ROLE_HEADTEACHER)")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_HEADTEACHER')")
     @ApiOperation(value = "${HeadTeacherController.findFailedStudentsInClass}")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),
@@ -38,7 +38,7 @@ public class HeadTeacherController {
         return headTeacherService.findFailedStudentsInClass(classroom_id);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole(ROLE_HEADTEACHER)")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_HEADTEACHER')")
     @ApiOperation(value = "${HeadTeacherController.findFailedStudentsInClass}")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),
