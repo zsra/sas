@@ -49,6 +49,8 @@ public class AdminServiceImpl implements AdminService {
     TeacherRepository teacherRepository;
     @Autowired
     private AuthorityService authService;
+    @Autowired
+    private RemarkRepository remarkRepository;
 
     /**
      * When the school year ends, the admin able to update the
@@ -61,6 +63,7 @@ public class AdminServiceImpl implements AdminService {
         timeTableRepository.deleteAll();
         reportRepository.deleteAll();
         examRepository.deleteAll();
+        remarkRepository.deleteAll();
         for(Classroom classroom: classroomRepository.findAll()) {
             int new_year = classroom.getYear() + 1;
             classroom.setYear(new_year);
