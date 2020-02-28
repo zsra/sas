@@ -4,6 +4,7 @@ import hu.zsra.enaplo.dto.ExamDTO;
 import hu.zsra.enaplo.dto.response.ExamResponseDTO;
 import hu.zsra.enaplo.model.Course;
 import hu.zsra.enaplo.model.Exam;
+import hu.zsra.enaplo.model.ExamType;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.repository.CourseRepository;
 import hu.zsra.enaplo.repository.ExamRepository;
@@ -71,10 +72,12 @@ public class ExamServiceImpl implements ExamService {
         /* Finds course by id. */
         Course course = courseRepository.getOne(examResponseDTO.getCourse_id());
 
+
         if(examResponseDTO.getMark() <= 1 && examResponseDTO.getMark() >= 5) {
             return examRepository.save(new Exam(
                     examResponseDTO.getMark(),
                     examResponseDTO.getWritten_at(),
+                    ExamType.valueOf(examResponseDTO.getExamType()),
                     course,
                     student
             ));
@@ -121,11 +124,11 @@ public class ExamServiceImpl implements ExamService {
      * @return A form table to create exams to all student in classroom.
      */
     @Override
-    public List<ExamDTO> makeExamsFormToClassroom(Long classroom_id, LocalDate written_at) {
+    public List<ExamDTO> makeExamsFormToClassroom(Long classroom_id, LocalDate written_at, String examType) {
         List<Student> students = getStudentFromClassroom(classroom_id);
         List<ExamDTO> result = new ArrayList<>();
         for (Student student : students) {
-            result.add(new ExamDTO(student, written_at));
+            result.add(new ExamDTO(student, written_at, examType));
         }
         return result;
     }
@@ -150,6 +153,7 @@ public class ExamServiceImpl implements ExamService {
                 Exam exam = new Exam(
                         examResponseDTO.getMark(),
                         examResponseDTO.getWritten_at(),
+                        ExamType.valueOf(examResponseDTO.getExamType()),
                         course,
                         student
                 ); // Creates a new exam.
@@ -158,6 +162,21 @@ public class ExamServiceImpl implements ExamService {
             }
 
         }
+        return result;
+    }
+
+    /**
+     * Collect all exam type.
+     *
+     * @return exam types.
+     */
+    @Override
+    public List<ExamType> getAllExamType() {
+        List<ExamType> result = new ArrayList<>();
+        result.add(ExamType.TOPIC_TEST);
+        result.add(ExamType.TEST);
+        result.add(ExamType.REPETITION);
+        result.add(ExamType.HOMEWORK);
         return result;
     }
 

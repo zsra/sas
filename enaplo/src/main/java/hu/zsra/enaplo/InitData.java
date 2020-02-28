@@ -41,15 +41,15 @@ public class InitData {
     private AttendanceServiceImpl attendanceService;
     @Autowired
     private AuthorityServiceImpl authorityService;
+    @Autowired
+    private RoomServiceImpl roomService;
 
     public void Init() {
-
         if(userService.findAll().isEmpty()) {
             authorityService.save(UserRoleName.ROLE_ADMIN);
             authorityService.save(UserRoleName.ROLE_STUDENT);
             authorityService.save(UserRoleName.ROLE_TEACHER);
             authorityService.save(UserRoleName.ROLE_HEADTEACHER);
-
             userService.save(new UserResponseDTO("admin", "admin", "admin", "ROLE_ADMIN"));
         }
         //testData();
@@ -61,6 +61,7 @@ public class InitData {
         testDataClassroom();
         testDataStudent();
         testDataCourse();
+        testDataRoom();
         testDataTimeTable();
         testDataAttendance();
         testDataExam();
@@ -208,6 +209,7 @@ public class InitData {
 
     private void testDataExam() {
         List<Course> courses = courseService.findAll();
+        List<ExamType> examTypes = examService.getAllExamType();
         Random random = new Random();
 
         for(int i = 0; i < 40; i++) {
@@ -219,7 +221,8 @@ public class InitData {
             Course course = courses.get(random.nextInt(courses.size()));
             List<ExamDTO> examDTOS = examService.makeExamsFormToClassroom(
                     classroom_id,
-                    LocalDate.of(randYear, randMonth, randDay));
+                    LocalDate.of(randYear, randMonth, randDay), ""
+                    );
             List<ExamResponseDTO> examResponseDTOS = new ArrayList<>();
 
             for(ExamDTO examDTO: examDTOS) {
@@ -227,6 +230,7 @@ public class InitData {
                 examResponseDTOS.add(new ExamResponseDTO(
                         mark,
                         examDTO.getWritten_at(),
+                        examTypes.get(random.nextInt(examTypes.size())).toString(),
                         course.getId(),
                         examDTO.getStudent().getId()
                 ));
@@ -294,10 +298,19 @@ public class InitData {
          }
     }
 
+    private void testDataRoom() {
+        for(int i = 1; i < 3; i++) {
+            for(int j = 1; j < 10; j++) {
+                roomService.create(new RoomResponseDTO(i + "/" + j + " terem"));
+            }
+        }
+    }
+
     private void testDataTimeTable() {
        List<Course> courses = courseService.findAll();
        TimeTableEntityResponseDTO[][] timeTableEntityResponseDTOS =
                new TimeTableEntityResponseDTO[12][5];
+       List<Room> rooms = roomService.findAll();
        Random random = new Random();
 
        for(int i = 0; i < 12; i++) {
@@ -306,7 +319,9 @@ public class InitData {
                Course course = courses.get(random.nextInt(courses.size()));
                timeTableEntityResponseDTOS[i][j].setClassroom_id(1L);
                timeTableEntityResponseDTOS[i][j].setCourse_id(course.getId());
-               timeTableEntityResponseDTOS[i][j].setClassroomNumber(i + "" +  j);
+               timeTableEntityResponseDTOS[i][j].setRoom_id(
+                       rooms.get(random.nextInt(rooms.size())).getId()
+               );
                timeTableEntityResponseDTOS[i][j].setDay(j);
                timeTableEntityResponseDTOS[i][j].setLessonNumber(i);
                timeTableService.create(timeTableEntityResponseDTOS[i][j]);
@@ -318,7 +333,9 @@ public class InitData {
                 Course course = courses.get(random.nextInt(courses.size()));
                 timeTableEntityResponseDTOS[i][j].setClassroom_id(2L);
                 timeTableEntityResponseDTOS[i][j].setCourse_id(course.getId());
-                timeTableEntityResponseDTOS[i][j].setClassroomNumber(i + "" +  j);
+                timeTableEntityResponseDTOS[i][j].setRoom_id(
+                        rooms.get(random.nextInt(rooms.size())).getId()
+                );
                 timeTableEntityResponseDTOS[i][j].setDay(j);
                 timeTableEntityResponseDTOS[i][j].setLessonNumber(i);
                 timeTableService.create(timeTableEntityResponseDTOS[i][j]);

@@ -3,11 +3,13 @@ package hu.zsra.enaplo.service.impl;
 import hu.zsra.enaplo.dto.response.TimeTableEntityResponseDTO;
 import hu.zsra.enaplo.model.Classroom;
 import hu.zsra.enaplo.model.Course;
+import hu.zsra.enaplo.model.Room;
 import hu.zsra.enaplo.model.TimeTableEntity;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.model.user.group.Teacher;
 import hu.zsra.enaplo.repository.ClassroomRepository;
 import hu.zsra.enaplo.repository.CourseRepository;
+import hu.zsra.enaplo.repository.RoomRepository;
 import hu.zsra.enaplo.repository.TimeTableRepository;
 import hu.zsra.enaplo.repository.user.StudentRepository;
 import hu.zsra.enaplo.repository.user.TeacherRepository;
@@ -35,6 +37,8 @@ public class TimeTableServiceImpl implements TimeTableService {
     private CourseRepository courseRepository;
     @Autowired
     private ClassroomRepository classroomRepository;
+    @Autowired
+    private RoomRepository roomRepository;
 
     /**
      * Returns a TimeTable 2d array to student. The table size
@@ -113,12 +117,14 @@ public class TimeTableServiceImpl implements TimeTableService {
         Classroom classroom = classroomRepository.getOne(timeTableEntityResponseDTO.getClassroom_id());
         /* Finds course by id. */
         Course course = courseRepository.getOne(timeTableEntityResponseDTO.getCourse_id());
+        /* Finds room by id. */
+        Room room = roomRepository.getOne(timeTableEntityResponseDTO.getRoom_id());
 
         return timeTableRepository.save(new TimeTableEntity(
                 timeTableEntityResponseDTO.getDay(),
                 timeTableEntityResponseDTO.getLessonNumber(),
+                room,
                 course,
-                timeTableEntityResponseDTO.getClassroomNumber(),
                 classroom
         ));
     }
@@ -137,8 +143,10 @@ public class TimeTableServiceImpl implements TimeTableService {
         TimeTableEntity tableEntity = timeTableRepository.getOne(id);
         /* Finds classroom by id. */
         Classroom classroom = classroomRepository.getOne(timeTableEntityResponseDTO.getClassroom_id());
+        /* Finds room by id. */
+        Room room = roomRepository.getOne(timeTableEntityResponseDTO.getRoom_id());
 
-        tableEntity.setClassroomNumber(timeTableEntityResponseDTO.getClassroomNumber());
+        tableEntity.setRoom(room);
         tableEntity.setDay(timeTableEntityResponseDTO.getDay());
         tableEntity.setLessonNumber(timeTableEntityResponseDTO.getLessonNumber());
         tableEntity.setClassroom(classroom);

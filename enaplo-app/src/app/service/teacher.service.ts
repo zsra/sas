@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { ConfigService } from './config.service';
 import { TeacherResponseDTO } from 'src/app/dto/response/teacherResponseDTO';
+import { TeacherPreferenceResponseDTO } from '../dto/response/teacherPreferenceResponseDTO';
 
 @Injectable({
     providedIn: 'root'
@@ -39,4 +40,12 @@ export class TeacherService {
     delete(id: number) {
         return this.apiService.delete(this.configService.getDeleteTeacherUrl + '/' + id, id);
     }
+
+    setTeacherPreferences(teacherPreferenceResponseDTO: TeacherPreferenceResponseDTO) {
+        return this.apiService.put(this.configService.getSetTeacherPreferencesUrl, teacherPreferenceResponseDTO);
+    }
+
+    getAllTeacherPreferences(teacher_id: number) {
+        return this.apiService.get(this.configService.getGetAllTeacherPreferencesUrl + '/' + teacher_id, teacher_id);
+    } 
 }

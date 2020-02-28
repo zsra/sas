@@ -3,6 +3,7 @@ package hu.zsra.enaplo.controller;
 import hu.zsra.enaplo.dto.ExamDTO;
 import hu.zsra.enaplo.dto.response.ExamResponseDTO;
 import hu.zsra.enaplo.model.Exam;
+import hu.zsra.enaplo.model.ExamType;
 import hu.zsra.enaplo.service.impl.ExamServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -101,8 +102,9 @@ public class ExamController {
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
     @PostMapping(value = "/exams/form/{classroom_id}")
     public List<ExamDTO> makeExamsFormToClassroom(@PathVariable Long classroom_id,
-                                                  @RequestBody String written_at) {
-        return examService.makeExamsFormToClassroom(classroom_id,LocalDate.parse(written_at));
+                                                  @RequestBody String written_at,
+                                                  @RequestBody String examType) {
+        return examService.makeExamsFormToClassroom(classroom_id,LocalDate.parse(written_at), examType);
     }
 
     @PreAuthorize("hasRole('ROLE_TEACHER') or hasRole('ROLE_HEADTEACHER')")
@@ -115,5 +117,17 @@ public class ExamController {
     @PostMapping(value = "/exams/form/create")
     public List<Exam> createExamsFromForm(@RequestBody List<ExamResponseDTO> examResponseDTOS) {
         return examService.createExamsFromForm(examResponseDTOS);
+    }
+
+    @PreAuthorize("hasRole('ROLE_TEACHER') or hasRole('ROLE_HEADTEACHER')")
+    @ApiOperation(value = "${ExamController.createExamsFromForm}")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Something went wrong"),
+            @ApiResponse(code = 403, message = "Access denied"),
+            @ApiResponse(code = 404, message = "Exam types cannot found"),
+            @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
+    @PostMapping(value = "/exams/type/all")
+    public List<ExamType> getAllExamType() {
+        return examService.getAllExamType();
     }
 }

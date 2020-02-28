@@ -1,5 +1,6 @@
 import { Course } from './course';
 import { Classroom } from './classroom';
+import { Room } from './room';
 
 export class TimeTableEntity {
 
@@ -7,6 +8,6 @@ export class TimeTableEntity {
     day: number;
     lessonNumber: number;
     course: Course;
-    classroomNumber: string;
+    room: Room;
     classroom: Classroom;
 }

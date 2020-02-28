@@ -1,6 +1,8 @@
+import { Exam } from '../model/exam';
+
 export class SummaryDTO {
 
     courseName: string;
-    marks: number[];
+    exams: Exam[];
     average: number;
 }

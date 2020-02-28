@@ -3,6 +3,8 @@ import { Course } from 'src/app/model/course';
 import { UserService } from 'src/app/service/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from 'src/app/service/course.service';
+import { TeacherService } from 'src/app/service/teacher.service';
+import { TeacherPreference } from 'src/app/model/teacherPreference';
 
 @Component({
   selector: 'app-course-details',
@@ -15,9 +17,10 @@ export class CourseDetailsComponent implements OnInit {
   id: number = 0;
   course = new Course();
   isDataAvailable:boolean = false;
+  preference = new TeacherPreference();
 
   constructor(private userService: UserService, private route: ActivatedRoute, 
-    private courseService: CourseService, private router: Router) { }
+    private courseService: CourseService, private router: Router, private teacherService: TeacherService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -25,7 +28,10 @@ export class CourseDetailsComponent implements OnInit {
       this.currentUser = data;
       this.courseService.findById(this.id).subscribe(data => { 
         this.course = data;
-        this.isDataAvailable = true;
+        this.teacherService.getAllTeacherPreferences(this.course.teacher.id).subscribe(data => {
+          this.preference = data;
+          this.isDataAvailable = true;
+        });
       });
     });
   }

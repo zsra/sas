@@ -3,6 +3,7 @@ package hu.zsra.enaplo.service;
 import hu.zsra.enaplo.dto.ExamDTO;
 import hu.zsra.enaplo.dto.response.ExamResponseDTO;
 import hu.zsra.enaplo.model.Exam;
+import hu.zsra.enaplo.model.ExamType;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -63,7 +64,7 @@ public interface ExamService {
      * @param written_at The exam date.
      * @return A form table to create exams to all student in classroom.
      */
-    List<ExamDTO> makeExamsFormToClassroom(Long classroom_id, LocalDate written_at);
+    List<ExamDTO> makeExamsFormToClassroom(Long classroom_id, LocalDate written_at, String examType);
 
     /**
      * Creates a new exams and save into the database.
@@ -73,4 +74,11 @@ public interface ExamService {
      * @see Exam
      */
     List<Exam> createExamsFromForm(List<ExamResponseDTO> examResponseDTOS);
+
+    /**
+     * Collect all exam type.
+     *
+     * @return exam types.
+     */
+    List<ExamType> getAllExamType();
 }

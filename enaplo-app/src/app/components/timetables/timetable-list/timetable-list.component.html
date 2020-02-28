@@ -23,7 +23,7 @@
                         <tr *ngFor="let entity of timtable | filter:searchText">
                             <td>{{entity.day}}</td>
                             <td>{{entity.lessonNumber}}</td>
-                            <td>{{entity.classroomNumber}}</td>
+                            <td>{{entity.room.classroomNumber}}</td>
                             <td>{{entity.classroom.year}}/{{entity.classroom.letter}}</td>
                             <td>
                                 <button (click)="update(course.id)" class="btn btn-warning">Update</button>

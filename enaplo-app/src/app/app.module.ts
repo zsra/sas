@@ -66,6 +66,9 @@ import { UpdateMessageComponent } from './components/messages/update-message/upd
 import { RemarkListComponent } from './components/remarks/remark-list/remark-list.component';
 import { RemarkCreateComponent } from './components/remarks/remark-create/remark-create.component';
 import { RemarkUpdateComponent } from './components/remarks/remark-update/remark-update.component';
+import { PreferencesComponent } from './components/teachers/preferences/preferences.component';
+import { RoomViewComponent } from './components/rooms/room-view/room-view.component';
+import { RoomCreateComponent } from './components/rooms/room-create/room-create.component';
 
 @NgModule({
   declarations: [
@@ -121,7 +124,10 @@ import { RemarkUpdateComponent } from './components/remarks/remark-update/remark
     UpdateMessageComponent,
     RemarkListComponent,
     RemarkCreateComponent,
-    RemarkUpdateComponent
+    RemarkUpdateComponent,
+    PreferencesComponent,
+    RoomViewComponent,
+    RoomCreateComponent
   ],
   imports: [
     BrowserModule,

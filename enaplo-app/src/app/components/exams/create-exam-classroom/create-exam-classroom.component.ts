@@ -19,6 +19,7 @@ export class CreateExamClassroomComponent implements OnInit {
 
   classroom_id: number;
   currentUser: any = {};
+  etype: any = {};
   isDataAvailable: boolean = false;
   isBasicSet: boolean = false;
   courses: Observable<Course[]>;
@@ -60,7 +61,7 @@ export class CreateExamClassroomComponent implements OnInit {
   }
 
   onSubmit() {
-    this.examService.createExamsFromForm(this.collect(this.marks, this.raw_exams, this.selectedCourse.id, this.written_at))
+    this.examService.createExamsFromForm(this.collect(this.marks, this.raw_exams, this.selectedCourse.id, this.written_at, this.etype))
     .subscribe(data =>  {     
       this.refresh();
       this.openSnackBar('Exams created', 'Ok');
@@ -76,7 +77,7 @@ export class CreateExamClassroomComponent implements OnInit {
   }
 
   collect(marks: number[], entities: ExamDTO[], course_id: number, 
-    written_at: string): ExamResponseDTO[] {
+    written_at: string, etype: string): ExamResponseDTO[] {
     var index = 0;
     var result: ExamResponseDTO[] = [];
   
@@ -84,6 +85,7 @@ export class CreateExamClassroomComponent implements OnInit {
       result.push(new ExamResponseDTO());
       result[index].course_id = course_id;
       result[index].student_id = entity.student.id;
+      result[index].examType = etype;
       result[index].written_at = written_at;
       if(marks[index] != null) {
         result[index].mark = marks[index];

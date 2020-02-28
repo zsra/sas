@@ -40,4 +40,8 @@ export class ExamService {
     createExamsFromForm(examResponseDTOS: ExamResponseDTO[]) {
         return this.apiService.post(this.configService.getCreateExamsFromFormUrl, examResponseDTOS);
     }
+
+    getAllExamType() {
+        return this.apiService.get(this.configService.getGetAllExamTypeUrl);
+    }
 }

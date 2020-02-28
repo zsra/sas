@@ -61,7 +61,7 @@ export class CourseCreateComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/course/create']);
+    this.router.navigate(['/course/all']);
   }
 
   userRole(): string {

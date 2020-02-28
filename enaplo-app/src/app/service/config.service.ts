@@ -221,6 +221,7 @@ export class ConfigService {
     private deleteExamUrl = this.examUrl;
     private createExamsFromFormUrl = this.examUrl + '/form/create';
     private makeExamsFormToClassroomUrl = this.examUrl + '/form';
+    private getAllExamTypeUrl = this.examUrl + '/type/all';
 
     get getExamfindAllByStudentUrl(): string {
         return this.examfindAllByStudentUrl;
@@ -248,6 +249,10 @@ export class ConfigService {
 
     get getMakeExamsFormToClassroomUrl(): string {
         return this.makeExamsFormToClassroomUrl;
+    }
+
+    get getGetAllExamTypeUrl(): string {
+        return this.getAllExamTypeUrl;
     }
 
     private reportUrl = this.baseUrl + '/reports';
@@ -295,6 +300,8 @@ export class ConfigService {
     private updateTeacherUrl = this.teacherUrl + '/update';
     private setCourseToTeacherUrl = this.teacherUrl + '/setCourse';
     private deleteTeacherUrl = this.teacherUrl;
+    private setTeacherPreferencesUrl = this.teacherUrl + '/preferences';
+    private getAllTeacherPreferencesUrl = this.teacherUrl + '/preferences';
 
     get getFindAllTeacherUrl(): string {
         return this.findAllTeacherUrl;
@@ -322,6 +329,14 @@ export class ConfigService {
 
     get getDeleteTeacherUrl(): string {
         return this.deleteTeacherUrl;
+    }
+
+    get getSetTeacherPreferencesUrl(): string {
+        return this.setTeacherPreferencesUrl;
+    }
+
+    get getGetAllTeacherPreferencesUrl(): string {
+        return this.getAllTeacherPreferencesUrl;
     }
 
     private timetableUrl = this.baseUrl + '/timetables';
@@ -452,5 +467,27 @@ export class ConfigService {
 
     get getDeleteRemarkUrl(): string {
         return this.deleteRemarkUrl;
+    }
+
+    private roomUrl = this.baseUrl + '/rooms';
+    private findAllRoomsUrl = this.roomUrl + '/all';
+    private findByRoomUrl = this.roomUrl;
+    private createRoomUrl = this.roomUrl + 'create';
+    private deleteRoomUrl = this.roomUrl;
+
+    get getFindAllRoomsUrl(): string {
+        return this.findAllRoomsUrl;
+    }
+
+    get getFindByRoomUrl(): string {
+        return this.findByRoomUrl;
+    }
+
+    get getCreateRoomUrl(): string {
+        return this.createRoomUrl;
+    }
+
+    get getDeleteRoomUrl(): string {
+        return this.deleteRoomUrl;
     }
 }

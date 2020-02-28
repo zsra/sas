@@ -7,6 +7,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ClassroomService } from 'src/app/service/classroom.service';
 import { TimeTableService } from 'src/app/service/timeTable.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Room } from 'src/app/model/room';
+import { RoomService } from 'src/app/service/room.service';
 
 @Component({
   selector: 'app-timetable-entity-create',
@@ -19,10 +21,12 @@ export class TimetableEntityCreateComponent implements OnInit {
   currentUser: any = {};
   isDataAvailable: boolean = false;
   selectedOptionClassroom: any = {};
+  selectedOptionRoom: any = {};
   classrooms: Observable<Classroom[]>;
+  rooms: Observable<Room[]>;
   timeTableEntity = new TimeTableEntityResponseDTO();
 
-  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute,
+  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, private roomService: RoomService,
     private classroomService: ClassroomService, private timeTableService: TimeTableService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -31,7 +35,10 @@ export class TimetableEntityCreateComponent implements OnInit {
       this.currentUser = data;
       this.classroomService.findAll().subscribe(data => {
         this.classrooms = data;
-        this.isDataAvailable = true;
+        this.roomService.findAll().subscribe(data => {
+          this.rooms = data;
+          this.isDataAvailable = true;
+        });
       });
     });
   }
@@ -51,6 +58,7 @@ export class TimetableEntityCreateComponent implements OnInit {
   onSubmit() {
     this.timeTableEntity.course_id = this.id;
     this.timeTableEntity.classroom_id = Number(this.selectedOptionClassroom.id);
+    this.timeTableEntity.room_id = Number(this.selectedOptionRoom.id);
     this.timeTableService.create(this.id, this.timeTableEntity).subscribe(() => {
       this.reset();
       this.openSnackBar('Time table entity created.', 'Ok');

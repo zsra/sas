@@ -8,6 +8,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ClassroomService } from 'src/app/service/classroom.service';
 import { TimeTableService } from 'src/app/service/timeTable.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Room } from 'src/app/model/room';
+import { RoomService } from 'src/app/service/room.service';
 
 @Component({
   selector: 'app-timetable-entity-update',
@@ -20,11 +22,13 @@ export class TimetableEntityUpdateComponent implements OnInit {
   currentUser: any = {};
   isDataAvailable: boolean = false;
   selectedOptionClassroom: any = {};
+  selectedOptionRoom: any = {};
   classrooms: Observable<Classroom[]>;
+  rooms: Observable<Room[]>;
   response = new TimeTableEntityResponseDTO();
   timeTableEntity = new TimeTableEntity();
 
-  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute,
+  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute,  private roomService: RoomService,
     private classroomService: ClassroomService, private timeTableService: TimeTableService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -33,9 +37,12 @@ export class TimetableEntityUpdateComponent implements OnInit {
       this.currentUser = data;
       this.classroomService.findAll().subscribe(data => {
         this.classrooms = data;
-        this.timeTableService.findById(this.id).subscribe(data => {
-          this.timeTableEntity = data;
-          this.isDataAvailable = true;
+        this.roomService.findAll().subscribe(data => {
+          this.rooms = data;
+          this.timeTableService.findById(this.id).subscribe(data => {
+            this.timeTableEntity = data;
+            this.isDataAvailable = true;
+          });
         });
       });
     });
@@ -48,8 +55,7 @@ export class TimetableEntityUpdateComponent implements OnInit {
   }
 
   isDataChanged() {
-    if(!this.response.classroomNumber
-      || !this.response.classroom_id
+    if(!this.response.classroom_id
       || !this.response.day
       || !this.response.lessonNumber) return true;
       return false;
@@ -58,7 +64,8 @@ export class TimetableEntityUpdateComponent implements OnInit {
   onSubmit() {
     if(this.isDataChanged) {
       this.response.course_id = this.timeTableEntity.course.id;
-      if(!this.response.classroomNumber) this.response.classroomNumber = this.timeTableEntity.classroomNumber;
+      this.response.room_id = this.selectedOptionRoom.id;
+      if(!this.response.room_id) this.response.room_id = this.timeTableEntity.room.id;
       if(!this.response.day) this.response.day = this.timeTableEntity.day;
       if(!this.response.lessonNumber) this.response.lessonNumber = this.timeTableEntity.lessonNumber;
       this.response.classroom_id = this.selectedOptionClassroom.id;

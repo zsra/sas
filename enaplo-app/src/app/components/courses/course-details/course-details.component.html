@@ -27,6 +27,27 @@
                     </tr>
                 </tbody>
             </table>
+            <h3>Preferences for marks</h3>
+            <table class="table table-bordered" *ngIf="preferences">
+                <tbody>
+                    <tr>
+                        <td>Test</td>
+                        <td>{{preferences.testWeight}}</td>
+                    </tr>
+                    <tr>
+                        <td>Topic Test</td>
+                        <td>{{preferences.topicTestWeight}}</td>
+                    </tr>
+                    <tr>
+                        <td>Repetition</td>
+                        <td>{{preferences.repetitionWeight}}</td>
+                    </tr>
+                    <tr>
+                        <td>Homework</td>
+                        <td>{{preferences.homeworkWeight}}</td>
+                    </tr>
+                </tbody>
+            </table>
             <button (click)="goBack()" class="btn btn-dark">Back</button>
         </div>
     </div>

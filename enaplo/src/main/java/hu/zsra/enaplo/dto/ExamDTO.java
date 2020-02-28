@@ -17,10 +17,13 @@ public class ExamDTO {
     @Getter @Setter
     private LocalDate written_at;
 
+    @Getter @Setter
+    private String examType;
+
     public ExamDTO() {
     }
 
-    public ExamDTO(Student student, LocalDate written_at) {
+    public ExamDTO(Student student, LocalDate written_at, String examType) {
         this.student = student;
         this.mark = 0;
         this.written_at = written_at;

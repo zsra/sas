@@ -35,13 +35,6 @@ public class TimeTableEntity {
     private int lessonNumber;
 
     /**
-     * Classroom where course hold.
-     */
-    @Column(name = "classroomNumber", nullable = false, length = 15)
-    @Getter @Setter
-    private String classroomNumber;
-
-    /**
      * Empty constructor.
      */
     public TimeTableEntity() {}
@@ -52,14 +45,13 @@ public class TimeTableEntity {
      * @param day Day when course hold.
      * @param lessonNumber Time when course hold.
      * @param course The course.
-     * @param classroomNumber Classroom where course hold.
      * @param classroom The class.
      */
-    public TimeTableEntity(int day, int lessonNumber, Course course, String classroomNumber, Classroom classroom) {
+    public TimeTableEntity(int day, int lessonNumber, Room room, Course course, Classroom classroom) {
         this.day = day;
         this.lessonNumber = lessonNumber;
+        this.room = room;
         this.course = course;
-        this.classroomNumber = classroomNumber;
         this.classroom = classroom;
     }
 
@@ -77,4 +69,13 @@ public class TimeTableEntity {
     @JoinColumn(name="classroom_id")
     @Getter @Setter
     private Classroom classroom;
+
+    /**
+     * User object to room. This property connects the room to
+     * the lesson.
+     */
+    @ManyToOne
+    @JoinColumn(name="room_id")
+    @Getter @Setter
+    private Room room;
 }

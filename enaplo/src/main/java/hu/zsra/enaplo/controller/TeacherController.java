@@ -1,6 +1,8 @@
 package hu.zsra.enaplo.controller;
 
+import hu.zsra.enaplo.dto.response.TeacherPreferenceResponseDTO;
 import hu.zsra.enaplo.dto.response.TeacherResponseDTO;
+import hu.zsra.enaplo.model.TeacherPreference;
 import hu.zsra.enaplo.model.user.group.Teacher;
 import hu.zsra.enaplo.service.impl.TeacherServiceImpl;
 import io.swagger.annotations.ApiOperation;
@@ -111,5 +113,30 @@ public class TeacherController {
     public String delete(@PathVariable Long id) {
         teacherService.delete(id);
         return id.toString();
+    }
+
+    @PreAuthorize("hasRole('ROLE_TEACHER') or hasRole('ROLE_HEADTEACHER')")
+    @ApiOperation(value = "${TeacherController.setTeacherPreferences}")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Something went wrong"),
+            @ApiResponse(code = 403, message = "Access denied"),
+            @ApiResponse(code = 404, message = "Preferences cannot created"),
+            @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
+    @PutMapping(value = "/teachers/preferences")
+    public String setTeacherPreferences(@RequestBody TeacherPreferenceResponseDTO teacherPreferenceResponseDTO) {
+        teacherService.setTeacherPreferences(teacherPreferenceResponseDTO);
+        return teacherPreferenceResponseDTO.getTeacher_id().toString();
+    }
+
+    @PreAuthorize("hasRole('ROLE_TEACHER') or hasRole('ROLE_HEADTEACHER')")
+    @ApiOperation(value = "${TeacherController.getAllTeacherPreferences}")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Something went wrong"),
+            @ApiResponse(code = 403, message = "Access denied"),
+            @ApiResponse(code = 404, message = "Preferences don't found"),
+            @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
+    @GetMapping(value = "/teachers/preferences/{teacher_id}")
+    public TeacherPreference getAllTeacherPreferences(@PathVariable Long teacher_id) {
+        return teacherService.getAllTeacherPreferences(teacher_id);
     }
 }

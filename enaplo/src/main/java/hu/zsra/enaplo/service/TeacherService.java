@@ -1,6 +1,8 @@
 package hu.zsra.enaplo.service;
 
+import hu.zsra.enaplo.dto.response.TeacherPreferenceResponseDTO;
 import hu.zsra.enaplo.dto.response.TeacherResponseDTO;
+import hu.zsra.enaplo.model.TeacherPreference;
 import hu.zsra.enaplo.model.user.group.Teacher;
 
 import java.util.List;
@@ -71,4 +73,18 @@ public interface TeacherService {
      */
     void setCourse(Long teacher_id, Long course_id);
 
+    /**
+     * Set all weights for exam types.
+     *
+     * @param teacherPreferenceResponseDTO Submitted DTO from web application.
+     */
+    void setTeacherPreferences(TeacherPreferenceResponseDTO teacherPreferenceResponseDTO);
+
+    /**
+     * Get all preferences by teacher id.
+     *
+     * @param teacher_id Id of the Teacher.
+     * @return List of the TeacherPreferences.
+     */
+    TeacherPreference getAllTeacherPreferences(Long teacher_id);
 }

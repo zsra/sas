@@ -53,7 +53,7 @@ export class ClassroomListComponent implements OnInit {
   delete(classroom_id: number) {
     this.classroomService.delete(classroom_id).subscribe(() => {
       this.refresh();
-      this.openSnackBar('Classroom deleted.', 'Ok');
+      this.openSnackBar('Class deleted.', 'Ok');
     }, error => {this.openSnackBar('Failed.', 'Ok');});
   }
 

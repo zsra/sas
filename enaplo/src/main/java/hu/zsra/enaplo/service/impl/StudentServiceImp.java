@@ -8,6 +8,7 @@ import hu.zsra.enaplo.model.user.group.Gender;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.repository.*;
 import hu.zsra.enaplo.repository.user.StudentRepository;
+import hu.zsra.enaplo.repository.user.TeacherRepository;
 import hu.zsra.enaplo.repository.user.UserRepository;
 import hu.zsra.enaplo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,8 @@ public class StudentServiceImp implements StudentService {
     private ReportRepository reportRepository;
     @Autowired
     private AttendanceRepository attendanceRepository;
+    @Autowired
+    private TeacherPreferenceRepository teacherPreferenceRepository;
 
     /**
      * Returns a List of Students.
@@ -165,14 +168,31 @@ public class StudentServiceImp implements StudentService {
                         .stream()
                         .filter(exam -> exam.getCourse().getId().equals(course.getId()))
                         .collect(Collectors.toList());
-
-                double average = exams.stream().mapToDouble(Exam::getMark).average().orElse(Double.NaN);
-
-                summaryDTOList.add(new SummaryDTO(course.getTitle(),
-                        exams.stream().mapToInt(Exam::getMark).toArray(), average));
+                summaryDTOList.add(new SummaryDTO(course.getTitle(), exams, weightedAverage(exams, course)));
             }
         }
         return summaryDTOList;
+    }
+
+    private double weightedAverage(List<Exam> exams, Course course) {
+        TeacherPreference teacherPreference = teacherPreferenceRepository.getOne(course.getTeacher().getId());
+        double sum = 0;
+        int examsNumber = exams.size();
+        for(Exam exam: exams) {
+            if(exam.getExamType().equals(ExamType.TEST)) {
+                sum += exam.getMark() * teacherPreference.getTestWeight();
+            }
+            if(exam.getExamType().equals(ExamType.TOPIC_TEST)) {
+                sum += exam.getMark() * teacherPreference.getTopicTestWeight();
+            }
+            if(exam.getExamType().equals(ExamType.REPETITION)) {
+                sum += exam.getMark() * teacherPreference.getRepetitionWeight();
+            }
+            if(exam.getExamType().equals(ExamType.HOMEWORK)) {
+                sum += exam.getMark() * teacherPreference.getHomeworkWeight();
+            }
+        }
+        return sum / examsNumber;
     }
 
     /**

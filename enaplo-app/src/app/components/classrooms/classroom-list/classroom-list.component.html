@@ -3,7 +3,7 @@
     <div class="container" *ngIf="userRole() != 'ROLE_STUDENT'">
         <div class="container">
             <div class="container">
-                <h3>Classrooms</h3>
+                <h3>Classes</h3>
                 <button *ngIf="userRole() === 'ROLE_ADMIN'" mat-button mat-ripple (click)='createClassroom()' class="btn btn-info">Create Classroom</button>
             </div>
             <div class="container">

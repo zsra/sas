@@ -12,7 +12,7 @@ public class TimeTableEntityResponseDTO {
     private int lessonNumber;
 
     @Getter @Setter
-    private String classroomNumber;
+    private Long room_id;
 
     @Getter @Setter
     private Long course_id;
@@ -23,10 +23,10 @@ public class TimeTableEntityResponseDTO {
     public TimeTableEntityResponseDTO() {
     }
 
-    public TimeTableEntityResponseDTO(int day, int lessonNumber, String classroomNumber, Long course_id, Long classroom_id) {
+    public TimeTableEntityResponseDTO(int day, int lessonNumber, Long room_id, Long course_id, Long classroom_id) {
         this.day = day;
         this.lessonNumber = lessonNumber;
-        this.classroomNumber = classroomNumber;
+        this.room_id = room_id;
         this.course_id = course_id;
         this.classroom_id = classroom_id;
     }

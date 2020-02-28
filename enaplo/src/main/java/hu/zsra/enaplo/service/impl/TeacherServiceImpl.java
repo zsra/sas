@@ -1,17 +1,19 @@
 package hu.zsra.enaplo.service.impl;
 
+import hu.zsra.enaplo.dto.response.TeacherPreferenceResponseDTO;
 import hu.zsra.enaplo.dto.response.TeacherResponseDTO;
 import hu.zsra.enaplo.model.Course;
+import hu.zsra.enaplo.model.TeacherPreference;
 import hu.zsra.enaplo.model.user.Authority;
 import hu.zsra.enaplo.model.user.User;
 import hu.zsra.enaplo.model.user.group.Teacher;
 import hu.zsra.enaplo.repository.CourseRepository;
+import hu.zsra.enaplo.repository.TeacherPreferenceRepository;
 import hu.zsra.enaplo.repository.user.TeacherRepository;
 import hu.zsra.enaplo.repository.user.UserRepository;
 import hu.zsra.enaplo.service.TeacherService;
 import hu.zsra.enaplo.service.auth.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +31,7 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private CourseRepository courseRepository;
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private TeacherPreferenceRepository teacherPreferenceRepository;
     @Autowired
     private AuthorityService authService;
 
@@ -92,8 +94,9 @@ public class TeacherServiceImpl implements TeacherService {
         List<Authority> authorities = authService.findByName("ROLE_TEACHER");
         user.setAuthorities(authorities);
         teacher.setTeacher(user);
-
-        return teacherRepository.save(teacher);
+        teacherRepository.save(teacher);
+        teacherPreferenceRepository.save(new TeacherPreference(teacher, 1, 1, 1,1));
+        return teacher;
     }
 
     /**
@@ -120,7 +123,6 @@ public class TeacherServiceImpl implements TeacherService {
      */
     @Override
     public void delete(Long id) {
-
         teacherRepository.delete(teacherRepository.getOne(id));
     }
 
@@ -136,5 +138,37 @@ public class TeacherServiceImpl implements TeacherService {
         Course course = courseRepository.getOne(course_id);
         course.setTeacher(teacher);
         courseRepository.save(course);
+    }
+
+    /**
+     * Set all weights for exam types.
+     *
+     * @param teacherPreferenceResponseDTO Submitted DTO from web application.
+     */
+    @Override
+    public void setTeacherPreferences(TeacherPreferenceResponseDTO teacherPreferenceResponseDTO) {
+        Teacher teacher = teacherRepository.getOne(teacherPreferenceResponseDTO.getTeacher_id());
+        teacherPreferenceRepository.save(new TeacherPreference(
+           teacher,
+           teacherPreferenceResponseDTO.getTestWeight(),
+           teacherPreferenceResponseDTO.getTopicTestWeight(),
+           teacherPreferenceResponseDTO.getRepetitionWeight(),
+           teacherPreferenceResponseDTO.getHomeworkWeight()
+        ));
+    }
+
+    /**
+     * Get all preferences by teacher id.
+     *
+     * @param teacher_id Id of the Teacher.
+     * @return List of the TeacherPreferences.
+     */
+    @Override
+    public TeacherPreference getAllTeacherPreferences(Long teacher_id) {
+        return teacherPreferenceRepository.findAll()
+                .stream()
+                .filter(teacherPreference -> teacherPreference.getTeacher().getId().equals(teacher_id))
+                .findAny()
+                .orElse(null);
     }
 }

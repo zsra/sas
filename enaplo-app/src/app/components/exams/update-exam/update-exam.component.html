@@ -7,6 +7,15 @@
         <div class="container">
             <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-exam">
                 <div class="form-group">
+                    <label for="etype">Exam Type</label>
+                    <select id="etype" class="form-control" required [(ngModel)]="etype" name="etype">
+                        <option [ngValue]="TEST">Test</option>
+                        <option [ngValue]="TOPIC_TEST">Topic Test</option>
+                        <option [ngValue]="REPETITION">Repetition</option>
+                        <option [ngValue]="HOMEWORK">Homework</option>
+                    </select>
+                </div>    
+                <div class="form-group">
                     <label for="mark">Mark</label>
                     <input type="number" class="form-control" id="mark" required [(ngModel)]="exam.mark" name="mark">
                 </div>
