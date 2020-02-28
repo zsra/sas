@@ -31,7 +31,10 @@ export class PreferencesComponent implements OnInit {
         this.teacher = data;
         this.teacherService.getAllTeacherPreferences(this.teacher.id).subscribe(data => { 
           this.preferencesOrigin = data;
-          this.preferences = data;
+          this.preferences.homeworkWeight = this.preferencesOrigin.homeworkWeight;
+          this.preferences.repetitionWeight = this.preferencesOrigin.repetitionWeight;
+          this.preferences.testWeight = this.preferencesOrigin.testWeight;
+          this.preferences.topicTestWeight = this.preferencesOrigin.topicTestWeight;
           this.isDataAvailable = true;
         });
       });
@@ -45,18 +48,19 @@ export class PreferencesComponent implements OnInit {
   }
 
   isDataChanged() {
-    if(!(this.preferencesOrigin.homeworkWeight == this.preferencesOrigin.homeworkWeight) ||
-    !(this.preferencesOrigin.topicTestWeight == this.preferencesOrigin.topicTestWeight) ||
-    !(this.preferencesOrigin.testWeight == this.preferencesOrigin.testWeight) ||
-    !(this.preferencesOrigin.repetitionWeight == this.preferencesOrigin.repetitionWeight)) return true;
+    if(!(this.preferences.homeworkWeight == this.preferencesOrigin.homeworkWeight) ||
+    !(this.preferences.topicTestWeight == this.preferencesOrigin.topicTestWeight) ||
+    !(this.preferences.testWeight == this.preferencesOrigin.testWeight) ||
+    !(this.preferences.repetitionWeight == this.preferencesOrigin.repetitionWeight)) return true;
     return false;
   }
 
   onSubmit() {
-    if(this.isDataChanged && this.underModifying) {
+    if(this.isDataChanged) {
+      this.preferences.teacher_id = this.teacher.id;
       this.teacherService.setTeacherPreferences(this.preferences).subscribe(() => {
-        this.openSnackBar('Preferences updated', 'Ok');
         this.refresh();
+        this.openSnackBar('Preferences updated', 'Ok');      
       });
     }
   }

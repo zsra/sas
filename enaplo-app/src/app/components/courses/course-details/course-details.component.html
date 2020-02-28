@@ -27,24 +27,24 @@
                     </tr>
                 </tbody>
             </table>
-            <h3>Preferences for marks</h3>
-            <table class="table table-bordered" *ngIf="preferences">
+            <h3>Weights to exams</h3>
+            <table class="table table-bordered" *ngIf="preference">
                 <tbody>
                     <tr>
                         <td>Test</td>
-                        <td>{{preferences.testWeight}}</td>
+                        <td>{{preference.testWeight}}</td>
                     </tr>
                     <tr>
                         <td>Topic Test</td>
-                        <td>{{preferences.topicTestWeight}}</td>
+                        <td>{{preference.topicTestWeight}}</td>
                     </tr>
                     <tr>
                         <td>Repetition</td>
-                        <td>{{preferences.repetitionWeight}}</td>
+                        <td>{{preference.repetitionWeight}}</td>
                     </tr>
                     <tr>
                         <td>Homework</td>
-                        <td>{{preferences.homeworkWeight}}</td>
+                        <td>{{preference.homeworkWeight}}</td>
                     </tr>
                 </tbody>
             </table>

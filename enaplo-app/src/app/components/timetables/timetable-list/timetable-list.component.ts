@@ -29,7 +29,7 @@ export class TimetableListComponent implements OnInit {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data;
       this.courseService.findById(this.course_id).subscribe(data => {
-        this.course = data;
+        this.course = data; 
         this.timeTableService.getTimeTableEntitiesByCourse(this.course_id).subscribe(data => {
           this.timeTable = data;
           this.isDataAvailable = true;
@@ -61,7 +61,7 @@ export class TimetableListComponent implements OnInit {
   delete(entity_id: number) {
     this.timeTableService.delete(entity_id).subscribe(() => {
       this.refresh();
-      this.openSnackBar('Time table entity created', 'Ok');
+      this.openSnackBar('Time table entity deleted', 'Ok');
     });
   }
 

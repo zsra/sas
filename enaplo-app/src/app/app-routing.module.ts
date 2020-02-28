@@ -52,6 +52,9 @@ import { RemarkCreateComponent } from './components/remarks/remark-create/remark
 import { RemarkUpdateComponent } from './components/remarks/remark-update/remark-update.component';
 import { RemarkListComponent } from './components/remarks/remark-list/remark-list.component';
 import { StatisticsComponent } from './components/headteachers/statistics/statistics.component';
+import { PreferencesComponent } from './components/teachers/preferences/preferences.component';
+import { RoomCreateComponent } from './components/rooms/room-create/room-create.component';
+import { RoomViewComponent } from './components/rooms/room-view/room-view.component';
 
 const routes: Routes = [
   {
@@ -118,6 +121,10 @@ const routes: Routes = [
   {
     path: 'teacher/update/:id',
     component: TeacherUpdateComponent
+  },
+  {
+    path: 'teacher/preferences/:id',
+    component: PreferencesComponent
   },
   /* ----- CLASSROOM ----- */
   {
@@ -259,6 +266,14 @@ const routes: Routes = [
   {
     path: 'statistics/:id',
     component: StatisticsComponent
+  },
+  {
+    path: 'rooms/create',
+    component: RoomCreateComponent
+  },
+  {
+    path: 'rooms/all',
+    component: RoomViewComponent
   },
   /* ----- DEFAULT ----- */
   {

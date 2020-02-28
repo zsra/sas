@@ -14,20 +14,20 @@
                 <tbody>
                   <tr *ngFor="let summary of summaries">
                     <td *ngIf="summary.courseName">{{summary.courseName}}</td>
-                    <td><span *ngFor="let exam of summary.exams">
-                      <div *ngIf="exam.examType === TEST" style="color: black;">
-                        {{exam.mark}},
-                      </div>
-                      <div *ngIf="exam.examType === TOPIC_TEST" style="color: red;">
-                        {{exam.mark}},
-                      </div>
-                      <div *ngIf="exam.examType === REPETITION" style="color: blue;">
-                        {{exam.mark}},
-                      </div>
-                      <div *ngIf="exam.examType === HOMEWORK" style="color: green;">
-                        {{exam.mark}},
-                      </div>
-                    </span></td>
+                    <td><ng-container *ngFor="let exam of summary.exams">
+                      <span *ngIf="(exam.examType == 'TEST')" style="color: black;">
+                        {{exam?.mark}},
+                      </span>
+                      <span *ngIf="(exam.examType == 'TOPIC_TEST')" style="color: red;">
+                        {{exam?.mark}},
+                      </span>
+                      <span *ngIf="(exam.examType == 'REPETITION')" style="color: blue;">
+                        {{exam?.mark}},
+                      </span>
+                      <span *ngIf="(exam.examType == 'HOMEWORK')" style="color: green;">
+                        {{exam?.mark}},
+                      </span>
+                    </ng-container></td>
                     <td>{{ summary.average.toFixed(2)}}</td>
                   </tr>
               </tbody>

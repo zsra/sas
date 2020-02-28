@@ -21,14 +21,6 @@ export class AdminPanelComponent implements OnInit {
     });
   }
 
-  createStudent() {
-    this.router.navigate(['/student/create']);
-  }
-
-  createTeacher() {
-    this.router.navigate(['/teacher/create']);
-  }
-
   getAllUser() {
     this.router.navigate(['/user/all']);
   }
@@ -39,6 +31,10 @@ export class AdminPanelComponent implements OnInit {
 
   getAllCourse() {
     this.router.navigate(['/course/all']);
+  }
+
+  getAllRooms() {
+    this.router.navigate(['/rooms/all']);
   }
 
   update() {

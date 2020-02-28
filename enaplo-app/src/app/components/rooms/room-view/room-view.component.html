@@ -18,7 +18,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let room of rooms | filter:searchText">
-                            <td>{{room.clasroomNumber}}</td>
+                            <td><strong>{{room.classroomNumber}}</strong></td>
                             <td>    
                                 <button *ngIf="userRole() === 'ROLE_ADMIN'" (click)="delete(room.id)" class="btn btn-danger">Delete</button>                 
                             </td>

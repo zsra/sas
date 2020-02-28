@@ -147,14 +147,13 @@ public class TeacherServiceImpl implements TeacherService {
      */
     @Override
     public void setTeacherPreferences(TeacherPreferenceResponseDTO teacherPreferenceResponseDTO) {
-        Teacher teacher = teacherRepository.getOne(teacherPreferenceResponseDTO.getTeacher_id());
-        teacherPreferenceRepository.save(new TeacherPreference(
-           teacher,
-           teacherPreferenceResponseDTO.getTestWeight(),
-           teacherPreferenceResponseDTO.getTopicTestWeight(),
-           teacherPreferenceResponseDTO.getRepetitionWeight(),
-           teacherPreferenceResponseDTO.getHomeworkWeight()
-        ));
+        teacherPreferenceRepository.setPreferences(
+                teacherPreferenceResponseDTO.getTeacher_id(),
+                teacherPreferenceResponseDTO.getTestWeight(),
+                teacherPreferenceResponseDTO.getTopicTestWeight(),
+                teacherPreferenceResponseDTO.getRepetitionWeight(),
+                teacherPreferenceResponseDTO.getHomeworkWeight()
+        );
     }
 
     /**

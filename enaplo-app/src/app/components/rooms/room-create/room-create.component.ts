@@ -49,7 +49,7 @@ export class RoomCreateComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/room/all']);
+    this.router.navigate(['/rooms/all']);
   }
 
   userRole(): string {

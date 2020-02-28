@@ -128,7 +128,6 @@ public class TeacherController {
         return teacherPreferenceResponseDTO.getTeacher_id().toString();
     }
 
-    @PreAuthorize("hasRole('ROLE_TEACHER') or hasRole('ROLE_HEADTEACHER')")
     @ApiOperation(value = "${TeacherController.getAllTeacherPreferences}")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),

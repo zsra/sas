@@ -31,12 +31,16 @@ export class TeacherPanelComponent implements OnInit {
     this.router.navigate(['/classroom/all']);
   }
 
+  preferences() {
+    this.teacherService.findByUserId(this.currentUser.id).subscribe(data => this.router.navigate(['teacher/preferences', data.id]));
+  }
+
   update() {
     this.teacherService.findByUserId(this.currentUser.id).subscribe(data => this.router.navigate(['teacher/update', data.id]));
   }
 
-  details() {
-    this.teacherService.findByUserId(this.currentUser.id).subscribe(data => this.router.navigate(['student/details', data.id]));
+  courses() {
+    this.router.navigate(['/course/all']);
   }
 
   timetable() {

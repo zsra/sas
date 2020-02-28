@@ -58,6 +58,14 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  createStudent() {
+    this.router.navigate(['/student/create']);
+  }
+
+  createTeacher() {
+    this.router.navigate(['/teacher/create']);
+  }
+
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 4000,
