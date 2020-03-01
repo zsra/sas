@@ -1,13 +1,8 @@
 package hu.zsra.enaplo.model.user;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class UserTokenState {
 
-    @Getter @Setter
     private String access_token;
-    @Getter @Setter
     private Long expires_in;
 
     public UserTokenState() {

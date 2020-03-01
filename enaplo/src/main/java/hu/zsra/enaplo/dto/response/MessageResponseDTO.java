@@ -1,12 +1,7 @@
 package hu.zsra.enaplo.dto.response;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class MessageResponseDTO {
 
-    @Getter
-    @Setter
     private String text;
 
     public MessageResponseDTO() {
@@ -16,5 +11,13 @@ public class MessageResponseDTO {
     public MessageResponseDTO(String text) {
         this.text = text;
 
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

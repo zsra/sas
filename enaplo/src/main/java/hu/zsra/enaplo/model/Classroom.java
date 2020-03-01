@@ -3,8 +3,6 @@ package hu.zsra.enaplo.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.model.user.group.Teacher;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,35 +21,30 @@ public class Classroom {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
     private Long id;
 
     /**
      * Year when class started.
      */
     @Column(name = "start_year", nullable = false, length = 4)
-    @Getter @Setter
     private int start_year;
 
     /**
      * Year when class will end.
      */
     @Column(name = "end_year", nullable = false, length = 4)
-    @Getter @Setter
     private int end_year;
 
     /**
      * Current school year.
      */
     @Column(name = "year", nullable = false)
-    @Getter @Setter
     private int year;
 
     /**
      * Class letter to identify the class in the school.
      */
     @Column(name = "letter", nullable = false, length = 1)
-    @Getter @Setter
     private char letter;
 
     /**
@@ -80,7 +73,6 @@ public class Classroom {
      * The headteacher of the class.
      */
     @OneToOne
-    @Getter @Setter
     private Teacher headTeacher;
 
     /**
@@ -88,7 +80,6 @@ public class Classroom {
      */
     @JsonIgnore
     @OneToMany(mappedBy = "classroom")
-    @Getter @Setter
     private List<Student> students = new ArrayList<>();
 
     /**
@@ -96,6 +87,69 @@ public class Classroom {
      */
     @JsonIgnore
     @OneToMany(mappedBy = "classroom")
-    @Getter @Setter
     private List<TimeTableEntity> timeTableEntities = new ArrayList<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getStart_year() {
+        return start_year;
+    }
+
+    public void setStart_year(int start_year) {
+        this.start_year = start_year;
+    }
+
+    public int getEnd_year() {
+        return end_year;
+    }
+
+    public void setEnd_year(int end_year) {
+        this.end_year = end_year;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public char getLetter() {
+        return letter;
+    }
+
+    public void setLetter(char letter) {
+        this.letter = letter;
+    }
+
+    public Teacher getHeadTeacher() {
+        return headTeacher;
+    }
+
+    public void setHeadTeacher(Teacher headTeacher) {
+        this.headTeacher = headTeacher;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public List<TimeTableEntity> getTimeTableEntities() {
+        return timeTableEntities;
+    }
+
+    public void setTimeTableEntities(List<TimeTableEntity> timeTableEntities) {
+        this.timeTableEntities = timeTableEntities;
+    }
 }

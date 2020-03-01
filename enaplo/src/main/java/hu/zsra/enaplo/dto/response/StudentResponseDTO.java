@@ -1,37 +1,34 @@
 package hu.zsra.enaplo.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
 
 public class StudentResponseDTO {
 
-    @Getter @Setter
     private String username;
-    @Getter @Setter
+
     private LocalDate dateOfBirth;
-    @Getter @Setter
+
     private int start_year;
-    @Getter @Setter
+
     private String address;
-    @Getter @Setter
+
     private String gender;
-    @Getter @Setter
+
     private String educationId;
-    @Getter @Setter
+
     private String healthCareId;
-    @Getter @Setter
+
     private String parent1Name;
-    @Getter @Setter
+
     private String parent2Name;
-    @Getter @Setter
+
     private String parent1Phone;
-    @Getter @Setter
+
     private String parent2Phone;
+
     @JsonProperty("classroom_id")
-    @Getter @Setter
     private Long classroom_id;
 
     public StudentResponseDTO() {}
@@ -50,6 +47,102 @@ public class StudentResponseDTO {
         this.parent2Name = parent2Name;
         this.parent1Phone = parent1Phone;
         this.parent2Phone = parent2Phone;
+        this.classroom_id = classroom_id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public int getStart_year() {
+        return start_year;
+    }
+
+    public void setStart_year(int start_year) {
+        this.start_year = start_year;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getEducationId() {
+        return educationId;
+    }
+
+    public void setEducationId(String educationId) {
+        this.educationId = educationId;
+    }
+
+    public String getHealthCareId() {
+        return healthCareId;
+    }
+
+    public void setHealthCareId(String healthCareId) {
+        this.healthCareId = healthCareId;
+    }
+
+    public String getParent1Name() {
+        return parent1Name;
+    }
+
+    public void setParent1Name(String parent1Name) {
+        this.parent1Name = parent1Name;
+    }
+
+    public String getParent2Name() {
+        return parent2Name;
+    }
+
+    public void setParent2Name(String parent2Name) {
+        this.parent2Name = parent2Name;
+    }
+
+    public String getParent1Phone() {
+        return parent1Phone;
+    }
+
+    public void setParent1Phone(String parent1Phone) {
+        this.parent1Phone = parent1Phone;
+    }
+
+    public String getParent2Phone() {
+        return parent2Phone;
+    }
+
+    public void setParent2Phone(String parent2Phone) {
+        this.parent2Phone = parent2Phone;
+    }
+
+    public Long getClassroom_id() {
+        return classroom_id;
+    }
+
+    public void setClassroom_id(Long classroom_id) {
         this.classroom_id = classroom_id;
     }
 }

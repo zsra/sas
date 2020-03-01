@@ -1,8 +1,5 @@
 package hu.zsra.enaplo.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -17,23 +14,18 @@ public class Message {
      * Id field [GENERATED AUTOMATICALLY].
      */
     @Id
-    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
      * Message to Home page.
      */
-    @Getter
-    @Setter
     @Column(name = "text", nullable = false, length = 255)
     private String text;
 
     /**
      * Text created at this time.
      */
-    @Getter
-    @Setter
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
@@ -51,5 +43,29 @@ public class Message {
     public Message(String text) {
         this.text = text;
         this.createdAt = LocalDateTime.now();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

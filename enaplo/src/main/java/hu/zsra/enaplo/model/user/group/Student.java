@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import hu.zsra.enaplo.model.*;
 import hu.zsra.enaplo.model.user.User;
-import hu.zsra.enaplo.model.user.UserRoleName;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,8 +24,6 @@ public class Student {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
     private Long id;
 
     /**
@@ -37,14 +32,12 @@ public class Student {
      */
     @ManyToOne
     @JoinColumn(name="student_id")
-    @Getter @Setter
     private User student;
 
     /**
      * Student Date of Birth.
      */
     @Column(name = "dob", nullable = false)
-    @Getter @Setter
     private LocalDate dateOfBirth;
 
     /**
@@ -52,63 +45,54 @@ public class Student {
      */
     @Enumerated(EnumType.STRING)
     @Column(name="gender")
-    @Getter @Setter
     private Gender gender;
 
     /**
      * Year when student started.
      */
     @Column(name = "start_year", nullable = false)
-    @Getter @Setter
     private int start_year;
 
     /**
      * Student address.
      */
     @Column(name = "address", nullable = false)
-    @Getter @Setter
     private String address;
 
     /**
      * Student education id.
      */
     @Column(name = "educationId", nullable = false, length = 11)
-    @Getter @Setter
     private String educationId;
 
     /**
      * Student healthcare id.
      */
     @Column(name = "healthCareId", length = 16)
-    @Getter @Setter
     private String healthCareId;
 
     /**
      * Student "first" parent name.
      */
     @Column(name = "parent1Name", length = 32)
-    @Getter @Setter
     private String parent1Name;
 
     /**
      * Student "second" parent name.
      */
     @Column(name = "parent2Name", length = 32)
-    @Getter @Setter
     private String parent2Name;
 
     /**
      * Student "first" parent phone number.
      */
     @Column(name = "parent1Phone", length = 24)
-    @Getter @Setter
     private String parent1Phone;
 
     /**
      * Student "second" parent phone number.
      */
     @Column(name = "parent2Phone", length = 24)
-    @Getter @Setter
     private String parent2Phone;
 
     /**
@@ -162,7 +146,6 @@ public class Student {
             inverseJoinColumns = { @JoinColumn(name = "courseId"),
             }
     )
-    @Getter @Setter
     private List<Course> courses = new ArrayList<>();
 
 
@@ -171,7 +154,6 @@ public class Student {
      */
     @JsonIgnore
     @OneToMany(mappedBy = "student")
-    @Getter @Setter
     private List<Report> reports = new ArrayList<>();
 
     /**
@@ -179,7 +161,6 @@ public class Student {
      */
     @JsonIgnore
     @OneToMany(mappedBy = "student")
-    @Getter @Setter
     private List<Exam> exams  = new ArrayList<>();
 
     /**
@@ -187,7 +168,6 @@ public class Student {
      */
     @JsonIgnore
     @OneToMany(mappedBy = "student")
-    @Getter @Setter
     private List<Attendance> attendances = new ArrayList<>();
 
     /**
@@ -196,6 +176,141 @@ public class Student {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne
     @JoinColumn(name="classroom_id")
-    @Getter @Setter
     private Classroom classroom;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getStudent() {
+        return student;
+    }
+
+    public void setStudent(User student) {
+        this.student = student;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public int getStart_year() {
+        return start_year;
+    }
+
+    public void setStart_year(int start_year) {
+        this.start_year = start_year;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEducationId() {
+        return educationId;
+    }
+
+    public void setEducationId(String educationId) {
+        this.educationId = educationId;
+    }
+
+    public String getHealthCareId() {
+        return healthCareId;
+    }
+
+    public void setHealthCareId(String healthCareId) {
+        this.healthCareId = healthCareId;
+    }
+
+    public String getParent1Name() {
+        return parent1Name;
+    }
+
+    public void setParent1Name(String parent1Name) {
+        this.parent1Name = parent1Name;
+    }
+
+    public String getParent2Name() {
+        return parent2Name;
+    }
+
+    public void setParent2Name(String parent2Name) {
+        this.parent2Name = parent2Name;
+    }
+
+    public String getParent1Phone() {
+        return parent1Phone;
+    }
+
+    public void setParent1Phone(String parent1Phone) {
+        this.parent1Phone = parent1Phone;
+    }
+
+    public String getParent2Phone() {
+        return parent2Phone;
+    }
+
+    public void setParent2Phone(String parent2Phone) {
+        this.parent2Phone = parent2Phone;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public List<Report> getReports() {
+        return reports;
+    }
+
+    public void setReports(List<Report> reports) {
+        this.reports = reports;
+    }
+
+    public List<Exam> getExams() {
+        return exams;
+    }
+
+    public void setExams(List<Exam> exams) {
+        this.exams = exams;
+    }
+
+    public List<Attendance> getAttendances() {
+        return attendances;
+    }
+
+    public void setAttendances(List<Attendance> attendances) {
+        this.attendances = attendances;
+    }
+
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
+    }
 }

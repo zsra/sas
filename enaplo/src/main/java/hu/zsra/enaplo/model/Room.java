@@ -1,8 +1,6 @@
 package hu.zsra.enaplo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,15 +18,12 @@ public class Room {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
     private Long id;
 
     /**
      * Classroom where course hold.
      */
     @Column(name = "classroomNumber", nullable = false, length = 15)
-    @Getter @Setter
     private String classroomNumber;
 
     /**
@@ -48,6 +43,29 @@ public class Room {
 
     @JsonIgnore
     @OneToMany(mappedBy = "room")
-    @Getter @Setter
     private List<TimeTableEntity> timeTableEntities = new ArrayList<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getClassroomNumber() {
+        return classroomNumber;
+    }
+
+    public void setClassroomNumber(String classroomNumber) {
+        this.classroomNumber = classroomNumber;
+    }
+
+    public List<TimeTableEntity> getTimeTableEntities() {
+        return timeTableEntities;
+    }
+
+    public void setTimeTableEntities(List<TimeTableEntity> timeTableEntities) {
+        this.timeTableEntities = timeTableEntities;
+    }
 }

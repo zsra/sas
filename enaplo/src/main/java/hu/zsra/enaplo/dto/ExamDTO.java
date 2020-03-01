@@ -1,23 +1,17 @@
 package hu.zsra.enaplo.dto;
 
 import hu.zsra.enaplo.model.user.group.Student;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
 
 public class ExamDTO {
 
-    @Getter @Setter
     private Student student;
 
-    @Getter @Setter
     private int mark;
 
-    @Getter @Setter
     private LocalDate written_at;
 
-    @Getter @Setter
     private String examType;
 
     public ExamDTO() {
@@ -27,5 +21,37 @@ public class ExamDTO {
         this.student = student;
         this.mark = 0;
         this.written_at = written_at;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
+    public LocalDate getWritten_at() {
+        return written_at;
+    }
+
+    public void setWritten_at(LocalDate written_at) {
+        this.written_at = written_at;
+    }
+
+    public String getExamType() {
+        return examType;
+    }
+
+    public void setExamType(String examType) {
+        this.examType = examType;
     }
 }

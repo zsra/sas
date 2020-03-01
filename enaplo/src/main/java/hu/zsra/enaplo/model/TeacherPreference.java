@@ -1,8 +1,6 @@
 package hu.zsra.enaplo.model;
 
 import hu.zsra.enaplo.model.user.group.Teacher;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -18,8 +16,6 @@ public class TeacherPreference {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
     private Long id;
 
     /**
@@ -27,31 +23,26 @@ public class TeacherPreference {
      */
     @OneToOne
     @JoinColumn(name="teacher_id")
-    @Getter @Setter
     private Teacher teacher;
 
     /**
      * Weight of the test.
      */
-    @Getter @Setter
     private double testWeight;
 
     /**
      * Weight of the topic test.
      */
-    @Getter @Setter
     private double topicTestWeight;
 
     /**
      * Weight of the repetition.
      */
-    @Getter @Setter
     private double repetitionWeight;
 
     /**
      * Weight of the homework.
      */
-    @Getter @Setter
     private double homeworkWeight;
 
     /**
@@ -74,6 +65,54 @@ public class TeacherPreference {
         this.testWeight = testWeight;
         this.topicTestWeight = topicTestWeight;
         this.repetitionWeight = repetitionWeight;
+        this.homeworkWeight = homeworkWeight;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public double getTestWeight() {
+        return testWeight;
+    }
+
+    public void setTestWeight(double testWeight) {
+        this.testWeight = testWeight;
+    }
+
+    public double getTopicTestWeight() {
+        return topicTestWeight;
+    }
+
+    public void setTopicTestWeight(double topicTestWeight) {
+        this.topicTestWeight = topicTestWeight;
+    }
+
+    public double getRepetitionWeight() {
+        return repetitionWeight;
+    }
+
+    public void setRepetitionWeight(double repetitionWeight) {
+        this.repetitionWeight = repetitionWeight;
+    }
+
+    public double getHomeworkWeight() {
+        return homeworkWeight;
+    }
+
+    public void setHomeworkWeight(double homeworkWeight) {
         this.homeworkWeight = homeworkWeight;
     }
 }

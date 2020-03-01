@@ -20,28 +20,24 @@ public class ArchiveReport {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
     private Long id;
 
     /**
      * Course name.
      */
     @Column(name = "courseName", nullable = false)
-    @Getter @Setter
     private String courseName;
 
     /**
      * Yeaar when course happens.
      */
     @Column(name = "year", nullable = false)
-    @Getter @Setter
     private int year;
 
     /**
      * Final result at the end.
      */
     @Column(name = "mark", nullable = false)
-    @Getter @Setter
     private int mark;
 
     /**
@@ -72,6 +68,45 @@ public class ArchiveReport {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne
     @JoinColumn(name="archive_id")
-    @Getter @Setter
     private Archive archive;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
+    public Archive getArchive() {
+        return archive;
+    }
+
+    public void setArchive(Archive archive) {
+        this.archive = archive;
+    }
 }

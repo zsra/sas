@@ -1,8 +1,6 @@
 package hu.zsra.enaplo.model;
 
 import hu.zsra.enaplo.model.user.group.Student;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -18,28 +16,24 @@ public class Report {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
     private Long id;
 
     /**
      * School year when semester was.
      */
     @Column(name = "year", nullable = false)
-    @Getter @Setter
     private int year;
 
     /**
      * The semester.
      */
     @Column(name = "semester", nullable = false)
-    @Getter @Setter
     private int semester;
 
     /**
      * Course result in the semester.
      */
     @Column(name = "mark", nullable = false)
-    @Getter @Setter
     private int mark;
 
     /**
@@ -70,7 +64,6 @@ public class Report {
      */
     @ManyToOne
     @JoinColumn(name="student_id")
-    @Getter @Setter
     private Student student;
 
     /**
@@ -78,6 +71,53 @@ public class Report {
      */
     @ManyToOne
     @JoinColumn(name = "course_id")
-    @Getter @Setter
     private Course course;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getSemester() {
+        return semester;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 }

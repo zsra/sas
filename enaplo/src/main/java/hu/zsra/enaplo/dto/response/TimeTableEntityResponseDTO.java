@@ -1,23 +1,15 @@
 package hu.zsra.enaplo.dto.response;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class TimeTableEntityResponseDTO {
 
-    @Getter @Setter
     private int day;
 
-    @Getter @Setter
     private int lessonNumber;
 
-    @Getter @Setter
     private Long room_id;
 
-    @Getter @Setter
     private Long course_id;
 
-    @Getter @Setter
     private Long classroom_id;
 
     public TimeTableEntityResponseDTO() {
@@ -28,6 +20,46 @@ public class TimeTableEntityResponseDTO {
         this.lessonNumber = lessonNumber;
         this.room_id = room_id;
         this.course_id = course_id;
+        this.classroom_id = classroom_id;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getLessonNumber() {
+        return lessonNumber;
+    }
+
+    public void setLessonNumber(int lessonNumber) {
+        this.lessonNumber = lessonNumber;
+    }
+
+    public Long getRoom_id() {
+        return room_id;
+    }
+
+    public void setRoom_id(Long room_id) {
+        this.room_id = room_id;
+    }
+
+    public Long getCourse_id() {
+        return course_id;
+    }
+
+    public void setCourse_id(Long course_id) {
+        this.course_id = course_id;
+    }
+
+    public Long getClassroom_id() {
+        return classroom_id;
+    }
+
+    public void setClassroom_id(Long classroom_id) {
         this.classroom_id = classroom_id;
     }
 }

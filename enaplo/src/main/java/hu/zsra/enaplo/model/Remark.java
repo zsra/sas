@@ -1,8 +1,6 @@
 package hu.zsra.enaplo.model;
 
 import hu.zsra.enaplo.model.user.group.Student;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,23 +16,18 @@ public class Remark {
      * Id field [GENERATED AUTOMATICALLY].
      */
     @Id
-    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
      * Message to student.
      */
-    @Getter
-    @Setter
     @Column(name = "text", nullable = false, length = 255)
     private String text;
 
     /**
      * remark created at this time.
      */
-    @Getter
-    @Setter
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
@@ -59,6 +52,37 @@ public class Remark {
      */
     @ManyToOne
     @JoinColumn(name="student_id")
-    @Getter @Setter
     private Student student;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 }

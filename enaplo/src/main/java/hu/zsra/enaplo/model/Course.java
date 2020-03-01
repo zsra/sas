@@ -3,8 +3,6 @@ package hu.zsra.enaplo.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.model.user.group.Teacher;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -22,21 +20,18 @@ public class Course {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
     private Long id;
 
     /**
      * Subject title.
      */
     @Column(name = "title", nullable = false, length = 24)
-    @Getter @Setter
     private String title;
 
     /**
      * Subject year.
      */
     @Column(name = "year", nullable = false)
-    @Getter @Setter
     private int year;
 
     /**
@@ -62,7 +57,6 @@ public class Course {
      */
     @ManyToOne
     @JoinColumn(name="teacher_id")
-    @Getter @Setter
     private Teacher teacher;
 
     /**
@@ -70,7 +64,6 @@ public class Course {
      */
     @JsonIgnore
     @ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER)
-    @Getter @Setter
     private List<Student> students = new ArrayList<>();
 
     /**
@@ -78,7 +71,6 @@ public class Course {
      */
     @JsonIgnore
     @OneToMany(mappedBy = "course")
-    @Getter @Setter
     private List<Exam> exams = new ArrayList<>();
 
     /**
@@ -86,7 +78,6 @@ public class Course {
      */
     @JsonIgnore
     @OneToMany(mappedBy = "course")
-    @Getter @Setter
     private List<TimeTableEntity> lessons = new ArrayList<>();
 
     /**
@@ -94,7 +85,69 @@ public class Course {
      */
     @JsonIgnore
     @OneToMany(mappedBy = "course")
-    @Getter @Setter
     private List<Report> reports = new ArrayList<>();
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public List<Exam> getExams() {
+        return exams;
+    }
+
+    public void setExams(List<Exam> exams) {
+        this.exams = exams;
+    }
+
+    public List<TimeTableEntity> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(List<TimeTableEntity> lessons) {
+        this.lessons = lessons;
+    }
+
+    public List<Report> getReports() {
+        return reports;
+    }
+
+    public void setReports(List<Report> reports) {
+        this.reports = reports;
+    }
 }

@@ -1,8 +1,6 @@
 package hu.zsra.enaplo.model;
 
 import hu.zsra.enaplo.model.user.group.Student;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -18,7 +16,6 @@ public class Exam {
      * Id field [GENERATED AUTOMATICALLY].
      */
     @Id
-    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -26,14 +23,12 @@ public class Exam {
      * Exam result.
      */
     @Column(name = "mark", nullable = false)
-    @Getter @Setter
     private int mark;
 
     /**
      * Time when exam written.
      */
     @Column(name = "written_at", nullable = false)
-    @Getter @Setter
     private LocalDate writtenAt;
 
     /**
@@ -41,7 +36,6 @@ public class Exam {
      */
     @Enumerated(EnumType.STRING)
     @Column(name="exam_type")
-    @Getter @Setter
     private ExamType examType;
 
     /**
@@ -71,7 +65,6 @@ public class Exam {
      */
     @ManyToOne
     @JoinColumn(name="course_id")
-    @Getter @Setter
     private Course course;
 
     /**
@@ -79,6 +72,53 @@ public class Exam {
      */
     @ManyToOne
     @JoinColumn(name="student_id")
-    @Getter @Setter
     private Student student;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
+    public LocalDate getWrittenAt() {
+        return writtenAt;
+    }
+
+    public void setWrittenAt(LocalDate writtenAt) {
+        this.writtenAt = writtenAt;
+    }
+
+    public ExamType getExamType() {
+        return examType;
+    }
+
+    public void setExamType(ExamType examType) {
+        this.examType = examType;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 }

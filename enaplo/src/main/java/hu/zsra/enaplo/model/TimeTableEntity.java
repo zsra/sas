@@ -1,8 +1,5 @@
 package hu.zsra.enaplo.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 
 /**
@@ -17,21 +14,18 @@ public class TimeTableEntity {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
     private Long id;
 
     /**
      * Day when course hold.
      */
     @Column(name = "day", nullable = false)
-    @Getter @Setter
     private int day;
 
     /**
      * Time when course hold.
      */
     @Column(name = "lesson", nullable = false)
-    @Getter @Setter
     private int lessonNumber;
 
     /**
@@ -59,7 +53,6 @@ public class TimeTableEntity {
      * The course.
      */
     @ManyToOne
-    @Getter @Setter
     private Course course;
 
     /**
@@ -67,7 +60,6 @@ public class TimeTableEntity {
      */
     @ManyToOne
     @JoinColumn(name="classroom_id")
-    @Getter @Setter
     private Classroom classroom;
 
     /**
@@ -76,6 +68,53 @@ public class TimeTableEntity {
      */
     @ManyToOne
     @JoinColumn(name="room_id")
-    @Getter @Setter
     private Room room;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getLessonNumber() {
+        return lessonNumber;
+    }
+
+    public void setLessonNumber(int lessonNumber) {
+        this.lessonNumber = lessonNumber;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 }

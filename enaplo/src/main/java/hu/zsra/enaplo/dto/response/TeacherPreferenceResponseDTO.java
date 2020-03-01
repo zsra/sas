@@ -1,23 +1,15 @@
 package hu.zsra.enaplo.dto.response;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class TeacherPreferenceResponseDTO {
 
-    @Getter @Setter
     private Long teacher_id;
 
-    @Getter @Setter
     private double testWeight;
 
-    @Getter @Setter
     private double topicTestWeight;
 
-    @Getter @Setter
     private double repetitionWeight;
 
-    @Getter @Setter
     private double homeworkWeight;
 
     public TeacherPreferenceResponseDTO(Long teacher_id, double testWeight, double topicTestWeight, double repetitionWeight, double homeworkWeight) {
@@ -30,5 +22,45 @@ public class TeacherPreferenceResponseDTO {
     }
 
     public TeacherPreferenceResponseDTO() {
+    }
+
+    public Long getTeacher_id() {
+        return teacher_id;
+    }
+
+    public void setTeacher_id(Long teacher_id) {
+        this.teacher_id = teacher_id;
+    }
+
+    public double getTestWeight() {
+        return testWeight;
+    }
+
+    public void setTestWeight(double testWeight) {
+        this.testWeight = testWeight;
+    }
+
+    public double getTopicTestWeight() {
+        return topicTestWeight;
+    }
+
+    public void setTopicTestWeight(double topicTestWeight) {
+        this.topicTestWeight = topicTestWeight;
+    }
+
+    public double getRepetitionWeight() {
+        return repetitionWeight;
+    }
+
+    public void setRepetitionWeight(double repetitionWeight) {
+        this.repetitionWeight = repetitionWeight;
+    }
+
+    public double getHomeworkWeight() {
+        return homeworkWeight;
+    }
+
+    public void setHomeworkWeight(double homeworkWeight) {
+        this.homeworkWeight = homeworkWeight;
     }
 }

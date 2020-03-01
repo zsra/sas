@@ -3,14 +3,10 @@ package hu.zsra.enaplo.model.user.group;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.zsra.enaplo.model.Course;
 import hu.zsra.enaplo.model.user.User;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Teacher model class to contains teacher data and build a relationship model.
@@ -26,7 +22,6 @@ public class Teacher {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
     private Long id;
 
     /**
@@ -35,22 +30,18 @@ public class Teacher {
      */
     @ManyToOne
     @JoinColumn(name="teacher_id")
-    @Getter @Setter
     private User teacher;
 
     /**
      * Teacher e-mail.
      */
     @Column(name = "email", length = 64)
-    @Getter
-    @Setter
     private String email;
 
     /**
      * Teacher phone number.
      */
     @Column(name = "phone", nullable = false, length = 24)
-    @Getter @Setter
     private String phone;
 
     /**
@@ -76,6 +67,45 @@ public class Teacher {
      */
     @JsonIgnore
     @OneToMany(mappedBy = "teacher")
-    @Getter @Setter
     private List<Course> courses = new ArrayList<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(User teacher) {
+        this.teacher = teacher;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 }

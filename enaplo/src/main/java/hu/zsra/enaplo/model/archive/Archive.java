@@ -20,28 +20,24 @@ public class Archive {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
     private Long id;
 
     /**
      * Student Login username.
      */
     @Column(name = "username", nullable = false)
-    @Getter @Setter
     private String username;
 
     /**
      * Student full name.
      */
     @Column(name = "studentName", nullable = false)
-    @Getter @Setter
     private String studentName;
 
     /**
      * Student date of birth.
      */
     @Column(name = "dob", nullable = false)
-    @Getter @Setter
     private LocalDate dateOfBirth;
 
     /**
@@ -67,7 +63,45 @@ public class Archive {
      * All reports to student.
      */
     @OneToMany(mappedBy = "archive", cascade=CascadeType.ALL)
-    @Getter @Setter
     private List<ArchiveReport> reports;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public List<ArchiveReport> getReports() {
+        return reports;
+    }
+
+    public void setReports(List<ArchiveReport> reports) {
+        this.reports = reports;
+    }
 }

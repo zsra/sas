@@ -1,8 +1,6 @@
 package hu.zsra.enaplo.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -20,7 +18,6 @@ public class Authority implements GrantedAuthority {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter
     private Long id;
 
     /**
@@ -28,7 +25,6 @@ public class Authority implements GrantedAuthority {
      */
     @Enumerated(EnumType.STRING)
     @Column(name="name")
-    @Setter
     private UserRoleName name;
 
 
@@ -60,5 +56,13 @@ public class Authority implements GrantedAuthority {
     @JsonIgnore
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(UserRoleName name) {
+        this.name = name;
     }
 }

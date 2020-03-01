@@ -1,8 +1,6 @@
 package hu.zsra.enaplo.model;
 
 import hu.zsra.enaplo.model.user.group.Student;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -20,28 +18,24 @@ public class Attendance {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
     private Long id;
 
     /**
      * Lecture when student missed.
      */
     @Column(name = "lecture", nullable = false)
-    @Getter @Setter
     private int lecture;
 
     /**
      * Date when student missed.
      */
     @Column(name = "dateOfMiss", nullable = false)
-    @Getter @Setter
     private LocalDate dateOfMiss;
 
     /**
      * Attendance is verified or not.
      */
     @Column(name = "isVerified")
-    @Getter @Setter
     private boolean isVerified;
 
     /**
@@ -68,6 +62,45 @@ public class Attendance {
      */
     @ManyToOne
     @JoinColumn(name="student_id", nullable = false)
-    @Getter @Setter
     private Student student;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getLecture() {
+        return lecture;
+    }
+
+    public void setLecture(int lecture) {
+        this.lecture = lecture;
+    }
+
+    public LocalDate getDateOfMiss() {
+        return dateOfMiss;
+    }
+
+    public void setDateOfMiss(LocalDate dateOfMiss) {
+        this.dateOfMiss = dateOfMiss;
+    }
+
+    public boolean isVerified() {
+        return isVerified;
+    }
+
+    public void setVerified(boolean verified) {
+        isVerified = verified;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 }
