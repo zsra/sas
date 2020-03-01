@@ -69,4 +69,12 @@ public interface CourseService {
      */
     void setCourse(Long student_id, Long course_id);
 
+    /**
+     * Unsets a course to student by ids.
+     *
+     * @param student_id Id of the Student.
+     * @param course_id Id of the Course.
+     */
+    void unsetCourse(Long student_id, Long course_id);
+
 }

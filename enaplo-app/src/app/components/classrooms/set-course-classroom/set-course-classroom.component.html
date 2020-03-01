@@ -13,6 +13,10 @@
                             <option *ngFor="let course of courses" [ngValue]="course">{{course.title}}/{{course.year}}</option>
                         </select>
                     </div> 
+                    <div class="form-group">
+                        <label for="unset">Unset course</label>
+                        <input type="checkbox" class="miss-input" [(ngModel)]="unset" name="unset">
+                    </div> 
                     <button (click)="goBack()" class="btn btn-dark">Back</button>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>

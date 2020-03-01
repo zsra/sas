@@ -175,5 +175,19 @@ public class ClassroomServiceImpl implements ClassroomService {
         }
     }
 
+    /**
+     * unsets a course to all student, who are in the class.
+     *
+     * @param classroom_id Id of the classroom.
+     * @param course_id    Id of the Course.
+     */
+    @Override
+    public void unsetCourse(Long classroom_id, Long course_id) {
+        List<Student> students = this.getStudentsFromClassroom(classroom_id);
+        for(Student student: students) {
+            courseRepository.unsetStudentFromCourse(course_id, student.getId());
+        }
+    }
+
 
 }

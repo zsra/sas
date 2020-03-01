@@ -136,4 +136,16 @@ public class CourseServiceImpl implements CourseService {
             courseRepository.save(course);
         }
     }
+
+    /**
+     * Unsets a course to student by ids.
+     *
+     * @param student_id Id of the Student.
+     * @param course_id  Id of the Course.
+     */
+    @Override
+    public void unsetCourse(Long student_id, Long course_id) {
+        courseRepository.unsetStudentFromCourse(course_id, student_id);
+    }
+
 }

@@ -142,6 +142,7 @@ export class ConfigService {
     private deleteClassroomUrl = this.classroomUrl;
     private getStudentsFromClassroomUrl = this.classroomUrl + '/students';
     private setCourseUrl = this.classroomUrl + '/setCourse';
+    private unsetCourseUrl = this.classroomUrl + '/unsetCourse';
     private getClassroomByIdUrl = this.classroomUrl;
 
     get getAllClassroomUrl(): string {
@@ -176,6 +177,10 @@ export class ConfigService {
         return this.getClassroomByIdUrl;
     }
 
+    get getUnsetCourseUrl(): string {
+        return this.setCourseUrl;
+    }
+
     private courseUrl = this.baseUrl + '/courses';
     private getCoursesByTeacherIdUrl = this.courseUrl + '/teacher';
     private createCourseUrl = this.courseUrl + '/create';
@@ -184,6 +189,7 @@ export class ConfigService {
     private deleteCourseUrl = this.courseUrl;
     private getCourseByIdUrl = this.courseUrl;
     private getAllCoursesUrl = this.courseUrl + '/all';
+    private unsetCourseToStudentUrl = this.courseUrl + '/unsetCourse';
 
     get getCreateCourseUrl(): string {
         return this.createCourseUrl;
@@ -211,6 +217,10 @@ export class ConfigService {
 
     get getGetAllCoursesUrl(): string {
         return this.getAllCoursesUrl;
+    }
+
+    get getUnsetCourseToStudentUrl(): string {
+        return this.unsetCourseToStudentUrl;
     }
 
     private examUrl = this.baseUrl + '/exams';

@@ -21,6 +21,11 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     void deleteFromStudentCourse(@Param("course_id") Long course_id);
 
     @Modifying
+    @Query(value = "DELETE FROM student_course WHERE course_id=:course_id ad student_id=:student_id", nativeQuery = true)
+    @Transactional
+    void unsetStudentFromCourse(@Param("course_id") Long course_id, @Param("student_id") Long student_id);
+
+    @Modifying
     @Query(value = "UPDATE courses SET teacher_id = :teacher_id WHERE id = :course_id", nativeQuery = true)
     @Transactional
     void setTeacher(@Param("course_id") Long course_id, @Param("teacher_id") Long teacher_id);

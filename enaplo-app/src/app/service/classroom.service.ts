@@ -44,4 +44,8 @@ export class ClassroomService {
     setCourse(classroom_id: number, course_id: number) {
         return this.apiService.put(this.configService.getSetCourseUrl + '/' + classroom_id, course_id);
     }    
+
+    unsetCourse(classroom_id: number, course_id: number) {
+        return this.apiService.put(this.configService.getUnsetCourseUrl + '/' + classroom_id, course_id);
+    } 
 }

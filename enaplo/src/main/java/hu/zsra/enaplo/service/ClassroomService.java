@@ -80,4 +80,12 @@ public interface ClassroomService {
      */
     void setCourse(Long classroom_id, Long course_id);
 
+    /**
+     * unsets a course to all student, who are in the class.
+     *
+     * @param classroom_id Id of the classroom.
+     * @param course_id Id of the Course.
+     */
+    void unsetCourse(Long classroom_id, Long course_id);
+
 }

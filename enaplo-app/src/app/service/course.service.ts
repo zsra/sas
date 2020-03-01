@@ -40,4 +40,8 @@ export class CourseService {
     setCourse(student_id: number, course_id: number) {
         return this.apiService.put(this.configService.getSetCourseToStudentUrl + '/' + student_id, course_id);
     }
+
+    unsetCourse(student_id: number, course_id: number) {
+        return this.apiService.put(this.configService.getUnsetCourseToStudentUrl + '/' + student_id, course_id);
+    }
 }

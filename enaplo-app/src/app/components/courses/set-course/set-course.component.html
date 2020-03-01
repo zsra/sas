@@ -3,7 +3,7 @@
     <div class="container" *ngIf="userRole() === 'ROLE_ADMIN'">
         <div class="container">
             <div class="container">
-                <h3>Set course to student</h3>
+                <h3>Set/Unset course to student</h3>
             </div>
             <div class="container">
                 <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-course">           
@@ -12,7 +12,11 @@
                         <select name="course" class="form-control form-control-sm" [(ngModel)]="selectedOption">
                             <option *ngFor="let course of courses" [ngValue]="course">{{course.title}}/{{course.year}}</option>
                         </select>
-                    </div>  
+                    </div> 
+                    <div class="form-group">
+                        <label for="unset">Unset course</label>
+                        <input type="checkbox" class="miss-input" [(ngModel)]="unset" name="unset">
+                    </div> 
                     <button type="submit" (click)="goBack()" class="btn btn-dark">Back</button>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>

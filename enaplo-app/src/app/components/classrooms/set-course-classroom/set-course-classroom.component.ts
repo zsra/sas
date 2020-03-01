@@ -18,6 +18,7 @@ export class SetCourseClassroomComponent implements OnInit {
   selectedOption: any = {};
   classroom_id: number;
   isDataAvailable: boolean = false;
+  unset: boolean = false;
   courses: Observable<Course[]>;
 
   constructor(private userService: UserService, private courseService: CourseService, private route: ActivatedRoute,
@@ -41,10 +42,18 @@ export class SetCourseClassroomComponent implements OnInit {
   }
 
   onSubmit() {
-    this.classroomService.setCourse(this.classroom_id, this.selectedOption.id).subscribe(() => {
-      this.refresh();
-      this.openSnackBar('Course set to class.', 'Ok');
-    }, error => { this.openSnackBar('Failed.', 'Ok');});
+    if(this.unset == false) {
+      this.classroomService.setCourse(this.classroom_id, this.selectedOption.id).subscribe(() => {
+        this.refresh();
+        this.openSnackBar('Course set to class.', 'Ok');
+      }, error => { this.openSnackBar('Failed.', 'Ok');});
+    } else {
+      this.classroomService.unsetCourse(this.classroom_id, this.selectedOption.id).subscribe(() => {
+        this.refresh();
+        this.openSnackBar('Course unset from class.', 'Ok');
+      }, error => { this.openSnackBar('Failed.', 'Ok');});
+    }
+   
   }
 
   refresh() {
