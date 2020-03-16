@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { StudentService } from 'src/app/service/student.service';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-user-list',
@@ -32,8 +33,8 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router);
   }
 
   details(user_id: number) {

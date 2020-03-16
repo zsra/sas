@@ -1,10 +1,10 @@
 <div *ngIf="isDataAvailable">
     <app-panel-loader></app-panel-loader>
-    <div class="container" *ngIf="userRole() != 'ROLE_STUDENT'">
+    <div class="container" *ngIf="userRole()">
         <div class="container">
             <div class="container">
                 <h3>Classrooms</h3>
-                <button *ngIf="userRole() === 'ROLE_ADMIN'" mat-button mat-ripple (click)='createRoom()' class="btn btn-info">Create Classroom</button>
+                <button (click)='createRoom()' class="btn btn-info">Create Classroom</button>
             </div>
             <div class="container">
                 <input class="form-control-searchbox" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" 
@@ -20,7 +20,7 @@
                         <tr *ngFor="let room of rooms | filter:searchText">
                             <td><strong>{{room.classroomNumber}}</strong></td>
                             <td>    
-                                <button *ngIf="userRole() === 'ROLE_ADMIN'" (click)="delete(room.id)" class="btn btn-danger">Delete</button>                 
+                                <button (click)="delete(room.id)" class="btn btn-danger">Delete</button>                 
                             </td>
                         </tr>
                     </tbody>

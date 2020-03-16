@@ -7,6 +7,7 @@ import { TeacherService } from 'src/app/service/teacher.service';
 import { ClassroomService } from 'src/app/service/classroom.service';
 import { ClassroomResponseDTO } from 'src/app/dto/response/classroomResponseDTO';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-classroom-create',
@@ -60,8 +61,8 @@ export class ClassroomCreateComponent implements OnInit {
     this.router.navigate(['/classroom/all']);
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router);
   }
 
 }

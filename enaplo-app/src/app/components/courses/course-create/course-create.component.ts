@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Teacher } from 'src/app/model/teacher';
 import { CourseResponseDTO } from 'src/app/dto/response/courseResponseDTO';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-course-create',
@@ -64,8 +65,8 @@ export class CourseCreateComponent implements OnInit {
     this.router.navigate(['/course/all']);
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router);
   }
 
 }

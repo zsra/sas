@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
 import { AdminService } from 'src/app/service/admin.service';
 import { Router } from '@angular/router';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-archives-list',
@@ -34,8 +35,7 @@ export class ArchivesListComponent implements OnInit {
     this.router.navigate(['archive', archive_id]);
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router);
   }
-
 }

@@ -6,6 +6,7 @@ import { StudentService } from 'src/app/service/student.service';
 import { User } from 'src/app/model/user';
 import { UserResponseDTO } from 'src/app/dto/response/userResponseDTO';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-user-update',
@@ -97,7 +98,7 @@ export class UserUpdateComponent implements OnInit {
     });
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router);
   }
 }

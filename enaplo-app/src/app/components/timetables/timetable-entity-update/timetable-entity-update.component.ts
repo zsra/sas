@@ -10,6 +10,7 @@ import { TimeTableService } from 'src/app/service/timeTable.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Room } from 'src/app/model/room';
 import { RoomService } from 'src/app/service/room.service';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-timetable-entity-update',
@@ -87,8 +88,7 @@ export class TimetableEntityUpdateComponent implements OnInit {
     this.router.navigate(['/timetable/course', course_id]);
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router);
   }
-
 }

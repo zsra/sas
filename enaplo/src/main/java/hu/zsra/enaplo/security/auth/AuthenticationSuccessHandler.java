@@ -24,9 +24,9 @@ public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccess
     @Value("${jwt.cookie}")
     private String TOKEN_COOKIE;
     @Autowired
-    TokenHelper tokenHelper;
+    private TokenHelper tokenHelper;
     @Autowired
-    ObjectMapper objectMapper;
+    private ObjectMapper objectMapper;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -46,6 +46,5 @@ public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccess
         String jwtResponse = objectMapper.writeValueAsString(userTokenState);
         response.setContentType("application/json");
         response.getWriter().write(jwtResponse);
-
     }
 }

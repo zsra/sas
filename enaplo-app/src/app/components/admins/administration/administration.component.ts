@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { AdminService } from 'src/app/service/admin.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Route } from '@angular/compiler/src/core';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-administration',
@@ -15,7 +17,7 @@ export class AdministrationComponent implements OnInit {
   isDataAvailable: boolean = false;
 
   constructor(private userService: UserService, private adminService: AdminService, 
-    private _snackBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit() {
     this.userService.getMyInfo().toPromise().then(data =>  {
@@ -42,7 +44,7 @@ export class AdministrationComponent implements OnInit {
     }, error => { this.openSnackBar('Failed.', 'Ok');});
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router);
   }
 }

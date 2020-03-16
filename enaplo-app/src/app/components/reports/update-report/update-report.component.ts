@@ -10,6 +10,7 @@ import { ReportService } from 'src/app/service/report.service';
 import { CourseService } from 'src/app/service/course.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { StudentService } from 'src/app/service/student.service';
+import { isTeacher } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-update-report',
@@ -91,8 +92,8 @@ export class UpdateReportComponent implements OnInit {
     });
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isTeacher(this.currentUser, this.router);
   }
 
 }

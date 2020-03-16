@@ -9,6 +9,7 @@ import { TimeTableService } from 'src/app/service/timeTable.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Room } from 'src/app/model/room';
 import { RoomService } from 'src/app/service/room.service';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-timetable-entity-create',
@@ -69,8 +70,7 @@ export class TimetableEntityCreateComponent implements OnInit {
     this.router.navigate(['/timetable/course', this.id]);
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router);
   }
-
 }

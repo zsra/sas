@@ -7,6 +7,7 @@ import { TimeTableEntity } from 'src/app/model/timeTableEntity';
 import { Course } from 'src/app/model/course';
 import { TimeTableService } from 'src/app/service/timeTable.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-timetable-list',
@@ -50,8 +51,8 @@ export class TimetableListComponent implements OnInit {
     );
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router);
   }
 
   update(entity_id: number) {

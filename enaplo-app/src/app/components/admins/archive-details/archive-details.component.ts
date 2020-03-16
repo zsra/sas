@@ -4,6 +4,7 @@ import { Archive } from 'src/app/model/archive';
 import { UserService } from 'src/app/service/user.service';
 import { AdminService } from 'src/app/service/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-archive-details',
@@ -31,8 +32,8 @@ export class ArchiveDetailsComponent implements OnInit {
     });
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router);
   }
 
   goBack() {

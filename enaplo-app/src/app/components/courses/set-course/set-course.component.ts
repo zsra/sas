@@ -5,6 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 import { CourseService } from 'src/app/service/course.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-set-course',
@@ -65,8 +66,8 @@ export class SetCourseComponent implements OnInit {
     this.router.navigate(['user/all']);
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router);
   }
 
 }

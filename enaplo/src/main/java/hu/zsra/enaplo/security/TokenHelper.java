@@ -31,7 +31,7 @@ public class TokenHelper {
     private String AUTH_COOKIE;
 
     @Autowired
-    UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
 
     private SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS512;
 
@@ -48,11 +48,11 @@ public class TokenHelper {
 
     public String generateToken(String username) {
         return Jwts.builder()
-                .setIssuer( APP_NAME )
+                .setIssuer(APP_NAME)
                 .setSubject(username)
                 .setIssuedAt(generateCurrentDate())
                 .setExpiration(generateExpirationDate())
-                .signWith( SIGNATURE_ALGORITHM, SECRET )
+                .signWith(SIGNATURE_ALGORITHM, SECRET)
                 .compact();
     }
 
@@ -73,7 +73,7 @@ public class TokenHelper {
         return Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(generateExpirationDate())
-                .signWith( SIGNATURE_ALGORITHM, SECRET )
+                .signWith(SIGNATURE_ALGORITHM, SECRET)
                 .compact();
     }
 
@@ -115,14 +115,14 @@ public class TokenHelper {
         return new Date(getCurrentTimeMillis() + this.EXPIRES_IN * 1000);
     }
 
-    public String getToken( HttpServletRequest request ) {
-        Cookie authCookie = getCookieValueByName( request, AUTH_COOKIE );
-        if ( authCookie != null ) {
+    public String getToken(HttpServletRequest request) {
+        Cookie authCookie = getCookieValueByName(request, AUTH_COOKIE);
+        if (authCookie != null) {
             return authCookie.getValue();
         }
 
         String authHeader = request.getHeader(AUTH_HEADER);
-        if ( authHeader != null && authHeader.startsWith("Bearer ")) {
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
             return authHeader.substring(7);
         }
         return null;

@@ -4,6 +4,7 @@ import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RoomService } from 'src/app/service/room.service';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-room-create',
@@ -52,8 +53,7 @@ export class RoomCreateComponent implements OnInit {
     this.router.navigate(['/rooms/all']);
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router);
   }
-
 }

@@ -29,26 +29,10 @@ export class AuthService {
             }));
     }
 
-    create(user) {
-        const CREATE_HEADER = new HttpHeaders({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        });
-
-        return this.apiService.post(this.configService.getCreateUrl, JSON.stringify(user), CREATE_HEADER)
-            .pipe(map(() => {
-                console.log('Login success');
-            }));
-    }
-
     logout() {
         return this.apiService.post(this.configService.getLogoutUrl, {})
             .pipe(map(() => {
                 this.userService.currentUser = null;
             }));
-    }
-
-    changePassword(passwordChanger) {
-        return this.apiService.post(this.configService.getChangePasswordUrl, passwordChanger);
     }
 }

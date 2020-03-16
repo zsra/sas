@@ -4,7 +4,8 @@ import { Observable, of } from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
 import { StudentService } from 'src/app/service/student.service';
 import { Student } from 'src/app/model/student';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { isStudent, isIdMatches } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-summary-student',
@@ -20,7 +21,7 @@ export class SummaryStudentComponent implements OnInit {
   id: number;
 
   constructor(private userService: UserService, private studentService: StudentService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -43,7 +44,8 @@ export class SummaryStudentComponent implements OnInit {
     return summaries;
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return !isStudent(this.currentUser, this.router)
+    || isIdMatches(this.currentUser, this.router, this.student.id, this.studentService);
   }
 }

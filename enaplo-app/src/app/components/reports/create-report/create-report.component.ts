@@ -9,6 +9,7 @@ import { ReportService } from 'src/app/service/report.service';
 import { CourseService } from 'src/app/service/course.service';
 import { StudentService } from 'src/app/service/student.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isTeacher } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-create-report',
@@ -72,7 +73,7 @@ export class CreateReportComponent implements OnInit {
     });
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isTeacher(this.currentUser, this.router);
   }
 }

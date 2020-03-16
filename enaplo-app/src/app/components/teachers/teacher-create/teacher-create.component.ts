@@ -6,6 +6,7 @@ import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-teacher-create',
@@ -65,7 +66,7 @@ export class TeacherCreateComponent implements OnInit {
     this.router.navigate(['/user/all']);
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router);
   }
 }

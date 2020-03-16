@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AttendanceService } from 'src/app/service/attendace.service';
 import { StudentService } from 'src/app/service/student.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isStudent, isIdMatches } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-view-attendance',
@@ -40,8 +41,9 @@ export class ViewAttendanceComponent implements OnInit {
     });
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return !isStudent(this.currentUser, this.router)
+    || isIdMatches(this.currentUser, this.router, this.student_id, this.studentService);
   }
 
   delete(attendace_id: number) {

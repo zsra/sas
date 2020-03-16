@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Classroom } from 'src/app/model/classroom';
 import { ClassroomResponseDTO } from 'src/app/dto/response/classroomResponseDTO';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-classroom-update',
@@ -87,7 +88,7 @@ export class ClassroomUpdateComponent implements OnInit {
     return this.currentUser.authorities[0].authority + '' == 'ROLE_HEADTEACHER';
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router) || this.isHeadTeacher();
   }
 }

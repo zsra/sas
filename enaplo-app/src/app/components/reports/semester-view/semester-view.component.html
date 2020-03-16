@@ -1,6 +1,6 @@
 <div *ngIf="isDataAvailable">
     <app-panel-loader></app-panel-loader>
-    <div class="container" *ngIf="hasPermit()">
+    <div class="container" *ngIf="userRole()">
         <div class="container">
             <h2>Reports</h2>
         </div>

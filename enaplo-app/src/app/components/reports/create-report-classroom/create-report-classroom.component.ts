@@ -10,6 +10,7 @@ import { ReportService } from 'src/app/service/report.service';
 import { ClassroomService } from 'src/app/service/classroom.service';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isTeacher } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-create-report-classroom',
@@ -104,8 +105,7 @@ export class CreateReportClassroomComponent implements OnInit {
       this.router.navigate(['classroom/all']);
     }
   
-    isTeacher() {
-      return this.currentUser.authorities[0].authority + '' === 'ROLE_TEACHER' 
-      || this.currentUser.authorities[0].authority + '' === 'ROLE_HEADTEACHER'; 
+    userRole() {
+      return isTeacher(this.currentUser, this.router);
     }
 }

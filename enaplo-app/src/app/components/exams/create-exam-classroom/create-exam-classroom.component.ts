@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ExamService } from 'src/app/service/exam.service';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isTeacher } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-create-exam-classroom',
@@ -101,9 +102,8 @@ export class CreateExamClassroomComponent implements OnInit {
     this.router.navigate(['classroom/all']);
   }
 
-  isTeacher() {
-    return this.currentUser.authorities[0].authority + '' === 'ROLE_TEACHER' 
-    || this.currentUser.authorities[0].authority + '' === 'ROLE_HEADTEACHER'; 
+  userRole() {
+    return isTeacher(this.currentUser, this.router); 
   }
 
 }

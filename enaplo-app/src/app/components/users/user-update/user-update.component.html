@@ -1,6 +1,6 @@
 <div *ngIf="isDataAvailable">
     <app-panel-loader></app-panel-loader>
-    <div class="container" *ngIf="currentUser.id == user.id || userRole() === 'ROLE_ADMIN'">
+    <div class="container" *ngIf="userRole()">
         <div class="container">
             <h2>Update</h2>
         </div>

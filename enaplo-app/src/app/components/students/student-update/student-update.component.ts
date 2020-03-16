@@ -8,6 +8,7 @@ import { Classroom } from 'src/app/model/classroom';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ClassroomService } from 'src/app/service/classroom.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isStudent, isIdMatches } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-student-update',
@@ -117,8 +118,8 @@ export class StudentUpdateComponent implements OnInit {
     this.selectedOption = {};
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return !isStudent(this.currentUser, this.router)
+    || isIdMatches(this.currentUser, this.router, this.student.id, this.studentService);
   }
-
 }

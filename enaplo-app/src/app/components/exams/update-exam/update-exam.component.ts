@@ -5,6 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ExamService } from 'src/app/service/exam.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isStudent } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-update-exam',
@@ -73,8 +74,8 @@ export class UpdateExamComponent implements OnInit {
     this.router.navigate(['/exam/list', this.exam.student.id]);
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return !isStudent(this.currentUser, this.router);
   }
 
 }

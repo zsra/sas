@@ -44,8 +44,13 @@ export class StatisticsComponent implements OnInit {
     });
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    if(this.currentUser.authorities[0].authority + '' === 'ROLE_HEADTEACHER') {
+      return true;
+    } else {
+      this.router.navigate(['403']);
+    }
+    return false;
   }
 
 }

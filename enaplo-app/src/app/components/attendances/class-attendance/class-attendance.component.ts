@@ -5,6 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AttendanceService } from 'src/app/service/attendace.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isAdmin, isTeacher } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-class-attendance',
@@ -59,7 +60,7 @@ export class ClassAttendanceComponent implements OnInit {
     }
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router) || isTeacher(this.currentUser, this.router);
   }
 }

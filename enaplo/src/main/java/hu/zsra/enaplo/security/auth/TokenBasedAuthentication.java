@@ -9,7 +9,7 @@ public class TokenBasedAuthentication extends AbstractAuthenticationToken {
     private final UserDetails principle;
 
     public TokenBasedAuthentication( UserDetails principle ) {
-        super( principle.getAuthorities() );
+        super( principle.getAuthorities());
         this.principle = principle;
     }
 

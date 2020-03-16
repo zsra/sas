@@ -8,6 +8,7 @@ import { ExamService } from 'src/app/service/exam.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isStudent } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-exam-list',
@@ -69,8 +70,8 @@ export class ExamListComponent implements OnInit {
     }, error => { this.openSnackBar('Failed.', 'Ok');});
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return !isStudent(this.currentUser, this.router);
   }
 
   refresh(): void {

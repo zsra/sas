@@ -22,12 +22,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.messageService.findAll().subscribe(data => {
-      this.messages = data;    
+      this.messages = data; 
     });
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.user = data;
       this.isDataAvailable = true;
-      
     });
   }
 

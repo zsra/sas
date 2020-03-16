@@ -10,6 +10,7 @@ import { TeacherService } from 'src/app/service/teacher.service';
 import { Teacher } from 'src/app/model/teacher';
 import { CourseService } from 'src/app/service/course.service';
 import { Course } from 'src/app/model/course';
+import { isTeacher, isIdMatches } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-semester-view',
@@ -56,16 +57,9 @@ export class SemesterViewComponent implements OnInit {
     });
   }
 
-  hasPermit() {
-    if(this.student == null) {
-      if(this.userRole() != 'ROLE_STUDENT') return true;
-      else false;
-    }
-    return this.currentUser.id == this.student.student.id;
-  }
-
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isTeacher(this.currentUser, this.router)
+    || isIdMatches(this.courseService, this.router, this.student_id, this.studentService);
   }
 
   update(report_id: number) {

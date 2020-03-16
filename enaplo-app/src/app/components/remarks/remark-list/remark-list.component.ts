@@ -5,6 +5,8 @@ import { RemarkService } from 'src/app/service/remark.service';
 import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isStudent, isIdMatches } from 'src/app/shared/roles';
+import { StudentService } from 'src/app/service/student.service';
 
 @Component({
   selector: 'app-remark-list',
@@ -18,7 +20,7 @@ export class RemarkListComponent implements OnInit {
   student_id: number;
   currentUser: any = {};
 
-  constructor(private userService: UserService, private router: Router,
+  constructor(private userService: UserService, private router: Router, private studentService: StudentService,
     private remarkService: RemarkService, private route: ActivatedRoute, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -38,8 +40,9 @@ export class RemarkListComponent implements OnInit {
     });
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return !isStudent(this.currentUser, this.router)
+    || isIdMatches(this.currentUser, this.router, this.student_id, this.studentService);
   }
 
   update(remark_id: number) {

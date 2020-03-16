@@ -1,6 +1,6 @@
 <div *ngIf="isDataAvailable">
     <app-panel-loader></app-panel-loader>
-    <div class="container" *ngIf="isTeacher()">
+    <div class="container" *ngIf="userRole()">
         <div class="container">
             <h2>Create reports for class</h2>
         </div>

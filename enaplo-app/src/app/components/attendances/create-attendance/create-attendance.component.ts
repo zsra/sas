@@ -6,6 +6,7 @@ import { AttendanceService } from 'src/app/service/attendace.service';
 import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isTeacher } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-create-attendance',
@@ -78,9 +79,8 @@ export class CreateAttendanceComponent implements OnInit {
     this.router.navigate(['classroom/all']);
   }
 
-  isTeacher() {
-    return this.currentUser.authorities[0].authority + '' === 'ROLE_TEACHER' 
-    || this.currentUser.authorities[0].authority + '' === 'ROLE_HEADTEACHER'; 
+  userRole() {
+    return isTeacher(this.currentUser, this.router);
   }
 
 }

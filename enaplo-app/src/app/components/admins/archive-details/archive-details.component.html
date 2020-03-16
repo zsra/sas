@@ -1,6 +1,6 @@
 <div *ngIf="isDataAvailable">
     <app-panel-loader></app-panel-loader>
-    <div class="container" *ngIf="userRole() === 'ROLE_ADMIN'">
+    <div class="container" *ngIf="userRole()">
         <h2>Archive</h2>
         <div class="container">
             <button (click)='goBack()' class="btn btn-dark">Back</button>

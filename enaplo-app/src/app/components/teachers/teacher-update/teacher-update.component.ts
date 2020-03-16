@@ -6,6 +6,7 @@ import { ConfigService } from 'src/app/service/config.service';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-teacher-update',
@@ -65,7 +66,8 @@ export class TeacherUpdateComponent implements OnInit {
       this.router.navigate(['user/update', data.id]));
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
+  userRole() {
+    return isAdmin(this.currentUser, this.router)
+    || this.currentUser.id === this.teacher.teacher.id;
   }
 }
