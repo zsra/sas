@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * This class represent an archived report. !ONLY THE END YEAR RESULT!
@@ -106,5 +107,21 @@ public class ArchiveReport {
 
     public void setArchive(Archive archive) {
         this.archive = archive;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ArchiveReport that = (ArchiveReport) o;
+        return year == that.year &&
+                mark == that.mark &&
+                Objects.equals(courseName, that.courseName) &&
+                Objects.equals(archive, that.archive);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(courseName, year, mark, archive);
     }
 }

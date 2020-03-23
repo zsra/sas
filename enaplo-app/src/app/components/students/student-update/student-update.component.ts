@@ -8,7 +8,7 @@ import { Classroom } from 'src/app/model/classroom';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ClassroomService } from 'src/app/service/classroom.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { isStudent, isIdMatches } from 'src/app/shared/roles';
+import { isStudent, isIdMatches, isTeacher, isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-student-update',
@@ -119,7 +119,7 @@ export class StudentUpdateComponent implements OnInit {
   }
 
   userRole() {
-    return !isStudent(this.currentUser, this.router)
+    return  isTeacher(this.currentUser, this.router) || isAdmin(this.currentUser, this.router)
     || isIdMatches(this.currentUser, this.router, this.student.id, this.studentService);
   }
 }

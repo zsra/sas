@@ -4,7 +4,7 @@ import { RemarkService } from 'src/app/service/remark.service';
 import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { isStudent } from 'src/app/shared/roles';
+import { isStudent, isTeacher, isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-remark-create',
@@ -56,7 +56,7 @@ export class RemarkCreateComponent implements OnInit {
   }
 
   userRole() {
-    return !isStudent(this.currentUser, this.router);
+    return  isTeacher(this.currentUser, this.router) || isAdmin(this.currentUser, this.router);;
   }
 
 }

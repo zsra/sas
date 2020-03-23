@@ -25,8 +25,8 @@
                                 <button (click)="summary(student.student.id)" class="btn btn-dark">Summary</button>
                                 <button (click)="reports(student.id)" class="btn btn-dark">Reports</button>
                                 <button (click)="attendances(student.id)" class="btn btn-dark">Attendances</button>
-                                <button (click)="exam(student.id)" class="btn btn-secondary">Exams</button>
-                                <button (click)="report(student.id)" class="btn btn-secondary"> Create Report</button>
+                                <button *ngIf="currentUser.authorities[0].authority + '' != 'ROLE_ADMIN'" (click)="exam(student.id)" class="btn btn-secondary">Exams</button>
+                                <button *ngIf="currentUser.authorities[0].authority + '' != 'ROLE_ADMIN'" (click)="report(student.id)" class="btn btn-secondary"> Create Report</button>
                                 <button (click)="remark(student.id)" class="btn btn-info">Remark</button>
                             </td>
                         </tr>

@@ -5,7 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ExamService } from 'src/app/service/exam.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { isStudent } from 'src/app/shared/roles';
+import { isStudent, isTeacher, isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-update-exam',
@@ -75,7 +75,7 @@ export class UpdateExamComponent implements OnInit {
   }
 
   userRole() {
-    return !isStudent(this.currentUser, this.router);
+    return  isTeacher(this.currentUser, this.router) || isAdmin(this.currentUser, this.router);;
   }
 
 }

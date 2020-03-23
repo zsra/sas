@@ -28,7 +28,7 @@
                     </tbody>
                 </table>                 
                 <button type="submit" class="btn btn-success">Submit</button>
-                <button *ngIf="userRole() != 'ROLE_STUDENT'" (click)="goBack()" class="btn btn-dark">Back</button>
+                <button *ngIf="this.currentUser.authorities[0].authority + '' != 'ROLE_STUDENT'" (click)="goBack()" class="btn btn-dark">Back</button>
             </form>
         </div>
         <div class="container" *ngIf="selected">
@@ -36,13 +36,13 @@
                 <thead  class="thead-dark">
                   <th>Subject</th>
                   <th>Marks</th>
-                  <th *ngIf="userRole() != 'ROLE_STUDENT'">Function</th>
+                  <th *ngIf="currentUser.authorities[0].authority + '' != 'ROLE_STUDENT'">Function</th>
                 </thead>
                 <tbody>
                   <tr *ngFor="let report of reports">
                     <td>{{report.course.title}}</td>
                     <td>{{report.mark}}</td>
-                    <td *ngIf="userRole() != 'ROLE_STUDENT'">
+                    <td *ngIf="currentUser.authorities[0].authority + '' != 'ROLE_STUDENT'">
                         <button (click)="update(report.id)" class="btn btn-warning">Update</button>
                         <button (click)="delete(report.id)" class="btn btn-danger">Delete</button>
                     </td>

@@ -5,7 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Student } from 'src/app/model/student';
 import { StudentService } from 'src/app/service/student.service';
-import { isStudent } from 'src/app/shared/roles';
+import { isStudent, isTeacher, isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-student-classroom-list',
@@ -33,7 +33,7 @@ export class StudentClassroomListComponent implements OnInit {
   }
 
   userRole() {
-    return isStudent(this.currentUser, this.router);
+    return  isTeacher(this.currentUser, this.router) || isAdmin(this.currentUser, this.router);;
   }
 
   details(user_id: number) {

@@ -52,7 +52,6 @@ export class ExamListComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.selectedOption.id);
     this.examService.findAllByStudent(this.student_id, this.selectedOption.id).subscribe(data => {
       this.exams = data;
       this.selected = true;

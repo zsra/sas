@@ -142,8 +142,12 @@ public class AdminServiceImpl implements AdminService {
                         report.getMark(),
                         archiveRepository.save(archive)
                 );
-                result.add(archiveReport);
-                archiveReportRepository.save(archiveReport);
+                for(ArchiveReport archiver: archiveReportRepository.findAll()) {
+                    if(!archiver.equals(archiveReport)) {
+                        result.add(archiveReport);
+                        archiveReportRepository.save(archiveReport);
+                    }
+                }
             }
         }
         return result;

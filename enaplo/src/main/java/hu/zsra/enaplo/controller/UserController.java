@@ -35,7 +35,7 @@ public class UserController {
     private UserServiceImpl userService;
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @ApiOperation(value = "${UserController.getAll}")
+    @ApiOperation(value = "Get all Users.")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),
             @ApiResponse(code = 403, message = "Access denied"),
@@ -50,7 +50,7 @@ public class UserController {
             "or hasRole('ROLE_HEADTEACHER') " +
             "or hasRole('ROLE_ADMIN') " +
             "or @securityService.hasStudentAccess(principal.id, #id)")
-    @ApiOperation(value = "${UserController.getById}")
+    @ApiOperation(value = "Get User by ID.")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),
             @ApiResponse(code = 403, message = "Access denied"),
@@ -62,7 +62,7 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @ApiOperation(value = "${UserController.resetCredentials}")
+    @ApiOperation(value = "Reset credentials.")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),
             @ApiResponse(code = 403, message = "Access denied"),
@@ -76,7 +76,7 @@ public class UserController {
         return ResponseEntity.accepted().body(result);
     }
 
-    @ApiOperation(value = "${UserController.isUsernameUnique}")
+    @ApiOperation(value = "Check the username is unique.")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),
             @ApiResponse(code = 403, message = "Access denied"),
@@ -88,7 +88,7 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN') or principal.id == #id")
-    @ApiOperation(value = "${UserController.update}")
+    @ApiOperation(value = "Update user by ID.")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),
             @ApiResponse(code = 403, message = "Access denied"),
@@ -101,7 +101,7 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @ApiOperation(value = "${UserController.delete}")
+    @ApiOperation(value = "Delete User by ID.")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),
             @ApiResponse(code = 403, message = "Access denied"),
@@ -113,7 +113,7 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @ApiOperation(value = "${UserController.addUser}")
+    @ApiOperation(value = "Add new User.")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),
             @ApiResponse(code = 403, message = "Access denied"),
@@ -128,7 +128,7 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
     }
 
-    @ApiOperation(value = "${UserController.user}")
+    @ApiOperation(value = "Get current User.")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),
             @ApiResponse(code = 403, message = "Access denied"),

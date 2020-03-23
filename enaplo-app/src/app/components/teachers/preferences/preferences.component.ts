@@ -6,7 +6,7 @@ import { UserService } from 'src/app/service/user.service';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Teacher } from 'src/app/model/teacher';
-import { isStudent } from 'src/app/shared/roles';
+import { isStudent, isTeacher, isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-preferences',
@@ -71,7 +71,7 @@ export class PreferencesComponent implements OnInit {
   }
 
   userRole() {
-    return !isStudent(this.currentUser, this.router);
+    return  isTeacher(this.currentUser, this.router) || isAdmin(this.currentUser, this.router);
   }
 
   goBack() {

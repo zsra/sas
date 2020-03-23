@@ -10,6 +10,7 @@ import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.service.auth.impl.AuthorityServiceImpl;
 import hu.zsra.enaplo.service.auth.impl.UserServiceImpl;
 import hu.zsra.enaplo.service.impl.*;
+import org.pmw.tinylog.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,12 +46,15 @@ public class InitData {
     private RoomServiceImpl roomService;
 
     public void Init() {
+        String username = "admin";
+        String password = "admin";
         if(userService.findAll().isEmpty()) {
             authorityService.save(UserRoleName.ROLE_ADMIN);
             authorityService.save(UserRoleName.ROLE_STUDENT);
             authorityService.save(UserRoleName.ROLE_TEACHER);
             authorityService.save(UserRoleName.ROLE_HEADTEACHER);
-            userService.save(new UserResponseDTO("admin", "admin", "admin", "ROLE_ADMIN"));
+            userService.save(new UserResponseDTO(username, password, "admin", "ROLE_ADMIN"));
+            Logger.info("Username: {0}\nPassword: {1}", username, password);
         }
         //testData();
     }

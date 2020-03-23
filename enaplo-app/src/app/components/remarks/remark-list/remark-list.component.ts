@@ -5,7 +5,7 @@ import { RemarkService } from 'src/app/service/remark.service';
 import { UserService } from 'src/app/service/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { isStudent, isIdMatches } from 'src/app/shared/roles';
+import { isStudent, isIdMatches, isTeacher, isAdmin } from 'src/app/shared/roles';
 import { StudentService } from 'src/app/service/student.service';
 
 @Component({
@@ -41,7 +41,7 @@ export class RemarkListComponent implements OnInit {
   }
 
   userRole() {
-    return !isStudent(this.currentUser, this.router)
+    return  isTeacher(this.currentUser, this.router) || isAdmin(this.currentUser, this.router)
     || isIdMatches(this.currentUser, this.router, this.student_id, this.studentService);
   }
 

@@ -10,7 +10,7 @@ import { StudentService } from 'src/app/service/student.service';
 import { Classroom } from 'src/app/model/classroom';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { isStudent } from 'src/app/shared/roles';
+import { isStudent, isTeacher, isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-create-exam',
@@ -72,6 +72,6 @@ export class CreateExamComponent implements OnInit {
   }
 
   userRole() {
-    return !isStudent(this.currentUser, this.router);
+    return  isTeacher(this.currentUser, this.router) || isAdmin(this.currentUser, this.router);;
   }
 }

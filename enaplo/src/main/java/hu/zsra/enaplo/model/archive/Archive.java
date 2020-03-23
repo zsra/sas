@@ -3,6 +3,7 @@ package hu.zsra.enaplo.model.archive;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Archive object to store student data and there reports from pass.
@@ -101,4 +102,5 @@ public class Archive {
     public void setReports(List<ArchiveReport> reports) {
         this.reports = reports;
     }
+    
 }
