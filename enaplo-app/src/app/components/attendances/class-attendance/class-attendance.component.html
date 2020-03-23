@@ -7,8 +7,6 @@
                 <button (click)="goBack()" class="btn btn-dark">Back</button>
             </div>
             <div class="container">
-                <input class="form-control-searchbox" type="text" name="search" [(ngModel)]="searchText" autocomplete="on" 
-                placeholder="&#171; Search">
                 <form (ngSubmit)="onSubmit()" #form="ngForm" class="form-students">
                     <table  class="table table-bordered table-sm">
                         <thead class="thead-dark">
@@ -21,12 +19,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let attendance of attendances | filter:searchText">
-                                <td *ngIf="!attendance.isVerified" class="red"><b>{{attendance.dateOfMiss}}</b></td>
-                                <td *ngIf="!attendance.isVerified" class="red"><b>{{attendance.lecture}}</b></td>
-                                <td *ngIf="!attendance.isVerified" class="red"><b>{{attendance.student.student.fullName}}</b></td>
-                                <td *ngIf="!attendance.verified" class="red"><b>{{attendance.verified}}</b></td>      
-                                <td><input type="checkbox" class="miss-input" [(ngModel)]="miss[i]" name="miss"></td>               
+                            <tr *ngFor="let attendance of attendances; index as i">
+                                <td *ngIf="attendance.verified" class="green"><b>{{attendance.dateOfMiss}}</b></td>
+                                <td *ngIf="attendance.verified" class="green"><b>{{attendance.lecture}}</b></td>
+                                <td *ngIf="attendance.verified" class="green"><b>{{attendance.student.student.fullName}}</b></td>
+                                <td *ngIf="attendance.verified" class="green"><b>{{attendance.verified}}</b></td>       
+                                    
+                                <td *ngIf="!attendance.verified" class="red"><b>{{attendance.dateOfMiss}}</b></td>
+                                <td *ngIf="!attendance.verified" class="red"><b>{{attendance.lecture}}</b></td>
+                                <td *ngIf="!attendance.verified" class="red"><b>{{attendance.student.student.fullName}}</b></td>
+                                <td *ngIf="!attendance.verified" class="red"><b>{{attendance.verified}}</b></td>
+                                <td>
+                                    <input [attr.disabled]="attendance.verified ? true : null" type="checkbox" class="miss-input" [(ngModel)]="miss[i]" name="miss">
+                                </td>  
+                                       
                             </tr>
                         </tbody>
                     </table>

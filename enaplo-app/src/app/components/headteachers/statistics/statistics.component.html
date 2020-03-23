@@ -35,7 +35,7 @@
                         <tr *ngFor="let fail of failed">
                             <td>{{fail.student.student.username}}</td>
                             <td>{{fail.student.student.fullName}}</td>
-                            <td *ngFor="let course of fail.courses">{{course.title}}</td>
+                            <td *ngFor="let course of fail.courses" style="border: 1px solid #000">{{course.title}}</td>
                         </tr>
                     </tbody>
                 </table>

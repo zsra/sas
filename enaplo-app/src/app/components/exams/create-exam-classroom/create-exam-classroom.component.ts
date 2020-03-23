@@ -54,7 +54,7 @@ export class CreateExamClassroomComponent implements OnInit {
   }
 
   setBasic() {
-    this.examService.makeExamsFormToClassroom(this.classroom_id, this.written_at).subscribe(data => {
+    this.examService.makeExamsFormToClassroom(this.classroom_id, this.written_at, this.etype).subscribe(data => {
       this.exams = data;  
       this.raw_exams = data;
       this.isBasicSet = true;

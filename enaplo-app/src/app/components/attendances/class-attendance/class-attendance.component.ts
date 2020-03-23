@@ -30,6 +30,7 @@ export class ClassAttendanceComponent implements OnInit {
     this.userService.getMyInfo().toPromise().then(data =>  {
       this.currentUser = data;
       this.attendanceService.getAllAttendancesByClassroom(this.classroom_id).subscribe(data => {
+
         this.attendances = data;
         this.raw_attendances = data;
         this.isDataAvailable = true;
@@ -45,6 +46,7 @@ export class ClassAttendanceComponent implements OnInit {
 
   onSubmit() {
     this.collect(this.raw_attendances, this.miss);
+    this.refresh();
   }
 
   collect(attendances: Attendance[], misses: boolean[]) {
@@ -61,6 +63,10 @@ export class ClassAttendanceComponent implements OnInit {
   }
 
   userRole() {
-    return isAdmin(this.currentUser, this.router) || isTeacher(this.currentUser, this.router);
+    return isTeacher(this.currentUser, this.router) || isAdmin(this.currentUser, this.router);
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 }

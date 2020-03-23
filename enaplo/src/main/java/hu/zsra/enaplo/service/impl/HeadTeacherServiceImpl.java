@@ -5,9 +5,7 @@ import hu.zsra.enaplo.dto.FailedStudentDTO;
 import hu.zsra.enaplo.model.Course;
 import hu.zsra.enaplo.model.Exam;
 import hu.zsra.enaplo.model.user.group.Student;
-import hu.zsra.enaplo.repository.ClassroomRepository;
 import hu.zsra.enaplo.repository.CourseRepository;
-import hu.zsra.enaplo.repository.ExamRepository;
 import hu.zsra.enaplo.repository.user.StudentRepository;
 import hu.zsra.enaplo.service.HeadTeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,6 +105,6 @@ public class HeadTeacherServiceImpl implements HeadTeacherService {
                 .stream()
                 .filter(exam -> exam.getCourse().getId().equals(course_id))
                 .collect(Collectors.toList());
-        return exams.stream().mapToDouble(Exam::getMark).average().orElse(Double.NaN);
+        return Math.floor(exams.stream().mapToDouble(Exam::getMark).average().orElse(Double.NaN) * 100) / 100;
     }
 }

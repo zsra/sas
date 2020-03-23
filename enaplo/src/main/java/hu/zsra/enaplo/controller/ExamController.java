@@ -100,10 +100,10 @@ public class ExamController {
             @ApiResponse(code = 403, message = "Access denied"),
             @ApiResponse(code = 404, message = "Classroom doesn't found"),
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-    @PostMapping(value = "/exams/form/{classroom_id}")
+    @PostMapping(value = "/exams/form/{classroom_id}/{examType}")
     public List<ExamDTO> makeExamsFormToClassroom(@PathVariable Long classroom_id,
                                                   @RequestBody String written_at,
-                                                  @RequestBody String examType) {
+                                                  @PathVariable String examType) {
         return examService.makeExamsFormToClassroom(classroom_id,LocalDate.parse(written_at), examType);
     }
 

@@ -87,7 +87,7 @@ public class AttendanceController {
             @ApiResponse(code = 404, message = "Classroom doesn't found"),
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
     @GetMapping(value = "/attendances/classroom/{classroom_id}")
-    public List<Attendance> getAllAttendancesByClassroom(Long classroom_id) {
+    public List<Attendance> getAllAttendancesByClassroom(@PathVariable Long classroom_id) {
         return  attendanceService.getAllAttendancesByClassroom(classroom_id);
     }
 

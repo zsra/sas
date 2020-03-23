@@ -17,7 +17,7 @@ export class StatisticsComponent implements OnInit {
   isDataAvailable: boolean = false;
   currentUser: any = {};
   failed: Observable<FailedStudentDTO[]>;
-  averages: Observable<ClassroomCourseResultDTO[]>;
+  averages: ClassroomCourseResultDTO[];
   classroom_id: number;
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute,
@@ -29,13 +29,19 @@ export class StatisticsComponent implements OnInit {
       this.currentUser = data;
       this.headTeacherService.findFailedStudentsInClass(this.classroom_id).subscribe(data => {
         this.failed = data;
-        console.log(data);
         this.headTeacherService.showResultByCourse(this.classroom_id).subscribe(data => {
-          this.averages = data;
+          this.averages = this.format(data);
           this.isDataAvailable = true;
         });
       });
     });
+  }
+
+  format(data: ClassroomCourseResultDTO[]) {
+    for(let key in data) {
+      if(isNaN(data[key].result)) data[key].result= 0;
+    }
+    return data;
   }
 
   openSnackBar(message: string, action: string) {

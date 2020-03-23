@@ -33,8 +33,8 @@ export class ExamService {
         return this.apiService.delete(this.configService.getDeleteExamUrl + '/' + id, id);
     }
 
-    makeExamsFormToClassroom(classroom_id: number, written_at: string) {
-        return this.apiService.post(this.configService.getMakeExamsFormToClassroomUrl + '/' + classroom_id, written_at);
+    makeExamsFormToClassroom(classroom_id: number, written_at: string, etype: string) {
+        return this.apiService.post(this.configService.getMakeExamsFormToClassroomUrl + '/' + classroom_id + '/' + etype, written_at);
     }
 
     createExamsFromForm(examResponseDTOS: ExamResponseDTO[]) {
