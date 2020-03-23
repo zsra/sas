@@ -120,6 +120,7 @@ public class AttendanceServiceImpl implements AttendanceService {
                 .findAll()
                 .stream()
                 .filter(attendance -> attendance.getStudent().getId().equals(student_id) && !attendance.isVerified())
+                .sorted(Comparator.comparing(Attendance::getDateOfMiss).reversed())
                 .collect(Collectors.toList());
     }
 

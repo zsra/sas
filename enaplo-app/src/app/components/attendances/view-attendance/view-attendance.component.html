@@ -15,16 +15,16 @@
                             <th>Date of miss</th>
                             <th>Lecture</th>
                             <th>Verified</th>
-                            <th *ngIf="userRole() != 'ROLE_STUDENT'">Function</th>
+                            <th *ngIf="currentUser.authorities[0].authority + '' != 'ROLE_STUDENT'">Function</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let attendance of attendances | filter:searchText">
-                            <td *ngIf="attendance.isVerified" class="green"><b>{{attendance.dateOfMiss}}</b></td>
-                            <td *ngIf="attendance.isVerified" class="green"><b>{{attendance.lecture}}</b></td>
+                            <td *ngIf="attendance.verified" class="green"><b>{{attendance.dateOfMiss}}</b></td>
+                            <td *ngIf="attendance.verified" class="green"><b>{{attendance.lecture}}</b></td>
                             <td *ngIf="attendance.verified" class="green"><b>{{attendance.verified}}</b></td>
-                            <td *ngIf="!attendance.isVerified" class="red"><b>{{attendance.dateOfMiss}}</b></td>
-                            <td *ngIf="!attendance.isVerified" class="red"><b>{{attendance.lecture}}</b></td>
+                            <td *ngIf="!attendance.verified" class="red"><b>{{attendance.dateOfMiss}}</b></td>
+                            <td *ngIf="!attendance.verified" class="red"><b>{{attendance.lecture}}</b></td>
                             <td *ngIf="!attendance.verified" class="red"><b>{{attendance.verified}}</b></td>
                             <td *ngIf="currentUser.authorities[0].authority + '' != 'ROLE_STUDENT'"><button (click)="delete(attendance.id)" class="btn btn-warning">Delete</button></td>                   
                         </tr>

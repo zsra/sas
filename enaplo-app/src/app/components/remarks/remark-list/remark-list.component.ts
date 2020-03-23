@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { isStudent, isIdMatches, isTeacher, isAdmin } from 'src/app/shared/roles';
 import { StudentService } from 'src/app/service/student.service';
+import { Student } from 'src/app/model/student';
 
 @Component({
   selector: 'app-remark-list',
@@ -18,6 +19,7 @@ export class RemarkListComponent implements OnInit {
   remarks: Observable<Remark[]>;
   isDataAvailable: boolean = false;
   student_id: number;
+  student: Student;
   currentUser: any = {};
 
   constructor(private userService: UserService, private router: Router, private studentService: StudentService,
@@ -29,7 +31,11 @@ export class RemarkListComponent implements OnInit {
       this.currentUser = data;
       this.remarkService.findAll(this.student_id).subscribe(data => {
         this.remarks = data;
-        this.isDataAvailable = true;
+        this.studentService.findByUserId(this.student_id).subscribe(data => {
+          this.student = data;
+         
+          this.isDataAvailable = true;
+        });
       });
     });
   }
@@ -41,14 +47,12 @@ export class RemarkListComponent implements OnInit {
   }
 
   userRole() {
-    this.studentService.findById(this.student_id).subscribe(data => {
-      if(isAdmin(this.currentUser, this.router) || isTeacher(this.currentUser, this.router) || 
-      this.currentUser.id == data.student.id) {
-        return true;
-      } else {
-        this.router.navigate(['403']);
-      }
-    })  
+    if(isAdmin(this.currentUser, this.router) || isTeacher(this.currentUser, this.router) || 
+    this.currentUser.id == this.student.student.id) {
+      return true;
+    } else {
+      this.router.navigate(['403']);
+    } 
   }
 
   update(remark_id: number) {

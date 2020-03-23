@@ -7,6 +7,7 @@ import { AttendanceService } from 'src/app/service/attendace.service';
 import { StudentService } from 'src/app/service/student.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { isStudent, isIdMatches, isTeacher, isAdmin } from 'src/app/shared/roles';
+import { Student } from 'src/app/model/student';
 
 @Component({
   selector: 'app-view-attendance',
@@ -16,6 +17,7 @@ import { isStudent, isIdMatches, isTeacher, isAdmin } from 'src/app/shared/roles
 export class ViewAttendanceComponent implements OnInit {
 
   student_id: number;
+  student: Student;
   searchText;
   isDataAvailable: boolean = false;
   currentUser: any = {};
@@ -30,7 +32,10 @@ export class ViewAttendanceComponent implements OnInit {
       this.currentUser = data;
       this.attendanceService.getAllByStudent(this.student_id).subscribe(data => {
         this.attendances = data;
-        this.isDataAvailable = true;
+        this.studentService.findById(this.student_id).subscribe(data => {
+          this.student = data;
+          this.isDataAvailable = true;
+        })
       }); 
     });
   }
@@ -42,14 +47,12 @@ export class ViewAttendanceComponent implements OnInit {
   }
 
   userRole() {
-    this.studentService.findById(this.student_id).subscribe(data => {
-      if(isAdmin(this.currentUser, this.router) || isTeacher(this.currentUser, this.router) || 
-    this.currentUser.id == data.student.id) {
+    if(isAdmin(this.currentUser, this.router) || isTeacher(this.currentUser, this.router) || 
+    this.currentUser.id == this.student.student.id) {
       return true;
     } else {
       this.router.navigate(['403']);
-    }
-    });
+    } 
   }
 
   delete(attendace_id: number) {
