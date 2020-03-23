@@ -8,7 +8,7 @@ import { ExamService } from 'src/app/service/exam.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { isStudent } from 'src/app/shared/roles';
+import { isStudent, isTeacher, isAdmin } from 'src/app/shared/roles';
 
 @Component({
   selector: 'app-exam-list',
@@ -70,7 +70,7 @@ export class ExamListComponent implements OnInit {
   }
 
   userRole() {
-    return !isStudent(this.currentUser, this.router);
+    return isTeacher(this.currentUser, this.router) || isAdmin(this.currentUser, this.router);
   }
 
   refresh(): void {
