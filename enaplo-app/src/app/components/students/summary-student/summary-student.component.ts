@@ -45,7 +45,11 @@ export class SummaryStudentComponent implements OnInit {
   }
 
   userRole() {
-    return  isTeacher(this.currentUser, this.router) || isAdmin(this.currentUser, this.router)
-    || isIdMatches(this.currentUser, this.router, this.student.id, this.studentService);
+    if(isAdmin(this.currentUser, this.router) || isTeacher(this.currentUser, this.router) || 
+    this.currentUser.id == this.student.student.id) {
+      return true;
+    } else {
+      this.router.navigate(['403']);
+    }
   }
 }

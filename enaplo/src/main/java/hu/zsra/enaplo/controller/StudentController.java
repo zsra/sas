@@ -2,7 +2,6 @@ package hu.zsra.enaplo.controller;
 
 import hu.zsra.enaplo.dto.response.StudentResponseDTO;
 import hu.zsra.enaplo.dto.SummaryDTO;
-import hu.zsra.enaplo.model.user.User;
 import hu.zsra.enaplo.model.user.group.Student;
 import hu.zsra.enaplo.service.impl.StudentServiceImp;
 import io.swagger.annotations.ApiOperation;
@@ -14,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -33,7 +31,6 @@ public class StudentController {
 
     @Autowired
     private StudentServiceImp studentService;
-
 
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_TEACHER') or hasRole('ROLE_HEADTEACHER')")
     @ApiOperation(value = "${StudentController.findAll}")
@@ -115,8 +112,7 @@ public class StudentController {
         return id.toString();
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_TEACHER', 'ROLE_HEADTEACHER') or " +
-            "@securityService.hasStudentAccess(principal.id, #id)")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or  hasRole('ROLE_TEACHER') or hasRole('ROLE_HEADTEACHER') or @securityService.hasStudentAccess(principal.id, #id)")
     @ApiOperation(value = "${StudentController.summary}")
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Something went wrong"),

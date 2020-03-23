@@ -41,10 +41,6 @@ export class CourseListComponent implements OnInit {
     return !!this.userService.currentUser;
   }
 
-  userRole(): string {
-    return this.currentUser.authorities[0].authority + '';
-  }
-
   details(course_id: number) {
     this.courseService.findById(course_id).subscribe(
       data => this.router.navigate(['/course/details/', data.id])

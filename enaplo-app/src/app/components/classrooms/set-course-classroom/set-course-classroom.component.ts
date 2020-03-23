@@ -66,6 +66,10 @@ export class SetCourseClassroomComponent implements OnInit {
   }
 
   userRole() {
-    return isAdmin(this.currentUser, this.router);
+    if(isAdmin(this.currentUser, this.router)) {
+      return true;
+    } else {
+      this.router.navigate(['403']);
+    }
   }
 }

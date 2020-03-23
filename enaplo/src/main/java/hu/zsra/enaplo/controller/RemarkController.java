@@ -35,7 +35,7 @@ public class RemarkController {
             @ApiResponse(code = 403, message = "Access denied"),
             @ApiResponse(code = 404, message = "Remarks don't found"),
             @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-    @PostMapping(value = "/remarks/{student_id}")
+    @GetMapping(value = "/remarks/student/{student_id}")
     public List<Remark> findAllByStudent(@PathVariable Long student_id) {
         return remarkService.findAllByStudent(student_id);
     }

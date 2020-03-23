@@ -9,8 +9,6 @@ var admin = 'ROLE_ADMIN';
 export function isAdmin(currentUser: any, router: Router): boolean {
     if(currentUser.authorities[0].authority + '' === admin) {
         return true;
-    } else {     
-        router.navigate(['403']);   
     }
     return false;
 }
@@ -19,9 +17,7 @@ export function isTeacher(currentUser: any, router: Router): boolean {
     if(currentUser.authorities[0].authority + '' === teacher ||
     currentUser.authorities[0].authority + '' === headteacher) {
         return true;
-    } else {     
-        router.navigate(['403']);   
-    }
+    } 
     return false;
 
 }
@@ -29,9 +25,7 @@ export function isTeacher(currentUser: any, router: Router): boolean {
 export function isStudent(currentUser: any, router: Router): boolean {
     if(currentUser.authorities[0].authority + '' === student) {
         return true;
-    } else {     
-        router.navigate(['403']);   
-    }
+    } 
     return false;
 }
 
@@ -39,8 +33,6 @@ export function isIdMatches(currentUser: any, router: Router, id: number, studen
     studentService.findById(id).subscribe(data => {
         if(currentUser.id == data.student.id) {
             return true;
-        } else {     
-            router.navigate(['403']);   
         }
     });
     return false;

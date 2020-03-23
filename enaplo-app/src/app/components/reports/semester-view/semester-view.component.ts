@@ -58,8 +58,12 @@ export class SemesterViewComponent implements OnInit {
   }
 
   userRole() {
-    return isTeacher(this.currentUser, this.router)
-    || isIdMatches(this.courseService, this.router, this.student_id, this.studentService);
+    if(isTeacher(this.currentUser, this.router) || 
+    isIdMatches(this.currentUser, this.router, this.student_id, this.studentService)) {
+      return true;
+    } else {
+      this.router.navigate(['403']);
+    }
   }
 
   update(report_id: number) {

@@ -454,7 +454,7 @@ export class ConfigService {
 
     private remarkUrl = this.baseUrl + '/remarks';
     private findByRemarkIdUrl = this.remarkUrl;
-    private findAllRemarksUrl = this.remarkUrl + '/all';
+    private findAllRemarksUrl = this.remarkUrl + '/student';
     private createRemarkUrl = this.remarkUrl + '/create';
     private updateRemarkUrl = this.remarkUrl + '/update';
     private deleteRemarkUrl = this.remarkUrl;

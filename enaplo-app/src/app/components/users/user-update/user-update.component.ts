@@ -99,6 +99,10 @@ export class UserUpdateComponent implements OnInit {
   }
 
   userRole() {
-    return isAdmin(this.currentUser, this.router) || this.currentUser.id === this.id;
+    if(isAdmin(this.currentUser, this.router) || this.currentUser.id === this.id) {
+      return true;
+    } else {
+      this.router.navigate(['403']);
+    }
   }
 }

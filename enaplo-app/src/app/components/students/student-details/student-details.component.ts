@@ -32,8 +32,12 @@ export class StudentDetailsComponent implements OnInit {
   }
 
   userRole(): boolean {
-    return isTeacher(this.currentUser, this.router) || isAdmin(this.currentUser, this.router)
-    || isIdMatches(this.currentUser, this.router, this.id, this.studentService);
+    if(isAdmin(this.currentUser, this.router) || isTeacher(this.currentUser, this.router) || 
+    isIdMatches(this.currentUser, this.router, this.student.id, this.studentService)) {
+      return true;
+    } else {
+      this.router.navigate(['403']);
+    }
   }
 
 }

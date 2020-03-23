@@ -103,7 +103,11 @@ export class CreateExamClassroomComponent implements OnInit {
   }
 
   userRole() {
-    return isTeacher(this.currentUser, this.router); 
+    if(isTeacher(this.currentUser, this.router)) {
+      return true;
+    } else {
+      this.router.navigate(['403']);
+    }
   }
 
 }

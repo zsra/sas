@@ -42,8 +42,12 @@ export class ViewAttendanceComponent implements OnInit {
   }
 
   userRole() {
-    return  isTeacher(this.currentUser, this.router) || isAdmin(this.currentUser, this.router)
-    || isIdMatches(this.currentUser, this.router, this.student_id, this.studentService);
+    if(isAdmin(this.currentUser, this.router) || isTeacher(this.currentUser, this.router) || 
+    isIdMatches(this.currentUser, this.router, this.student_id, this.studentService)) {
+      return true;
+    } else {
+      this.router.navigate(['403']);
+    }
   }
 
   delete(attendace_id: number) {

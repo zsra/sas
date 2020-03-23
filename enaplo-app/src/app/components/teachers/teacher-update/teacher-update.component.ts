@@ -67,7 +67,10 @@ export class TeacherUpdateComponent implements OnInit {
   }
 
   userRole() {
-    return isAdmin(this.currentUser, this.router)
-    || this.currentUser.id === this.teacher.teacher.id;
+    if(isAdmin(this.currentUser, this.router) || this.currentUser.id === this.teacher.teacher.id) {
+      return true;
+    } else {
+      this.router.navigate(['403']);
+    }
   }
 }

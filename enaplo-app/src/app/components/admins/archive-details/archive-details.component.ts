@@ -33,7 +33,11 @@ export class ArchiveDetailsComponent implements OnInit {
   }
 
   userRole() {
-    return isAdmin(this.currentUser, this.router);
+    if(isAdmin(this.currentUser, this.router)) {
+      return true;
+    } else {
+      this.router.navigate(['403']);
+    }
   }
 
   goBack() {

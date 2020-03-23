@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -103,6 +104,7 @@ public class AttendanceServiceImpl implements AttendanceService {
                 .findAll()
                 .stream()
                 .filter(attendance -> attendance.getStudent().getClassroom().getId().equals(classroom_id))
+                .sorted(Comparator.comparing(Attendance::getDateOfMiss).reversed())
                 .collect(Collectors.toList());
     }
 
